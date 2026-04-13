@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://br7s55m6q7j64"]
+
+[ext_resource type="PackedScene" uid="uid://di4l77nwaiq7f" path="res://prefabs/nikole.tscn" id="1_kqwtq"]
+[ext_resource type="Texture2D" uid="uid://bbts0gelqk43h" path="res://sprites/nikole/interior/carpete3.png" id="2_c1gmr"]
+[ext_resource type="Texture2D" uid="uid://c8iahxchvxja4" path="res://sprites/nikole/interior/wall_border.png" id="3_c1gmr"]
+[ext_resource type="PackedScene" uid="uid://qq5dpqub4anh" path="res://prefabs/camera.tscn" id="3_gse4k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kqwtq"]
+shading_mode = 0
+albedo_color = Color(0.69411767, 0.3529412, 0.3529412, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_kqwtq"]
+material = SubResource("StandardMaterial3D_kqwtq")
+size = Vector2(60, 40)
+orientation = 1
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kqwtq"]
+emission_shape_offset = Vector3(0, 0, 2)
+emission_shape_scale = Vector3(1, 0, 1)
+emission_shape = 3
+emission_box_extents = Vector3(28, 1, 18)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o1v7d"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("2_c1gmr")
+
+[sub_resource type="QuadMesh" id="QuadMesh_gse4k"]
+material = SubResource("StandardMaterial3D_o1v7d")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gse4k"]
+shading_mode = 0
+albedo_color = Color(0.9, 0.69749993, 0.495, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gse4k"]
+material = SubResource("StandardMaterial3D_gse4k")
+size = Vector2(40, 10)
+orientation = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nnawc"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("3_c1gmr")
+
+[sub_resource type="QuadMesh" id="QuadMesh_qxism"]
+material = SubResource("StandardMaterial3D_nnawc")
+size = Vector2(1, 10)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_c1gmr"]
+material = SubResource("StandardMaterial3D_gse4k")
+flip_faces = true
+size = Vector2(40, 10)
+orientation = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nnawc"]
+material = SubResource("StandardMaterial3D_gse4k")
+size = Vector2(60, 10)
+orientation = 2
+
+[sub_resource type="Environment" id="Environment_gse4k"]
+background_mode = 1
+background_energy_multiplier = 0.0
+ambient_light_source = 1
+ambient_light_energy = 0.0
+reflected_light_source = 1
+
+[node name="NikoleHouse" type="Node3D" unique_id=417194587]
+
+[node name="Nikole" parent="." unique_id=583452868 instance=ExtResource("1_kqwtq")]
+
+[node name="Floor" type="MeshInstance3D" parent="." unique_id=1998096391]
+mesh = SubResource("QuadMesh_kqwtq")
+
+[node name="Fur" type="GPUParticles3D" parent="Floor" unique_id=446813274]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4647529, 0)
+amount = 45
+amount_ratio = 0.85
+speed_scale = 0.0
+explosiveness = 1.0
+visibility_aabb = AABB(-30, -10, -20, 60, 20, 40)
+process_material = SubResource("ParticleProcessMaterial_kqwtq")
+draw_pass_1 = SubResource("QuadMesh_gse4k")
+
+[node name="LeftWall" type="MeshInstance3D" parent="Floor" unique_id=833234881]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 5, 0)
+mesh = SubResource("PlaneMesh_gse4k")
+
+[node name="Border" type="MeshInstance3D" parent="Floor/LeftWall" unique_id=1870311743]
+transform = Transform3D(1.025, 0, 0, 0, 1.025, 0, 0, 0, 1.025, 0, 0, 20.05)
+mesh = SubResource("QuadMesh_qxism")
+
+[node name="RightWall" type="MeshInstance3D" parent="Floor" unique_id=1699678720]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 5, 0)
+mesh = SubResource("PlaneMesh_c1gmr")
+
+[node name="Border" type="MeshInstance3D" parent="Floor/RightWall" unique_id=2030269095]
+transform = Transform3D(1.025, 0, 0, 0, 1.025, 0, 0, 0, 1.025, 0, 0, 20.05)
+mesh = SubResource("QuadMesh_qxism")
+
+[node name="BackWall" type="MeshInstance3D" parent="Floor" unique_id=1833124749]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -20)
+mesh = SubResource("PlaneMesh_nnawc")
+
+[node name="BorderLeft" type="MeshInstance3D" parent="Floor/BackWall" unique_id=1807472788]
+transform = Transform3D(0.72478443, 0, 0.72478443, 0, 1.025, 0, -0.72478443, 0, 0.72478443, -29.8, 0, 0.2)
+mesh = SubResource("QuadMesh_qxism")
+
+[node name="BorderRight" type="MeshInstance3D" parent="Floor/BackWall" unique_id=1990091932]
+transform = Transform3D(0.72478443, 0, -0.72478443, 0, 1.025, 0, 0.72478443, 0, 0.72478443, 29.8, 0, 0.2)
+mesh = SubResource("QuadMesh_qxism")
+
+[node name="Camera3D" parent="." unique_id=1761994246 node_paths=PackedStringArray("target") instance=ExtResource("3_gse4k")]
+transform = Transform3D(1, 0, 0, 0, 0.9775559, 0.21067655, 0, -0.21067655, 0.9775559, 0, 8.464301, 20.64066)
+environment = SubResource("Environment_gse4k")
+target = NodePath("../Nikole")

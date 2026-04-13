@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://di4l77nwaiq7f"]
+
+[ext_resource type="Script" uid="uid://c6jo6by53efc4" path="res://scenes/nikole.gd" id="1_cvibc"]
+[ext_resource type="Texture2D" uid="uid://bgl2rhpm2u3um" path="res://sprites/nikole/nikole_cabeca.png" id="2_ub54p"]
+[ext_resource type="Texture2D" uid="uid://ccuvtuiaypkd1" path="res://sprites/nikole/nikole_cabelo.png" id="3_27lui"]
+[ext_resource type="Texture2D" uid="uid://2e0pvshuvuwj" path="res://sprites/nikole/nikole_cabelo_fundo.png" id="4_gboq0"]
+[ext_resource type="Texture2D" uid="uid://b18pmdop4i5v0" path="res://sprites/nikole/nikole_corpo.png" id="5_e1bu4"]
+[ext_resource type="Texture2D" uid="uid://cbx2ypcpchv06" path="res://sprites/nikole/nikole_mao.png" id="6_vv3ar"]
+[ext_resource type="Material" uid="uid://br606pb801km8" path="res://sprites/shadow.tres" id="7_fn58o"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_400sg"]
+height = 4.75354
+radius = 1.6713867
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mcffj"]
+material = ExtResource("7_fn58o")
+top_radius = 2.0
+bottom_radius = 2.0
+height = 0.001
+rings = 0
+
+[node name="Nikole" type="CharacterBody3D" unique_id=583452868]
+script = ExtResource("1_cvibc")
+
+[node name="Sprites" type="Node3D" parent="." unique_id=1746916121]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Head" type="Sprite3D" parent="Sprites" unique_id=747688587]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
+sorting_use_aabb_center = false
+cast_shadow = 0
+double_sided = false
+alpha_cut = 1
+alpha_antialiasing_mode = 2
+texture = ExtResource("2_ub54p")
+
+[node name="Hair" type="Node3D" parent="Sprites/Head" unique_id=92979047]
+
+[node name="HairFront" type="Sprite3D" parent="Sprites/Head/Hair" unique_id=558928396]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.278, 0.629, 0.1)
+sorting_use_aabb_center = false
+cast_shadow = 0
+double_sided = false
+alpha_cut = 1
+alpha_antialiasing_mode = 2
+texture = ExtResource("3_27lui")
+
+[node name="HairBack" type="Sprite3D" parent="Sprites/Head/Hair" unique_id=151685691]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.094, -0.42, -0.15)
+sorting_use_aabb_center = false
+cast_shadow = 0
+double_sided = false
+alpha_cut = 1
+alpha_antialiasing_mode = 2
+texture = ExtResource("4_gboq0")
+
+[node name="Body" type="Sprite3D" parent="Sprites" unique_id=412369416]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.05)
+sorting_use_aabb_center = false
+cast_shadow = 0
+double_sided = false
+alpha_cut = 1
+alpha_antialiasing_mode = 2
+texture = ExtResource("5_e1bu4")
+
+[node name="RightHand" type="Sprite3D" parent="Sprites" unique_id=134123808]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.635, -0.10257602, 0.1)
+sorting_use_aabb_center = false
+cast_shadow = 0
+double_sided = false
+alpha_cut = 1
+alpha_antialiasing_mode = 2
+texture = ExtResource("6_vv3ar")
+
+[node name="LeftHand" type="Sprite3D" parent="Sprites" unique_id=1888924493]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.97907877, -0.10257602, -0.1)
+sorting_use_aabb_center = false
+cast_shadow = 0
+double_sided = false
+alpha_cut = 1
+alpha_antialiasing_mode = 2
+texture = ExtResource("6_vv3ar")
+
+[node name="Collider" type="CollisionShape3D" parent="." unique_id=478019017]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0)
+shape = SubResource("CylinderShape3D_400sg")
+
+[node name="Shadow" type="MeshInstance3D" parent="." unique_id=1859901297]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.23068458, 0)
+mesh = SubResource("CylinderMesh_mcffj")
