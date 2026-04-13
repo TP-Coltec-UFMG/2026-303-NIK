@@ -1,0 +1,15 @@
+GPUParticles3D
+StaticBody3D
+CollisionShape3D
+MultiMeshInstance3D
+Sprite3D
+MeshInstance3D
+CSGPolygon3D
+Path3D
+Node3D
+DirectionalLight3D
+DirectionalLight2D
+Camera3D
+CharacterBody3D
+StaticBody2D
+CollisionShape2D

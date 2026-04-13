@@ -1,0 +1,266 @@
+[gd_scene format=3 uid="uid://c6b85htexvq58"]
+
+[ext_resource type="Script" uid="uid://bqer2533dsmm6" path="res://scenes/camera.gd" id="1_kyk2p"]
+[ext_resource type="Texture2D" uid="uid://bgl2rhpm2u3um" path="res://sprites/nikole/nikole_cabeca.png" id="2_aug50"]
+[ext_resource type="Script" uid="uid://c6jo6by53efc4" path="res://scenes/nikole.gd" id="2_kyk2p"]
+[ext_resource type="Texture2D" uid="uid://2e0pvshuvuwj" path="res://sprites/nikole/nikole_cabelo_fundo.png" id="3_kiw3p"]
+[ext_resource type="Texture2D" uid="uid://cbx2ypcpchv06" path="res://sprites/nikole/nikole_mao.png" id="4_400sg"]
+[ext_resource type="Texture2D" uid="uid://ccuvtuiaypkd1" path="res://sprites/nikole/nikole_cabelo.png" id="4_aug50"]
+[ext_resource type="Texture2D" uid="uid://b18pmdop4i5v0" path="res://sprites/nikole/nikole_corpo.png" id="5_g4kob"]
+[ext_resource type="Texture2D" uid="uid://dlad7lepmpfgu" path="res://sprites/nikole/nikole_house.png" id="8_400sg"]
+[ext_resource type="Material" uid="uid://c6yp6p2qwh05k" path="res://sprites/path.tres" id="10_3xj3m"]
+[ext_resource type="Script" uid="uid://3ved7aiofc0f" path="res://scenes/door.gd" id="10_45i86"]
+[ext_resource type="Material" uid="uid://br606pb801km8" path="res://sprites/shadow.tres" id="10_mcffj"]
+[ext_resource type="Material" uid="uid://c1esxj2mbkwvx" path="res://sprites/grass.tres" id="10_qy1jj"]
+[ext_resource type="Texture2D" uid="uid://chjkevg1guoym" path="res://sprites/props/grass/grass_bg.png" id="12_mcffj"]
+[ext_resource type="Texture2D" uid="uid://bpkveyhnxldso" path="res://sprites/props/grass/parallax_1.png" id="13_7ua8r"]
+[ext_resource type="Material" uid="uid://boqsbfhy877wx" path="res://sprites/river.tres" id="13_r7sob"]
+[ext_resource type="Texture2D" uid="uid://b3xoegfo5dmdy" path="res://sprites/props/grass/parallax_2.png" id="14_r7sob"]
+[ext_resource type="Texture2D" uid="uid://b1nkw05wj0fc" path="res://sprites/props/water/river.png" id="14_y5y3l"]
+[ext_resource type="Script" uid="uid://pecq7v40nchd" path="res://scenes/river_wave.gd" id="15_vjgi4"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_400sg"]
+height = 4.75354
+radius = 1.6713867
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mcffj"]
+material = ExtResource("10_mcffj")
+top_radius = 2.0
+bottom_radius = 2.0
+height = 0.001
+rings = 0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_400sg"]
+size = Vector3(9.558899, 12.912598, 2.486246)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3xj3m"]
+material = ExtResource("10_mcffj")
+top_radius = 10.0
+bottom_radius = 10.0
+height = 0.001
+rings = 0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vjgi4"]
+radius = 3.570622
+
+[sub_resource type="Curve3D" id="Curve3D_vjgi4"]
+bake_interval = 1.4
+_data = {
+"points": PackedVector3Array(1.0355759, -2.2967758, -18.68499, -1.036, 0, 18.685, -50.661, 0, -79.068, -15.541, 0, -22.245, 15.541, 0, 22.245, -60.45, 0, -23.289, -23.109707, 0, 9.613678, 23.109707, 0, -9.613678, 11.846746, 0, -9.564294, -32.62401, 0, 11.733192, 32.62401, 0, -11.733192, 61.355095, 0, -53.921486, -41.47798, 0, 3.426445, 41.47798, 0, -3.426445, 145.10779, 0, -32.728687, -1.2623749, 0, 16.050179, 1.2623749, 0, -16.050179, 169.0929, 0, -88.273125),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 6
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_g4kob"]
+size = Vector2(750, 350)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mcffj"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("12_mcffj")
+uv1_scale = Vector3(29.7, 0.9, 1)
+uv1_offset = Vector3(0, 0.1, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2rd6h"]
+size = Vector2(1000, 2)
+subdivide_width = 1000
+orientation = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7ua8r"]
+size = Vector3(1000, 50, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7ua8r"]
+material = ExtResource("13_r7sob")
+size = Vector2(750, 250)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vjgi4"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("14_y5y3l")
+uv1_scale = Vector3(29.7, 0.9, 1)
+uv1_offset = Vector3(0, 0.1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y5y3l"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("13_7ua8r")
+uv1_scale = Vector3(10, 0.95, 1)
+uv1_offset = Vector3(0, 0.05, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vjgi4"]
+size = Vector2(1920, 108)
+subdivide_width = 1000
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kyk2p"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("14_r7sob")
+uv1_scale = Vector3(10, 0.95, 1)
+uv1_offset = Vector3(0, 0.05, 0)
+
+[node name="Game" type="Node3D" unique_id=553908342]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1071620546 node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 0.97755575, 0.21067652, 0, -0.21067652, 0.97755575, 9.536743e-07, 11.583778, 36.550514)
+fov = 35.0
+near = 0.001
+script = ExtResource("1_kyk2p")
+target = NodePath("../Nikole")
+speed = 10.0
+
+[node name="Nikole" type="CharacterBody3D" parent="." unique_id=243595301]
+script = ExtResource("2_kyk2p")
+
+[node name="Sprites" type="Node3D" parent="Nikole" unique_id=2069418816]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Head" type="Sprite3D" parent="Nikole/Sprites" unique_id=1676976212]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
+sorting_use_aabb_center = false
+cast_shadow = 0
+double_sided = false
+alpha_cut = 1
+alpha_antialiasing_mode = 2
+texture = ExtResource("2_aug50")
+
+[node name="Hair" type="Node3D" parent="Nikole/Sprites/Head" unique_id=1005342480]
+
+[node name="HairFront" type="Sprite3D" parent="Nikole/Sprites/Head/Hair" unique_id=1577483380]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.278, 0.629, 0.1)
+sorting_use_aabb_center = false
+cast_shadow = 0
+double_sided = false
+alpha_cut = 1
+alpha_antialiasing_mode = 2
+texture = ExtResource("4_aug50")
+
+[node name="HairBack" type="Sprite3D" parent="Nikole/Sprites/Head/Hair" unique_id=1804528002]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.094, -0.42, -0.15)
+sorting_use_aabb_center = false
+cast_shadow = 0
+double_sided = false
+alpha_cut = 1
+alpha_antialiasing_mode = 2
+texture = ExtResource("3_kiw3p")
+
+[node name="Body" type="Sprite3D" parent="Nikole/Sprites" unique_id=1042783345]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.05)
+sorting_use_aabb_center = false
+cast_shadow = 0
+double_sided = false
+alpha_cut = 1
+alpha_antialiasing_mode = 2
+texture = ExtResource("5_g4kob")
+
+[node name="RightHand" type="Sprite3D" parent="Nikole/Sprites" unique_id=1930001989]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.635, -0.10257602, 0.1)
+sorting_use_aabb_center = false
+cast_shadow = 0
+double_sided = false
+alpha_cut = 1
+alpha_antialiasing_mode = 2
+texture = ExtResource("4_400sg")
+
+[node name="LeftHand" type="Sprite3D" parent="Nikole/Sprites" unique_id=1179983896]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.97907877, -0.10257602, -0.1)
+sorting_use_aabb_center = false
+cast_shadow = 0
+double_sided = false
+alpha_cut = 1
+alpha_antialiasing_mode = 2
+texture = ExtResource("4_400sg")
+
+[node name="Collider" type="CollisionShape3D" parent="Nikole" unique_id=1023045414]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0)
+shape = SubResource("CylinderShape3D_400sg")
+
+[node name="Shadow" type="MeshInstance3D" parent="Nikole" unique_id=616198850]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.23068458, 0)
+mesh = SubResource("CylinderMesh_mcffj")
+
+[node name="Nikoles House" type="StaticBody3D" parent="." unique_id=1216972732]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.710617, 9.536743e-06, -75.80478)
+
+[node name="Collider" type="CollisionShape3D" parent="Nikoles House" unique_id=168274521]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6989441, 5.956299, -0.7836809)
+shape = SubResource("BoxShape3D_400sg")
+
+[node name="Sprite" type="Sprite3D" parent="Nikoles House" unique_id=1244174047]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.761497, 0)
+double_sided = false
+alpha_cut = 1
+alpha_antialiasing_mode = 2
+texture = ExtResource("8_400sg")
+
+[node name="Shadow" type="MeshInstance3D" parent="Nikoles House" unique_id=1064781984]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.1765765, 0, -0.27171558, -0.7945862)
+mesh = SubResource("CylinderMesh_3xj3m")
+
+[node name="Door" type="Area3D" parent="Nikoles House" unique_id=399914533]
+script = ExtResource("10_45i86")
+
+[node name="Trigger" type="CollisionShape3D" parent="Nikoles House/Door" unique_id=2077171816]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3112235, 2.6118164)
+shape = SubResource("SphereShape3D_vjgi4")
+
+[node name="Path3D" type="Path3D" parent="." unique_id=696043498]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
+curve = SubResource("Curve3D_vjgi4")
+debug_custom_color = Color(1, 0, 1, 1)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Path3D" unique_id=1488349530]
+polygon = PackedVector2Array(-3.5, 0, 3.5, 0, 3.5, 0.01, -3.5, 0.01)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 1
+path_rotation_accurate = false
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = ExtResource("10_3xj3m")
+
+[node name="Ground" type="MeshInstance3D" parent="." unique_id=1782261564]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+material_override = ExtResource("10_qy1jj")
+mesh = SubResource("PlaneMesh_g4kob")
+
+[node name="Barrier" type="StaticBody3D" parent="Ground" unique_id=1759026119]
+
+[node name="Grass" type="MeshInstance3D" parent="Ground/Barrier" unique_id=1756155098]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.94, -174.935)
+material_override = SubResource("StandardMaterial3D_mcffj")
+mesh = SubResource("PlaneMesh_2rd6h")
+
+[node name="Collider" type="CollisionShape3D" parent="Ground/Barrier" unique_id=630382200]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.939999, -169.935)
+shape = SubResource("BoxShape3D_7ua8r")
+
+[node name="River" type="MeshInstance3D" parent="Ground" unique_id=1911424337]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -17.214806, -259.2567)
+mesh = SubResource("PlaneMesh_7ua8r")
+surface_material_override/0 = ExtResource("13_r7sob")
+
+[node name="RiverWave" type="MeshInstance3D" parent="Ground/River" unique_id=327031874]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6564865, -124.74399)
+material_override = SubResource("StandardMaterial3D_vjgi4")
+mesh = SubResource("PlaneMesh_2rd6h")
+script = ExtResource("15_vjgi4")
+duration = 5.0
+sin_duration = 10.0
+
+[node name="Parralax1" type="MeshInstance3D" parent="." unique_id=2079337357]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.349976, -398.40787)
+material_override = SubResource("StandardMaterial3D_y5y3l")
+mesh = SubResource("PlaneMesh_vjgi4")
+
+[node name="Parallax2" type="MeshInstance3D" parent="Parralax1" unique_id=1839378131]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.238579, -342.92004)
+material_override = SubResource("StandardMaterial3D_kyk2p")
+mesh = SubResource("PlaneMesh_vjgi4")
+
+[connection signal="body_entered" from="Nikoles House/Door" to="Nikole" method="_on_door_body_entered" flags=18]
