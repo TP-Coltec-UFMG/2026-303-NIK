@@ -6,18 +6,21 @@ class_name Pista extends Node3D
 @export var nota_prefab : PackedScene
 @export var input: String
 
+signal nota_tocada(pontos : int)
+
 var notas_ativas: Array[Nota] = []
-var area_clique_z: float = 4.5
 @export var area_clique_perdao: float = 1.25
 
 func _ready() -> void:
 	sintetizador.play()
 	playback = sintetizador.get_stream_playback()
+	nota_tocada.connect(get_parent().pontuar)
 
 func _process(delta: float) -> void:
-	fundo.get_active_material(0).uv1_offset.y = fmod(fundo.get_active_material(0).uv1_offset.y - delta * 10, 1.0)
-	botao.scale.x = lerpf(botao.scale.x, 1.0, delta * 3)
-	botao.scale.z = lerpf(botao.scale.z, 1.0, delta * 3)
+	fundo.get_active_material(0).uv1_offset.y = fmod(fundo.get_active_material(0).uv1_offset.y + delta * 10, 1.0)
+	if not tocando_nota:
+		botao.scale.x = lerpf(botao.scale.x, 1.0, delta * 3)
+		botao.scale.z = lerpf(botao.scale.z, 1.0, delta * 3)
 		
 	if Input.is_action_just_pressed(input):
 		check_for_hit()
@@ -29,9 +32,9 @@ func _process(delta: float) -> void:
 
 	preencher_buffer()
 
-func criar_nota(meio_passos : int):
+func criar_nota(semitons : int):
 	var nova_nota : Nota = nota_prefab.instantiate()
-	nova_nota.meio_passos = meio_passos
+	nova_nota.semitons = semitons
 	nova_nota.position = Vector3(0, 0, -7.5) 
 	add_child(nova_nota)
 	notas_ativas.append(nova_nota)
@@ -41,22 +44,24 @@ func check_for_hit():
 		var mais_perto = 999
 		var nota_mais_perto = notas_ativas[0]
 		for nota in notas_ativas:
-			var dist = abs(nota_mais_perto.position.z - area_clique_z)
+			var dist = abs(nota_mais_perto.position.z - botao.position.z)
 			if dist < mais_perto:
 				mais_perto = dist
 				nota_mais_perto = nota
 		
 		if mais_perto < area_clique_perdao:
-			print("acertou! distancia = ", mais_perto, " / nota = ", nota_mais_perto.meio_passos)
+			print("acertou! distancia = ", mais_perto, " / nota = ", nota_mais_perto.semitons)
 			notas_ativas.erase(nota_mais_perto)
 			nota_mais_perto.queue_free()
 
 			if mais_perto < area_clique_perdao / 2:
 				instanciar_texto("Boa!", Color(0, 1, 0, 1))
+				nota_tocada.emit(1)
 			else:
 				instanciar_texto("Perfeito!", Color(1, 0.7, 0, 1))
+				nota_tocada.emit(1.1) # bonus
 
-			tocar_som(nota_mais_perto.meio_passos)
+			tocar_som(nota_mais_perto.semitons)
 		else:
 			print("errou!")
 			instanciar_texto("Errou!", Color(1, 0.2, 0.2, 1))

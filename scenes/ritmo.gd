@@ -11,10 +11,16 @@ extends Node
 # CADA FILA DEVE SER FORMATADA DA SEGUINTE FORMA: (PISTA, NOTA, TEMPO DE BATIDAS ATÉ A PRÓXIMA NOTA)
 @export var fila_notas : Array[Vector3i] = []
 @export var bpm : int = 60
+
+@export var pontos_label : Label
+var pontuacao : float = 0.0
+var pontos_maximo : int = 0
+
 var delay_batidas : int = 0
 
 func _ready() -> void:
 	ler_json(musica)
+	pontos_label.text = str("Pontos: ", pontuacao, "/", pontos_maximo)
 	tocar()
 
 func ler_json(musica : String):
@@ -34,6 +40,7 @@ func ler_json(musica : String):
 					bpm = nota.bpm
 				else:
 					fila_notas.append(Vector3i(nota.x, nota.y, nota.z))
+					pontos_maximo += 1
 	else:
 		print_debug("o arquivo \"" + caminho + "\" não existe!")
 
@@ -59,3 +66,7 @@ func tocar() -> void:
 	delay_batidas -= 1
 
 	tocar()
+
+func pontuar(pontos : float) -> void:
+	pontuacao += pontos
+	pontos_label.text = str("Pontos: ", pontuacao, "/", pontos_maximo)

@@ -2,7 +2,7 @@ class_name Nota extends MeshInstance3D
 
 var velocidade: float = 10.0
 var ativa = true
-var meio_passos = 10
+var semitons = 10
 
 @onready var area_clique_perdao = get_parent().area_clique_perdao
 
