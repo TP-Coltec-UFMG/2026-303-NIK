@@ -1,63 +1,61 @@
 class_name Nikole extends CharacterBody3D
 
 
-@export var speed = 30.0
-
-const JUMP_VELOCITY = -400.0
+@export var velocidade = 30.0
 
 @onready var sprites : Node3D = $Sprites
-@onready var right_hand : Node3D = $Sprites/RightHand
-@onready var right_hand_base_position : Vector3 = $Sprites/RightHand.position
-@onready var left_hand : Node3D = $Sprites/LeftHand
-@onready var left_hand_base_position : Vector3 = $Sprites/LeftHand.position
-@onready var hair : Node3D = $Sprites/Head/Hair
-@onready var hair_base_position : Vector3 = $Sprites/Head/Hair.position
+@onready var mao_direita : Node3D = $Sprites/MaoDireita
+@onready var mao_direita_base_posicao : Vector3 = $Sprites/MaoDireita.position
+@onready var mao_esquerda : Node3D = $Sprites/MaoEsquerda
+@onready var mao_esquerda_base_posicao : Vector3 = $Sprites/MaoEsquerda.position
+@onready var cabelo : Node3D = $Sprites/Cabeca/Cabelo
+@onready var cabelo_base_posicao : Vector3 = $Sprites/Cabeca/Cabelo.position
 @onready var sprites_scale : float = $Sprites.scale.x
 var sprite_direction = 1
 var flip : float
 
-var animation_progress : float = 0
-var walking_animation_weight : float = 0
-var walking : bool
+var progresso_animacao : float = 0
+var peso_animacao_andar : float = 0
+var andando : bool
 
-var move_input : Vector2
+var mover_input : Vector2
 
 func _physics_process(delta: float) -> void:
 	var raw_input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	move_input = move_input.lerp(raw_input, delta / 0.2)
+	mover_input = mover_input.lerp(raw_input, delta / 0.2)
 
-	walking = raw_input.length() > 0
+	andando = raw_input.length() > 0
 
 	if raw_input.x != 0:
 		sprite_direction = 1 if raw_input.x > 0 else -1
 
-	velocity.x = move_input.x * speed
-	velocity.z = move_input.y * speed
+	velocity.x = mover_input.x * velocidade
+	velocity.z = mover_input.y * velocidade
 
 	move_and_slide()
 
 func _process(delta: float) -> void:
 	# animations
-	walking_animation_weight = lerpf(walking_animation_weight, 1 if walking else 0, delta / .075)
+	peso_animacao_andar = lerpf(peso_animacao_andar, 1 if andando else 0, delta / .075)
 
 	# sprites.scale.x = lerpf(sprites.scale.x, sprites_scale * -sprite_direction, delta / 0.05)
 	# flip = lerpf(flip, PI / 2 * -sprite_direction, delta / 0.1)
 	# flip = PI / 2 * -sprite_direction
 	sprites.scale.x = sprite_direction;
 
-	animation_progress += speed * delta * .275
+	progresso_animacao += velocidade * delta * .275
 	
-	sprites.rotation.z = (sin(animation_progress) * 0.05) * walking_animation_weight + (sin(animation_progress / 4) * 0.01)
-	sprites.scale.y = 1 - (sin(animation_progress * 2) * .01) * walking_animation_weight + -((1 + sin(animation_progress * .5)) * .01)
-	sprites.position.y = 1 + ((1 + sin(animation_progress * 2 - PI / 2)) * .25) * walking_animation_weight
-	left_hand.position.x = left_hand_base_position.x - (sin(animation_progress - PI / 2) * .6) * walking_animation_weight
-	left_hand.position.y = left_hand_base_position.y + (sin(2 * animation_progress + PI / 2) * .125) * walking_animation_weight
-	right_hand.position.x = right_hand_base_position.x + (sin(animation_progress - PI / 2) * .6) * walking_animation_weight
-	right_hand.position.y = right_hand_base_position.y + (sin(2 * animation_progress + PI / 2) * .125) * walking_animation_weight
-	hair.rotation.z = (sin(animation_progress) * 0.05) * walking_animation_weight
+	sprites.rotation.z = (sin(progresso_animacao) * 0.05) * peso_animacao_andar + (sin(progresso_animacao / 4) * 0.01)
+	sprites.scale.y = 1 - (sin(progresso_animacao * 2) * .01) * peso_animacao_andar + -((1 + sin(progresso_animacao * .5)) * .01)
+	sprites.position.y = 1 + ((1 + sin(progresso_animacao * 2 - PI / 2)) * .25) * peso_animacao_andar
+	mao_esquerda.position.x = mao_esquerda_base_posicao.x - (sin(progresso_animacao - PI / 2) * .6) * peso_animacao_andar
+	mao_esquerda.position.y = mao_esquerda_base_posicao.y + (sin(2 * progresso_animacao + PI / 2) * .125) * peso_animacao_andar
+	mao_direita.position.x = mao_direita_base_posicao.x + (sin(progresso_animacao - PI / 2) * .6) * peso_animacao_andar
+	mao_direita.position.y = mao_direita_base_posicao.y + (sin(2 * progresso_animacao + PI / 2) * .125) * peso_animacao_andar
+	cabelo.rotation.z = (sin(progresso_animacao) * 0.05) * peso_animacao_andar
 
 	sprites.reset_physics_interpolation()
 
 func _on_door_body_entered(body: Node3D, source: Area3D) -> void:
-	if source is Door and body is Nikole:
-		print_debug("entrar na casa de " + source.house_owner + "?")
+	if source is Porta and body is Nikole:
+		print_debug("entrar na casa de " + source.dono + "?")

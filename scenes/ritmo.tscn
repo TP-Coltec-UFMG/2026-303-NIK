@@ -1,0 +1,171 @@
+[gd_scene format=3 uid="uid://cqlk1q6jwerli"]
+
+[ext_resource type="Script" uid="uid://d1prmopltccua" path="res://scenes/ritmo.gd" id="1_ex8wh"]
+[ext_resource type="Script" uid="uid://cxkx0qqraouc2" path="res://scenes/pista.gd" id="1_gq22i"]
+[ext_resource type="Texture2D" uid="uid://di4xek07ndbb1" path="res://sprites/minigames/ritmo/ritmo_bg.png" id="2_fw65r"]
+[ext_resource type="PackedScene" uid="uid://dik6rl4f6pmpi" path="res://sprites/minigames/ritmo/nota.tscn" id="3_s42c4"]
+[ext_resource type="Texture2D" uid="uid://cm5oa01sxees" path="res://sprites/minigames/ritmo/ritmo_botao.png" id="4_1lrlg"]
+[ext_resource type="PackedScene" uid="uid://by8ocajurht03" path="res://sprites/minigames/ritmo/particulas.tscn" id="6_3aejw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s42c4"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_texture = ExtResource("2_fw65r")
+uv1_scale = Vector3(1, 30, 1)
+distance_fade_max_distance = 0.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_1lrlg"]
+material = SubResource("StandardMaterial3D_s42c4")
+size = Vector2(1, 30)
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ex8wh"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_color = Color(1, 0.3, 0.3, 1)
+albedo_texture = ExtResource("4_1lrlg")
+
+[sub_resource type="QuadMesh" id="QuadMesh_3aejw"]
+material = SubResource("StandardMaterial3D_ex8wh")
+center_offset = Vector3(0, 0.013, 0)
+orientation = 1
+
+[sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_3aejw"]
+buffer_length = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3aejw"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_color = Color(0.3583333, 1, 0.3, 1)
+albedo_texture = ExtResource("4_1lrlg")
+
+[sub_resource type="QuadMesh" id="QuadMesh_tit5y"]
+material = SubResource("StandardMaterial3D_3aejw")
+center_offset = Vector3(0, 0.013, 0)
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tit5y"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_color = Color(0.3, 0.73166656, 1, 1)
+albedo_texture = ExtResource("4_1lrlg")
+
+[sub_resource type="QuadMesh" id="QuadMesh_sgsqt"]
+material = SubResource("StandardMaterial3D_tit5y")
+center_offset = Vector3(0, 0.013, 0)
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sgsqt"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_color = Color(1, 0.7316667, 0.3, 1)
+albedo_texture = ExtResource("4_1lrlg")
+
+[sub_resource type="QuadMesh" id="QuadMesh_3m4o4"]
+material = SubResource("StandardMaterial3D_sgsqt")
+center_offset = Vector3(0, 0.013, 0)
+orientation = 1
+
+[sub_resource type="Environment" id="Environment_fw65r"]
+background_mode = 1
+
+[node name="Ritmo" type="Node3D" unique_id=1580925453]
+
+[node name="Pistas" type="Node" parent="." unique_id=2003673441]
+script = ExtResource("1_ex8wh")
+
+[node name="Pista1" type="Node3D" parent="Pistas" unique_id=1450167518]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, 0)
+script = ExtResource("1_gq22i")
+nota_prefab = ExtResource("3_s42c4")
+input = "ritmo_1"
+
+[node name="Fundo" type="MeshInstance3D" parent="Pistas/Pista1" unique_id=1541235655]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.5)
+mesh = SubResource("QuadMesh_1lrlg")
+
+[node name="Botao" type="MeshInstance3D" parent="Pistas/Pista1" unique_id=883640762]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.5)
+mesh = SubResource("QuadMesh_3aejw")
+
+[node name="Particulas" parent="Pistas/Pista1/Botao" unique_id=404366856 instance=ExtResource("6_3aejw")]
+
+[node name="Sintetizador" type="AudioStreamPlayer" parent="Pistas/Pista1" unique_id=1505144700]
+stream = SubResource("AudioStreamGenerator_3aejw")
+volume_db = -57.59
+
+[node name="Pista2" type="Node3D" parent="Pistas" unique_id=1782221392]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, 0)
+script = ExtResource("1_gq22i")
+nota_prefab = ExtResource("3_s42c4")
+input = "ritmo_2"
+
+[node name="Fundo" type="MeshInstance3D" parent="Pistas/Pista2" unique_id=1650572908]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.5)
+mesh = SubResource("QuadMesh_1lrlg")
+
+[node name="Botao" type="MeshInstance3D" parent="Pistas/Pista2" unique_id=766262847]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.5)
+mesh = SubResource("QuadMesh_tit5y")
+
+[node name="Particulas" parent="Pistas/Pista2/Botao" unique_id=926932932 instance=ExtResource("6_3aejw")]
+
+[node name="Sintetizador" type="AudioStreamPlayer" parent="Pistas/Pista2" unique_id=326175144]
+stream = SubResource("AudioStreamGenerator_3aejw")
+volume_db = -57.59
+
+[node name="Pista3" type="Node3D" parent="Pistas" unique_id=520958422]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, 0)
+script = ExtResource("1_gq22i")
+nota_prefab = ExtResource("3_s42c4")
+input = "ritmo_3"
+
+[node name="Fundo" type="MeshInstance3D" parent="Pistas/Pista3" unique_id=1402485903]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.5)
+mesh = SubResource("QuadMesh_1lrlg")
+
+[node name="Botao" type="MeshInstance3D" parent="Pistas/Pista3" unique_id=1782185402]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.5)
+mesh = SubResource("QuadMesh_sgsqt")
+
+[node name="Particulas" parent="Pistas/Pista3/Botao" unique_id=1330910524 instance=ExtResource("6_3aejw")]
+
+[node name="Sintetizador" type="AudioStreamPlayer" parent="Pistas/Pista3" unique_id=690938213]
+stream = SubResource("AudioStreamGenerator_3aejw")
+volume_db = -57.59
+
+[node name="Pista4" type="Node3D" parent="Pistas" unique_id=1378120941]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0, 0)
+script = ExtResource("1_gq22i")
+nota_prefab = ExtResource("3_s42c4")
+input = "ritmo_4"
+
+[node name="Fundo" type="MeshInstance3D" parent="Pistas/Pista4" unique_id=1370218909]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.5)
+mesh = SubResource("QuadMesh_1lrlg")
+
+[node name="Botao" type="MeshInstance3D" parent="Pistas/Pista4" unique_id=906329084]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.5)
+mesh = SubResource("QuadMesh_3m4o4")
+
+[node name="Particulas" parent="Pistas/Pista4/Botao" unique_id=1628463301 instance=ExtResource("6_3aejw")]
+
+[node name="Sintetizador" type="AudioStreamPlayer" parent="Pistas/Pista4" unique_id=528017438]
+stream = SubResource("AudioStreamGenerator_3aejw")
+volume_db = -57.59
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1397616387]
+transform = Transform3D(1, 0, 0, 0, 0.80397105, 0.59466845, 0, -0.59466845, 0.80397105, -2.3841858e-07, 5.384045, 10.047503)
+environment = SubResource("Environment_fw65r")
+fov = 30.0
+far = 500.0

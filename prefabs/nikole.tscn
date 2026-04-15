@@ -25,7 +25,7 @@ script = ExtResource("1_cvibc")
 [node name="Sprites" type="Node3D" parent="." unique_id=1746916121]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="Head" type="Sprite3D" parent="Sprites" unique_id=747688587]
+[node name="Cabeca" type="Sprite3D" parent="Sprites" unique_id=747688587]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
 sorting_use_aabb_center = false
 cast_shadow = 0
@@ -34,9 +34,9 @@ alpha_cut = 1
 alpha_antialiasing_mode = 2
 texture = ExtResource("2_ub54p")
 
-[node name="Hair" type="Node3D" parent="Sprites/Head" unique_id=92979047]
+[node name="Cabelo" type="Node3D" parent="Sprites/Cabeca" unique_id=92979047]
 
-[node name="HairFront" type="Sprite3D" parent="Sprites/Head/Hair" unique_id=558928396]
+[node name="Franja" type="Sprite3D" parent="Sprites/Cabeca/Cabelo" unique_id=558928396]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.278, 0.629, 0.1)
 sorting_use_aabb_center = false
 cast_shadow = 0
@@ -45,7 +45,7 @@ alpha_cut = 1
 alpha_antialiasing_mode = 2
 texture = ExtResource("3_27lui")
 
-[node name="HairBack" type="Sprite3D" parent="Sprites/Head/Hair" unique_id=151685691]
+[node name="Fundo" type="Sprite3D" parent="Sprites/Cabeca/Cabelo" unique_id=151685691]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.094, -0.42, -0.15)
 sorting_use_aabb_center = false
 cast_shadow = 0
@@ -54,7 +54,7 @@ alpha_cut = 1
 alpha_antialiasing_mode = 2
 texture = ExtResource("4_gboq0")
 
-[node name="Body" type="Sprite3D" parent="Sprites" unique_id=412369416]
+[node name="Corpo" type="Sprite3D" parent="Sprites" unique_id=412369416]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.05)
 sorting_use_aabb_center = false
 cast_shadow = 0
@@ -63,7 +63,7 @@ alpha_cut = 1
 alpha_antialiasing_mode = 2
 texture = ExtResource("5_e1bu4")
 
-[node name="RightHand" type="Sprite3D" parent="Sprites" unique_id=134123808]
+[node name="MaoDireita" type="Sprite3D" parent="Sprites" unique_id=134123808]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.635, -0.10257602, 0.1)
 sorting_use_aabb_center = false
 cast_shadow = 0
@@ -72,7 +72,7 @@ alpha_cut = 1
 alpha_antialiasing_mode = 2
 texture = ExtResource("6_vv3ar")
 
-[node name="LeftHand" type="Sprite3D" parent="Sprites" unique_id=1888924493]
+[node name="MaoEsquerda" type="Sprite3D" parent="Sprites" unique_id=1888924493]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.97907877, -0.10257602, -0.1)
 sorting_use_aabb_center = false
 cast_shadow = 0
@@ -81,10 +81,10 @@ alpha_cut = 1
 alpha_antialiasing_mode = 2
 texture = ExtResource("6_vv3ar")
 
-[node name="Collider" type="CollisionShape3D" parent="." unique_id=478019017]
+[node name="Colisor" type="CollisionShape3D" parent="." unique_id=478019017]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0)
 shape = SubResource("CylinderShape3D_400sg")
 
-[node name="Shadow" type="MeshInstance3D" parent="." unique_id=1859901297]
+[node name="Sombra" type="MeshInstance3D" parent="." unique_id=1859901297]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.23068458, 0)
 mesh = SubResource("CylinderMesh_mcffj")

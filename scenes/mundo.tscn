@@ -1,0 +1,197 @@
+[gd_scene format=3 uid="uid://diklqpfu5xw8r"]
+
+[ext_resource type="PackedScene" uid="uid://qq5dpqub4anh" path="res://prefabs/camera.tscn" id="1_35q48"]
+[ext_resource type="PackedScene" uid="uid://di4l77nwaiq7f" path="res://prefabs/nikole.tscn" id="2_cae5a"]
+[ext_resource type="Texture2D" uid="uid://dlad7lepmpfgu" path="res://sprites/nikole/nikole_house.png" id="3_l7i8s"]
+[ext_resource type="Material" uid="uid://br606pb801km8" path="res://sprites/shadow.tres" id="4_f7ym0"]
+[ext_resource type="Script" uid="uid://c3ed7nx4op4i1" path="res://scenes/porta.gd" id="5_35q48"]
+[ext_resource type="Material" uid="uid://c6yp6p2qwh05k" path="res://sprites/path.tres" id="6_541k4"]
+[ext_resource type="Material" uid="uid://c1esxj2mbkwvx" path="res://sprites/grass.tres" id="7_c1ejn"]
+[ext_resource type="Texture2D" uid="uid://chjkevg1guoym" path="res://sprites/props/grass/grass_bg.png" id="8_vnytd"]
+[ext_resource type="Material" uid="uid://boqsbfhy877wx" path="res://sprites/river.tres" id="9_e6vnd"]
+[ext_resource type="Texture2D" uid="uid://b1nkw05wj0fc" path="res://sprites/props/water/river.png" id="10_2jrhv"]
+[ext_resource type="Script" uid="uid://pecq7v40nchd" path="res://scenes/river_wave.gd" id="11_g6hv0"]
+[ext_resource type="Texture2D" uid="uid://bpkveyhnxldso" path="res://sprites/props/grass/parallax_1.png" id="12_y4lqn"]
+[ext_resource type="Texture2D" uid="uid://b3xoegfo5dmdy" path="res://sprites/props/grass/parallax_2.png" id="13_wf7jv"]
+
+[sub_resource type="Environment" id="Environment_kvuet"]
+background_mode = 1
+background_color = Color(0.6313726, 0.8745098, 0.9411765, 1)
+ambient_light_source = 1
+ambient_light_color = Color(0.6313726, 0.8745098, 0.9411765, 1)
+ambient_light_energy = 10.75
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_400sg"]
+size = Vector3(9.558899, 12.912598, 2.486246)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3xj3m"]
+material = ExtResource("4_f7ym0")
+top_radius = 10.0
+bottom_radius = 10.0
+height = 0.001
+rings = 0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vjgi4"]
+radius = 3.570622
+
+[sub_resource type="Curve3D" id="Curve3D_vjgi4"]
+bake_interval = 1.4
+_data = {
+"points": PackedVector3Array(1.0355759, -2.2967758, -18.68499, -1.036, 0, 18.685, -50.661, 0, -79.068, -15.541, 0, -22.245, 15.541, 0, 22.245, -60.45, 0, -23.289, -23.109707, 0, 9.613678, 23.109707, 0, -9.613678, 11.846746, 0, -9.564294, -32.62401, 0, 11.733192, 32.62401, 0, -11.733192, 61.355095, 0, -53.921486, -41.47798, 0, 3.426445, 41.47798, 0, -3.426445, 145.10779, 0, -32.728687, -1.2623749, 0, 16.050179, 1.2623749, 0, -16.050179, 169.0929, 0, -88.273125),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 6
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_g4kob"]
+size = Vector2(750, 350)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mcffj"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("8_vnytd")
+uv1_scale = Vector3(29.7, 0.9, 1)
+uv1_offset = Vector3(0, 0.1, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2rd6h"]
+size = Vector2(1024, 2)
+subdivide_width = 1000
+orientation = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7ua8r"]
+size = Vector3(1000, 50, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kyk2p"]
+size = Vector2(750, 100)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7ua8r"]
+material = ExtResource("9_e6vnd")
+size = Vector2(750, 200)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vjgi4"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("10_2jrhv")
+uv1_scale = Vector3(21.6, 0.9, 0.842)
+uv1_offset = Vector3(0, 0.1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y5y3l"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("12_y4lqn")
+uv1_scale = Vector3(10, 0.95, 1)
+uv1_offset = Vector3(0, 0.05, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vjgi4"]
+size = Vector2(1920, 108)
+subdivide_width = 1000
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kyk2p"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("13_wf7jv")
+uv1_scale = Vector3(10, 0.95, 1)
+uv1_offset = Vector3(0, 0.05, 0)
+
+[node name="Mundo" type="Node3D" unique_id=553908342]
+
+[node name="Camera" parent="." unique_id=1761994246 node_paths=PackedStringArray("alvo") instance=ExtResource("1_35q48")]
+transform = Transform3D(1, 0, 0, 0, 0.9775557, 0.2106765, 0, -0.2106765, 0.9775557, 9.536743e-07, 11.583778, 36.550514)
+environment = SubResource("Environment_kvuet")
+alvo = NodePath("../Nikole")
+
+[node name="Nikole" parent="." unique_id=583452868 instance=ExtResource("2_cae5a")]
+
+[node name="CasaNikole" type="StaticBody3D" parent="." unique_id=1216972732]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.710617, 9.536743e-06, -75.80478)
+
+[node name="Colisor" type="CollisionShape3D" parent="CasaNikole" unique_id=168274521]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6989441, 5.956299, -0.7836809)
+shape = SubResource("BoxShape3D_400sg")
+
+[node name="Sprite" type="Sprite3D" parent="CasaNikole" unique_id=1244174047]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.761497, 0)
+double_sided = false
+alpha_cut = 1
+alpha_antialiasing_mode = 2
+texture = ExtResource("3_l7i8s")
+
+[node name="Sombra" type="MeshInstance3D" parent="CasaNikole" unique_id=1064781984]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.1765765, 0, -0.27171558, -0.7945862)
+mesh = SubResource("CylinderMesh_3xj3m")
+
+[node name="Porta" type="Area3D" parent="CasaNikole" unique_id=399914533]
+script = ExtResource("5_35q48")
+
+[node name="Gatilho" type="CollisionShape3D" parent="CasaNikole/Porta" unique_id=2077171816]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3112235, 2.6118164)
+shape = SubResource("SphereShape3D_vjgi4")
+
+[node name="Caminho" type="Path3D" parent="." unique_id=696043498]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
+curve = SubResource("Curve3D_vjgi4")
+debug_custom_color = Color(1, 0, 1, 1)
+
+[node name="Poligono" type="CSGPolygon3D" parent="Caminho" unique_id=1488349530]
+polygon = PackedVector2Array(-3.5, 0, 3.5, 0, 3.5, 0.01, -3.5, 0.01)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 1
+path_rotation_accurate = false
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = ExtResource("6_541k4")
+
+[node name="Grama" type="MeshInstance3D" parent="." unique_id=1782261564]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+material_override = ExtResource("7_c1ejn")
+mesh = SubResource("PlaneMesh_g4kob")
+
+[node name="Barreira" type="StaticBody3D" parent="Grama" unique_id=1759026119]
+
+[node name="Mato" type="MeshInstance3D" parent="Grama/Barreira" unique_id=1756155098]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.94, -174.935)
+material_override = SubResource("StandardMaterial3D_mcffj")
+mesh = SubResource("PlaneMesh_2rd6h")
+
+[node name="Colisor" type="CollisionShape3D" parent="Grama/Barreira" unique_id=630382200]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.939999, -169.935)
+shape = SubResource("BoxShape3D_7ua8r")
+
+[node name="Margem" type="MeshInstance3D" parent="Grama" unique_id=638852462]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.8273573, -353.19977)
+material_override = ExtResource("7_c1ejn")
+mesh = SubResource("PlaneMesh_kyk2p")
+
+[node name="Mato" type="MeshInstance3D" parent="Grama/Margem" unique_id=657627305]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.847, -50)
+material_override = SubResource("StandardMaterial3D_mcffj")
+mesh = SubResource("PlaneMesh_2rd6h")
+
+[node name="Rio" type="MeshInstance3D" parent="Grama" unique_id=1911424337]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.947509, -207.65366)
+mesh = SubResource("PlaneMesh_7ua8r")
+surface_material_override/0 = ExtResource("9_e6vnd")
+
+[node name="Ondas" type="MeshInstance3D" parent="Grama/Rio" unique_id=327031874]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7592659, -99.6891)
+material_override = SubResource("StandardMaterial3D_vjgi4")
+mesh = SubResource("PlaneMesh_2rd6h")
+script = ExtResource("11_g6hv0")
+duration = 5.0
+sin_duration = 10.0
+
+[node name="Fundo1" type="MeshInstance3D" parent="." unique_id=2079337357]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13.021896, -523.39374)
+material_override = SubResource("StandardMaterial3D_y5y3l")
+mesh = SubResource("PlaneMesh_vjgi4")
+
+[node name="Fundo2" type="MeshInstance3D" parent="Fundo1" unique_id=1839378131]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.439735, -353.70294)
+material_override = SubResource("StandardMaterial3D_kyk2p")
+mesh = SubResource("PlaneMesh_vjgi4")

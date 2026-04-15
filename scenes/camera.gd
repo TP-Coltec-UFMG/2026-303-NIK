@@ -1,11 +1,11 @@
 extends Camera3D
 
 @onready var offset : Vector3 = position
-@export var target : Node3D
-@export var speed : float = 1.5
+@export var alvo : Node3D
+@export var velocidade : float = 10.0
 
 func _process(delta: float) -> void:
-	var target_position = offset + target.position
-	position.x = lerpf(position.x, target_position.x, delta * speed)
-	position.y = lerpf(position.y, target_position.y, delta * speed)
-	position.z = lerpf(position.z, target_position.z, delta * speed)
+	var posicao_alvo = offset + alvo.position
+	position.x = lerpf(position.x, posicao_alvo.x, delta * velocidade)
+	position.y = lerpf(position.y, posicao_alvo.y, delta * velocidade)
+	position.z = lerpf(position.z, posicao_alvo.z, delta * velocidade)
