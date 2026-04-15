@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://by8ocajurht03"]
 
-[ext_resource type="Texture2D" uid="uid://cm5oa01sxees" path="res://sprites/minigames/ritmo/ritmo_botao.png" id="1_p102r"]
+[ext_resource type="Texture2D" uid="uid://cm5oa01sxees" path="res://minigames/ritmo/ritmo_botao.png" id="1_p102r"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tit5y"]
 direction = Vector3(0, 1, 0)

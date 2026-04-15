@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://d1prmopltccua" path="res://scenes/ritmo.gd" id="1_ex8wh"]
 [ext_resource type="Script" uid="uid://cxkx0qqraouc2" path="res://scenes/pista.gd" id="1_gq22i"]
-[ext_resource type="Texture2D" uid="uid://di4xek07ndbb1" path="res://sprites/minigames/ritmo/ritmo_bg.png" id="2_fw65r"]
-[ext_resource type="PackedScene" uid="uid://dik6rl4f6pmpi" path="res://sprites/minigames/ritmo/nota.tscn" id="3_s42c4"]
-[ext_resource type="Texture2D" uid="uid://cm5oa01sxees" path="res://sprites/minigames/ritmo/ritmo_botao.png" id="4_1lrlg"]
-[ext_resource type="PackedScene" uid="uid://by8ocajurht03" path="res://sprites/minigames/ritmo/particulas.tscn" id="6_3aejw"]
+[ext_resource type="Texture2D" uid="uid://di4xek07ndbb1" path="res://minigames/ritmo/ritmo_bg.png" id="2_fw65r"]
+[ext_resource type="PackedScene" uid="uid://dik6rl4f6pmpi" path="res://minigames/ritmo/nota.tscn" id="3_s42c4"]
+[ext_resource type="Texture2D" uid="uid://cm5oa01sxees" path="res://minigames/ritmo/ritmo_botao.png" id="4_1lrlg"]
+[ext_resource type="PackedScene" uid="uid://ctohoc7glbrb" path="res://minigames/ritmo/label_fofa.tscn" id="6_3aejw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s42c4"]
 transparency = 2
@@ -35,7 +35,7 @@ center_offset = Vector3(0, 0.013, 0)
 orientation = 1
 
 [sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_3aejw"]
-buffer_length = 0.1
+buffer_length = 0.05
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3aejw"]
 transparency = 2
@@ -83,10 +83,13 @@ background_mode = 1
 
 [node name="Pistas" type="Node" parent="." unique_id=2003673441]
 script = ExtResource("1_ex8wh")
+musica = "megalovania"
+bpm = 67
 
 [node name="Pista1" type="Node3D" parent="Pistas" unique_id=1450167518]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, 0)
 script = ExtResource("1_gq22i")
+label_prefab = ExtResource("6_3aejw")
 nota_prefab = ExtResource("3_s42c4")
 input = "ritmo_1"
 
@@ -98,15 +101,14 @@ mesh = SubResource("QuadMesh_1lrlg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.5)
 mesh = SubResource("QuadMesh_3aejw")
 
-[node name="Particulas" parent="Pistas/Pista1/Botao" unique_id=404366856 instance=ExtResource("6_3aejw")]
-
 [node name="Sintetizador" type="AudioStreamPlayer" parent="Pistas/Pista1" unique_id=1505144700]
 stream = SubResource("AudioStreamGenerator_3aejw")
-volume_db = -57.59
+volume_db = -40.0
 
 [node name="Pista2" type="Node3D" parent="Pistas" unique_id=1782221392]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, 0)
 script = ExtResource("1_gq22i")
+label_prefab = ExtResource("6_3aejw")
 nota_prefab = ExtResource("3_s42c4")
 input = "ritmo_2"
 
@@ -118,15 +120,14 @@ mesh = SubResource("QuadMesh_1lrlg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.5)
 mesh = SubResource("QuadMesh_tit5y")
 
-[node name="Particulas" parent="Pistas/Pista2/Botao" unique_id=926932932 instance=ExtResource("6_3aejw")]
-
 [node name="Sintetizador" type="AudioStreamPlayer" parent="Pistas/Pista2" unique_id=326175144]
 stream = SubResource("AudioStreamGenerator_3aejw")
-volume_db = -57.59
+volume_db = -40.0
 
 [node name="Pista3" type="Node3D" parent="Pistas" unique_id=520958422]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, 0)
 script = ExtResource("1_gq22i")
+label_prefab = ExtResource("6_3aejw")
 nota_prefab = ExtResource("3_s42c4")
 input = "ritmo_3"
 
@@ -138,15 +139,14 @@ mesh = SubResource("QuadMesh_1lrlg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.5)
 mesh = SubResource("QuadMesh_sgsqt")
 
-[node name="Particulas" parent="Pistas/Pista3/Botao" unique_id=1330910524 instance=ExtResource("6_3aejw")]
-
 [node name="Sintetizador" type="AudioStreamPlayer" parent="Pistas/Pista3" unique_id=690938213]
 stream = SubResource("AudioStreamGenerator_3aejw")
-volume_db = -57.59
+volume_db = -40.0
 
 [node name="Pista4" type="Node3D" parent="Pistas" unique_id=1378120941]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0, 0)
 script = ExtResource("1_gq22i")
+label_prefab = ExtResource("6_3aejw")
 nota_prefab = ExtResource("3_s42c4")
 input = "ritmo_4"
 
@@ -158,11 +158,9 @@ mesh = SubResource("QuadMesh_1lrlg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.5)
 mesh = SubResource("QuadMesh_3m4o4")
 
-[node name="Particulas" parent="Pistas/Pista4/Botao" unique_id=1628463301 instance=ExtResource("6_3aejw")]
-
 [node name="Sintetizador" type="AudioStreamPlayer" parent="Pistas/Pista4" unique_id=528017438]
 stream = SubResource("AudioStreamGenerator_3aejw")
-volume_db = -57.59
+volume_db = -40.0
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1397616387]
 transform = Transform3D(1, 0, 0, 0, 0.80397105, 0.59466845, 0, -0.59466845, 0.80397105, -2.3841858e-07, 5.384045, 10.047503)

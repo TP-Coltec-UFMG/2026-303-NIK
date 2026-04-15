@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cm5oa01sxees"
-path.s3tc="res://.godot/imported/ritmo_botao.png-3a5bb4d8fba4785239effcde66631e10.s3tc.ctex"
+uid="uid://di4xek07ndbb1"
+path.s3tc="res://.godot/imported/ritmo_bg.png-48d532849841688a34ff6e9122f5c161.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://sprites/minigames/ritmo/ritmo_botao.png"
-dest_files=["res://.godot/imported/ritmo_botao.png-3a5bb4d8fba4785239effcde66631e10.s3tc.ctex"]
+source_file="res://minigames/ritmo/ritmo_bg.png"
+dest_files=["res://.godot/imported/ritmo_bg.png-48d532849841688a34ff6e9122f5c161.s3tc.ctex"]
 
 [params]
 

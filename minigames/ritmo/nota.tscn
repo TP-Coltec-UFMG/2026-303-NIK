@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dik6rl4f6pmpi"]
 
-[ext_resource type="Texture2D" uid="uid://cm5oa01sxees" path="res://sprites/minigames/ritmo/ritmo_botao.png" id="1_o8jw3"]
-[ext_resource type="Script" uid="uid://d2c0f88fxh076" path="res://sprites/minigames/ritmo/nota.gd" id="2_1kix2"]
+[ext_resource type="Texture2D" uid="uid://cm5oa01sxees" path="res://minigames/ritmo/ritmo_botao.png" id="1_o8jw3"]
+[ext_resource type="Script" uid="uid://d2c0f88fxh076" path="res://minigames/ritmo/nota.gd" id="2_1kix2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1lrlg"]
 transparency = 2
