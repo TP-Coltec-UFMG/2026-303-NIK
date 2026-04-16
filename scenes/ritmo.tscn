@@ -83,7 +83,7 @@ background_mode = 1
 
 [node name="Pistas" type="Node" parent="." unique_id=2003673441 node_paths=PackedStringArray("pontos_label")]
 script = ExtResource("1_ex8wh")
-musica = "doremifa"
+musica = "espresso"
 bpm = 67
 pontos_label = NodePath("../UI/PontosLabel")
 
@@ -104,7 +104,7 @@ mesh = SubResource("QuadMesh_3aejw")
 
 [node name="Sintetizador" type="AudioStreamPlayer" parent="Pistas/Pista1" unique_id=1505144700]
 stream = SubResource("AudioStreamGenerator_3aejw")
-volume_db = -40.0
+volume_db = -15.0
 
 [node name="Pista2" type="Node3D" parent="Pistas" unique_id=1782221392]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, 0)
@@ -123,7 +123,7 @@ mesh = SubResource("QuadMesh_tit5y")
 
 [node name="Sintetizador" type="AudioStreamPlayer" parent="Pistas/Pista2" unique_id=326175144]
 stream = SubResource("AudioStreamGenerator_3aejw")
-volume_db = -40.0
+volume_db = -15.0
 
 [node name="Pista3" type="Node3D" parent="Pistas" unique_id=520958422]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, 0)
@@ -142,7 +142,7 @@ mesh = SubResource("QuadMesh_sgsqt")
 
 [node name="Sintetizador" type="AudioStreamPlayer" parent="Pistas/Pista3" unique_id=690938213]
 stream = SubResource("AudioStreamGenerator_3aejw")
-volume_db = -40.0
+volume_db = -15.0
 
 [node name="Pista4" type="Node3D" parent="Pistas" unique_id=1378120941]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0, 0)
@@ -161,7 +161,7 @@ mesh = SubResource("QuadMesh_3m4o4")
 
 [node name="Sintetizador" type="AudioStreamPlayer" parent="Pistas/Pista4" unique_id=528017438]
 stream = SubResource("AudioStreamGenerator_3aejw")
-volume_db = -40.0
+volume_db = -15.0
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1397616387]
 transform = Transform3D(1, 0, 0, 0, 0.80397105, 0.59466845, 0, -0.59466845, 0.80397105, -2.3841858e-07, 5.384045, 10.047503)

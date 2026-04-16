@@ -7,7 +7,6 @@ class_name Pista extends Node3D
 @export var input: String
 
 signal nota_tocada(pontos : int)
-
 var notas_ativas: Array[Nota] = []
 @export var area_clique_perdao: float = 1.25
 
@@ -35,7 +34,7 @@ func _process(delta: float) -> void:
 func criar_nota(semitons : int):
 	var nova_nota : Nota = nota_prefab.instantiate()
 	nova_nota.semitons = semitons
-	nova_nota.position = Vector3(0, 0, -7.5) 
+	nova_nota.position = Vector3(0, 0, -10) 
 	add_child(nova_nota)
 	notas_ativas.append(nova_nota)
 
@@ -50,7 +49,7 @@ func check_for_hit():
 				nota_mais_perto = nota
 		
 		if mais_perto < area_clique_perdao:
-			print("acertou! distancia = ", mais_perto, " / nota = ", nota_mais_perto.semitons)
+			# print("acertou! distancia = ", mais_perto, " / nota = ", nota_mais_perto.semitons)
 			notas_ativas.erase(nota_mais_perto)
 			nota_mais_perto.queue_free()
 
@@ -63,14 +62,14 @@ func check_for_hit():
 
 			tocar_som(nota_mais_perto.semitons)
 		else:
-			print("errou!")
+			# print("errou!")
 			instanciar_texto("Errou!", Color(1, 0.2, 0.2, 1))
 
 func remover_nota(nota):
 	if notas_ativas.has(nota):
 		notas_ativas.erase(nota)
-		print("perdeu uma nota!")
-		print("posicao = " + str(nota.position.z))
+		# print("perdeu uma nota!")
+		# print("posicao = " + str(nota.position.z))
 
 func instanciar_texto(texto : String, cor : Color):
 	var label = label_prefab.instantiate()
@@ -85,6 +84,7 @@ var frequencia_base: float = 44100.0
 var fase: float = 0.0
 var frequencia: float = 0.0
 var tocando_nota: bool = false
+var tocando_nota_fading: bool = false
 var amplitude: float = 0.0
 var volume_maximo: float = 0.4
 var decaimento: float = 20000
@@ -94,11 +94,13 @@ func tocar_som(steps: int):
 	frequencia = 261.63 * pow(2.0, steps / 12.0)
 	amplitude = volume_maximo
 	tocando_nota = true
+	tocando_nota_fading = false
 
 func parar_som():
 	tocando_nota = false
-	if playback != null:
-		playback.clear_buffer()
+	tocando_nota_fading = true
+	# if playback != null:
+		# playback.clear_buffer()
 
 func preencher_buffer():
 	if playback == null: 
@@ -110,13 +112,14 @@ func preencher_buffer():
 	while frames_available > 0:
 		var sample = 0.0
 
-		if tocando_nota:
-			sample = 1.0 if fase < 0.5 else -1.0
+		if tocando_nota or tocando_nota_fading:
+			sample = sin(fase * TAU)
 			fase = fmod(fase + incremento, 1.0)
 
-			amplitude *= taxa_decaimento
+			amplitude *= pow(taxa_decaimento, 10 if tocando_nota_fading else 1)
 			if amplitude < 0.0001:
 				tocando_nota = false
+				tocando_nota_fading = false
 				amplitude = 0.0
 
 		playback.push_frame(Vector2.ONE * sample * amplitude)
