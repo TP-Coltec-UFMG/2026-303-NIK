@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://xq0idf4ulj0f"]
+
+[ext_resource type="Texture2D" uid="uid://dyw6ljpp4rytc" path="res://sprites/dialogo/opcao_dialogo.png" id="1_5afiq"]
+[ext_resource type="Script" uid="uid://3d176ajn27g" path="res://scenes/botao_dialogo.gd" id="2_ef3ue"]
+[ext_resource type="Texture2D" uid="uid://pfvj7h1a5p14" path="res://sprites/dialogo/icones/investigacao.png" id="3_5afiq"]
+[ext_resource type="FontFile" uid="uid://c2nsdd24pprhl" path="res://fonts/OUTFIT-VARIABLEFONT_WGHT.TTF" id="4_0wb66"]
+
+[sub_resource type="FontVariation" id="FontVariation_pdetc"]
+base_font = ExtResource("4_0wb66")
+variation_opentype = {
+2003265652: 600
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_b67w1"]
+font = SubResource("FontVariation_pdetc")
+font_color = Color(0, 0, 0, 1)
+
+[node name="Escolha" type="TextureButton" unique_id=166111796]
+custom_minimum_size = Vector2(525, 80)
+texture_normal = ExtResource("1_5afiq")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("2_ef3ue")
+investigacao_icone = ExtResource("3_5afiq")
+
+[node name="Label" type="Label" parent="." unique_id=122598803]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_right = 0.85
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Oi, eu sou um botão!"
+label_settings = SubResource("LabelSettings_b67w1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Icone" type="TextureRect" parent="." unique_id=1272912278]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 80.0
+grow_vertical = 2
+expand_mode = 4
+stretch_mode = 4

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://di4l77nwaiq7f"]
 
-[ext_resource type="Script" uid="uid://c6jo6by53efc4" path="res://scenes/nikole.gd" id="1_cvibc"]
+[ext_resource type="Script" uid="uid://c6jo6by53efc4" path="res://scripts/nikole.gd" id="1_cvibc"]
 [ext_resource type="Texture2D" uid="uid://bgl2rhpm2u3um" path="res://sprites/nikole/nikole_cabeca.png" id="2_ub54p"]
 [ext_resource type="Texture2D" uid="uid://ccuvtuiaypkd1" path="res://sprites/nikole/nikole_cabelo.png" id="3_27lui"]
 [ext_resource type="Texture2D" uid="uid://2e0pvshuvuwj" path="res://sprites/nikole/nikole_cabelo_fundo.png" id="4_gboq0"]
@@ -86,5 +86,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0)
 shape = SubResource("CylinderShape3D_400sg")
 
 [node name="Sombra" type="MeshInstance3D" parent="." unique_id=1859901297]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.23068458, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.23068458, -0.5266281)
 mesh = SubResource("CylinderMesh_mcffj")

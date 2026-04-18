@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://b8lrw8kgtjyu4"]
+
+[ext_resource type="Texture2D" uid="uid://dqhtf63a2qvar" path="res://sprites/nikole/interior/interior.png" id="1_frte3"]
+[ext_resource type="Texture2D" uid="uid://banl32e553g16" path="res://sprites/paulo/paulo.png" id="2_yejmy"]
+[ext_resource type="Texture2D" uid="uid://4r04a2jlesqn" path="res://sprites/nikole/nikole.png" id="3_fouun"]
+[ext_resource type="FontFile" uid="uid://c2nsdd24pprhl" path="res://fonts/OUTFIT-VARIABLEFONT_WGHT.TTF" id="4_fouun"]
+[ext_resource type="Texture2D" uid="uid://d2udidsdjdkbm" path="res://sprites/dialogo/caixa_principal.png" id="4_pbauy"]
+[ext_resource type="Script" uid="uid://dwdep1750wuub" path="res://scripts/controle_dialogo.gd" id="5_yejmy"]
+[ext_resource type="PackedScene" uid="uid://xq0idf4ulj0f" path="res://prefabs/escolha.tscn" id="7_fouun"]
+
+[sub_resource type="FontVariation" id="FontVariation_tpcxi"]
+base_font = ExtResource("4_fouun")
+variation_opentype = {
+2003265652: 600
+}
+
+[sub_resource type="FontVariation" id="FontVariation_yoxrl"]
+base_font = ExtResource("4_fouun")
+variation_opentype = {
+2003265652: 800
+}
+
+[node name="UI" type="CanvasLayer" unique_id=737967027]
+
+[node name="Fundo" type="TextureRect" parent="." unique_id=903542453]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_frte3")
+expand_mode = 1
+
+[node name="Nikole" type="TextureRect" parent="Fundo" unique_id=1974618645]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -551.0
+offset_top = -246.0
+offset_right = -123.0
+offset_bottom = 287.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.563, 0.563)
+texture = ExtResource("3_fouun")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Paulo" type="TextureRect" parent="Fundo" unique_id=1040133879]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 542.0
+offset_top = -246.0
+offset_right = 970.0
+offset_bottom = 287.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(-0.563, 0.563)
+texture = ExtResource("2_yejmy")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Dialogo" type="TextureRect" parent="Fundo" unique_id=890092893]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -500.0
+offset_top = -681.0
+offset_right = 500.0
+offset_bottom = -506.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_pbauy")
+expand_mode = 1
+stretch_mode = 4
+script = ExtResource("5_yejmy")
+cena_opcao = ExtResource("7_fouun")
+
+[node name="Texto" type="RichTextLabel" parent="Fundo/Dialogo" unique_id=2071225656]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 19.0
+offset_right = 981.0
+offset_bottom = 153.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_tpcxi")
+theme_override_fonts/bold_font = SubResource("FontVariation_yoxrl")
+theme_override_fonts/bold_italics_font = ExtResource("4_fouun")
+theme_override_fonts/italics_font = ExtResource("4_fouun")
+theme_override_fonts/mono_font = ExtResource("4_fouun")
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/bold_italics_font_size = 18
+bbcode_enabled = true
+text = "[b][color=#3DBCDD]Nikole[/color][/b]
+Minha casa é bem fofa eu acho"
+
+[node name="PainelEscolhas" type="VBoxContainer" parent="Fundo/Dialogo" unique_id=1997647215]
+custom_minimum_size = Vector2(1, 0)
+layout_mode = 0
+offset_top = 186.0
+offset_right = 525.0
+offset_bottom = 471.0
+
+[node name="Escolha" parent="Fundo/Dialogo/PainelEscolhas" unique_id=1099511715 instance=ExtResource("7_fouun")]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+investigacao_icone = null

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhnkgsoyheb4g"
-path.s3tc="res://.godot/imported/carpete1.png-1f37565b3991a753cbcda5d2180e89cd.s3tc.ctex"
+uid="uid://vt5xjs2cc8x6"
+path.s3tc="res://.godot/imported/paulo_house.png-f616f260a56a72b966b5f02b4de0df26.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://sprites/nikole/interior/carpete1.png"
-dest_files=["res://.godot/imported/carpete1.png-1f37565b3991a753cbcda5d2180e89cd.s3tc.ctex"]
+source_file="res://sprites/paulo/paulo_house.png"
+dest_files=["res://.godot/imported/paulo_house.png-f616f260a56a72b966b5f02b4de0df26.s3tc.ctex"]
 
 [params]
 

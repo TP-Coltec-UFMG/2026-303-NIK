@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cqlk1q6jwerli"]
 
-[ext_resource type="Script" uid="uid://d1prmopltccua" path="res://scenes/ritmo.gd" id="1_ex8wh"]
-[ext_resource type="Script" uid="uid://cxkx0qqraouc2" path="res://scenes/pista.gd" id="1_gq22i"]
+[ext_resource type="Script" uid="uid://d1prmopltccua" path="res://scripts/ritmo.gd" id="1_ex8wh"]
+[ext_resource type="Script" uid="uid://cxkx0qqraouc2" path="res://scripts/pista.gd" id="1_gq22i"]
 [ext_resource type="Texture2D" uid="uid://di4xek07ndbb1" path="res://minigames/ritmo/ritmo_bg.png" id="2_fw65r"]
 [ext_resource type="PackedScene" uid="uid://dik6rl4f6pmpi" path="res://minigames/ritmo/nota.tscn" id="3_s42c4"]
 [ext_resource type="Texture2D" uid="uid://cm5oa01sxees" path="res://minigames/ritmo/ritmo_botao.png" id="4_1lrlg"]

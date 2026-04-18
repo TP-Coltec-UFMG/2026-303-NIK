@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://qq5dpqub4anh"]
 
-[ext_resource type="Script" uid="uid://bqer2533dsmm6" path="res://scenes/camera.gd" id="1_70n02"]
+[ext_resource type="Script" uid="uid://bqer2533dsmm6" path="res://scripts/camera.gd" id="1_70n02"]
 
 [node name="Camera3D" type="Camera3D" unique_id=1761994246 node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 0.97755575, 0.21067652, 0, -0.21067652, 0.97755575, 0, 0, 0)

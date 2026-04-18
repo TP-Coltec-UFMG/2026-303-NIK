@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://baughoj75ycbt"
-path="res://.godot/imported/carpete6.png-b77d975bd28d2263dab76bd3f22017f0.ctex"
+uid="uid://33g5dc72yyao"
+path="res://.godot/imported/dialogo_investigacao.png-eaf32a331a8b1c0a8eb44f912dd801de.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/nikole/interior/carpete6.png"
-dest_files=["res://.godot/imported/carpete6.png-b77d975bd28d2263dab76bd3f22017f0.ctex"]
+source_file="res://sprites/dialogo/dialogo_investigacao.png"
+dest_files=["res://.godot/imported/dialogo_investigacao.png-eaf32a331a8b1c0a8eb44f912dd801de.ctex"]
 
 [params]
 
