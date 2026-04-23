@@ -1,0 +1,5 @@
+res://scenes/casa_paulo.tscn
+res://prefabs/escolha.tscn
+res://scenes/botao_dialogo.gd
+res://scripts/controle_dialogo.gd
+res://scenes/mundo.tscn

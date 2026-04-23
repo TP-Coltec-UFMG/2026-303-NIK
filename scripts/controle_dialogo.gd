@@ -1,4 +1,4 @@
-class_name ControleDialogo extends TextureRect
+class_name ControleDialogo extends NinePatchRect
 
 class Dialogo:
 	var id : String = "id único do diálogo"
@@ -56,13 +56,15 @@ func gerar_opcoes():
 	for filho in $PainelEscolhas.get_children():
 		filho.queue_free()
 	
+	var contagem = 1;
 	for escolha in dados_atuais.opcoes:
 		var botao = cena_opcao.instantiate()
-		botao.configurar(escolha.nome, escolha.tipo)
+		botao.configurar(str(contagem) + ". " + escolha.nome, escolha.tipo)
 			
 		botao.pressed.connect(_ao_escolher_opcao.bind(escolha.proximo_dialogo))
 		
 		$PainelEscolhas.add_child(botao)
+		contagem += 1
 
 func _ao_escolher_opcao(proximo_id: String):
 	if proximo_id == "fim":

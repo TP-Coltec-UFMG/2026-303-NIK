@@ -10,8 +10,11 @@
 [ext_resource type="Material" uid="uid://c6yp6p2qwh05k" path="res://sprites/path.tres" id="6_541k4"]
 [ext_resource type="PackedScene" uid="uid://b8lrw8kgtjyu4" path="res://scenes/casa_paulo.tscn" id="6_w7nu4"]
 [ext_resource type="Material" uid="uid://c1esxj2mbkwvx" path="res://sprites/grass.tres" id="7_c1ejn"]
+[ext_resource type="Texture2D" uid="uid://bjurpufuxf0y7" path="res://sprites/paulo/arbusto_1.png" id="7_w7nu4"]
+[ext_resource type="Texture2D" uid="uid://3gteamtnt3sf" path="res://sprites/paulo/arbusto_2.png" id="8_c1ejn"]
 [ext_resource type="Texture2D" uid="uid://chjkevg1guoym" path="res://sprites/props/grass/grass_bg.png" id="8_vnytd"]
 [ext_resource type="Material" uid="uid://boqsbfhy877wx" path="res://sprites/river.tres" id="9_e6vnd"]
+[ext_resource type="Texture2D" uid="uid://cibu6mny7ulhj" path="res://sprites/paulo/arbusto_3.png" id="9_vnytd"]
 [ext_resource type="Texture2D" uid="uid://b1nkw05wj0fc" path="res://sprites/props/water/river.png" id="10_2jrhv"]
 [ext_resource type="Script" uid="uid://pecq7v40nchd" path="res://scripts/river_wave.gd" id="11_g6hv0"]
 [ext_resource type="Texture2D" uid="uid://bpkveyhnxldso" path="res://sprites/props/grass/parallax_1.png" id="12_y4lqn"]
@@ -125,7 +128,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22955322, 5.956299, -0.7836
 shape = SubResource("BoxShape3D_400sg")
 
 [node name="Sprite" type="Sprite3D" parent="CasaPaulo" unique_id=265775803]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.761497, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.379085, 0)
 double_sided = false
 alpha_cut = 1
 alpha_antialiasing_mode = 2
@@ -145,6 +148,27 @@ cena = ExtResource("6_w7nu4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3112235, 2.6118164)
 shape = SubResource("SphereShape3D_f7ym0")
 
+[node name="Arbusto1" type="Sprite3D" parent="CasaPaulo" unique_id=1339632125]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.310007, 0.52549136, 1.4851761)
+double_sided = false
+alpha_cut = 1
+alpha_antialiasing_mode = 2
+texture = ExtResource("7_w7nu4")
+
+[node name="Arbusto2" type="Sprite3D" parent="CasaPaulo" unique_id=302042186]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0308456, 0.52549136, 0.9650345)
+double_sided = false
+alpha_cut = 1
+alpha_antialiasing_mode = 2
+texture = ExtResource("8_c1ejn")
+
+[node name="Arbusto3" type="Sprite3D" parent="CasaPaulo" unique_id=1893023827]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.799999, 0.52549136, 0.1462326)
+double_sided = false
+alpha_cut = 1
+alpha_antialiasing_mode = 2
+texture = ExtResource("9_vnytd")
+
 [node name="CasaNikole" type="StaticBody3D" parent="." unique_id=1216972732]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.710617, 9.536743e-06, -75.80478)
 
@@ -153,7 +177,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22955322, 5.956299, -0.7836
 shape = SubResource("BoxShape3D_400sg")
 
 [node name="Sprite" type="Sprite3D" parent="CasaNikole" unique_id=1244174047]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.761497, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.4, 0)
 double_sided = false
 alpha_cut = 1
 alpha_antialiasing_mode = 2
@@ -180,7 +204,7 @@ shape = SubResource("SphereShape3D_vjgi4")
 disabled = true
 
 [node name="Caminho" type="Path3D" parent="." unique_id=696043498]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1499981, 0)
 curve = SubResource("Curve3D_vjgi4")
 debug_custom_color = Color(1, 0, 1, 1)
 
