@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://r52y5pkon1ij"]
+
+[ext_resource type="Script" uid="uid://bw3exhcj8r0pe" path="res://scripts/gerador_parede.gd" id="1_5boeq"]
+[ext_resource type="PackedScene" uid="uid://ccupk7xgo7hv0" path="res://scenes/parede.tscn" id="2_ogviy"]
+
+[sub_resource type="Environment" id="Environment_wiu4r"]
+background_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_5boeq"]
+size = Vector2(67, 67)
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ogviy"]
+shading_mode = 0
+albedo_color = Color(0.15, 0.15, 0.15, 1)
+
+[node name="Labirinto" type="Node3D" unique_id=2063930799]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1413890903]
+transform = Transform3D(1, 0, 0, 0, 1.1924881e-08, 1, 0, -1, 1.1924881e-08, 0, 5, 0)
+environment = SubResource("Environment_wiu4r")
+
+[node name="Piso" type="Node3D" parent="." unique_id=159455660]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="Chao" type="MeshInstance3D" parent="Piso" unique_id=2120512797]
+mesh = SubResource("QuadMesh_5boeq")
+surface_material_override/0 = SubResource("StandardMaterial3D_ogviy")
+
+[node name="GeradorParede" type="Node" parent="." unique_id=1808683789]
+script = ExtResource("1_5boeq")
+cena_parede = ExtResource("2_ogviy")
