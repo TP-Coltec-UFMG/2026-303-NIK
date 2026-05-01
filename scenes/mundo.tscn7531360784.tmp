@@ -21,7 +21,6 @@
 [ext_resource type="Texture2D" uid="uid://b3xoegfo5dmdy" path="res://sprites/props/grass/parallax_2.png" id="13_wf7jv"]
 [ext_resource type="Texture2D" uid="uid://ddipx3y6iahtn" path="res://sprites/ui/caixa_branca.png" id="20_vnytd"]
 [ext_resource type="FontFile" uid="uid://mb7lv5gfarwo" path="res://fonts/Chewy-Regular.ttf" id="21_e6vnd"]
-[ext_resource type="Script" uid="uid://bm4rvfyvlss3y" path="res://scenes/menu.gd" id="21_y4lqn"]
 [ext_resource type="Script" uid="uid://1w61r0xfwtnc" path="res://scripts/botao_toggle.gd" id="22_2jrhv"]
 [ext_resource type="Script" uid="uid://c0vxasbphbg0d" path="res://scripts/valor_toggle.gd" id="23_g6hv0"]
 
@@ -119,15 +118,9 @@ uv1_offset = Vector3(0, 0.05, 0)
 font = ExtResource("21_e6vnd")
 font_size = 48
 
-[sub_resource type="Resource" id="Resource_np3xf"]
+[sub_resource type="Resource" id="Resource_y4lqn"]
 script = ExtResource("23_g6hv0")
 cor = Color(0.4509804, 0.7529412, 1, 1)
-metadata/_custom_type_script = "uid://c0vxasbphbg0d"
-
-[sub_resource type="Resource" id="Resource_0iwyf"]
-script = ExtResource("23_g6hv0")
-cor = Color(1, 0.45, 0.45, 1)
-nome = "desligado"
 metadata/_custom_type_script = "uid://c0vxasbphbg0d"
 
 [sub_resource type="Resource" id="Resource_wf7jv"]
@@ -136,37 +129,15 @@ cor = Color(1, 0.45, 0.45, 1)
 nome = "desligado"
 metadata/_custom_type_script = "uid://c0vxasbphbg0d"
 
-[sub_resource type="Resource" id="Resource_y4lqn"]
-script = ExtResource("23_g6hv0")
-cor = Color(0.2509804, 1, 1, 1)
-nome = "protanopia"
-metadata/_custom_type_script = "uid://c0vxasbphbg0d"
-
-[sub_resource type="Resource" id="Resource_g6hv0"]
-script = ExtResource("23_g6hv0")
-cor = Color(1, 0.2509804, 1, 1)
-nome = "deuteranopia"
-metadata/_custom_type_script = "uid://c0vxasbphbg0d"
-
-[sub_resource type="Resource" id="Resource_lbjxv"]
-script = ExtResource("23_g6hv0")
-cor = Color(1, 1, 0.2509804, 1)
-nome = "tritanopia"
-metadata/_custom_type_script = "uid://c0vxasbphbg0d"
-
 [node name="Mundo" type="Node3D" unique_id=553908342]
-process_mode = 1
 
 [node name="Camera" parent="." unique_id=1761994246 node_paths=PackedStringArray("alvo") instance=ExtResource("1_35q48")]
-process_mode = 3
-transform = Transform3D(1, 0, 0, 0, 0.9775559, 0.21067655, 0, -0.21067655, 0.9775559, 4, 5.5, 12.5)
+transform = Transform3D(1, 0, 0, 0, 0.9775557, 0.2106765, 0, -0.2106765, 0.9775557, 9.536743e-07, 11.583778, 36.550514)
 environment = SubResource("Environment_kvuet")
-offset = Vector3(0, 10, 30)
-offset_pausa = Vector3(4, 5.5, 12.5)
 alvo = NodePath("../Nikole")
 
-[node name="Nikole" parent="." unique_id=583452868 node_paths=PackedStringArray("menu") instance=ExtResource("2_cae5a")]
-menu = NodePath("../UI/Menu")
+[node name="Nikole" parent="." unique_id=583452868 instance=ExtResource("2_cae5a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4784966, 0, -6.297657)
 
 [node name="CasaPaulo" type="StaticBody3D" parent="." unique_id=112571643]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.931868, 2.002716e-05, -99.84739)
@@ -338,9 +309,8 @@ material_override = SubResource("StandardMaterial3D_kyk2p")
 mesh = SubResource("PlaneMesh_vjgi4")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=800867475]
-process_mode = 3
 
-[node name="Menu" type="NinePatchRect" parent="UI" unique_id=71522318 node_paths=PackedStringArray("telas")]
+[node name="Menu" type="NinePatchRect" parent="UI" unique_id=71522318]
 self_modulate = Color(0.1254902, 0.13333334, 0.18039216, 1)
 anchors_preset = -1
 anchor_left = 1.0
@@ -357,11 +327,6 @@ patch_margin_left = 32
 patch_margin_top = 32
 patch_margin_right = 32
 patch_margin_bottom = 32
-script = ExtResource("21_y4lqn")
-telas = {
-"N.I.K.": NodePath("Principal"),
-"Opções": NodePath("Opcoes")
-}
 
 [node name="Titulo" type="Label" parent="UI/Menu" unique_id=666494986]
 layout_mode = 1
@@ -380,9 +345,7 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 32.0
 offset_top = 96.0
-offset_right = -32.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -418,19 +381,16 @@ text = "Fechar o jogo"
 flat = true
 
 [node name="Opcoes" type="VBoxContainer" parent="UI/Menu" unique_id=865080375]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 32.0
 offset_top = 96.0
-offset_right = -32.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Narrador" type="Button" parent="UI/Menu/Opcoes" unique_id=838440044]
+[node name="BotaoToggle" type="Button" parent="UI/Menu/Opcoes" unique_id=838440044]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(0.71000004, 0.8888333, 1, 1)
@@ -440,10 +400,9 @@ theme_override_font_sizes/font_size = 32
 text = " "
 flat = true
 script = ExtResource("22_2jrhv")
-valores = Array[ExtResource("23_g6hv0")]([SubResource("Resource_np3xf"), SubResource("Resource_0iwyf")])
-nome = "Narrador"
+valores = Array[Object]([SubResource("Resource_y4lqn"), SubResource("Resource_wf7jv")])
 
-[node name="Label" type="RichTextLabel" parent="UI/Menu/Opcoes/Narrador" unique_id=1779550994]
+[node name="Label" type="RichTextLabel" parent="UI/Menu/Opcoes/BotaoToggle" unique_id=1779550994]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -454,47 +413,9 @@ mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("21_e6vnd")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "toggle"
+text = "Narrador: [color=73c0ff]ligado[/color]"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Daltonismo" type="Button" parent="UI/Menu/Opcoes" unique_id=1590149275]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(0.71000004, 0.8888333, 1, 1)
-theme_override_colors/font_pressed_color = Color(0.45, 0.7525001, 1, 1)
-theme_override_fonts/font = ExtResource("21_e6vnd")
-theme_override_font_sizes/font_size = 32
-text = " "
-flat = true
-script = ExtResource("22_2jrhv")
-valores = Array[ExtResource("23_g6hv0")]([SubResource("Resource_wf7jv"), SubResource("Resource_y4lqn"), SubResource("Resource_g6hv0"), SubResource("Resource_lbjxv")])
-nome = "Daltonismo"
-
-[node name="Label" type="RichTextLabel" parent="UI/Menu/Opcoes/Daltonismo" unique_id=1627593833]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("21_e6vnd")
-theme_override_font_sizes/normal_font_size = 32
-bbcode_enabled = true
-text = "toggle"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Voltar" type="Button" parent="UI/Menu/Opcoes" unique_id=1381628644]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(0.71000004, 0.8888333, 1, 1)
-theme_override_colors/font_pressed_color = Color(0.45, 0.7525001, 1, 1)
-theme_override_fonts/font = ExtResource("21_e6vnd")
-theme_override_font_sizes/font_size = 32
-text = "Salvar modificações"
-flat = true
 
 [connection signal="body_entered" from="CasaPaulo/Porta" to="Nikole" method="_on_porta_body_entered" flags=18]
 [connection signal="body_exited" from="CasaPaulo/Porta" to="Nikole" method="_on_porta_body_exited" flags=18]

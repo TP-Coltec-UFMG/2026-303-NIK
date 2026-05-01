@@ -2,6 +2,7 @@ class_name Nikole extends CharacterBody3D
 
 
 @export var velocidade = 30.0
+@export var menu : Menu
 
 @onready var sprites : Node3D = $Sprites
 @onready var mao_direita : Node3D = $Sprites/MaoDireita
@@ -41,6 +42,10 @@ func _process(delta: float) -> void:
 		if interagir_objeto != null:
 			interagir_objeto.interagir()
 		else: print_debug("não tem nada pra interagir...")
+
+	if Input.is_action_just_pressed("pausar"):
+		menu.abrir_tela("N.I.K.")
+		get_tree().paused = true
 
 	# animations
 	peso_animacao_andar = lerpf(peso_animacao_andar, 1 if andando else 0, delta / .075)
