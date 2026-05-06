@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://b3xoegfo5dmdy" path="res://sprites/props/grass/parallax_2.png" id="13_wf7jv"]
 [ext_resource type="Texture2D" uid="uid://ddipx3y6iahtn" path="res://sprites/ui/caixa_branca.png" id="20_vnytd"]
 [ext_resource type="FontFile" uid="uid://mb7lv5gfarwo" path="res://fonts/Chewy-Regular.ttf" id="21_e6vnd"]
-[ext_resource type="Script" uid="uid://bm4rvfyvlss3y" path="res://scenes/menu.gd" id="21_y4lqn"]
+[ext_resource type="Script" uid="uid://bm4rvfyvlss3y" path="res://scripts/menu.gd" id="21_y4lqn"]
 [ext_resource type="Script" uid="uid://1w61r0xfwtnc" path="res://scripts/botao_toggle.gd" id="22_2jrhv"]
 [ext_resource type="Script" uid="uid://c0vxasbphbg0d" path="res://scripts/valor_toggle.gd" id="23_g6hv0"]
 
@@ -359,7 +359,7 @@ patch_margin_right = 32
 patch_margin_bottom = 32
 script = ExtResource("21_y4lqn")
 telas = {
-"N.I.K.": NodePath("Principal"),
+"Menu": NodePath("Principal"),
 "Opções": NodePath("Opcoes")
 }
 
@@ -375,7 +375,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Principal" type="VBoxContainer" parent="UI/Menu" unique_id=846912163]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -440,10 +439,40 @@ theme_override_font_sizes/font_size = 32
 text = " "
 flat = true
 script = ExtResource("22_2jrhv")
+id = "narrador"
 valores = Array[ExtResource("23_g6hv0")]([SubResource("Resource_np3xf"), SubResource("Resource_0iwyf")])
 nome = "Narrador"
 
 [node name="Label" type="RichTextLabel" parent="UI/Menu/Opcoes/Narrador" unique_id=1779550994]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("21_e6vnd")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "toggle"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AltoContraste" type="Button" parent="UI/Menu/Opcoes" unique_id=1894544729]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0.71000004, 0.8888333, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.45, 0.7525001, 1, 1)
+theme_override_fonts/font = ExtResource("21_e6vnd")
+theme_override_font_sizes/font_size = 32
+text = " "
+flat = true
+script = ExtResource("22_2jrhv")
+id = "alto-contraste"
+valores = Array[ExtResource("23_g6hv0")]([SubResource("Resource_np3xf"), SubResource("Resource_0iwyf")])
+nome = "Alto-contraste"
+
+[node name="Label" type="RichTextLabel" parent="UI/Menu/Opcoes/AltoContraste" unique_id=1551318513]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -468,6 +497,7 @@ theme_override_font_sizes/font_size = 32
 text = " "
 flat = true
 script = ExtResource("22_2jrhv")
+id = "daltonismo"
 valores = Array[ExtResource("23_g6hv0")]([SubResource("Resource_wf7jv"), SubResource("Resource_y4lqn"), SubResource("Resource_g6hv0"), SubResource("Resource_lbjxv")])
 nome = "Daltonismo"
 

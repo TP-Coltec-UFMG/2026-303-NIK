@@ -44,7 +44,7 @@ func _process(delta: float) -> void:
 		else: print_debug("não tem nada pra interagir...")
 
 	if Input.is_action_just_pressed("pausar"):
-		menu.abrir_tela("N.I.K.")
+		menu.abrir_tela("Menu")
 		get_tree().paused = true
 
 	# animations
