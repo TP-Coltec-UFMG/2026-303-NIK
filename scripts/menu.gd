@@ -67,7 +67,7 @@ func carregar_configuracoes() -> void:
 		if dados_config != null:
 			for config in configuracoes:
 				if config is BotaoToggle:
-					if dados_config.contains(config.id):
+					if config.id in dados_config:
 						config.valor = dados_config[config.id]
 					else: print("configuração \"" + config.id + "\" não está no arquivo: valor padrão será utilizado")
 

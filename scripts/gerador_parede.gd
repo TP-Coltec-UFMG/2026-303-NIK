@@ -15,11 +15,11 @@ func _ready() -> void:
 		parede.rotation.y = 0.5 * PI;
 		var parede_mesh_instance = parede.get_node("MeshInstance3D");
 		var quad = parede_mesh_instance.mesh as QuadMesh;
-		parede.position.x = i * quad.size.y;
+		parede.position.x = i * quad.size.y + 0.5;
 
 	for j in range(comp):
 		var parede = cena_parede.instantiate();
 		add_child(parede);
 		var parede_mesh_instance = parede.get_node("MeshInstance3D");
 		var quad = parede_mesh_instance.mesh as QuadMesh;
-		parede.position.z = j * quad.size.y;
+		parede.position.z = j * quad.size.y + 0.5;
