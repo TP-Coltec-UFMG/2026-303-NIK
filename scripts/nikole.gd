@@ -25,16 +25,18 @@ var mover_input : Vector2
 
 var interagir_objeto : Node = null
 
+const coeficiente_rotacao_camera : float = 0.03
+
 func _physics_process(delta: float) -> void:
 	var raw_input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
 	if camera_pivot:
 		if Input.is_action_pressed("girar_tela_direita"):
-			camera_pivot.rotation.y -= 0.025
-			sprites.rotation.y -= 0.025
+			camera_pivot.rotation.y -= coeficiente_rotacao_camera
+			sprites.rotation.y -= coeficiente_rotacao_camera
 		if Input.is_action_pressed("girar_tela_esquerda"):
-			camera_pivot.rotation.y += 0.025
-			sprites.rotation.y += 0.025
+			camera_pivot.rotation.y += coeficiente_rotacao_camera
+			sprites.rotation.y += coeficiente_rotacao_camera
 		raw_input = raw_input.rotated(-camera_pivot.rotation.y)
 
 	mover_input = mover_input.lerp(raw_input, delta / 0.2)

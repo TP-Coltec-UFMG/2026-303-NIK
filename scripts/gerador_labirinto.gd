@@ -55,6 +55,7 @@ func gerar_paredes():
 			paredes[pos] = instancia_parede(i, j, HORIZONTAL)
 			if j > 0 and j < COLUNAS: 
 				paredes_internas.append(pos)
+
 	# Gera as paredes verticais.
 	for i in range(LINHAS + 1):
 		for j in range(COLUNAS):
@@ -70,8 +71,8 @@ func instancia_parede(i : int, j : int, orientacao : int) -> Node:
 
 	var offset = 0.5
 	var size_parede = parede.get_node("CollisionShape3D").shape.size
-	var pos_x = (i - (offset if orientacao == 1 else 0.0)) * size_parede.x
-	var pos_z = (j - (offset if orientacao == 0 else 0.0)) * size_parede.x
+	var pos_x = (i-(offset if orientacao == 1 else 0.0)) * size_parede.x
+	var pos_z = (j-(offset if orientacao == 0 else 0.0)) * size_parede.x
 	
 	parede.position = Vector3(pos_x, 0, pos_z)
 	parede.rotation.y = orientacao * PI/2
@@ -79,19 +80,19 @@ func instancia_parede(i : int, j : int, orientacao : int) -> Node:
 
 
 func confere_conjunto(a : Vector2i, b : Vector2i) -> Array:
-	var id_conj_a = -1
-	var id_conj_b = -1
+	var id_conjunto_a = -1
+	var id_conjunto_b = -1
 
 	for id in conjuntos:
-			if conjuntos[id].has(a):
-					id_conj_a = id
-			if conjuntos[id].has(b):
-					id_conj_b = id
-					
-			if id_conj_a != -1 and id_conj_b != -1:
-					break
+		if conjuntos[id].has(a):
+			id_conjunto_a = id
+		if conjuntos[id].has(b):
+			id_conjunto_b = id
+				
+		if id_conjunto_a != -1 and id_conjunto_b != -1:
+			break
 
-	if id_conj_a == id_conj_b:
-			return [true]
+	if id_conjunto_a == id_conjunto_b:
+		return [true]
 	else:
-			return [false, id_conj_a, id_conj_b]	
+		return [false, id_conjunto_a, id_conjunto_b]	
