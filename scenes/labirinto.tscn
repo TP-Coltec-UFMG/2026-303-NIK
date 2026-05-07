@@ -7,7 +7,6 @@
 [ext_resource type="Material" uid="uid://c1esxj2mbkwvx" path="res://sprites/grass.tres" id="5_88teh"]
 [ext_resource type="Texture2D" uid="uid://ccuvtuiaypkd1" path="res://sprites/nikole/nikole_cabelo.png" id="5_aalt0"]
 [ext_resource type="Texture2D" uid="uid://2e0pvshuvuwj" path="res://sprites/nikole/nikole_cabelo_fundo.png" id="6_k6tek"]
-[ext_resource type="Texture2D" uid="uid://chjkevg1guoym" path="res://sprites/props/grass/grass_bg.png" id="6_t16je"]
 [ext_resource type="Texture2D" uid="uid://b18pmdop4i5v0" path="res://sprites/nikole/nikole_corpo.png" id="7_nw27f"]
 [ext_resource type="Texture2D" uid="uid://cbx2ypcpchv06" path="res://sprites/nikole/nikole_mao.png" id="8_nmkx0"]
 [ext_resource type="Material" uid="uid://br606pb801km8" path="res://sprites/shadow.tres" id="9_lkkcw"]
@@ -28,25 +27,7 @@ background_mode = 1
 background_color = Color(0.6313726, 0.8745098, 0.9411765, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_nw27f"]
-size = Vector2(750, 350)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nmkx0"]
-transparency = 1
-shading_mode = 0
-albedo_texture = ExtResource("6_t16je")
-uv1_scale = Vector3(29.7, 0.9, 1)
-uv1_offset = Vector3(0, 0.1, 0)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_lkkcw"]
-size = Vector2(1024, 2)
-subdivide_width = 1000
-orientation = 2
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_dbl36"]
-size = Vector3(1000, 50, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_mpddn"]
-size = Vector2(750, 100)
+size = Vector2(756.42, 481.355)
 
 [node name="Labirinto" type="Node3D" unique_id=2063930799]
 
@@ -57,7 +38,7 @@ cena_parede = ExtResource("2_ogviy")
 [node name="Nikole" type="CharacterBody3D" parent="." unique_id=583452868]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 script = ExtResource("3_t16je")
-velocidade = 8.0
+velocidade = 10.0
 
 [node name="Sprites" type="Node3D" parent="Nikole" unique_id=1746916121]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -123,14 +104,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0)
 shape = SubResource("CylinderShape3D_400sg")
 
 [node name="Sombra" type="MeshInstance3D" parent="Nikole" unique_id=1859901297]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.22201759, -0.5266281)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.222, 0)
 mesh = SubResource("CylinderMesh_mcffj")
 
 [node name="CameraPivot" type="Node3D" parent="Nikole" unique_id=832802768]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="Nikole/CameraPivot" unique_id=716394301]
-spring_length = 8.0
+spring_length = 10.0
 
 [node name="Camera3D" type="Camera3D" parent="Nikole/CameraPivot/SpringArm3D" unique_id=1644181702]
 environment = SubResource("Environment_nw27f")
@@ -139,24 +120,3 @@ environment = SubResource("Environment_nw27f")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
 material_override = ExtResource("5_88teh")
 mesh = SubResource("PlaneMesh_nw27f")
-
-[node name="Barreira" type="StaticBody3D" parent="Grama" unique_id=771688092]
-
-[node name="Mato" type="MeshInstance3D" parent="Grama/Barreira" unique_id=1925019414]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.94, -174.935)
-material_override = SubResource("StandardMaterial3D_nmkx0")
-mesh = SubResource("PlaneMesh_lkkcw")
-
-[node name="Colisor" type="CollisionShape3D" parent="Grama/Barreira" unique_id=1743248228]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.939999, -169.935)
-shape = SubResource("BoxShape3D_dbl36")
-
-[node name="Margem" type="MeshInstance3D" parent="Grama" unique_id=1457180864]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.8273573, -353.19977)
-material_override = ExtResource("5_88teh")
-mesh = SubResource("PlaneMesh_mpddn")
-
-[node name="Mato" type="MeshInstance3D" parent="Grama/Margem" unique_id=967406486]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.847, -50)
-material_override = SubResource("StandardMaterial3D_nmkx0")
-mesh = SubResource("PlaneMesh_lkkcw")

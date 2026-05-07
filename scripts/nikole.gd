@@ -30,9 +30,11 @@ func _physics_process(delta: float) -> void:
 
 	if camera_pivot:
 		if Input.is_action_pressed("girar_tela_direita"):
-			camera_pivot.rotation.y -= 0.02
+			camera_pivot.rotation.y -= 0.025
+			sprites.rotation.y -= 0.025
 		if Input.is_action_pressed("girar_tela_esquerda"):
-			camera_pivot.rotation.y += 0.02
+			camera_pivot.rotation.y += 0.025
+			sprites.rotation.y += 0.025
 		raw_input = raw_input.rotated(-camera_pivot.rotation.y)
 
 	mover_input = mover_input.lerp(raw_input, delta / 0.2)
