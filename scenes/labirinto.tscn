@@ -1,32 +1,106 @@
 [gd_scene format=3 uid="uid://r52y5pkon1ij"]
 
-[ext_resource type="Script" uid="uid://bw3exhcj8r0pe" path="res://scripts/gerador_parede.gd" id="1_5boeq"]
+[ext_resource type="Script" uid="uid://bw3exhcj8r0pe" path="res://scripts/gerador_labirinto.gd" id="1_5boeq"]
 [ext_resource type="PackedScene" uid="uid://ccupk7xgo7hv0" path="res://scenes/parede.tscn" id="2_ogviy"]
+[ext_resource type="Script" uid="uid://c6jo6by53efc4" path="res://scripts/nikole.gd" id="3_t16je"]
+[ext_resource type="PackedScene" uid="uid://qq5dpqub4anh" path="res://prefabs/camera.tscn" id="4_12oyk"]
+[ext_resource type="Texture2D" uid="uid://bgl2rhpm2u3um" path="res://sprites/nikole/nikole_cabeca.png" id="4_ndive"]
+[ext_resource type="Texture2D" uid="uid://ccuvtuiaypkd1" path="res://sprites/nikole/nikole_cabelo.png" id="5_aalt0"]
+[ext_resource type="Texture2D" uid="uid://2e0pvshuvuwj" path="res://sprites/nikole/nikole_cabelo_fundo.png" id="6_k6tek"]
+[ext_resource type="Texture2D" uid="uid://b18pmdop4i5v0" path="res://sprites/nikole/nikole_corpo.png" id="7_nw27f"]
+[ext_resource type="Texture2D" uid="uid://cbx2ypcpchv06" path="res://sprites/nikole/nikole_mao.png" id="8_nmkx0"]
+[ext_resource type="Material" uid="uid://br606pb801km8" path="res://sprites/shadow.tres" id="9_lkkcw"]
 
-[sub_resource type="Environment" id="Environment_wiu4r"]
-background_mode = 1
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_400sg"]
+height = 4.75354
+radius = 1.6713867
 
-[sub_resource type="QuadMesh" id="QuadMesh_5boeq"]
-size = Vector2(67, 67)
-orientation = 1
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ogviy"]
-shading_mode = 0
-albedo_color = Color(0.15, 0.15, 0.15, 1)
+[sub_resource type="CylinderMesh" id="CylinderMesh_mcffj"]
+material = ExtResource("9_lkkcw")
+top_radius = 2.0
+bottom_radius = 2.0
+height = 0.001
+rings = 0
 
 [node name="Labirinto" type="Node3D" unique_id=2063930799]
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1413890903]
-transform = Transform3D(1, 0, 0, 0, 1.1924881e-08, 1, 0, -1, 1.1924881e-08, 0, 5, 0)
-environment = SubResource("Environment_wiu4r")
-
-[node name="Piso" type="Node3D" parent="." unique_id=159455660]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-
-[node name="Chao" type="MeshInstance3D" parent="Piso" unique_id=2120512797]
-mesh = SubResource("QuadMesh_5boeq")
-surface_material_override/0 = SubResource("StandardMaterial3D_ogviy")
-
-[node name="GeradorParede" type="Node" parent="." unique_id=1808683789]
+[node name="GeradorLabirinto" type="Node" parent="." unique_id=1808683789]
 script = ExtResource("1_5boeq")
 cena_parede = ExtResource("2_ogviy")
+
+[node name="Nikole" type="CharacterBody3D" parent="." unique_id=583452868]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+script = ExtResource("3_t16je")
+velocidade = 5.0
+
+[node name="Sprites" type="Node3D" parent="Nikole" unique_id=1746916121]
+transform = Transform3D(0.5, 0, 0, 0, -2.1855694e-08, 0.5, 0, -0.5, -2.1855694e-08, 0, 1, 0)
+
+[node name="Cabeca" type="Sprite3D" parent="Nikole/Sprites" unique_id=747688587]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
+sorting_use_aabb_center = false
+cast_shadow = 0
+double_sided = false
+alpha_cut = 1
+alpha_antialiasing_mode = 2
+texture = ExtResource("4_ndive")
+
+[node name="Cabelo" type="Node3D" parent="Nikole/Sprites/Cabeca" unique_id=92979047]
+
+[node name="Franja" type="Sprite3D" parent="Nikole/Sprites/Cabeca/Cabelo" unique_id=558928396]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.278, 0.629, 0.1)
+sorting_use_aabb_center = false
+cast_shadow = 0
+double_sided = false
+alpha_cut = 1
+alpha_antialiasing_mode = 2
+texture = ExtResource("5_aalt0")
+
+[node name="Fundo" type="Sprite3D" parent="Nikole/Sprites/Cabeca/Cabelo" unique_id=151685691]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.094, -0.42, -0.15)
+sorting_use_aabb_center = false
+cast_shadow = 0
+double_sided = false
+alpha_cut = 1
+alpha_antialiasing_mode = 2
+texture = ExtResource("6_k6tek")
+
+[node name="Corpo" type="Sprite3D" parent="Nikole/Sprites" unique_id=412369416]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.05)
+sorting_use_aabb_center = false
+cast_shadow = 0
+double_sided = false
+alpha_cut = 1
+alpha_antialiasing_mode = 2
+texture = ExtResource("7_nw27f")
+
+[node name="MaoDireita" type="Sprite3D" parent="Nikole/Sprites" unique_id=134123808]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.635, -0.10257602, 0.1)
+sorting_use_aabb_center = false
+cast_shadow = 0
+double_sided = false
+alpha_cut = 1
+alpha_antialiasing_mode = 2
+texture = ExtResource("8_nmkx0")
+
+[node name="MaoEsquerda" type="Sprite3D" parent="Nikole/Sprites" unique_id=1888924493]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.97907877, -0.10257602, -0.1)
+sorting_use_aabb_center = false
+cast_shadow = 0
+double_sided = false
+alpha_cut = 1
+alpha_antialiasing_mode = 2
+texture = ExtResource("8_nmkx0")
+
+[node name="Colisor" type="CollisionShape3D" parent="Nikole" unique_id=478019017]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0)
+shape = SubResource("CylinderShape3D_400sg")
+
+[node name="Sombra" type="MeshInstance3D" parent="Nikole" unique_id=1859901297]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.22201759, -0.5266281)
+mesh = SubResource("CylinderMesh_mcffj")
+
+[node name="Camera3D" parent="." unique_id=1761994246 node_paths=PackedStringArray("alvo") instance=ExtResource("4_12oyk")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 6.858571, -0.32411003)
+offset = Vector3(0, 6.859, -0.324)
+alvo = NodePath("../Nikole")

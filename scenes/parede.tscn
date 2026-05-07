@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://ccupk7xgo7hv0"]
 
+[ext_resource type="Texture2D" uid="uid://dqhtf63a2qvar" path="res://sprites/nikole/interior/interior.png" id="1_bybn8"]
+
 [sub_resource type="QuadMesh" id="QuadMesh_p7pwu"]
 size = Vector2(0.21, 1)
 orientation = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ggutk"]
 shading_mode = 0
-albedo_color = Color(0.20105371, 0.31809497, 0.08205671, 1)
+albedo_texture = ExtResource("1_bybn8")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cg302"]
 size = Vector3(0.22064209, 1, 1.0244446)
