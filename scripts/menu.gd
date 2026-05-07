@@ -12,9 +12,9 @@ func _ready() -> void:
 	$Principal/Opções.pressed.connect(abrir_tela.bind("Opções"))
 	$Opcoes/Voltar.pressed.connect(salvar_configuracoes)
 
-	configuracoes.append($Opcoes/Daltonismo)
-	configuracoes.append($Opcoes/Narrador)
-	configuracoes.append($Opcoes/AltoContraste)
+	for configuracao in $Opcoes.get_children():
+		if configuracao.name != "Voltar":
+			configuracoes.append(configuracao)
 
 	carregar_configuracoes()
 
@@ -23,6 +23,7 @@ func abrir_tela(alvo : String):
 	var tela_existe = false
 	for tela in telas.keys():
 		if tela == alvo:
+			telas[tela].get_child(0).grab_focus()
 			tela_existe = true
 			telas[tela].visible = true
 			visible = true
@@ -55,8 +56,10 @@ func salvar_configuracoes() -> void:
 	if arquivo:
 		arquivo.store_string(dados_json)
 		print("configurações salvas")
+		arquivo.close()
 	else:
 		print("não consegui abrir o arquivo das configurações!!!")
+	carregar_configuracoes()
 
 func carregar_configuracoes() -> void:
 	var arquivo = FileAccess.open(caminho_configuracoes, FileAccess.READ)
@@ -70,7 +73,21 @@ func carregar_configuracoes() -> void:
 					if config.id in dados_config:
 						config.valor = dados_config[config.id]
 					else: print("configuração \"" + config.id + "\" não está no arquivo: valor padrão será utilizado")
+				if config.id == "alto-contraste":
+					if config.valor == 0:
+						print("ativando o modo alto-contraste")
+						theme = preload("res://themes/alto_contraste.tres")
+					else:
+						print("desativando o modo alto-contraste")
+						theme = preload("res://themes/default.tres")
+					atualizar_visual_botoes()
 
 		print("configurações carregadas")
+		arquivo.close()
 	else:
 		print("não consegui abrir o arquivo das configurações!!!")
+
+func atualizar_visual_botoes():
+	for filho in get_children(true):
+		if filho is BotaoToggle:
+			filho.atualizar_visual()

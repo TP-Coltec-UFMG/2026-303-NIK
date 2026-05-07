@@ -20,7 +20,6 @@
 [ext_resource type="Texture2D" uid="uid://bpkveyhnxldso" path="res://sprites/props/grass/parallax_1.png" id="12_y4lqn"]
 [ext_resource type="Texture2D" uid="uid://b3xoegfo5dmdy" path="res://sprites/props/grass/parallax_2.png" id="13_wf7jv"]
 [ext_resource type="Texture2D" uid="uid://ddipx3y6iahtn" path="res://sprites/ui/caixa_branca.png" id="20_vnytd"]
-[ext_resource type="FontFile" uid="uid://mb7lv5gfarwo" path="res://fonts/Chewy-Regular.ttf" id="21_e6vnd"]
 [ext_resource type="Script" uid="uid://bm4rvfyvlss3y" path="res://scripts/menu.gd" id="21_y4lqn"]
 [ext_resource type="Script" uid="uid://1w61r0xfwtnc" path="res://scripts/botao_toggle.gd" id="22_2jrhv"]
 [ext_resource type="Script" uid="uid://c0vxasbphbg0d" path="res://scripts/valor_toggle.gd" id="23_g6hv0"]
@@ -116,7 +115,6 @@ uv1_scale = Vector3(10, 0.95, 1)
 uv1_offset = Vector3(0, 0.05, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_e6vnd"]
-font = ExtResource("21_e6vnd")
 font_size = 48
 
 [sub_resource type="Resource" id="Resource_np3xf"]
@@ -252,7 +250,7 @@ shape = SubResource("SphereShape3D_vjgi4")
 disabled = true
 
 [node name="Caminho" type="Path3D" parent="." unique_id=696043498]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1499981, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15476134, 0)
 curve = SubResource("Curve3D_vjgi4")
 debug_custom_color = Color(1, 0, 1, 1)
 
@@ -341,7 +339,7 @@ mesh = SubResource("PlaneMesh_vjgi4")
 process_mode = 3
 
 [node name="Menu" type="NinePatchRect" parent="UI" unique_id=71522318 node_paths=PackedStringArray("telas")]
-self_modulate = Color(0.1254902, 0.13333334, 0.18039216, 1)
+self_modulate = Color(0.1254902, 0.13333334, 0.18039216, 0)
 anchors_preset = -1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -384,37 +382,23 @@ offset_top = 96.0
 offset_right = -32.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 2
 alignment = 1
 
 [node name="Jogar" type="Button" parent="UI/Menu/Principal" unique_id=1105313553]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(0.71000004, 0.8888333, 1, 1)
-theme_override_colors/font_pressed_color = Color(0.45, 0.7525001, 1, 1)
-theme_override_fonts/font = ExtResource("21_e6vnd")
 theme_override_font_sizes/font_size = 32
 text = "Jogar"
-flat = true
 
 [node name="Opções" type="Button" parent="UI/Menu/Principal" unique_id=624960354]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(0.71000004, 0.8888333, 1, 1)
-theme_override_colors/font_pressed_color = Color(0.45, 0.7525001, 1, 1)
-theme_override_fonts/font = ExtResource("21_e6vnd")
 theme_override_font_sizes/font_size = 32
 text = "Opções"
-flat = true
 
 [node name="Sair" type="Button" parent="UI/Menu/Principal" unique_id=33880030]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(0.71000004, 0.8888333, 1, 1)
-theme_override_colors/font_pressed_color = Color(0.45, 0.7525001, 1, 1)
-theme_override_fonts/font = ExtResource("21_e6vnd")
 theme_override_font_sizes/font_size = 32
 text = "Fechar o jogo"
-flat = true
 
 [node name="Opcoes" type="VBoxContainer" parent="UI/Menu" unique_id=865080375]
 visible = false
@@ -431,13 +415,7 @@ alignment = 1
 
 [node name="Narrador" type="Button" parent="UI/Menu/Opcoes" unique_id=838440044]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(0.71000004, 0.8888333, 1, 1)
-theme_override_colors/font_pressed_color = Color(0.45, 0.7525001, 1, 1)
-theme_override_fonts/font = ExtResource("21_e6vnd")
-theme_override_font_sizes/font_size = 32
 text = " "
-flat = true
 script = ExtResource("22_2jrhv")
 id = "narrador"
 valores = Array[ExtResource("23_g6hv0")]([SubResource("Resource_np3xf"), SubResource("Resource_0iwyf")])
@@ -451,22 +429,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("21_e6vnd")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "toggle"
+fit_content = true
+autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AltoContraste" type="Button" parent="UI/Menu/Opcoes" unique_id=1894544729]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(0.71000004, 0.8888333, 1, 1)
-theme_override_colors/font_pressed_color = Color(0.45, 0.7525001, 1, 1)
-theme_override_fonts/font = ExtResource("21_e6vnd")
-theme_override_font_sizes/font_size = 32
 text = " "
-flat = true
 script = ExtResource("22_2jrhv")
 id = "alto-contraste"
 valores = Array[ExtResource("23_g6hv0")]([SubResource("Resource_np3xf"), SubResource("Resource_0iwyf")])
@@ -480,22 +453,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("21_e6vnd")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "toggle"
+fit_content = true
+autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Daltonismo" type="Button" parent="UI/Menu/Opcoes" unique_id=1590149275]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(0.71000004, 0.8888333, 1, 1)
-theme_override_colors/font_pressed_color = Color(0.45, 0.7525001, 1, 1)
-theme_override_fonts/font = ExtResource("21_e6vnd")
-theme_override_font_sizes/font_size = 32
 text = " "
-flat = true
 script = ExtResource("22_2jrhv")
 id = "daltonismo"
 valores = Array[ExtResource("23_g6hv0")]([SubResource("Resource_wf7jv"), SubResource("Resource_y4lqn"), SubResource("Resource_g6hv0"), SubResource("Resource_lbjxv")])
@@ -509,22 +477,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("21_e6vnd")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "toggle"
+fit_content = true
+autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Voltar" type="Button" parent="UI/Menu/Opcoes" unique_id=1381628644]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(0.71000004, 0.8888333, 1, 1)
-theme_override_colors/font_pressed_color = Color(0.45, 0.7525001, 1, 1)
-theme_override_fonts/font = ExtResource("21_e6vnd")
 theme_override_font_sizes/font_size = 32
 text = "Salvar modificações"
-flat = true
 
 [connection signal="body_entered" from="CasaPaulo/Porta" to="Nikole" method="_on_porta_body_entered" flags=18]
 [connection signal="body_exited" from="CasaPaulo/Porta" to="Nikole" method="_on_porta_body_exited" flags=18]

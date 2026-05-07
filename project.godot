@@ -30,6 +30,10 @@ mouse_cursor/custom_image="uid://bwaqfo7335omk"
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
+[gui]
+
+theme/custom="uid://gmvr2lib4uc3"
+
 [input]
 
 move_left={
