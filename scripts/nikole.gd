@@ -49,6 +49,12 @@ func _process(delta: float) -> void:
 		menu.abrir_tela("Menu")
 		get_tree().paused = true
 
+	if camera_pivot:
+		if Input.is_action_pressed("girar_tela_direita"):
+			camera_pivot.rotation.y -= 0.02
+		if Input.is_action_pressed("girar_tela_esquerda"):
+			camera_pivot.rotation.y += 0.02
+		
 	# animations
 	peso_animacao_andar = lerpf(peso_animacao_andar, 1 if andando else 0, delta / .075)
 
@@ -80,16 +86,3 @@ func _on_porta_body_exited(body: Node3D, source: Area3D) -> void:
 	if source == interagir_objeto and body == self:
 		print_debug("interagir com ", interagir_objeto.name, " indisponivel")
 		interagir_objeto = null
-
-
-@export_range(0.0, 1.0) var mouse_sensitivity = 0.01
-@export var tilt_limit = deg_to_rad(75)
-
-
-func _unhandled_input(event: InputEvent) -> void:
-	# Mouselook implemented using `screen_relative` for resolution-independent sensitivity.
-	if event is InputEventMouseMotion and camera != null and camera_pivot != null:
-		camera_pivot.rotation.x -= event.screen_relative.y * mouse_sensitivity
-		# Prevent the camera from rotating too far up or down.
-		camera_pivot.rotation.x = clampf(camera_pivot.rotation.x, -tilt_limit, tilt_limit)
-		camera_pivot.rotation.y += -event.screen_relative.x * mouse_sensitivity

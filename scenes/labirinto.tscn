@@ -26,6 +26,10 @@ bottom_radius = 2.0
 height = 0.001
 rings = 0
 
+[sub_resource type="Environment" id="Environment_nw27f"]
+background_mode = 1
+background_color = Color(0.6313726, 0.8745098, 0.9411765, 1)
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_nw27f"]
 size = Vector2(750, 350)
 
@@ -143,6 +147,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 spring_length = 8.0
 
 [node name="Camera3D" type="Camera3D" parent="Nikole/CameraPivot/SpringArm3D" unique_id=1644181702]
+environment = SubResource("Environment_nw27f")
 
 [node name="Grama" type="MeshInstance3D" parent="." unique_id=1818598597]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
