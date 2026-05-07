@@ -8,11 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://ccuvtuiaypkd1" path="res://sprites/nikole/nikole_cabelo.png" id="5_aalt0"]
 [ext_resource type="Texture2D" uid="uid://2e0pvshuvuwj" path="res://sprites/nikole/nikole_cabelo_fundo.png" id="6_k6tek"]
 [ext_resource type="Texture2D" uid="uid://chjkevg1guoym" path="res://sprites/props/grass/grass_bg.png" id="6_t16je"]
-[ext_resource type="Material" uid="uid://boqsbfhy877wx" path="res://sprites/river.tres" id="7_ndive"]
 [ext_resource type="Texture2D" uid="uid://b18pmdop4i5v0" path="res://sprites/nikole/nikole_corpo.png" id="7_nw27f"]
-[ext_resource type="Texture2D" uid="uid://b1nkw05wj0fc" path="res://sprites/props/water/river.png" id="8_aalt0"]
 [ext_resource type="Texture2D" uid="uid://cbx2ypcpchv06" path="res://sprites/nikole/nikole_mao.png" id="8_nmkx0"]
-[ext_resource type="Script" uid="uid://pecq7v40nchd" path="res://scripts/river_wave.gd" id="9_k6tek"]
 [ext_resource type="Material" uid="uid://br606pb801km8" path="res://sprites/shadow.tres" id="9_lkkcw"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_400sg"]
@@ -50,17 +47,6 @@ size = Vector3(1000, 50, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_mpddn"]
 size = Vector2(750, 100)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_3ru34"]
-material = ExtResource("7_ndive")
-size = Vector2(750, 200)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2cove"]
-transparency = 1
-shading_mode = 0
-albedo_texture = ExtResource("8_aalt0")
-uv1_scale = Vector3(21.6, 0.9, 0.842)
-uv1_offset = Vector3(0, 0.1, 0)
 
 [node name="Labirinto" type="Node3D" unique_id=2063930799]
 
@@ -174,14 +160,3 @@ mesh = SubResource("PlaneMesh_mpddn")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.847, -50)
 material_override = SubResource("StandardMaterial3D_nmkx0")
 mesh = SubResource("PlaneMesh_lkkcw")
-
-[node name="Rio" type="MeshInstance3D" parent="Grama" unique_id=345045152]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.947509, -207.65366)
-mesh = SubResource("PlaneMesh_3ru34")
-surface_material_override/0 = ExtResource("7_ndive")
-
-[node name="Ondas" type="MeshInstance3D" parent="Grama/Rio" unique_id=97309864]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7592659, -99.6891)
-material_override = SubResource("StandardMaterial3D_2cove")
-mesh = SubResource("PlaneMesh_lkkcw")
-script = ExtResource("9_k6tek")

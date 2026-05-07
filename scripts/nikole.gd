@@ -27,6 +27,14 @@ var interagir_objeto : Node = null
 
 func _physics_process(delta: float) -> void:
 	var raw_input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+
+	if camera_pivot:
+		if Input.is_action_pressed("girar_tela_direita"):
+			camera_pivot.rotation.y -= 0.02
+		if Input.is_action_pressed("girar_tela_esquerda"):
+			camera_pivot.rotation.y += 0.02
+		raw_input = raw_input.rotated(-camera_pivot.rotation.y)
+
 	mover_input = mover_input.lerp(raw_input, delta / 0.2)
 
 	andando = raw_input.length() > 0
@@ -34,8 +42,11 @@ func _physics_process(delta: float) -> void:
 	if raw_input.x != 0:
 		sprite_direction = 1 if raw_input.x > 0 else -1
 
+
+
 	velocity.x = mover_input.x * velocidade
 	velocity.z = mover_input.y * velocidade
+
 
 	move_and_slide()
 
@@ -48,12 +59,6 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("pausar"):
 		menu.abrir_tela("Menu")
 		get_tree().paused = true
-
-	if camera_pivot:
-		if Input.is_action_pressed("girar_tela_direita"):
-			camera_pivot.rotation.y -= 0.02
-		if Input.is_action_pressed("girar_tela_esquerda"):
-			camera_pivot.rotation.y += 0.02
 		
 	# animations
 	peso_animacao_andar = lerpf(peso_animacao_andar, 1 if andando else 0, delta / .075)
