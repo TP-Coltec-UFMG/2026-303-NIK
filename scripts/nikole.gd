@@ -4,6 +4,8 @@ class_name Nikole extends CharacterBody3D
 @export var velocidade = 30.0
 @export var menu : Menu
 
+@onready var camera : Camera3D = $Camera3D if has_node("Camera3D") else null
+@onready var camera_pivot : Node3D = $CameraPivot if has_node("CameraPivot") else null
 @onready var sprites : Node3D = $Sprites
 @onready var mao_direita : Node3D = $Sprites/MaoDireita
 @onready var mao_direita_base_posicao : Vector3 = $Sprites/MaoDireita.position
@@ -78,3 +80,16 @@ func _on_porta_body_exited(body: Node3D, source: Area3D) -> void:
 	if source == interagir_objeto and body == self:
 		print_debug("interagir com ", interagir_objeto.name, " indisponivel")
 		interagir_objeto = null
+
+
+@export_range(0.0, 1.0) var mouse_sensitivity = 0.01
+@export var tilt_limit = deg_to_rad(75)
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	# Mouselook implemented using `screen_relative` for resolution-independent sensitivity.
+	if event is InputEventMouseMotion and camera != null and camera_pivot != null:
+		camera_pivot.rotation.x -= event.screen_relative.y * mouse_sensitivity
+		# Prevent the camera from rotating too far up or down.
+		camera_pivot.rotation.x = clampf(camera_pivot.rotation.x, -tilt_limit, tilt_limit)
+		camera_pivot.rotation.y += -event.screen_relative.x * mouse_sensitivity

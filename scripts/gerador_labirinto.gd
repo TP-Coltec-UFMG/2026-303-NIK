@@ -66,9 +66,15 @@ func gerar_paredes():
 
 func instancia_parede(i : int, j : int, orientacao : int) -> Node:
 	var parede = cena_parede.instantiate()
-	parede.position = Vector3(i-(0.5 if orientacao == 1 else 0.0), 0, j-(0.5 if orientacao == 0 else 0.0))
-	parede.rotation.y = (orientacao-1) * PI/2
 	add_child(parede)
+
+	var offset = 0.5
+	var size_parede = parede.get_node("CollisionShape3D").shape.size
+	var pos_x = (i - (offset if orientacao == 1 else 0.0)) * size_parede.x
+	var pos_z = (j - (offset if orientacao == 0 else 0.0)) * size_parede.x
+	
+	parede.position = Vector3(pos_x, 0, pos_z)
+	parede.rotation.y = orientacao * PI/2
 	return parede
 
 
