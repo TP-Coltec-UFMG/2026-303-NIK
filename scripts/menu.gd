@@ -8,7 +8,6 @@ var caminho_configuracoes = "user://config.json"
 
 func _ready() -> void:
 	fechar_telas()
-	$TituloJogo.visible = true;
 	$Principal/Jogar.pressed.connect(fechar_telas)
 	$Principal/Opções.pressed.connect(abrir_tela.bind("Opções"))
 	$Opcoes/Voltar.pressed.connect(salvar_configuracoes)
@@ -18,11 +17,6 @@ func _ready() -> void:
 			configuracoes.append(configuracao)
 
 	carregar_configuracoes()
-	abrir_tela_inicial()	
-
-func abrir_tela_inicial():
-	abrir_tela("Menu")
-	get_tree().paused = true
 
 func abrir_tela(alvo : String):
 	print("carregando tela \"" + alvo + "\"")
@@ -46,8 +40,6 @@ func fechar_telas():
 	get_tree().paused = false
 	for tela in telas.keys():
 		telas[tela].visible = false
-	$TituloJogo.visible = false;
-	
 
 func salvar_configuracoes() -> void:
 	abrir_tela("Menu")
@@ -89,6 +81,13 @@ func carregar_configuracoes() -> void:
 						print("desativando o modo alto-contraste")
 						theme = preload("res://themes/default.tres")
 					atualizar_visual_botoes()
+				if config.id == "escala-interface":
+					if config.valor == 0:
+						get_tree().root.content_scale_factor = 1.0
+					elif config.valor == 1:
+						get_tree().root.content_scale_factor = 1.5
+					elif config.valor == 2:
+						get_tree().root.content_scale_factor = 0.5
 
 		print("configurações carregadas")
 		arquivo.close()

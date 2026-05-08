@@ -23,7 +23,7 @@ func _ready() -> void:
 	atualizar_visual()
 
 func atualizar_visual() -> void:
-	label.text = "[color=" + (get_theme_color("font_focus_color", "Button").to_html() if has_focus() else get_theme_color("font_color", "Button").to_html()) + "]" + nome + ": [/color][color=" + valores[valor].cor.to_html() + "]" + valores[valor].nome + "[/color]"
+	label.text = "[color=" + (get_theme_color("font_focus_color", "Button").to_html() if has_focus() or is_hovered() else get_theme_color("font_color", "Button").to_html()) + "]" + nome + ": [/color][color=" + valores[valor].cor.to_html() + "]" + valores[valor].nome + "[/color]"
 	# label.reset_size()
 	custom_minimum_size.y = label.get_minimum_size().y
 
