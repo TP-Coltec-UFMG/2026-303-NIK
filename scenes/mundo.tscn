@@ -20,9 +20,11 @@
 [ext_resource type="Texture2D" uid="uid://bpkveyhnxldso" path="res://sprites/props/grass/parallax_1.png" id="12_y4lqn"]
 [ext_resource type="Texture2D" uid="uid://b3xoegfo5dmdy" path="res://sprites/props/grass/parallax_2.png" id="13_wf7jv"]
 [ext_resource type="Texture2D" uid="uid://ddipx3y6iahtn" path="res://sprites/ui/caixa_branca.png" id="20_vnytd"]
+[ext_resource type="FontFile" uid="uid://mb7lv5gfarwo" path="res://fonts/Chewy-Regular.ttf" id="21_e6vnd"]
 [ext_resource type="Script" uid="uid://bm4rvfyvlss3y" path="res://scripts/menu.gd" id="21_y4lqn"]
 [ext_resource type="Script" uid="uid://1w61r0xfwtnc" path="res://scripts/botao_toggle.gd" id="22_2jrhv"]
 [ext_resource type="Script" uid="uid://c0vxasbphbg0d" path="res://scripts/valor_toggle.gd" id="23_g6hv0"]
+[ext_resource type="Texture2D" uid="uid://cxuiuqkwa1o22" path="res://sprites/ui/logo_nik_is_kind.png" id="25_wf7jv"]
 
 [sub_resource type="Environment" id="Environment_kvuet"]
 background_mode = 1
@@ -115,6 +117,7 @@ uv1_scale = Vector3(10, 0.95, 1)
 uv1_offset = Vector3(0, 0.05, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_e6vnd"]
+font = ExtResource("21_e6vnd")
 font_size = 48
 
 [sub_resource type="Resource" id="Resource_np3xf"]
@@ -489,6 +492,15 @@ vertical_alignment = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Salvar modificações"
+
+[node name="TituloJogo" type="TextureRect" parent="UI/Menu" unique_id=1213818169]
+layout_mode = 0
+offset_left = -728.0
+offset_top = -82.0
+offset_right = 552.0
+offset_bottom = 638.0
+scale = Vector2(0.44000006, 0.44000006)
+texture = ExtResource("25_wf7jv")
 
 [connection signal="body_entered" from="CasaPaulo/Porta" to="Nikole" method="_on_porta_body_entered" flags=18]
 [connection signal="body_exited" from="CasaPaulo/Porta" to="Nikole" method="_on_porta_body_exited" flags=18]
