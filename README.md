@@ -13,6 +13,7 @@ O menu acessível consiste em:
 - Jogar
 - Opções
     - Narração
+    - Alto contraste
     - Filtros de daltonismo
 - Sair
 
