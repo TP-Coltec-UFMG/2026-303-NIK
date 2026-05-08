@@ -3,67 +3,182 @@
 [ext_resource type="Texture2D" uid="uid://dsobtxifisd5i" path="res://sprites/nikole/nikole_house_tree.png" id="1_bybn8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bybn8"]
-size = Vector3(9.665, 10.385, 1.03)
+size = Vector3(20, 10, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bybn8"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_bybn8")
+
+[sub_resource type="QuadMesh" id="QuadMesh_dvu8g"]
+material = SubResource("StandardMaterial3D_bybn8")
+size = Vector2(4.63, 10.42)
 
 [node name="StaticBody3D" type="StaticBody3D" unique_id=811062710]
-metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1154332873]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.28291, 0)
 shape = SubResource("BoxShape3D_bybn8")
 
-[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1652570111]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.31687498, 5.28291, -0.4824468)
-texture = ExtResource("1_bybn8")
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=268363034]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10.4680195, 4.916861, 0.029457897)
+mesh = SubResource("QuadMesh_dvu8g")
 
-[node name="Sprite3D2" type="Sprite3D" parent="." unique_id=1165286641]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.86909467, 5.28291, 0.25523353)
-texture = ExtResource("1_bybn8")
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=804783376]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 9.485546, 4.916861, 0.184986)
+mesh = SubResource("QuadMesh_dvu8g")
 
-[node name="Sprite3D3" type="Sprite3D" parent="." unique_id=924182271]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4568298, 5.28291, -0.102635026)
-texture = ExtResource("1_bybn8")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1743206290]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.912588, 5.236267, 2.047913)
+mesh = SubResource("QuadMesh_dvu8g")
 
-[node name="Sprite3D4" type="Sprite3D" parent="." unique_id=2124040384]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9153466, 5.28291, -0.24483836)
-texture = ExtResource("1_bybn8")
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=553124344]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.060028, 4.536969, 2.3367772)
+mesh = SubResource("QuadMesh_dvu8g")
 
-[node name="Sprite3D5" type="Sprite3D" parent="." unique_id=1617877321]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.99726343, 5.28291, 0.20542061)
-texture = ExtResource("1_bybn8")
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="." unique_id=1855941948]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4698534, 5.236267, 1.8434863)
+mesh = SubResource("QuadMesh_dvu8g")
 
-[node name="Sprite3D6" type="Sprite3D" parent="." unique_id=1468007392]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.139157, 5.28291, -0.44227535)
-texture = ExtResource("1_bybn8")
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="." unique_id=1882130461]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.872813, 4.840426, -2.3641543)
+mesh = SubResource("QuadMesh_dvu8g")
 
-[node name="Sprite3D7" type="Sprite3D" parent="." unique_id=2056140518]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4266584, 5.28291, -0.33492303)
-texture = ExtResource("1_bybn8")
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="." unique_id=662200566]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.3480053, 4.900912, -2.2200322)
+mesh = SubResource("QuadMesh_dvu8g")
 
-[node name="Sprite3D8" type="Sprite3D" parent="." unique_id=2072445987]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.509183, 5.28291, 0.20453441)
-texture = ExtResource("1_bybn8")
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="." unique_id=939059937]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4310994, 5.220318, -2.2819054)
+mesh = SubResource("QuadMesh_dvu8g")
 
-[node name="Sprite3D9" type="Sprite3D" parent="." unique_id=693355126]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0445032, 5.28291, -0.38449395)
-texture = ExtResource("1_bybn8")
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="." unique_id=1644606088]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3055143, 4.711565, -1.8594799)
+mesh = SubResource("QuadMesh_dvu8g")
 
-[node name="Sprite3D10" type="Sprite3D" parent="." unique_id=807084393]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0115871, 5.28291, -0.30011803)
-texture = ExtResource("1_bybn8")
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="." unique_id=1833223987]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5257416, 5.236267, 2.047913)
+mesh = SubResource("QuadMesh_dvu8g")
 
-[node name="Sprite3D11" type="Sprite3D" parent="." unique_id=1520651705]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9234798, 5.28291, 0.22422922)
-texture = ExtResource("1_bybn8")
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="." unique_id=560471843]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2460237, 4.536969, 2.0116947)
+mesh = SubResource("QuadMesh_dvu8g")
 
-[node name="Sprite3D12" type="Sprite3D" parent="." unique_id=2120763459]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.968309, 5.28291, -0.081940114)
-texture = ExtResource("1_bybn8")
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="." unique_id=1855368040]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.450023, 5.236267, 1.7312956)
+mesh = SubResource("QuadMesh_dvu8g")
 
-[node name="Sprite3D13" type="Sprite3D" parent="." unique_id=1610892536]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4393544, 5.28291, -0.45674062)
-texture = ExtResource("1_bybn8")
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="." unique_id=1231662329]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.404364, 5.236267, 2.661302)
+mesh = SubResource("QuadMesh_dvu8g")
 
-[node name="Sprite3D14" type="Sprite3D" parent="." unique_id=1783255190]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3905535, 5.28291, 0.44484425)
-texture = ExtResource("1_bybn8")
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="." unique_id=1386794933]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0302615, 5.236267, 2.4234247)
+mesh = SubResource("QuadMesh_dvu8g")
+
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="." unique_id=443281455]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6029744, 6.588172, 0.7954588)
+mesh = SubResource("QuadMesh_dvu8g")
+
+[node name="MeshInstance3D21" type="MeshInstance3D" parent="." unique_id=1135080622]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7504145, 5.888874, 1.0843229)
+mesh = SubResource("QuadMesh_dvu8g")
+
+[node name="MeshInstance3D22" type="MeshInstance3D" parent="." unique_id=1648242377]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1602397, 6.588172, 0.591032)
+mesh = SubResource("QuadMesh_dvu8g")
+
+[node name="MeshInstance3D23" type="MeshInstance3D" parent="." unique_id=429866120]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8353552, 6.588172, 0.7954588)
+mesh = SubResource("QuadMesh_dvu8g")
+
+[node name="MeshInstance3D24" type="MeshInstance3D" parent="." unique_id=185505582]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.759637, 6.588172, 0.4788413)
+mesh = SubResource("QuadMesh_dvu8g")
+
+[node name="MeshInstance3D25" type="MeshInstance3D" parent="." unique_id=231485715]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.713978, 6.588172, 1.4088478)
+mesh = SubResource("QuadMesh_dvu8g")
+
+[node name="MeshInstance3D26" type="MeshInstance3D" parent="." unique_id=1452973245]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.720648, 6.588172, 1.1709704)
+mesh = SubResource("QuadMesh_dvu8g")
+
+[node name="MeshInstance3D27" type="MeshInstance3D" parent="." unique_id=735098276]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 6.7671723, 6.588172, -0.96346366)
+mesh = SubResource("QuadMesh_dvu8g")
+
+[node name="MeshInstance3D28" type="MeshInstance3D" parent="." unique_id=1690227976]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.08538726, 5.888874, -1.2523284)
+mesh = SubResource("QuadMesh_dvu8g")
+
+[node name="MeshInstance3D29" type="MeshInstance3D" parent="." unique_id=1478708192]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 2.324438, 6.588172, -0.75903726)
+mesh = SubResource("QuadMesh_dvu8g")
+
+[node name="MeshInstance3D30" type="MeshInstance3D" parent="." unique_id=1705194039]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -2.671157, 6.588172, -0.96346444)
+mesh = SubResource("QuadMesh_dvu8g")
+
+[node name="MeshInstance3D31" type="MeshInstance3D" parent="." unique_id=11756522]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -7.595439, 6.588172, -0.64684737)
+mesh = SubResource("QuadMesh_dvu8g")
+
+[node name="MeshInstance3D32" type="MeshInstance3D" parent="." unique_id=249375723]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -5.54978, 6.588172, -1.5768538)
+mesh = SubResource("QuadMesh_dvu8g")
+
+[node name="MeshInstance3D33" type="MeshInstance3D" parent="." unique_id=254635890]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 3.884846, 6.588172, -1.3389755)
+mesh = SubResource("QuadMesh_dvu8g")
+
+[node name="MeshInstance3D34" type="MeshInstance3D" parent="." unique_id=2074072558]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 6.7671723, 8.055809, 0.48192632)
+mesh = SubResource("QuadMesh_dvu8g")
+
+[node name="MeshInstance3D35" type="MeshInstance3D" parent="." unique_id=987675058]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.08538726, 7.356511, 0.19306159)
+mesh = SubResource("QuadMesh_dvu8g")
+
+[node name="MeshInstance3D36" type="MeshInstance3D" parent="." unique_id=1765781886]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 2.324438, 8.055809, 0.6863527)
+mesh = SubResource("QuadMesh_dvu8g")
+
+[node name="MeshInstance3D37" type="MeshInstance3D" parent="." unique_id=31699469]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -2.671157, 8.055809, 0.48192555)
+mesh = SubResource("QuadMesh_dvu8g")
+
+[node name="MeshInstance3D38" type="MeshInstance3D" parent="." unique_id=1724495059]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -7.595439, 8.055809, 0.7985426)
+mesh = SubResource("QuadMesh_dvu8g")
+
+[node name="MeshInstance3D39" type="MeshInstance3D" parent="." unique_id=951302057]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -5.54978, 8.055809, -0.13146377)
+mesh = SubResource("QuadMesh_dvu8g")
+
+[node name="MeshInstance3D40" type="MeshInstance3D" parent="." unique_id=663040850]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 3.884846, 8.055809, 0.10641444)
+mesh = SubResource("QuadMesh_dvu8g")
+
+[node name="MeshInstance3D19" type="MeshInstance3D" parent="." unique_id=448495376]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.332468, 5.236267, -2.6697931)
+mesh = SubResource("QuadMesh_dvu8g")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="." unique_id=2054066763]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5655165, 4.840426, -2.3641543)
+mesh = SubResource("QuadMesh_dvu8g")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="." unique_id=1111604427]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8709974, 4.900912, -2.2200322)
+mesh = SubResource("QuadMesh_dvu8g")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="." unique_id=228691406]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5812154, 5.220318, -1.804512)
+mesh = SubResource("QuadMesh_dvu8g")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="." unique_id=41791519]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.638515, 4.711565, -1.9717674)
+mesh = SubResource("QuadMesh_dvu8g")
