@@ -27,4 +27,5 @@ _(Menu com Alto Contraste. É possível notar que os botões, por exemplo, conta
 
 ## Créditos
 Desenvolvido por [André Dias de Paula](https://github.com/Andreerdd), [Frederico Santos Gonçalves](https://github.com/TalkedSphere) e [Gabriel Della Gaspera](https://github.com/dellagaspera).
+
 Slides sobre o Menu: https://canva.link/0i8k9a8wbgczz79
