@@ -31,4 +31,4 @@ Desenvolvido por:
 - [Frederico Santos Gonçalves](https://github.com/TalkedSphere): Programação e Sprites
 - [Gabriel Della Gaspera](https://github.com/dellagaspera): Programação e Sprites
 
-Slides sobre o Menu _(Parte 1)_: https://canva.link/0i8k9a8wbgczz79
+Acesse os slides sobre o Menu _(Parte 1)_ [aqui](https://canva.link/0i8k9a8wbgczz79)
