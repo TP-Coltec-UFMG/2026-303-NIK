@@ -8,7 +8,7 @@ Plataforma: PC
 
 ## Menu Inicial
 ![Imagem do Menu Inicial](readMeImages/menu.png)
-(Imagem do Menu Inicial, mostrando o título e alguns botões no jogo)
+_(Imagem do Menu Inicial, mostrando o título e alguns botões no jogo)_
 
 O menu acessível consiste em:
 - Jogar
@@ -21,7 +21,8 @@ O menu acessível consiste em:
 É possível ativar o modo de alto contraste, que facilita a leitura de informações importantes da tela.
 
 ![Menu com Alto Contraste. É possível notar que os botões, por exemplo, contam com um fundo escuro.](readMeImages/menuAltoContraste.png)
-(Menu com Alto Contraste. É possível notar que os botões, por exemplo, contam com um fundo escuro.)
+
+_(Menu com Alto Contraste. É possível notar que os botões, por exemplo, contam com um fundo escuro.)_
 
 
 ## Créditos
