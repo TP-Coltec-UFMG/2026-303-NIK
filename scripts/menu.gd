@@ -1,4 +1,4 @@
-class_name Menu extends NinePatchRect
+class_name Menu extends Control
 
 @export var telas : Dictionary[String, VBoxContainer] = {}
 
@@ -7,12 +7,12 @@ var caminho_configuracoes = "user://config.json"
 @export var configuracoes : Array = []
 
 func _ready() -> void:
-	fechar_telas()
-	$Principal/Jogar.pressed.connect(fechar_telas)
-	$Principal/Opções.pressed.connect(abrir_tela.bind("Opções"))
-	$Opcoes/Voltar.pressed.connect(salvar_configuracoes)
+	abrir_tela("Menu")
+	$PainelMenu/Principal/Jogar.pressed.connect(fechar_telas)
+	$PainelMenu/Principal/Opções.pressed.connect(abrir_tela.bind("Opções"))
+	$PainelMenu/Opcoes/Voltar.pressed.connect(salvar_configuracoes)
 
-	for configuracao in $Opcoes.get_children():
+	for configuracao in $PainelMenu/Opcoes.get_children():
 		if configuracao.name != "Voltar":
 			configuracoes.append(configuracao)
 
@@ -28,7 +28,7 @@ func abrir_tela(alvo : String):
 			telas[tela].visible = true
 			visible = true
 			get_tree().paused = true
-			$Titulo.text = tela
+			$PainelMenu/Titulo.text = tela
 		else:
 			telas[tela].visible = false
 	

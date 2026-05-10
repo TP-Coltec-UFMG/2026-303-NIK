@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://r52y5pkon1ij"]
 
-[ext_resource type="Script" uid="uid://bw3exhcj8r0pe" path="res://scripts/gerador_labirinto.gd" id="1_88teh"]
+[ext_resource type="Script" uid="uid://bw3exhcj8r0pe" path="res://scripts/gerador_labirinto.gd" id="1_5boeq"]
 [ext_resource type="PackedScene" uid="uid://ccupk7xgo7hv0" path="res://scenes/parede.tscn" id="2_ogviy"]
 [ext_resource type="Script" uid="uid://c6jo6by53efc4" path="res://scripts/nikole.gd" id="3_t16je"]
 [ext_resource type="Texture2D" uid="uid://bgl2rhpm2u3um" path="res://sprites/nikole/nikole_cabeca.png" id="4_ndive"]
@@ -32,11 +32,13 @@ size = Vector2(756.42, 481.355)
 [node name="Labirinto" type="Node3D" unique_id=2063930799]
 
 [node name="GeradorLabirinto" type="Node" parent="." unique_id=1808683789]
-script = ExtResource("1_88teh")
+script = ExtResource("1_5boeq")
 cena_parede = ExtResource("2_ogviy")
 
 [node name="Nikole" type="CharacterBody3D" parent="." unique_id=583452868]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 script = ExtResource("3_t16je")
+velocidade = 10.0
 
 [node name="Sprites" type="Node3D" parent="Nikole" unique_id=1746916121]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
