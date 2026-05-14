@@ -411,6 +411,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Principal" type="VBoxContainer" parent="UI/Menu/PainelMenu" unique_id=846912163]
+visible = false
 clip_contents = true
 layout_mode = 1
 anchors_preset = -1
@@ -566,6 +567,29 @@ text = "NIK"
 label_settings = SubResource("LabelSettings_y4lqn")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="PrincipalCircular" type="Control" parent="UI/Menu/PainelMenu" unique_id=2053881178]
+anchors_preset = 0
+offset_right = 48.0
+offset_bottom = 78.0
+
+[node name="Jogar" type="Button" parent="UI/Menu/PainelMenu/PrincipalCircular" unique_id=244145878]
+layout_mode = 0
+theme_override_font_sizes/font_size = 64
+text = "Jogar"
+alignment = 2
+
+[node name="Opções" type="Button" parent="UI/Menu/PainelMenu/PrincipalCircular" unique_id=1172642018]
+layout_mode = 0
+theme_override_font_sizes/font_size = 64
+text = "Opções"
+alignment = 2
+
+[node name="Sair" type="Button" parent="UI/Menu/PainelMenu/PrincipalCircular" unique_id=1388252118]
+layout_mode = 0
+theme_override_font_sizes/font_size = 64
+text = "Fechar o jogo"
+alignment = 2
 
 [connection signal="body_entered" from="CasaPaulo/Porta" to="Nikole" method="_on_porta_body_entered" flags=18]
 [connection signal="body_exited" from="CasaPaulo/Porta" to="Nikole" method="_on_porta_body_exited" flags=18]
