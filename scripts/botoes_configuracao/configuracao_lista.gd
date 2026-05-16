@@ -1,7 +1,8 @@
 @tool
-extends ConfigButtonBase
+extends ConfigButton
 class_name ConfigButtonList
 
+@export var vertical : bool = false
 @export var valores : Array[String] = ["preciso de valores :("]
 @export var valor = "ay cabron"
 var _valor : int = 0:
@@ -28,19 +29,33 @@ func _draw() -> void:
 		offset = desenha_texto(label, Vector2.ZERO, focus_color)
 	else: offset = desenha_texto(label)
 	
-	var cor_do_valor = Color.WHITE if not editando else Color.PALE_TURQUOISE
-	var offset_valor = desenha_texto(str(valor), Vector2(offset.x + 40, 0), cor_do_valor)
+	var cor_valor
+	var contorno_valor
+	if editando: 
+		cor_valor = pressed_color
+		contorno_valor = focus_color
+	else: 
+		cor_valor = normal_color
+		contorno_valor = focus_color
+
+	var posicao_valor
+	if not vertical:
+		posicao_valor = Vector2(offset.x + 40, 0)
+	else:
+		posicao_valor = Vector2(0, offset.y)
+
+	var offset_valor = desenha_texto(str(valor), posicao_valor, cor_valor, contorno_valor)
 	if editando:
-		var pontos = PackedVector2Array([
-			Vector2(offset.x + 17 + 6, size.y / 2 + -6), 
-			Vector2(offset.x + 17 + 6, size.y / 2 +  6), 
-			Vector2(offset.x + 17,     size.y / 2)])
-		draw_polygon(pontos, PackedColorArray([Color.PALE_TURQUOISE]))
-		pontos = PackedVector2Array([
-			Vector2(40 + offset.x + offset_valor.x + 17,     size.y / 2 + -6), 
-			Vector2(40 + offset.x + offset_valor.x + 17,     size.y / 2 + 6), 
-			Vector2(40 + offset.x + offset_valor.x + 17 + 6, size.y / 2)])
-		draw_polygon(pontos, PackedColorArray([Color.PALE_TURQUOISE]))
+		var font = get_theme_font("font", "Button")
+		var font_size = get_theme_font_size("font_size", "Button")
+
+		var tamanho_seta = font.get_string_size("<", HORIZONTAL_ALIGNMENT_CENTER, -1, font_size)
+		if not vertical:
+			desenha_texto("<", Vector2((posicao_valor.x + 20) - tamanho_seta.x / 2, 0), cor_valor, contorno_valor)
+			desenha_texto(">", Vector2((posicao_valor.x + offset_valor.x + 40 + 20) - tamanho_seta.x / 2, 0), cor_valor, contorno_valor)
+		else:
+			desenha_texto("<", Vector2(-tamanho_seta.x / 2 - 20, posicao_valor.y), cor_valor, contorno_valor)
+			desenha_texto(">", Vector2((offset_valor.x + 40 + 20) - tamanho_seta.x / 2 - 40, posicao_valor.y), cor_valor, contorno_valor)
 
 func _gui_input(event: InputEvent) -> void:
 	if editando:

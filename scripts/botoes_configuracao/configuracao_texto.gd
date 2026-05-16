@@ -1,7 +1,8 @@
 @tool
-extends ConfigButtonBase
+extends ConfigButton
 class_name ConfigButtonString
 
+@export var vertical : bool = false
 @export var valor : String = "":
 	set(novo_valor):
 		valor = novo_valor
@@ -28,8 +29,12 @@ func _draw() -> void:
 	if line_edit:
 		var espacamento = 10.0
 		
-		line_edit.position = Vector2(offset.x + espacamento, (size.y - line_edit.size.y) / 2)
-		line_edit.size.x = size.x - offset.x - 2 * espacamento
+		if not vertical:
+			line_edit.position = Vector2(offset.x + espacamento, (size.y - line_edit.size.y) / 2)
+			line_edit.size.x = size.x - offset.x - 2 * espacamento
+		else:
+			line_edit.position = Vector2(0, size.y - 5)
+			line_edit.size.x = size.x
 
 func _on_text_submitted(novo_texto: String) -> void:
 	grab_focus()

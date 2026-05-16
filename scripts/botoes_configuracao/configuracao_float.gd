@@ -1,12 +1,15 @@
 @tool
-extends ConfigButtonBase
+extends ConfigButton
 class_name ConfigButtonFloat
 
+@export var vertical : bool = false
 @export var valor : float = 0:
 	set(novo_valor):
-		valor = novo_valor
+		valor = clampf(novo_valor, valor_minimo, valor_maximo)
 		if line_edit:
-			line_edit.text = str(novo_valor)
+			line_edit.text = str(valor)
+@export var valor_minimo : float = 0.0
+@export var valor_maximo : float = 1.0
 
 var line_edit : LineEdit
 
@@ -28,8 +31,12 @@ func _draw() -> void:
 	if line_edit:
 		var espacamento = 10.0
 		
-		line_edit.position = Vector2(offset.x + espacamento, (size.y - line_edit.size.y) / 2)
-		line_edit.size.x = size.x - offset.x - 2 * espacamento
+		if not vertical:
+			line_edit.position = Vector2(offset.x + espacamento, (size.y - line_edit.size.y) / 2)
+			line_edit.size.x = size.x - offset.x - 2 * espacamento
+		else:
+			line_edit.position = Vector2(0, size.y - 5)
+			line_edit.size.x = size.x
 
 func _on_text_submitted(novo_texto: String) -> void:
 	grab_focus()
