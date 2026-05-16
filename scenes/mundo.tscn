@@ -19,11 +19,13 @@
 [ext_resource type="Script" uid="uid://pecq7v40nchd" path="res://scripts/river_wave.gd" id="11_g6hv0"]
 [ext_resource type="Texture2D" uid="uid://bpkveyhnxldso" path="res://sprites/props/grass/parallax_1.png" id="12_y4lqn"]
 [ext_resource type="Texture2D" uid="uid://b3xoegfo5dmdy" path="res://sprites/props/grass/parallax_2.png" id="13_wf7jv"]
-[ext_resource type="Texture2D" uid="uid://ddipx3y6iahtn" path="res://sprites/ui/caixa_branca.png" id="20_vnytd"]
 [ext_resource type="FontFile" uid="uid://mb7lv5gfarwo" path="res://fonts/Chewy-Regular.ttf" id="21_e6vnd"]
 [ext_resource type="Script" uid="uid://bm4rvfyvlss3y" path="res://scripts/menu.gd" id="21_y4lqn"]
-[ext_resource type="Script" uid="uid://1w61r0xfwtnc" path="res://scripts/botao_toggle.gd" id="22_2jrhv"]
-[ext_resource type="Script" uid="uid://c0vxasbphbg0d" path="res://scripts/valor_toggle.gd" id="23_g6hv0"]
+[ext_resource type="Script" uid="uid://v4a1wtjtcbkn" path="res://scripts/botoes_configuracao/configuracao_int.gd" id="22_lbjxv"]
+[ext_resource type="Script" uid="uid://blskgvcg8gal" path="res://scripts/botoes_configuracao/configuracao_float.gd" id="23_0iwyf"]
+[ext_resource type="Script" uid="uid://le22bghu658t" path="res://scripts/botoes_configuracao/configuracao_texto.gd" id="23_np3xf"]
+[ext_resource type="Script" uid="uid://dxcpaqjaydfjj" path="res://scripts/botoes_configuracao/config_button_base.gd" id="25_wf7jv"]
+[ext_resource type="Script" uid="uid://dbttx0ech4g7u" path="res://scripts/botoes_configuracao/configuracao_lista.gd" id="28_0iwyf"]
 
 [sub_resource type="Environment" id="Environment_kvuet"]
 background_mode = 1
@@ -115,62 +117,6 @@ albedo_texture = ExtResource("13_wf7jv")
 uv1_scale = Vector3(10, 0.95, 1)
 uv1_offset = Vector3(0, 0.05, 0)
 
-[sub_resource type="LabelSettings" id="LabelSettings_e6vnd"]
-font_size = 48
-
-[sub_resource type="Resource" id="Resource_np3xf"]
-script = ExtResource("23_g6hv0")
-cor = Color(0.4509804, 0.7529412, 1, 1)
-metadata/_custom_type_script = "uid://c0vxasbphbg0d"
-
-[sub_resource type="Resource" id="Resource_0iwyf"]
-script = ExtResource("23_g6hv0")
-cor = Color(1, 0.45, 0.45, 1)
-nome = "desligado"
-metadata/_custom_type_script = "uid://c0vxasbphbg0d"
-
-[sub_resource type="Resource" id="Resource_c58b4"]
-script = ExtResource("23_g6hv0")
-cor = Color(0.74, 0.74, 0.74, 1)
-nome = "1x"
-metadata/_custom_type_script = "uid://c0vxasbphbg0d"
-
-[sub_resource type="Resource" id="Resource_igy0i"]
-script = ExtResource("23_g6hv0")
-cor = Color(0.7411765, 0.7411765, 0.7411765, 1)
-nome = "1.5x"
-metadata/_custom_type_script = "uid://c0vxasbphbg0d"
-
-[sub_resource type="Resource" id="Resource_rcwxx"]
-script = ExtResource("23_g6hv0")
-cor = Color(0.7411765, 0.7411765, 0.7411765, 1)
-nome = "0.5x"
-metadata/_custom_type_script = "uid://c0vxasbphbg0d"
-
-[sub_resource type="Resource" id="Resource_wf7jv"]
-script = ExtResource("23_g6hv0")
-cor = Color(1, 0.45, 0.45, 1)
-nome = "desligado"
-metadata/_custom_type_script = "uid://c0vxasbphbg0d"
-
-[sub_resource type="Resource" id="Resource_y4lqn"]
-script = ExtResource("23_g6hv0")
-cor = Color(0.2509804, 1, 1, 1)
-nome = "protanopia"
-metadata/_custom_type_script = "uid://c0vxasbphbg0d"
-
-[sub_resource type="Resource" id="Resource_g6hv0"]
-script = ExtResource("23_g6hv0")
-cor = Color(1, 0.2509804, 1, 1)
-nome = "deuteranopia"
-metadata/_custom_type_script = "uid://c0vxasbphbg0d"
-
-[sub_resource type="Resource" id="Resource_lbjxv"]
-script = ExtResource("23_g6hv0")
-cor = Color(1, 1, 0.2509804, 1)
-nome = "tritanopia"
-metadata/_custom_type_script = "uid://c0vxasbphbg0d"
-
 [sub_resource type="LabelSettings" id="LabelSettings_y4lqn"]
 font = ExtResource("21_e6vnd")
 font_size = 82
@@ -189,7 +135,7 @@ process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 0.9775559, 0.21067655, 0, -0.21067655, 0.9775559, 4, 5.5, 12.5)
 environment = SubResource("Environment_kvuet")
 offset = Vector3(0, 10, 30)
-offset_pausa = Vector3(4, 6.5, 12.5)
+offset_pausa = Vector3(-4, 6.5, 12.5)
 alvo = NodePath("../Nikole")
 
 [node name="Nikole" parent="." unique_id=583452868 node_paths=PackedStringArray("menu") instance=ExtResource("2_cae5a")]
@@ -376,188 +322,21 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("21_y4lqn")
 telas = {
-"Menu": NodePath("PainelMenu/Principal"),
-"Opções": NodePath("PainelMenu/Opcoes")
+"Menu": null,
+"Opções": null
 }
 
-[node name="PainelMenu" type="NinePatchRect" parent="UI/Menu" unique_id=71522318]
-self_modulate = Color(0.126, 0.1341, 0.18, 0.25490198)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 32.0
-offset_right = -32.0
-offset_bottom = -32.0
-grow_horizontal = 0
-grow_vertical = 2
-texture = ExtResource("20_vnytd")
-patch_margin_left = 32
-patch_margin_top = 32
-patch_margin_right = 32
-patch_margin_bottom = 32
-
-[node name="Titulo" type="Label" parent="UI/Menu/PainelMenu" unique_id=666494986]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 128.0
-offset_bottom = 224.0
-grow_horizontal = 2
-text = "Pausa"
-label_settings = SubResource("LabelSettings_e6vnd")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Principal" type="VBoxContainer" parent="UI/Menu/PainelMenu" unique_id=846912163]
-visible = false
-clip_contents = true
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 32.0
-offset_top = 224.0
-offset_right = -32.0
-offset_bottom = -32.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_mode = 2
-alignment = 1
-
-[node name="Jogar" type="Button" parent="UI/Menu/PainelMenu/Principal" unique_id=1105313553]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Jogar"
-
-[node name="Opções" type="Button" parent="UI/Menu/PainelMenu/Principal" unique_id=624960354]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Opções"
-
-[node name="Sair" type="Button" parent="UI/Menu/PainelMenu/Principal" unique_id=33880030]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Fechar o jogo"
-
-[node name="Opcoes" type="VBoxContainer" parent="UI/Menu/PainelMenu" unique_id=865080375]
-visible = false
-clip_contents = true
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 32.0
-offset_top = 224.0
-offset_right = -32.0
-offset_bottom = -32.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="Narrador" type="Button" parent="UI/Menu/PainelMenu/Opcoes" unique_id=838440044]
-layout_mode = 2
-text = " "
-script = ExtResource("22_2jrhv")
-id = "narrador"
-valores = Array[ExtResource("23_g6hv0")]([SubResource("Resource_np3xf"), SubResource("Resource_0iwyf")])
-nome = "Narrador"
-
-[node name="Label" type="RichTextLabel" parent="UI/Menu/PainelMenu/Opcoes/Narrador" unique_id=1779550994]
+[node name="ColorRect" type="ColorRect" parent="UI/Menu" unique_id=405628735]
+z_index = -15
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 32
-bbcode_enabled = true
-text = "toggle"
-fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
+color = Color(0, 0, 0, 0.3137255)
 
-[node name="AltoContraste" type="Button" parent="UI/Menu/PainelMenu/Opcoes" unique_id=1894544729]
-layout_mode = 2
-text = " "
-script = ExtResource("22_2jrhv")
-id = "alto-contraste"
-valores = Array[ExtResource("23_g6hv0")]([SubResource("Resource_np3xf"), SubResource("Resource_0iwyf")])
-nome = "Alto-contraste"
-
-[node name="Label" type="RichTextLabel" parent="UI/Menu/PainelMenu/Opcoes/AltoContraste" unique_id=1551318513]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 32
-bbcode_enabled = true
-text = "toggle"
-fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="EscaladaInterface" type="Button" parent="UI/Menu/PainelMenu/Opcoes" unique_id=1180936056]
-layout_mode = 2
-text = " "
-script = ExtResource("22_2jrhv")
-id = "escala-interface"
-valores = Array[ExtResource("23_g6hv0")]([SubResource("Resource_c58b4"), SubResource("Resource_igy0i"), SubResource("Resource_rcwxx")])
-nome = "Escala da Interface"
-
-[node name="Label" type="RichTextLabel" parent="UI/Menu/PainelMenu/Opcoes/EscaladaInterface" unique_id=1181901689]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 32
-bbcode_enabled = true
-text = "toggle"
-fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Daltonismo" type="Button" parent="UI/Menu/PainelMenu/Opcoes" unique_id=1590149275]
-layout_mode = 2
-text = " "
-script = ExtResource("22_2jrhv")
-id = "daltonismo"
-valores = Array[ExtResource("23_g6hv0")]([SubResource("Resource_wf7jv"), SubResource("Resource_y4lqn"), SubResource("Resource_g6hv0"), SubResource("Resource_lbjxv")])
-nome = "Daltonismo"
-
-[node name="Label" type="RichTextLabel" parent="UI/Menu/PainelMenu/Opcoes/Daltonismo" unique_id=1627593833]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 32
-bbcode_enabled = true
-text = "toggle"
-fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Voltar" type="Button" parent="UI/Menu/PainelMenu/Opcoes" unique_id=1381628644]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Salvar modificações"
-
-[node name="TituloJogo" type="Label" parent="UI/Menu/PainelMenu" unique_id=467768503]
+[node name="TituloJogo" type="Label" parent="UI/Menu" unique_id=467768503]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -568,28 +347,439 @@ label_settings = SubResource("LabelSettings_y4lqn")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PrincipalCircular" type="Control" parent="UI/Menu/PainelMenu" unique_id=2053881178]
+[node name="Circular" type="Control" parent="UI/Menu" unique_id=2053881178]
 anchors_preset = 0
-offset_right = 48.0
-offset_bottom = 78.0
+offset_left = 640.0
+offset_top = 32.0
+offset_right = 688.0
+offset_bottom = 110.0
 
-[node name="Jogar" type="Button" parent="UI/Menu/PainelMenu/PrincipalCircular" unique_id=244145878]
-layout_mode = 0
-theme_override_font_sizes/font_size = 64
-text = "Jogar"
-alignment = 2
+[node name="Principal" type="Control" parent="UI/Menu/Circular" unique_id=263800801]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Opções" type="Button" parent="UI/Menu/PainelMenu/PrincipalCircular" unique_id=1172642018]
+[node name="ConfigButtonBase" type="BaseButton" parent="UI/Menu/Circular/Principal" unique_id=1671068002]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(0, 0)
+layout_direction = 0
 layout_mode = 0
-theme_override_font_sizes/font_size = 64
-text = "Opções"
-alignment = 2
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 205.0
+offset_bottom = 40.0
+grow_horizontal = 1
+grow_vertical = 1
+rotation = 0.0
+scale = Vector2(1, 1)
+pivot_offset = Vector2(0, 0)
+pivot_offset_ratio = Vector2(0, 0)
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 0
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = false
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = null
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = ExtResource("25_wf7jv")
+label = "Jogar"
+metadata/_custom_type_script = "uid://dxcpaqjaydfjj"
 
-[node name="Sair" type="Button" parent="UI/Menu/PainelMenu/PrincipalCircular" unique_id=1388252118]
+[node name="ConfigButtonInt" type="BaseButton" parent="UI/Menu/Circular/Principal" unique_id=1108615999]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(0, 0)
+layout_direction = 0
 layout_mode = 0
-theme_override_font_sizes/font_size = 64
-text = "Fechar o jogo"
-alignment = 2
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -597.0
+offset_top = 112.0
+offset_right = 119.0
+offset_bottom = 183.0
+grow_horizontal = 1
+grow_vertical = 1
+rotation = 0.0
+scale = Vector2(1, 1)
+pivot_offset = Vector2(0, 0)
+pivot_offset_ratio = Vector2(0, 0)
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 0
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = false
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = null
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = ExtResource("22_lbjxv")
+label = "me da um fvalor inteiro!!!"
+metadata/_custom_type_script = "uid://v4a1wtjtcbkn"
+
+[node name="ConfigButtonFloat" type="BaseButton" parent="UI/Menu/Circular/Principal" unique_id=1773319360]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(0, 0)
+layout_direction = 0
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -584.0
+offset_top = 32.0
+offset_right = -47.0
+offset_bottom = 131.0
+grow_horizontal = 1
+grow_vertical = 1
+rotation = 0.0
+scale = Vector2(1, 1)
+pivot_offset = Vector2(0, 0)
+pivot_offset_ratio = Vector2(0, 0)
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 0
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = false
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = null
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = ExtResource("23_0iwyf")
+label = "QUERO ERROS DE FLOAT"
+metadata/_custom_type_script = "uid://blskgvcg8gal"
+
+[node name="ConfigButtonString" type="BaseButton" parent="UI/Menu/Circular/Principal" unique_id=1299747291]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(0, 0)
+layout_direction = 0
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -566.0
+offset_top = 182.0
+offset_right = -75.0
+offset_bottom = 261.0
+grow_horizontal = 1
+grow_vertical = 1
+rotation = 0.0
+scale = Vector2(1, 1)
+pivot_offset = Vector2(0, 0)
+pivot_offset_ratio = Vector2(0, 0)
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 0
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = false
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = null
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = ExtResource("23_np3xf")
+valor = "hahaha"
+label = "me de texto!!!!"
+metadata/_custom_type_script = "uid://le22bghu658t"
+
+[node name="ConfigButtonList" type="BaseButton" parent="UI/Menu/Circular/Principal" unique_id=1139776496]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(0, 0)
+layout_direction = 0
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -578.0
+offset_top = 253.0
+offset_right = -173.0
+offset_bottom = 293.0
+grow_horizontal = 1
+grow_vertical = 1
+rotation = 0.0
+scale = Vector2(1, 1)
+pivot_offset = Vector2(0, 0)
+pivot_offset_ratio = Vector2(0, 0)
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 0
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = false
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = null
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = ExtResource("28_0iwyf")
+valores = Array[String](["preciso de valores :(", "sou um valor", "eu tambem!!!", "israel é um estado ilegítimo"])
+valor = "preciso de valores :("
+metadata/_custom_type_script = "uid://dbttx0ech4g7u"
 
 [connection signal="body_entered" from="CasaPaulo/Porta" to="Nikole" method="_on_porta_body_entered" flags=18]
 [connection signal="body_exited" from="CasaPaulo/Porta" to="Nikole" method="_on_porta_body_exited" flags=18]

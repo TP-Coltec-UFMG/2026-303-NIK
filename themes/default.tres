@@ -4,6 +4,31 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l6fbw"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2g1ym"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0, 0, 0.078431375)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gnsgt"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+
 [resource]
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_focus_color = Color(0.40392157, 0.75686276, 1, 1)
@@ -15,4 +40,8 @@ Button/styles/hover = SubResource("StyleBoxEmpty_l6fbw")
 Button/styles/normal = SubResource("StyleBoxEmpty_l6fbw")
 Button/styles/pressed = SubResource("StyleBoxEmpty_l6fbw")
 Label/fonts/font = ExtResource("1_2g1ym")
+LineEdit/colors/font_color = Color(1, 1, 1, 1)
+LineEdit/fonts/font = ExtResource("1_2g1ym")
+LineEdit/styles/focus = SubResource("StyleBoxFlat_2g1ym")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_gnsgt")
 RichTextLabel/fonts/normal_font = ExtResource("1_2g1ym")

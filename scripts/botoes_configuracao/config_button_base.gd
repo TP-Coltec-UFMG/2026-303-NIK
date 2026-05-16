@@ -1,0 +1,46 @@
+@tool
+extends BaseButton
+class_name ConfigButtonBase
+
+@export var label : String = "oii, eu sou uma configuracao!!"
+
+@export var normal_color : Color = Color.WHITE
+@export var focus_color : Color = Color.PALE_TURQUOISE
+@export var pressed_color : Color = Color.DARK_TURQUOISE
+
+func _ready() -> void:
+	focus_mode = Control.FOCUS_ALL
+
+# func _notification(what: int) -> void:
+# 	match what:
+# 		NOTIFICATION_MOUSE_ENTER:
+# 			if not get_viewport().gui_get_focus_owner() in get_children(): # passar o mouse deixa com foco sem roubar de um bebê
+# 				grab_focus()
+
+func _draw() -> void:
+	desenha_texto(label)
+
+func desenha_texto(texto : String, offset : Vector2 = Vector2.ZERO, cor : Color = Color.TRANSPARENT) -> Vector2:
+	var tem_foco = has_focus() or (get_viewport().gui_get_focus_owner() in get_children()) # ve se ta focado ele ou um bebê dele
+
+	var current_color = normal_color
+	if is_pressed():
+		current_color = pressed_color
+	elif tem_foco:
+		current_color = focus_color
+	if label.is_empty():
+		return Vector2.ZERO
+
+	if cor != Color.TRANSPARENT:
+		current_color = cor
+
+	# configura a fonte pra funcionar com o tema
+	var font = get_theme_font("font", "Button")
+	var font_size = get_theme_font_size("font_size", "Button") * 2
+
+	var text_size = font.get_string_size(texto, HORIZONTAL_ALIGNMENT_CENTER, -1, font_size)
+	var text_position = offset + Vector2(0, font.get_ascent(font_size) + (size.y - text_size.y) / 2)
+
+	draw_string(font, text_position, texto, HORIZONTAL_ALIGNMENT_CENTER, -1, font_size, current_color)
+
+	return Vector2(text_size.x, text_size.y) # retorna a posicao em que o texto acabou
