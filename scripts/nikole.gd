@@ -2,7 +2,6 @@ class_name Nikole extends CharacterBody3D
 
 
 @export var velocidade = 30.0
-@export var menu : Menu
 
 @onready var camera : Camera3D = $Camera3D if has_node("Camera3D") else null
 @onready var camera_pivot : Node3D = $CameraPivot if has_node("CameraPivot") else null
@@ -61,7 +60,7 @@ func _process(delta: float) -> void:
 		else: print_debug("não tem nada pra interagir...")
 
 	if Input.is_action_just_pressed("pausar"):
-		menu.abrir_tela("Principal")
+		MestreSupremo.menu.abrir_tela("Principal")
 		get_tree().paused = true
 		
 	# animations

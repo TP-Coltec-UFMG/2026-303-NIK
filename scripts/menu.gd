@@ -4,11 +4,14 @@ class MenuData:
 	var node : Control
 	var objetos : Array
 	var botoes : Array[ConfigButton]
+	var idx_ativo : int = 0
+	var guardar_idx : bool = false
 
-	func _init(_node : Control, _objetos : Array, _botoes : Array[ConfigButton]):
+	func _init(_node : Control, _objetos : Array, _botoes : Array[ConfigButton], _guardar_idx : bool = false):
 		node = _node
 		objetos = _objetos
 		botoes = _botoes
+		guardar_idx = _guardar_idx
 
 @export var telas : Dictionary[String, VBoxContainer] = {}
 
@@ -28,7 +31,8 @@ var menus : Dictionary = {}
 var menu_ativo : String = "Principal"
 
 # Tamanho do raio da circunferência do Menu
-const raio_menu : int = 1000
+const raio_menu_base : int = 1000
+var raio_menu : int = 1000
 
 # Distância do meio da circunferência do Menu pro meio da tela
 const centro_menu_offset : Vector2 = Vector2(1000, 0);
@@ -63,7 +67,7 @@ func _ready() -> void:
 		if configuracao is ConfigButton and "valor" in configuracao:
 			configuracoes.append(configuracao)
 
-	carregar_configuracoes()
+	# carregar_configuracoes()
 	
 	abrir_tela("Principal")
 
@@ -111,10 +115,6 @@ func atualizar_botoes_circulares(menu_data : MenuData, delta : float):
 	$Telas.rotation = lerp($Telas.rotation, angulo, delta / 0.1)
 
 func inicializar_botoes_circulares():
-	var metade_tela : Vector2 = get_viewport_rect().size / 2
-	var centro_circulo : Vector2 = metade_tela + centro_menu_offset
-	$Telas.position = centro_circulo
-
 	# Percorre todos os botões, definindo a posição de cada um
 	for menu in menus.values():
 		for i in range(menu.objetos.size()):
@@ -131,7 +131,6 @@ func inicializar_botoes_circulares():
 			# Aponta o botão para o centro do círculo
 			objeto.rotation = PI - angulo
 
-
 func buscar_foco(lista_botoes : Array) -> int:
 	for i in range(lista_botoes.size()):
 		var button : ConfigButton = lista_botoes[i]
@@ -139,15 +138,14 @@ func buscar_foco(lista_botoes : Array) -> int:
 			return i
 	return idx_opcao_atual
 
-
 func abrir_tela(alvo : String):
 	print("carregando tela \"" + alvo + "\"")
 	if alvo in menus.keys():
 		for menu in menus.keys():
 			if menu == alvo:
-				idx_opcao_atual = 0
+				idx_opcao_atual = menus[menu].idx_ativo if menus[menu].guardar_idx else 0
 				menu_ativo = menu
-				menus[menu].botoes[0].grab_focus()
+				menus[menu].botoes[idx_opcao_atual].grab_focus()
 				menus[menu].node.visible = true
 				visible = true
 				get_tree().paused = true
@@ -175,7 +173,7 @@ func salvar_configuracoes() -> void:
 		if not botao:
 			printerr("sei la q q pegou aq tbm... botao nao existe???\n" + str(botao) + "\n" + str(config))
 			continue
-		var nome = botao.label
+		var nome = botao.id
 		var valor = botao.valor
 		dados_config[nome] = valor
 
@@ -197,9 +195,10 @@ func carregar_configuracoes() -> void:
 
 		if dados_config != null:
 			for config in configuracoes:
-				if config.label in dados_config:
-					config.valor = dados_config[config.label]
-				else: print("configuração \"" + config.label + "\" não está no arquivo: valor padrão será utilizado")
+				if config.id in dados_config:
+					config.valor = dados_config[config.id]
+
+				else: print("configuração \"" + config.id + "\" não está no arquivo: valor padrão será utilizado")
 				# if config.id == "alto-contraste":
 				# 	if config.valor == 0:
 				# 		print("ativando o modo alto-contraste")
@@ -216,10 +215,18 @@ func carregar_configuracoes() -> void:
 				# 	elif config.valor == 2:
 				# 		get_tree().root.content_scale_factor = 0.5
 
-		print("configurações carregadas")
+		# print("configurações carregadas:\n" + str(dados_config))
+		MestreSupremo.aplicar_configuracoes(dados_config)
+		print("configurações carregadas:\n" + str(MestreSupremo.configuracoes))
 		arquivo.close()
 	else:
 		print("não consegui abrir o arquivo das configurações!!!")
+	
+	raio_menu = int(raio_menu_base / get_tree().root.content_scale_factor)
+	var metade_tela : Vector2 = get_viewport_rect().size / 2
+	var centro_circulo : Vector2 = (metade_tela + centro_menu_offset)
+	$Telas.position = centro_circulo
+	$Ponteiro.position = centro_circulo - Vector2(raio_menu_base + 20, 8)
 
 # Função chamada quando há alguma entrada do usuário
 func _input(event: InputEvent) -> void:
@@ -229,14 +236,16 @@ func _input(event: InputEvent) -> void:
 		idx_opcao_atual += int(event.is_action_pressed("ui_down")) - int(event.is_action_pressed("ui_up"));
 		idx_opcao_atual = (idx_opcao_atual + menus[menu_ativo].botoes.size()) % menus[menu_ativo].botoes.size()
 		menus[menu_ativo].botoes[idx_opcao_atual].grab_focus()
+		menus[menu_ativo].idx_ativo = idx_opcao_atual
 		accept_event()
 
 func inicializa_menus():
-	menus["Principal"] = MenuData.new($Telas/Principal, [], [])
+	menus["Principal"] = MenuData.new($Telas/Principal, [], [], true)
 
 	$Telas/Principal/BotaoJogar.connect("pressed", fechar_telas)
-	$Telas/Principal/BotaoOpcoes.connect("pressed", abrir_tela.bind("Configuracoes"))
+	$Telas/Principal/BotaoConfiguracoes.connect("pressed", abrir_tela.bind("Configuracoes"))
 	$Telas/Principal/BotaoAcessibilidade.connect("pressed", abrir_tela.bind("Acessibilidade"))
+	$Telas/Principal/BotaoSair.connect("pressed", get_tree().quit)
 
 	$Telas/Configuracoes/BotaoSalvar.connect("pressed", func():
 		salvar_configuracoes()

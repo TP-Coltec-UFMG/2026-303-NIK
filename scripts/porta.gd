@@ -4,4 +4,4 @@ class_name Porta extends Interagivel
 @export var cena : PackedScene
 
 func interagir() -> void:
-	Transicao.carregar_cena(cena)
+	MestreSupremo.carregar_cena(cena)

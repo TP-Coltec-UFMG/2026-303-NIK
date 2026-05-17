@@ -2,6 +2,7 @@
 extends BaseButton
 class_name ConfigButton
 
+@export var id : String = "id_único!!!"
 @export var label : String = "oii, eu sou uma configuracao!!"
 @export var normal_color : Color = Color.WHITE
 @export var focus_color : Color = Color.PALE_TURQUOISE
