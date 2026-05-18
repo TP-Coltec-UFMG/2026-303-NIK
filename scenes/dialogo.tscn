@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://5vdr3rv6ffgc"]
+
+[ext_resource type="Script" uid="uid://ct6xy2rxxijrd" path="res://scripts/gerenciador_dialogo.gd" id="1_hbhh0"]
+[ext_resource type="Texture2D" uid="uid://couhn2cgu3ipk" path="res://sprites/dialogo/personagens/nik.png" id="2_hbhh0"]
+[ext_resource type="Texture2D" uid="uid://dqhtf63a2qvar" path="res://sprites/nikole/interior/interior.png" id="2_tnegg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hbhh0"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Dialogo" type="CanvasLayer" unique_id=2100087351]
+script = ExtResource("1_hbhh0")
+
+[node name="Fundo" type="TextureRect" parent="." unique_id=1321385262]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_tnegg")
+expand_mode = 1
+
+[node name="Nikole" type="TextureRect" parent="." unique_id=845857989]
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_vertical = 2
+texture = ExtResource("2_hbhh0")
+expand_mode = 1
+
+[node name="CaixaDialogo" type="Panel" parent="." unique_id=581416393]
+custom_minimum_size = Vector2(0, 120)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -120.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hbhh0")
+
+[node name="Conteudo" type="Control" parent="CaixaDialogo" unique_id=1120271186]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = 16.0
+offset_right = -64.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dialogo" type="Label" parent="CaixaDialogo/Conteudo" unique_id=1866932237]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 21.0
+grow_horizontal = 2
+text = "NIKOLE: AIIII! Aaaaaaaaaaaaaaaaaaah!"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CaixaDialogo/Conteudo" unique_id=156391060]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 24.0
+grow_horizontal = 2
+grow_vertical = 0
+horizontal_scroll_mode = 0
+
+[node name="Opcoes" type="VBoxContainer" parent="CaixaDialogo/Conteudo/ScrollContainer" unique_id=700838199]
+clip_contents = true
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

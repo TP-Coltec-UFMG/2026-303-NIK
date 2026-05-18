@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://r52y5pkon1ij"]
 
 [ext_resource type="Script" uid="uid://bw3exhcj8r0pe" path="res://scripts/gerador_labirinto.gd" id="1_5boeq"]
-[ext_resource type="PackedScene" uid="uid://ccupk7xgo7hv0" path="res://scenes/parede.tscn" id="2_ogviy"]
+[ext_resource type="PackedScene" uid="uid://ccupk7xgo7hv0" path="res://scenes/minigames/labirinto/parede.tscn" id="2_ogviy"]
 [ext_resource type="Script" uid="uid://c6jo6by53efc4" path="res://scripts/nikole.gd" id="3_t16je"]
 [ext_resource type="Texture2D" uid="uid://bgl2rhpm2u3um" path="res://sprites/nikole/nikole_cabeca.png" id="4_ndive"]
 [ext_resource type="Material" uid="uid://c1esxj2mbkwvx" path="res://sprites/grass.tres" id="5_88teh"]

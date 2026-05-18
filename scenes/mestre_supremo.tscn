@@ -853,7 +853,7 @@ shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("9_u0tsa")
 vertical = true
-id = "menu_circulas"
+id = "menu_circular"
 label = "MenuCircular"
 metadata/_custom_type_script = "uid://dws6dbyhxolq1"
 

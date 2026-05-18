@@ -18,6 +18,8 @@
 [ext_resource type="Script" uid="uid://pecq7v40nchd" path="res://scripts/river_wave.gd" id="11_g6hv0"]
 [ext_resource type="Texture2D" uid="uid://bpkveyhnxldso" path="res://sprites/props/grass/parallax_1.png" id="12_y4lqn"]
 [ext_resource type="Texture2D" uid="uid://b3xoegfo5dmdy" path="res://sprites/props/grass/parallax_2.png" id="13_wf7jv"]
+[ext_resource type="Texture2D" uid="uid://4r04a2jlesqn" path="res://sprites/nikole/nikole.png" id="19_c1ejn"]
+[ext_resource type="Script" uid="uid://cnn0sv7bqghri" path="res://scripts/dialogar.gd" id="20_vnytd"]
 
 [sub_resource type="Environment" id="Environment_kvuet"]
 background_mode = 1
@@ -289,6 +291,20 @@ mesh = SubResource("PlaneMesh_vjgi4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.439735, -353.70294)
 material_override = SubResource("StandardMaterial3D_kyk2p")
 mesh = SubResource("PlaneMesh_vjgi4")
+
+[node name="Nikolas" type="Sprite3D" parent="." unique_id=1853987199]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8281407, 2.2815926, -22.460888)
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("19_c1ejn")
+
+[node name="Interacao" type="Area3D" parent="Nikolas" unique_id=721590182]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9981613, 0, 0)
+script = ExtResource("20_vnytd")
+
+[node name="Gatilho" type="CollisionShape3D" parent="Nikolas/Interacao" unique_id=818948250]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3112235, 2.6118164)
+shape = SubResource("SphereShape3D_vjgi4")
+disabled = true
 
 [connection signal="body_entered" from="CasaPaulo/Porta" to="Nikole" method="_on_porta_body_entered" flags=18]
 [connection signal="body_exited" from="CasaPaulo/Porta" to="Nikole" method="_on_porta_body_exited" flags=18]

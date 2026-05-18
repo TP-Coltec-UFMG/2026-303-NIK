@@ -20,6 +20,7 @@ var caminho_configuracoes = "user://config.json"
 @export var configuracoes : Array = []
 
 ## Configurações do Menu Circular ##
+var menu_circular : bool = true
 
 # Índice da opção do menu atual
 var idx_opcao_atual : int = 0
@@ -39,6 +40,8 @@ const centro_menu_offset : Vector2 = Vector2(1000, 0);
 
 # Ângulo, em radiano, entre os botões
 const angulo_menu : float = 0.1
+# Distância, em pixels, entre os botões 
+const distancia_menu : float = 64
 
 # Distância do botão selecionado da circunferência
 const offset_botao_selecionado : float = 0
@@ -49,14 +52,9 @@ const escala_botao_selecionado : float = 1.0
 # Ângulo inicial do menu
 const angulo_inicial : float = PI # centralizado
 
-# Tamanho do botão. Esses valores sãos definidos automaticamentes
-var botao_tamanho_x : float
-var botao_tamanho_y : float 
-
-
 func _ready() -> void:
 	fechar_telas()
-	inicializa_menus()
+	inicializar_menus()
 	inicializar_botoes_circulares()
 
 	for configuracao in $Telas/Configuracoes.get_children():
@@ -71,7 +69,7 @@ func _ready() -> void:
 
 	# carregar_configuracoes()
 	
-	abrir_tela("Principal")
+	# abrir_tela("Principal")
 
 # Função chamada a cada frame
 func _process(_delta: float) -> void:
@@ -91,9 +89,6 @@ func atualizar_botoes_circulares(menu_data : MenuData, delta : float):
 	# Atualiza o index para apontar para o botao com foco
 	idx_opcao_atual = buscar_foco(lista_botoes)
 	posicao_opcao_atual = lista_objetos.find(lista_botoes[idx_opcao_atual])
-	
-	$Ponteiro.label_settings.outline_color = lerp($Ponteiro.label_settings.outline_color, lista_botoes[idx_opcao_atual].pressed_color, delta / 0.1)
-	$Ponteiro.label_settings.font_color = lerp($Ponteiro.label_settings.font_color, lista_botoes[idx_opcao_atual].focus_color, delta / 0.1)
 
 	# Percorre todos os botões, definindo a posição de cada um
 	for i in range(lista_objetos.size()):
@@ -114,9 +109,21 @@ func atualizar_botoes_circulares(menu_data : MenuData, delta : float):
 
 	# Gira a tela inteira para deixar o botao selecionado na esquerda
 	var angulo : float = posicao_opcao_atual * angulo_menu
+	var posicao : Vector2 = get_viewport_rect().size / 2 + centro_menu_offset
+
+	if not menu_circular: 
+		angulo = 0
+		posicao.y -= posicao_opcao_atual * distancia_menu
 	$Telas.rotation = lerp($Telas.rotation, angulo, delta / 0.1)
+	$Telas.position = lerp($Telas.position, posicao, delta / 0.1)
+	
+	$Ponteiro.label_settings.outline_color = lerp($Ponteiro.label_settings.outline_color, lista_botoes[idx_opcao_atual].pressed_color, delta / 0.1)
+	$Ponteiro.label_settings.font_color = lerp($Ponteiro.label_settings.font_color, lista_botoes[idx_opcao_atual].focus_color, delta / 0.1)
+	$Ponteiro.position.x = lerp($Ponteiro.position.x, (get_viewport_rect().size.x / 2 + centro_menu_offset.x - raio_menu_base - 20) - 20 * sin(abs($Telas.rotation - angulo) / angulo_menu), delta / 0.05)
 
 func inicializar_botoes_circulares():
+	raio_menu = int(raio_menu_base / get_tree().root.content_scale_factor)
+	
 	# Percorre todos os botões, definindo a posição de cada um
 	for menu in menus.values():
 		for i in range(menu.objetos.size()):
@@ -129,6 +136,11 @@ func inicializar_botoes_circulares():
 			# Calcula e define a posição do botão
 			var x : float = (cos(angulo) * raio_menu)
 			var y : float = -(sin(angulo) * raio_menu)
+			
+			if not menu_circular: 
+				x = -raio_menu
+				y = i * distancia_menu
+				angulo = -PI
 			objeto.position = Vector2(x, y)
 			# Aponta o botão para o centro do círculo
 			objeto.rotation = PI - angulo
@@ -173,8 +185,7 @@ func salvar_configuracoes() -> void:
 		if config is ConfigButtonList: botao = config as ConfigButtonList
 		if config is ConfigButtonKeybind: botao = config as ConfigButtonKeybind
 
-		if not botao:
-			# se for label
+		if not botao: # se for label
 			continue
 		var nome = botao.id
 		var valor = botao.valor
@@ -224,8 +235,7 @@ func carregar_configuracoes() -> void:
 		arquivo.close()
 	else:
 		print("não consegui abrir o arquivo das configurações!!!")
-	
-	raio_menu = int(raio_menu_base / get_tree().root.content_scale_factor)
+
 	var metade_tela : Vector2 = get_viewport_rect().size / 2
 	var centro_circulo : Vector2 = (metade_tela + centro_menu_offset)
 	$Telas.position = centro_circulo
@@ -242,7 +252,7 @@ func _input(event: InputEvent) -> void:
 		menus[menu_ativo].idx_ativo = idx_opcao_atual
 		accept_event()
 
-func inicializa_menus():
+func inicializar_menus():
 	
 	# PRINCIPAL
 

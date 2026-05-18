@@ -27,9 +27,9 @@ func carregar_cena(cena: PackedScene) -> void:
 func aplicar_configuracoes(config : Dictionary):
 	configuracoes = config
 
-	player_musica.volume_linear = (configuracoes["volume_musica"] / 100.0) * (configuracoes["volume_master"] / 100.0)
+	if configuracoes.has("volume_musica"): player_musica.volume_linear = (configuracoes["volume_musica"] / 100.0) * (configuracoes["volume_master"] / 100.0)
 	
-	match configuracoes["tipo_daltonismo"]:
+	if configuracoes.has("tipo_daltonismo"): match configuracoes["tipo_daltonismo"]:
 		"protanopia":
 			(filtro_daltonismo.material as ShaderMaterial).set_shader_parameter("filter_mode", 4)
 		"deuteranopia":
@@ -38,14 +38,16 @@ func aplicar_configuracoes(config : Dictionary):
 			(filtro_daltonismo.material as ShaderMaterial).set_shader_parameter("filter_mode", 6)
 		"desligado":
 			(filtro_daltonismo.material as ShaderMaterial).set_shader_parameter("filter_mode", 0)
-	(filtro_daltonismo.material as ShaderMaterial).set_shader_parameter("intensity", configuracoes["intensidade_daltonismo"])
+	if configuracoes.has("intensidade_daltonismo"): (filtro_daltonismo.material as ShaderMaterial).set_shader_parameter("intensity", configuracoes["intensidade_daltonismo"])
 
-	if configuracoes["alto_contraste"]:
+	if configuracoes.has("alto_contraste"): if configuracoes["alto_contraste"]:
 		menu.theme = preload("res://themes/alto_contraste.tres")
 	else:
 		menu.theme = preload("res://themes/default.tres")
 
-	get_tree().root.content_scale_factor = configuracoes["escala_interface"]
+	if configuracoes.has("escala_interface"): get_tree().root.content_scale_factor = configuracoes["escala_interface"]
+
+	if configuracoes.has("menu_circular"): menu.menu_circular = configuracoes["menu_circular"]
 	
 	var entradas = InputMap.get_actions()
 	for entrada in entradas:
@@ -54,3 +56,5 @@ func aplicar_configuracoes(config : Dictionary):
 			var novo_evento = InputEventKey.new()
 			novo_evento.physical_keycode = configuracoes[entrada]
 			InputMap.action_add_event(entrada, novo_evento)
+
+	menu.inicializar_botoes_circulares()

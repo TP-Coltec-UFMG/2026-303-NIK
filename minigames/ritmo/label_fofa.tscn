@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://ctohoc7glbrb"]
-
-[ext_resource type="Script" uid="uid://jjf7sk64s5vx" path="res://minigames/ritmo/label_fofa.gd" id="1_tvne7"]
-
-[node name="LabelFofa" type="Label3D" unique_id=342435717]
-modulate = Color(1, 0.7019608, 0.2, 1)
-text = "BOA!"
-script = ExtResource("1_tvne7")
