@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://greoit2058gm"]
 
 [ext_resource type="Script" uid="uid://bblc0sjp0q7jq" path="res://scripts/mestre_supremo.gd" id="1_wm5yj"]
+[ext_resource type="PackedScene" uid="uid://diklqpfu5xw8r" path="res://scenes/mundo.tscn" id="2_nl2jp"]
 [ext_resource type="AudioStream" uid="uid://dc11rpyyq1xjs" path="res://audio/musicas/pingano.mp3" id="2_wm5yj"]
 [ext_resource type="Shader" uid="uid://covi4n54bkdkf" path="res://shaders/filtro_daltonismo.gdshader" id="3_mpu0y"]
 [ext_resource type="Script" uid="uid://bm4rvfyvlss3y" path="res://scripts/menu.gd" id="4_2tofl"]
@@ -143,6 +144,9 @@ outline_color = Color(0.92, 0.53313994, 0.1196, 1)
 [node name="Canvas" type="CanvasLayer" unique_id=654703673]
 layer = 500
 script = ExtResource("1_wm5yj")
+cenas = Dictionary[String, PackedScene]({
+"Principal": ExtResource("2_nl2jp")
+})
 
 [node name="Black" type="ColorRect" parent="." unique_id=316412932]
 visible = false

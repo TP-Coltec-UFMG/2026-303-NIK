@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 MestreSupremo="*uid://greoit2058gm"
+Dialogo="*uid://5vdr3rv6ffgc"
 
 [display]
 

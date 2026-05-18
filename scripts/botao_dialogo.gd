@@ -3,17 +3,24 @@ extends BaseButton
 class_name DialogButton
 
 @export var label : String = ""
-@export var normal_color : Color = Color.PALE_TURQUOISE
-@export var focus_color : Color = Color.TURQUOISE
-@export var pressed_color : Color = Color.DARK_TURQUOISE
+@export var normal_color : Color = Color.PALE_GOLDENROD
+@export var focus_color : Color = Color.LIGHT_GOLDENROD
+@export var pressed_color : Color = Color.GOLDENROD
+var proxima_arvore : String = ""
+var tags_adicionar : Array[String]
 
 func _ready() -> void:
 	focus_mode = Control.FOCUS_ALL
 
 func _draw() -> void:
-	desenha_texto(label)
+	var tamanho = desenha_texto(label)
+	custom_minimum_size.y = tamanho.y
 
-func desenha_texto(texto : String, offset : Vector2 = Vector2.ZERO, cor = null, contorno = null) -> Vector2:
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_MOUSE_ENTER:
+		grab_focus()
+
+func desenha_texto(texto : String, offset : Vector2 = Vector2(16, 0), cor = null, contorno = null) -> Vector2:
 	var tem_foco = has_focus() or (get_viewport().gui_get_focus_owner() in get_children()) # ve se ta focado ele ou um bebê dele
 
 	var current_color = normal_color
@@ -45,3 +52,8 @@ func desenha_texto(texto : String, offset : Vector2 = Vector2.ZERO, cor = null, 
 	draw_string(font, text_position, texto, HORIZONTAL_ALIGNMENT_RIGHT, -1, font_size, current_color)
 
 	return Vector2(text_size.x, text_size.y) # retorna a posicao em que o texto acabou
+
+func _pressed() -> void:
+	Dialogo.adicionar_tags(tags_adicionar)
+		
+	Dialogo.iniciar_dialogo(proxima_arvore)

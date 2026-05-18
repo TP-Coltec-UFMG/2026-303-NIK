@@ -88,3 +88,12 @@ shape = SubResource("CylinderShape3D_400sg")
 [node name="Sombra" type="MeshInstance3D" parent="." unique_id=1859901297]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.22201759, -0.5266281)
 mesh = SubResource("CylinderMesh_mcffj")
+
+[node name="Gatilho" type="Area3D" parent="." unique_id=435573851]
+
+[node name="Colisor" type="CollisionShape3D" parent="Gatilho" unique_id=710879828]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0)
+shape = SubResource("CylinderShape3D_400sg")
+
+[connection signal="area_entered" from="Gatilho" to="." method="_on_trigger_entered"]
+[connection signal="area_exited" from="Gatilho" to="." method="_on_trigger_exited"]

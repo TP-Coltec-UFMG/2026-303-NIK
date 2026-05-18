@@ -119,7 +119,11 @@ func atualizar_botoes_circulares(menu_data : MenuData, delta : float):
 	
 	$Ponteiro.label_settings.outline_color = lerp($Ponteiro.label_settings.outline_color, lista_botoes[idx_opcao_atual].pressed_color, delta / 0.1)
 	$Ponteiro.label_settings.font_color = lerp($Ponteiro.label_settings.font_color, lista_botoes[idx_opcao_atual].focus_color, delta / 0.1)
-	$Ponteiro.position.x = lerp($Ponteiro.position.x, (get_viewport_rect().size.x / 2 + centro_menu_offset.x - raio_menu_base - 20) - 20 * sin(abs($Telas.rotation - angulo) / angulo_menu), delta / 0.05)
+	
+	if not menu_circular: 
+		$Ponteiro.position.x = lerp($Ponteiro.position.x, (get_viewport_rect().size.x / 2 + centro_menu_offset.x - raio_menu_base - 20) - 20 * sin(abs($Telas.position.y - posicao.y) / distancia_menu), delta / 0.05)
+	else:
+		$Ponteiro.position.x = lerp($Ponteiro.position.x, (get_viewport_rect().size.x / 2 + centro_menu_offset.x - raio_menu_base - 20) - 20 * sin(abs($Telas.rotation - angulo) / angulo_menu), delta / 0.05)
 
 func inicializar_botoes_circulares():
 	raio_menu = int(raio_menu_base / get_tree().root.content_scale_factor)
@@ -158,11 +162,23 @@ func abrir_tela(alvo : String):
 		for menu in menus.keys():
 			if menu == alvo:
 				idx_opcao_atual = menus[menu].idx_ativo if menus[menu].guardar_idx else 0
+				posicao_opcao_atual = menus[menu].objetos.find(menus[menu].botoes[idx_opcao_atual])
 				menu_ativo = menu
 				menus[menu].botoes[idx_opcao_atual].grab_focus()
 				menus[menu].node.visible = true
 				visible = true
 				get_tree().paused = true
+				
+				# vai imediatamente para a posição do menu novo
+				var posicao : Vector2 = get_viewport_rect().size / 2 + centro_menu_offset
+				var angulo : float = posicao_opcao_atual * angulo_menu
+				
+				if not menu_circular:
+					angulo = 0
+					posicao.y -= (posicao_opcao_atual + 1) * distancia_menu
+
+				$Telas.position = posicao
+				$Telas.rotation = angulo
 			else:
 				menus[menu].node.visible = false
 	else:
@@ -243,6 +259,7 @@ func carregar_configuracoes() -> void:
 
 # Função chamada quando há alguma entrada do usuário
 func _input(event: InputEvent) -> void:
+	if not get_tree().paused: return
 	# A opção atual aumenta (positivo) quando aperta para baixo e
 	# diminui (negativo) quando aperta para cima
 	if event.is_action_pressed("ui_down") or event.is_action_pressed("ui_up"):

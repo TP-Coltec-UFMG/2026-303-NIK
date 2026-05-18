@@ -22,9 +22,20 @@ var andando : bool
 
 var mover_input : Vector2
 
-var interagir_objeto : Node = null
+var interagir_objeto : Interagivel = null
 
 const coeficiente_rotacao_camera : float = 0.03
+
+func _input(event: InputEvent) -> void:
+	if event.is_pressed() and not event.is_echo():
+		if event.is_action_pressed("interagir"):
+			if interagir_objeto != null:
+				interagir_objeto.interagir()
+			else: print_debug("não tem nada pra interagir...")
+
+		if event.is_action_pressed("pausar"):
+			MestreSupremo.menu.abrir_tela("Principal")
+			get_tree().paused = true
 
 func _physics_process(delta: float) -> void:
 	var raw_input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -53,17 +64,10 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("interagir"):
-		if interagir_objeto != null:
-			interagir_objeto.interagir()
-		else: print_debug("não tem nada pra interagir...")
+func _process(delta: float) -> void:		
+	animar(delta)
 
-	if Input.is_action_just_pressed("pausar"):
-		MestreSupremo.menu.abrir_tela("Principal")
-		get_tree().paused = true
-		
-	# animations
+func animar(delta : float):
 	peso_animacao_andar = lerpf(peso_animacao_andar, 1 if andando else 0, delta / .075)
 
 	# sprites.scale.x = lerpf(sprites.scale.x, sprites_scale * -sprite_direction, delta / 0.05)
@@ -84,13 +88,13 @@ func _process(delta: float) -> void:
 
 	sprites.reset_physics_interpolation()
 
-func _on_porta_body_entered(body: Node3D, source: Area3D) -> void:
-	if source is Interagivel and body == self:
-		interagir_objeto = source
-		print_debug("interagir com ", interagir_objeto.name, " disponivel")
+func _on_trigger_entered(body: Node3D) -> void:
+	if body is Interagivel and body != self:
+		interagir_objeto = body
+		print("interagir com ", interagir_objeto.name, " disponivel")
 
 
-func _on_porta_body_exited(body: Node3D, source: Area3D) -> void:
-	if source == interagir_objeto and body == self:
-		print_debug("interagir com ", interagir_objeto.name, " indisponivel")
+func _on_trigger_exited(body: Node3D) -> void:
+	if body == interagir_objeto and body != self:
+		print("interagir com ", interagir_objeto.name, " indisponivel")
 		interagir_objeto = null

@@ -1,0 +1,115 @@
+[
+	{
+		"id": "pedro",
+		"personagem": "Pedro",
+		"texto": "",
+		"escolhas": [
+			{
+				"texto": "*se apresentar*",
+				"tags_necessarias": [],
+				"tags_proibidas": [],
+				"tags_adicionadas": [],
+				"tags_personagem_necessarias": [],
+				"tags_personagem_proibidas": [
+                    "se_apresentou"
+				],
+				"tags_personagem_adicionadas": [
+                    "se_apresentou"
+				],
+				"proxima_arvore": "pedro_apresentacao_0"
+			},
+			{
+				"texto": "*sair*",
+				"tags_necessarias": [],
+				"tags_proibidas": [],
+				"tags_adicionadas": [],
+				"tags_personagem_necessarias": [],
+				"tags_personagem_proibidas": [],
+				"tags_personagem_adicionadas": [],
+				"proxima_arvore": ""
+			}
+		]
+	},
+	{
+		"id": "pedro_apresentacao_0",
+		"personagem": "Pedro",
+		"texto": "Oi Nikole...",
+		"escolhas": [
+			{
+				"texto": "*perguntar o que está acontecendo*",
+				"tags_necessarias": [],
+				"tags_proibidas": [],
+				"tags_adicionadas": [],
+				"tags_personagem_necessarias": [],
+				"tags_personagem_proibidas": [],
+				"tags_personagem_adicionadas": [],
+				"proxima_arvore": "pedro_apresentacao_1"
+			}
+		]
+	},
+	{
+		"id": "pedro_apresentacao_1",
+		"personagem": "Pedro",
+		"texto": "Eu tô muito triste",
+		"escolhas": [
+			{
+				"texto": "*perguntar o por quê*",
+				"tags_necessarias": [],
+				"tags_proibidas": [],
+				"tags_adicionadas": [],
+				"tags_personagem_necessarias": [],
+				"tags_personagem_proibidas": [],
+				"tags_personagem_adicionadas": [],
+				"proxima_arvore": "pedro_apresentacao_1_0"
+			},
+			{
+				"texto": "*mandar virar homem*",
+				"tags_necessarias": [],
+				"tags_proibidas": [],
+				"tags_adicionadas": [],
+				"tags_personagem_necessarias": [],
+				"tags_personagem_proibidas": [],
+				"tags_personagem_adicionadas": [
+                    "ofendeu"
+				],
+				"proxima_arvore": "pedro_apresentacao_1_1"
+			}
+		]
+	},
+	{
+		"id": "pedro_apresentacao_1_1",
+		"personagem": "Pedro",
+		"texto": "Vá se fuder",
+		"escolhas": [
+			{
+				"texto": "*sair*",
+				"tags_necessarias": [],
+				"tags_proibidas": [],
+				"tags_adicionadas": [],
+				"tags_personagem_necessarias": [],
+				"tags_personagem_proibidas": [],
+				"tags_personagem_adicionadas": [],
+				"proxima_arvore": ""
+			}
+		]
+	},
+	{
+		"id": "pedro_apresentacao_1_0",
+		"personagem": "Pedro",
+		"texto": "Não sei...",
+		"escolhas": [
+			{
+				"texto": "*sair*",
+				"tags_necessarias": [],
+				"tags_proibidas": [],
+				"tags_adicionadas": [
+                    "o_que_esta_acontecendo?"
+				],
+				"tags_personagem_necessarias": [],
+				"tags_personagem_proibidas": [],
+				"tags_personagem_adicionadas": [],
+				"proxima_arvore": ""
+			}
+		]
+	}
+]

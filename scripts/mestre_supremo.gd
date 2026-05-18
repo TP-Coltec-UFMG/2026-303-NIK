@@ -5,19 +5,24 @@ extends CanvasLayer
 @onready var player_musica = $Musica
 @onready var filtro_daltonismo = $FiltroDaltonismo
 @onready var menu = $UI/Menu
+@export var cenas : Dictionary[String, PackedScene] = {}
+var cena_atual
 
 var configuracoes = {}
 
 func _ready():
 	menu.carregar_configuracoes()
+	# carregar_cena("Principal")
 
-func carregar_cena(cena: PackedScene) -> void:
+func carregar_cena(cena: String) -> void:
 	fundo_preto.visible = true
 	animation_player.play("fade")
 	await animation_player.animation_finished
 	
-	get_tree().change_scene_to_packed(cena)
-	
+	if cena_atual != cena:
+		get_tree().change_scene_to_packed(cenas[cena])
+		print("carregando cena \"" + cena+ "\"")
+
 	await get_tree().process_frame 
 	
 	animation_player.play_backwards("fade")

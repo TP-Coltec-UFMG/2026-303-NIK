@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://couhn2cgu3ipk"
-path="res://.godot/imported/nik.png-2ec0aab88a31db827a1fdf98fc089fb7.ctex"
+uid="uid://sxja7w7ats7l"
+path="res://.godot/imported/Nikole.png-271abcc039a51a36e969ba3a3f0773a2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/dialogo/personagens/nik.png"
-dest_files=["res://.godot/imported/nik.png-2ec0aab88a31db827a1fdf98fc089fb7.ctex"]
+source_file="res://sprites/dialogo/personagens/Nikole.png"
+dest_files=["res://.godot/imported/Nikole.png-271abcc039a51a36e969ba3a3f0773a2.ctex"]
 
 [params]
 
