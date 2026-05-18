@@ -47,3 +47,10 @@ func aplicar_configuracoes(config : Dictionary):
 
 	get_tree().root.content_scale_factor = configuracoes["escala_interface"]
 	
+	var entradas = InputMap.get_actions()
+	for entrada in entradas:
+		if entrada in configuracoes.keys():
+			InputMap.action_erase_events(entrada)
+			var novo_evento = InputEventKey.new()
+			novo_evento.physical_keycode = configuracoes[entrada]
+			InputMap.action_add_event(entrada, novo_evento)

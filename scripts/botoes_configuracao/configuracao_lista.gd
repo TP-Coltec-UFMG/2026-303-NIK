@@ -21,7 +21,9 @@ var editando = false:
 
 func _ready() -> void:
 	super._ready() 
-	_valor = 0
+	if valor in valores:
+		_valor = valores.find(valor)
+	else: _valor = 0
 
 func _draw() -> void:
 	var offset

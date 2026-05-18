@@ -62,8 +62,10 @@ func _ready() -> void:
 	for configuracao in $Telas/Configuracoes.get_children():
 		if configuracao is ConfigButton and "valor" in configuracao:
 			configuracoes.append(configuracao)
-
 	for configuracao in $Telas/Acessibilidade.get_children():
+		if configuracao is ConfigButton and "valor" in configuracao:
+			configuracoes.append(configuracao)
+	for configuracao in $Telas/Controles.get_children():
 		if configuracao is ConfigButton and "valor" in configuracao:
 			configuracoes.append(configuracao)
 
@@ -169,9 +171,10 @@ func salvar_configuracoes() -> void:
 		if config is ConfigButtonFloat: botao = config as ConfigButtonFloat
 		if config is ConfigButtonString: botao = config as ConfigButtonString
 		if config is ConfigButtonList: botao = config as ConfigButtonList
+		if config is ConfigButtonKeybind: botao = config as ConfigButtonKeybind
 
 		if not botao:
-			printerr("sei la q q pegou aq tbm... botao nao existe???\n" + str(botao) + "\n" + str(config))
+			# se for label
 			continue
 		var nome = botao.id
 		var valor = botao.valor
@@ -240,6 +243,9 @@ func _input(event: InputEvent) -> void:
 		accept_event()
 
 func inicializa_menus():
+	
+	# PRINCIPAL
+
 	menus["Principal"] = MenuData.new($Telas/Principal, [], [], true)
 
 	$Telas/Principal/BotaoJogar.connect("pressed", fechar_telas)
@@ -247,28 +253,29 @@ func inicializa_menus():
 	$Telas/Principal/BotaoAcessibilidade.connect("pressed", abrir_tela.bind("Acessibilidade"))
 	$Telas/Principal/BotaoSair.connect("pressed", get_tree().quit)
 
-	$Telas/Configuracoes/BotaoSalvar.connect("pressed", func():
-		salvar_configuracoes()
-		abrir_tela("Principal")
-	)
-
-	$Telas/Acessibilidade/BotaoSalvar.connect("pressed", func():
-		salvar_configuracoes()
-		abrir_tela("Principal")
-	)
-
 	for filho in $Telas/Principal.get_children():
 		if filho is ConfigButton:
 			menus["Principal"].botoes.append(filho)
 			filho.size.x = 300
 		menus["Principal"].objetos.append(filho)
+
+	# CONFIGURAÇÕES
 			
-	menus["Configuracoes"] = MenuData.new($Telas/Configuracoes, [], [])
+	menus["Configuracoes"] = MenuData.new($Telas/Configuracoes, [], [], true)
 	for filho in $Telas/Configuracoes.get_children():
 		if filho is ConfigButton:
 			menus["Configuracoes"].botoes.append(filho)
 			filho.size.x = 300
 		menus["Configuracoes"].objetos.append(filho)
+
+	$Telas/Configuracoes/BotaoSalvar.connect("pressed", func():
+		salvar_configuracoes()
+		menus["Configuracoes"].idx_ativo = 0
+		abrir_tela("Principal")
+	)
+	$Telas/Configuracoes/BotaoControles.connect("pressed", abrir_tela.bind("Controles"))
+
+	# ACESSIBILIDADE
 
 	menus["Acessibilidade"] = MenuData.new($Telas/Acessibilidade, [], [])
 	for filho in $Telas/Acessibilidade.get_children():
@@ -276,3 +283,22 @@ func inicializa_menus():
 			menus["Acessibilidade"].botoes.append(filho)
 			filho.size.x = 300
 		menus["Acessibilidade"].objetos.append(filho)
+
+	$Telas/Acessibilidade/BotaoSalvar.connect("pressed", func():
+		salvar_configuracoes()
+		abrir_tela("Principal")
+	)
+
+	# CONTROLES
+
+	menus["Controles"] = MenuData.new($Telas/Controles, [], [])
+	for filho in $Telas/Controles.get_children():
+		if filho is ConfigButton:
+			menus["Controles"].botoes.append(filho)
+			filho.size.x = 300
+		menus["Controles"].objetos.append(filho)
+
+	$Telas/Controles/BotaoSalvar.connect("pressed", func():
+		salvar_configuracoes()
+		abrir_tela("Configuracoes")
+	)
