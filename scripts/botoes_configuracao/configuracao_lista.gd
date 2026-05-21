@@ -14,7 +14,7 @@ var _valor : int = 0:
 			_valor = 0
 		queue_redraw()
 
-var editando = false:
+var editando : bool = false:
 	set(v):
 		editando = v
 		queue_redraw()

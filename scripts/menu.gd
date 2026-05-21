@@ -109,7 +109,7 @@ func atualizar_botoes_circulares(menu_data : MenuData, delta : float):
 
 	# Gira a tela inteira para deixar o botao selecionado na esquerda
 	var angulo : float = posicao_opcao_atual * angulo_menu
-	var posicao : Vector2 = get_viewport_rect().size / 2 + centro_menu_offset
+	var posicao : Vector2 = get_viewport_rect().size / 2 + centro_menu_offset / get_tree().root.content_scale_factor
 
 	if not menu_circular: 
 		angulo = 0
@@ -170,7 +170,7 @@ func abrir_tela(alvo : String):
 				get_tree().paused = true
 				
 				# vai imediatamente para a posição do menu novo
-				var posicao : Vector2 = get_viewport_rect().size / 2 + centro_menu_offset
+				var posicao : Vector2 = get_viewport_rect().size / 2 + centro_menu_offset / get_tree().root.content_scale_factor
 				var angulo : float = posicao_opcao_atual * angulo_menu
 				
 				if not menu_circular:
@@ -253,7 +253,7 @@ func carregar_configuracoes() -> void:
 		print("não consegui abrir o arquivo das configurações!!!")
 
 	var metade_tela : Vector2 = get_viewport_rect().size / 2
-	var centro_circulo : Vector2 = (metade_tela + centro_menu_offset)
+	var centro_circulo : Vector2 = (metade_tela + centro_menu_offset / get_tree().root.content_scale_factor)
 	$Telas.position = centro_circulo
 	$Ponteiro.position = centro_circulo - Vector2(raio_menu_base + 20, 8)
 

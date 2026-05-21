@@ -1,4 +1,5 @@
 class_name NPC extends Interagivel
 
+@export var dialogo : String
 func interagir() -> void:
-	print("oi vc interagiu comigo legal")
+	Dialogo.iniciar_dialogo(dialogo)

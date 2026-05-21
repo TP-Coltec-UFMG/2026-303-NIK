@@ -47,8 +47,10 @@ func aplicar_configuracoes(config : Dictionary):
 
 	if configuracoes.has("alto_contraste"): if configuracoes["alto_contraste"]:
 		menu.theme = preload("res://themes/alto_contraste.tres")
+		$UI/Menu/ColorRect.color = Color.BLACK
 	else:
 		menu.theme = preload("res://themes/default.tres")
+		$UI/Menu/ColorRect.color = Color(0, 0, 0, 0.1)
 
 	if configuracoes.has("escala_interface"): get_tree().root.content_scale_factor = configuracoes["escala_interface"]
 
@@ -63,3 +65,12 @@ func aplicar_configuracoes(config : Dictionary):
 			InputMap.action_add_event(entrada, novo_evento)
 
 	menu.inicializar_botoes_circulares()
+
+func caractere_tecla(tecla : Key) -> String:
+	match tecla:
+		KEY_LEFT: return "◀"
+		KEY_RIGHT: return "▶"
+		KEY_UP: return "▲"
+		KEY_DOWN: return "▼"
+
+	return str(OS.get_keycode_string(tecla))

@@ -37,7 +37,7 @@ func _draw() -> void:
 	if editando:
 		desenha_texto("pressione a tecla nova", posicao_valor, cor_valor, contorno_valor)
 	else:
-		desenha_texto(str(OS.get_keycode_string(valor)), posicao_valor, cor_valor, contorno_valor)
+		desenha_texto(MestreSupremo.caractere_tecla(valor), posicao_valor, cor_valor, contorno_valor)
 
 func _input(event: InputEvent) -> void:
 	if editando:
@@ -45,7 +45,7 @@ func _input(event: InputEvent) -> void:
 			if event.pressed and not event.echo:
 				valor = event.physical_keycode
 				editando = false 
-				print("definindo a entrada como " + str(OS.get_keycode_string(valor)) + " e desligando o modo edição")
+				print("definindo a entrada como " + MestreSupremo.caractere_tecla(valor) + " e desligando o modo edição")
 				accept_event()
 				queue_redraw()
 				return

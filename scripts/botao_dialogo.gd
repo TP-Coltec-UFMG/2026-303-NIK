@@ -6,8 +6,10 @@ class_name DialogButton
 @export var normal_color : Color = Color.PALE_GOLDENROD
 @export var focus_color : Color = Color.LIGHT_GOLDENROD
 @export var pressed_color : Color = Color.GOLDENROD
+
 var proxima_arvore : String = ""
 var tags_adicionar : Array[String]
+var tags_adicionar_personagem : Array[String]
 
 func _ready() -> void:
 	focus_mode = Control.FOCUS_ALL
@@ -55,5 +57,6 @@ func desenha_texto(texto : String, offset : Vector2 = Vector2(16, 0), cor = null
 
 func _pressed() -> void:
 	Dialogo.adicionar_tags(tags_adicionar)
+	Dialogo.adicionar_tags_personagem(tags_adicionar_personagem)
 		
 	Dialogo.iniciar_dialogo(proxima_arvore)

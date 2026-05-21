@@ -144,6 +144,7 @@ mesh = SubResource("CylinderMesh_3xj3m")
 [node name="Porta" type="Area3D" parent="CasaPaulo" unique_id=450286680]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9981613, 0, 0)
 script = ExtResource("20_vnytd")
+dialogo = "pedro"
 
 [node name="Gatilho" type="CollisionShape3D" parent="CasaPaulo/Porta" unique_id=2008546185]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3112235, 2.6118164)
