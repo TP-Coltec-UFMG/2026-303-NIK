@@ -320,7 +320,6 @@ shortcut_in_tooltip = true
 script = ExtResource("6_nl2jp")
 id = "botao_jogar"
 label = "Jogar"
-alt_color = null
 metadata/_custom_type_script = "uid://dxcpaqjaydfjj"
 
 [node name="BotaoConfiguracoes" type="BaseButton" parent="UI/Menu/Telas/Principal" unique_id=231753211]
@@ -406,7 +405,6 @@ shortcut_in_tooltip = true
 script = ExtResource("6_nl2jp")
 id = "botao_configuracoes"
 label = "Configurações"
-alt_color = null
 metadata/_custom_type_script = "uid://dxcpaqjaydfjj"
 
 [node name="BotaoAcessibilidade" type="BaseButton" parent="UI/Menu/Telas/Principal" unique_id=536356699]
@@ -492,7 +490,6 @@ shortcut_in_tooltip = true
 script = ExtResource("6_nl2jp")
 id = "botao_acessibilidade"
 label = "Acessibilidade"
-alt_color = null
 metadata/_custom_type_script = "uid://dxcpaqjaydfjj"
 
 [node name="BotaoSair" type="BaseButton" parent="UI/Menu/Telas/Principal" unique_id=1798534514]
@@ -681,7 +678,6 @@ valores = Array[String](["desligado", "protanopia", "deuteranopia", "tritanopia"
 valor = "desligado"
 id = "tipo_daltonismo"
 label = "Daltonismo"
-alt_color = null
 metadata/_custom_type_script = "uid://dbttx0ech4g7u"
 
 [node name="IntensidadeDaltonismo" type="BaseButton" parent="UI/Menu/Telas/Acessibilidade" unique_id=1944906087]
@@ -862,7 +858,6 @@ script = ExtResource("9_u0tsa")
 vertical = true
 id = "menu_circular"
 label = "Menu Circular"
-alt_color = null
 metadata/_custom_type_script = "uid://dws6dbyhxolq1"
 
 [node name="AltoContraste" type="BaseButton" parent="UI/Menu/Telas/Acessibilidade" unique_id=941187777]
@@ -949,7 +944,6 @@ script = ExtResource("9_u0tsa")
 vertical = true
 id = "alto_contraste"
 label = "Alto-Contraste"
-alt_color = null
 metadata/_custom_type_script = "uid://dws6dbyhxolq1"
 
 [node name="EscalaInterface" type="BaseButton" parent="UI/Menu/Telas/Acessibilidade" unique_id=2105043782]
@@ -1228,7 +1222,6 @@ slider = true
 passo = 5
 id = "volume_master"
 label = "Volume"
-alt_color = null
 metadata/_custom_type_script = "uid://v4a1wtjtcbkn"
 
 [node name="VolumeVozes" type="BaseButton" parent="UI/Menu/Telas/Configuracoes" unique_id=112845173]
@@ -1317,7 +1310,6 @@ slider = true
 passo = 5
 id = "volume_vozes"
 label = "Volume Vozes"
-alt_color = null
 metadata/_custom_type_script = "uid://v4a1wtjtcbkn"
 
 [node name="VolumeMusica" type="BaseButton" parent="UI/Menu/Telas/Configuracoes" unique_id=1515997683]
@@ -1406,7 +1398,6 @@ slider = true
 passo = 5
 id = "volume_musica"
 label = "Volume Música"
-alt_color = null
 metadata/_custom_type_script = "uid://v4a1wtjtcbkn"
 
 [node name="Controles" type="Label" parent="UI/Menu/Telas/Configuracoes" unique_id=603946296]
@@ -1499,7 +1490,7 @@ shortcut_in_tooltip = true
 script = ExtResource("6_nl2jp")
 id = "botao_controles"
 label = "Editar controles"
-alt_color = null
+focus_color = Color(0.61960787, 0.93333334, 0.93333334, 1)
 metadata/_custom_type_script = "uid://dxcpaqjaydfjj"
 
 [node name="BotaoSalvar" type="BaseButton" parent="UI/Menu/Telas/Configuracoes" unique_id=1456524895]
@@ -1686,7 +1677,6 @@ vertical = true
 input = "move_left"
 id = "move_left"
 label = "Esquerda"
-alt_color = null
 metadata/_custom_type_script = "uid://csl2o2drb1mft"
 
 [node name="MoverDireita" type="BaseButton" parent="UI/Menu/Telas/Controles" unique_id=1404896484]
@@ -1773,7 +1763,6 @@ script = ExtResource("11_0om2c")
 vertical = true
 id = "move_right"
 label = "Direita"
-alt_color = null
 metadata/_custom_type_script = "uid://csl2o2drb1mft"
 
 [node name="MoverCima" type="BaseButton" parent="UI/Menu/Telas/Controles" unique_id=1939435078]
@@ -1861,7 +1850,6 @@ vertical = true
 input = "move_up"
 id = "move_up"
 label = "Cima"
-alt_color = null
 metadata/_custom_type_script = "uid://csl2o2drb1mft"
 
 [node name="MoverBaixo" type="BaseButton" parent="UI/Menu/Telas/Controles" unique_id=1787976865]
@@ -1949,7 +1937,6 @@ vertical = true
 input = "move_down"
 id = "move_down"
 label = "Baixo"
-alt_color = null
 metadata/_custom_type_script = "uid://csl2o2drb1mft"
 
 [node name="Interação" type="Label" parent="UI/Menu/Telas/Controles" unique_id=1810244912]
@@ -2044,7 +2031,6 @@ vertical = true
 input = "interagir"
 id = "interagir"
 label = "Interagir"
-alt_color = null
 metadata/_custom_type_script = "uid://csl2o2drb1mft"
 
 [node name="BotaoSalvar" type="BaseButton" parent="UI/Menu/Telas/Controles" unique_id=303319681]

@@ -5,7 +5,7 @@ class_name ConfigButton
 @export var id : String = "id_único!!!"
 @export var label : String = "oii, eu sou uma configuracao!!"
 @export var normal_color : Color = Color.WHITE
-@export var focus_color : Color = Color.PALE_TURQUOISE
+@export var focus_color : Color = Color(0.6862745 * .9, 0.93333334, 0.93333334, 1) # Color.PALE_TURQUOISE so que com mais contraste
 @export var alt_color : Color = Color.DARK_TURQUOISE
 
 func _ready() -> void:
