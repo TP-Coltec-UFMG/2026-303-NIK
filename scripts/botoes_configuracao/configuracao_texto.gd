@@ -8,6 +8,7 @@ class_name ConfigButtonString
 		valor = novo_valor
 		if line_edit:
 			line_edit.text = novo_valor
+		MestreSupremo.alterar_configuracao(id, valor)
 
 var line_edit : LineEdit
 

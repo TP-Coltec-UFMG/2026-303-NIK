@@ -6,7 +6,7 @@ class_name ConfigButton
 @export var label : String = "oii, eu sou uma configuracao!!"
 @export var normal_color : Color = Color.WHITE
 @export var focus_color : Color = Color.PALE_TURQUOISE
-@export var pressed_color : Color = Color.DARK_TURQUOISE
+@export var alt_color : Color = Color.DARK_TURQUOISE
 
 func _ready() -> void:
 	focus_mode = Control.FOCUS_ALL
@@ -19,7 +19,7 @@ func desenha_texto(texto : String, offset : Vector2 = Vector2.ZERO, cor = null, 
 
 	var current_color = normal_color
 	if is_pressed():
-		current_color = pressed_color
+		current_color = alt_color
 	elif tem_foco:
 		current_color = focus_color
 	if label.is_empty():
@@ -37,7 +37,7 @@ func desenha_texto(texto : String, offset : Vector2 = Vector2.ZERO, cor = null, 
 
 	var outline_color
 	if tem_foco:
-		outline_color = pressed_color
+		outline_color = alt_color
 		if is_pressed(): outline_color = focus_color
 		if contorno:
 			outline_color = contorno
@@ -46,3 +46,10 @@ func desenha_texto(texto : String, offset : Vector2 = Vector2.ZERO, cor = null, 
 	draw_string(font, text_position, texto, HORIZONTAL_ALIGNMENT_RIGHT, -1, font_size, current_color)
 
 	return Vector2(text_size.x, text_size.y) # retorna a posicao em que o texto acabou
+
+func tamanho_texto(texto : String):
+	var font = get_theme_font("font", "Button")
+	var font_size = get_theme_font_size("font_size", "Button")
+
+	var text_size = font.get_string_size(texto, HORIZONTAL_ALIGNMENT_RIGHT, -1, font_size)
+	return text_size

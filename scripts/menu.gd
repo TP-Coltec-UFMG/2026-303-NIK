@@ -15,12 +15,14 @@ class MenuData:
 
 @export var telas : Dictionary[String, VBoxContainer] = {}
 
-var caminho_configuracoes = "user://config.json"
-
-@export var configuracoes : Array = []
+@export var botoes_configuracao : Array = []
 
 ## Configurações do Menu Circular ##
-var menu_circular : bool = true
+var menu_circular : bool = true:
+	set(valor):
+		menu_circular = valor
+		atualizar_botoes_circulares(-1)
+		
 
 # Índice da opção do menu atual
 var idx_opcao_atual : int = 0
@@ -57,32 +59,31 @@ func _ready() -> void:
 	inicializar_menus()
 	inicializar_botoes_circulares()
 
-	for configuracao in $Telas/Configuracoes.get_children():
-		if configuracao is ConfigButton and "valor" in configuracao:
-			configuracoes.append(configuracao)
-	for configuracao in $Telas/Acessibilidade.get_children():
-		if configuracao is ConfigButton and "valor" in configuracao:
-			configuracoes.append(configuracao)
-	for configuracao in $Telas/Controles.get_children():
-		if configuracao is ConfigButton and "valor" in configuracao:
-			configuracoes.append(configuracao)
+	for botao in $Telas/Configuracoes.get_children():
+		if botao is ConfigButton and "valor" in botao:
+			botoes_configuracao.append(botao)
+	for botao in $Telas/Acessibilidade.get_children():
+		if botao is ConfigButton and "valor" in botao:
+			botoes_configuracao.append(botao)
+	for botao in $Telas/Controles.get_children():
+		if botao is ConfigButton and "valor" in botao:
+			botoes_configuracao.append(botao)
 
 	# carregar_configuracoes()
 	
 	# abrir_tela("Principal")
 
 # Função chamada a cada frame
-func _process(_delta: float) -> void:
-	# dps troca isso pra funcionar com todos os menus ou sla não sei como vcs querem fazer
-
-	# Renderiza os botões do menu principal
-	atualizar_botoes_circulares(menus[menu_ativo], _delta)
+func _process(delta: float) -> void:
+	# Atualiza os botões do menu principal
+	atualizar_botoes_circulares(delta)
 
 """
 Atualiza a posição dos botões em uma organização circular a lista de botões dado 
-@param lista_botoes array dos botões que deverão ser posicionados na tela
+@param menu_data estrutura com os dados do menu ativo
 """
-func atualizar_botoes_circulares(menu_data : MenuData, delta : float):
+func atualizar_botoes_circulares(delta : float):
+	var menu_data = menus[menu_ativo]
 	var lista_botoes = menu_data.botoes
 	var lista_objetos = menu_data.objetos
 
@@ -101,29 +102,31 @@ func atualizar_botoes_circulares(menu_data : MenuData, delta : float):
 		var fator_escala : float = (escala_botao_selecionado if idx_relativo == 0 else 1.0) * pow(.8, abs(idx_relativo))
 		
 		# Aplica o fator_escala no botão
-		button.scale = lerp(button.scale, Vector2(fator_escala, fator_escala), delta / 0.1)
+		button.scale = lerp(button.scale, Vector2(fator_escala, fator_escala), (delta / 0.1) if delta > 0 else 1.0)
 
 		# Diminui a opacidade dos botões distantes
 		var opacidade = clampf(1.0 - max(0, abs(idx_relativo) - 2) * 0.34, 0, 1)
-		button.modulate.a = lerp(button.modulate.a, opacidade, delta / 0.1)
+		button.modulate.a = lerp(button.modulate.a, opacidade, (delta / 0.1)  if delta > 0 else 1.0)
 
 	# Gira a tela inteira para deixar o botao selecionado na esquerda
-	var angulo : float = posicao_opcao_atual * angulo_menu
+	var angulo : float = posicao_opcao_atual * angulo_menu * get_tree().root.content_scale_factor
 	var posicao : Vector2 = get_viewport_rect().size / 2 + centro_menu_offset / get_tree().root.content_scale_factor
 
 	if not menu_circular: 
 		angulo = 0
 		posicao.y -= posicao_opcao_atual * distancia_menu
-	$Telas.rotation = lerp($Telas.rotation, angulo, delta / 0.1)
-	$Telas.position = lerp($Telas.position, posicao, delta / 0.1)
+
+	$Telas.rotation = lerp($Telas.rotation, angulo, (delta / 0.1) if delta > 0 else 1.0)
+	$Telas.position = lerp($Telas.position, posicao, (delta / 0.1) if delta > 0 else 1.0)
 	
-	$Ponteiro.label_settings.outline_color = lerp($Ponteiro.label_settings.outline_color, lista_botoes[idx_opcao_atual].pressed_color, delta / 0.1)
-	$Ponteiro.label_settings.font_color = lerp($Ponteiro.label_settings.font_color, lista_botoes[idx_opcao_atual].focus_color, delta / 0.1)
+	$Ponteiro.label_settings.outline_color = lerp($Ponteiro.label_settings.outline_color, lista_botoes[idx_opcao_atual].alt_color, (delta / 0.1) if delta > 0 else 1.0)
+	$Ponteiro.label_settings.font_color = lerp($Ponteiro.label_settings.font_color, lista_botoes[idx_opcao_atual].focus_color, (delta / 0.1) if delta > 0 else 1.0)
 	
 	if not menu_circular: 
-		$Ponteiro.position.x = lerp($Ponteiro.position.x, (get_viewport_rect().size.x / 2 + centro_menu_offset.x - raio_menu_base - 20) - 20 * sin(abs($Telas.position.y - posicao.y) / distancia_menu), delta / 0.05)
+		$Ponteiro.position.x = lerp($Ponteiro.position.x, (get_viewport_rect().size.x / 2 + centro_menu_offset.x - raio_menu_base - 20) - 20 * sin(abs($Telas.position.y - posicao.y) / distancia_menu), (delta / 0.05) if delta > 0 else 1.0)
 	else:
-		$Ponteiro.position.x = lerp($Ponteiro.position.x, (get_viewport_rect().size.x / 2 + centro_menu_offset.x - raio_menu_base - 20) - 20 * sin(abs($Telas.rotation - angulo) / angulo_menu), delta / 0.05)
+		$Ponteiro.position.x = lerp($Ponteiro.position.x, (get_viewport_rect().size.x / 2 + centro_menu_offset.x - raio_menu_base - 20) - 20 * sin(abs($Telas.rotation - angulo) / (angulo_menu * get_tree().root.content_scale_factor)), (delta / 0.05) if delta > 0 else 1.0)
+	$Ponteiro.position.y = get_viewport_rect().size.y / 2 + centro_menu_offset.y - (10 if menu_circular else 8) 
 
 func inicializar_botoes_circulares():
 	raio_menu = int(raio_menu_base / get_tree().root.content_scale_factor)
@@ -133,9 +136,9 @@ func inicializar_botoes_circulares():
 		for i in range(menu.objetos.size()):
 			var objeto : Control = menu.objetos[i]
 
-			var angulo : float = (i * angulo_menu) - angulo_inicial
+			var angulo : float = (i * angulo_menu * get_tree().root.content_scale_factor) - angulo_inicial
 			if objeto is Label:
-				angulo += angulo_menu / 2
+				angulo += angulo_menu * get_tree().root.content_scale_factor / 2
 
 			# Calcula e define a posição do botão
 			var x : float = (cos(angulo) * raio_menu)
@@ -171,7 +174,7 @@ func abrir_tela(alvo : String):
 				
 				# vai imediatamente para a posição do menu novo
 				var posicao : Vector2 = get_viewport_rect().size / 2 + centro_menu_offset / get_tree().root.content_scale_factor
-				var angulo : float = posicao_opcao_atual * angulo_menu
+				var angulo : float = posicao_opcao_atual * angulo_menu * get_tree().root.content_scale_factor
 				
 				if not menu_circular:
 					angulo = 0
@@ -190,72 +193,17 @@ func fechar_telas():
 	for menu in menus.values():
 		menu.node.visible = false
 
-func salvar_configuracoes() -> void:
-	var dados_config = {}
-	for config in configuracoes:
-		var botao
-		if config is ConfigButtonBool: botao = config as ConfigButtonBool
-		if config is ConfigButtonInt: botao = config as ConfigButtonInt
-		if config is ConfigButtonFloat: botao = config as ConfigButtonFloat
-		if config is ConfigButtonString: botao = config as ConfigButtonString
-		if config is ConfigButtonList: botao = config as ConfigButtonList
-		if config is ConfigButtonKeybind: botao = config as ConfigButtonKeybind
-
-		if not botao: # se for label
-			continue
-		var nome = botao.id
-		var valor = botao.valor
-		dados_config[nome] = valor
-
-	var dados_json = JSON.stringify(dados_config, "\t")
-	var arquivo = FileAccess.open(caminho_configuracoes, FileAccess.WRITE)
-	if arquivo:
-		arquivo.store_string(dados_json)
-		print("configurações salvas")
-		arquivo.close()
-	else:
-		print("não consegui abrir o arquivo das configurações!!!")
-	carregar_configuracoes()
-
 func carregar_configuracoes() -> void:
-	var arquivo = FileAccess.open(caminho_configuracoes, FileAccess.READ)
-	if arquivo:
-		var dados_json = arquivo.get_as_text()
-		var dados_config = JSON.parse_string(dados_json)
-
-		if dados_config != null:
-			for config in configuracoes:
-				if config.id in dados_config:
-					config.valor = dados_config[config.id]
-
-				else: print("configuração \"" + config.id + "\" não está no arquivo: valor padrão será utilizado")
-				# if config.id == "alto-contraste":
-				# 	if config.valor == 0:
-				# 		print("ativando o modo alto-contraste")
-				# 		theme = preload("res://themes/alto_contraste.tres")
-				# 	else:
-				# 		print("desativando o modo alto-contraste")
-				# 		theme = preload("res://themes/default.tres")
-				# 	atualizar_visual_botoes()
-				# if config.id == "escala-interface":
-				# 	if config.valor == 0:
-				# 		get_tree().root.content_scale_factor = 1.0
-				# 	elif config.valor == 1:
-				# 		get_tree().root.content_scale_factor = 1.5
-				# 	elif config.valor == 2:
-				# 		get_tree().root.content_scale_factor = 0.5
-
-		# print("configurações carregadas:\n" + str(dados_config))
-		MestreSupremo.aplicar_configuracoes(dados_config)
-		print("configurações carregadas:\n" + str(MestreSupremo.configuracoes))
-		arquivo.close()
-	else:
-		print("não consegui abrir o arquivo das configurações!!!")
-
-	var metade_tela : Vector2 = get_viewport_rect().size / 2
-	var centro_circulo : Vector2 = (metade_tela + centro_menu_offset / get_tree().root.content_scale_factor)
-	$Telas.position = centro_circulo
-	$Ponteiro.position = centro_circulo - Vector2(raio_menu_base + 20, 8)
+	var configuracoes = MestreSupremo.configuracoes
+	for botao in botoes_configuracao:
+		if botao.id in configuracoes:
+			if botao.valor != configuracoes[botao.id]:
+				if not botao is ConfigButtonList:
+					botao.valor = configuracoes[botao.id]
+				else:
+					if configuracoes[botao.id] in botao.valores:
+						botao._valor = botao.valores.find(configuracoes[botao.id])
+					else: botao._valor = 0
 
 # Função chamada quando há alguma entrada do usuário
 func _input(event: InputEvent) -> void:
@@ -329,3 +277,6 @@ func inicializar_menus():
 		salvar_configuracoes()
 		abrir_tela("Configuracoes")
 	)
+
+func salvar_configuracoes() -> void:
+	MestreSupremo.salvar_configuracoes()

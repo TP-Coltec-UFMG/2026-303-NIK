@@ -12,6 +12,7 @@ var _valor : int = 0:
 			valor = valores[_valor]
 		else:
 			_valor = 0
+		MestreSupremo.alterar_configuracao(id, valor)
 		queue_redraw()
 
 var editando : bool = false:
@@ -34,7 +35,7 @@ func _draw() -> void:
 	var cor_valor
 	var contorno_valor
 	if editando: 
-		cor_valor = pressed_color
+		cor_valor = alt_color
 		contorno_valor = focus_color
 	else: 
 		cor_valor = normal_color

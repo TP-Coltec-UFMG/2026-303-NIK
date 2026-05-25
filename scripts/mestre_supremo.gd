@@ -1,17 +1,18 @@
-extends CanvasLayer
+extends Control
 
-@onready var animation_player = $AnimationPlayer
-@onready var fundo_preto = $Black
-@onready var player_musica = $Musica
-@onready var filtro_daltonismo = $FiltroDaltonismo
+@onready var animation_player = $UI/AnimationPlayer
+@onready var fundo_preto = $UI/Black
+@onready var player_musica = $UI/Musica
+@onready var filtro_daltonismo = $UI/FiltroDaltonismo
 @onready var menu = $UI/Menu
 @export var cenas : Dictionary[String, PackedScene] = {}
 var cena_atual
 
-var configuracoes = {}
+var caminho_configuracoes = "user://config.json"
+var configuracoes : Dictionary = {}
 
 func _ready():
-	menu.carregar_configuracoes()
+	carregar_configuracoes()
 	# carregar_cena("Principal")
 
 func carregar_cena(cena: String) -> void:
@@ -29,7 +30,8 @@ func carregar_cena(cena: String) -> void:
 	await animation_player.animation_finished
 	fundo_preto.visible = false
 
-func aplicar_configuracoes(config : Dictionary):
+func aplicar_configuracoes(config : Dictionary = configuracoes):
+	if menu == null: return
 	configuracoes = config
 
 	if configuracoes.has("volume_musica"): player_musica.volume_linear = (configuracoes["volume_musica"] / 100.0) * (configuracoes["volume_master"] / 100.0)
@@ -74,3 +76,45 @@ func caractere_tecla(tecla : Key) -> String:
 		KEY_DOWN: return "▼"
 
 	return str(OS.get_keycode_string(tecla))
+
+func salvar_configuracoes() -> void:
+	var dados_config = {}
+	for config in configuracoes.keys():
+		dados_config[config] = configuracoes[config]
+
+	var dados_json = JSON.stringify(dados_config, "\t")
+	var arquivo = FileAccess.open(caminho_configuracoes, FileAccess.WRITE)
+	if arquivo:
+		arquivo.store_string(dados_json)
+		print("configurações salvas")
+		arquivo.close()
+	else:
+		print("não consegui abrir o arquivo das configurações!!!")
+	carregar_configuracoes()
+
+func carregar_configuracoes() -> void:
+	var arquivo = FileAccess.open(caminho_configuracoes, FileAccess.READ)
+	if arquivo:
+		var dados_json = arquivo.get_as_text()
+		var dados_config = JSON.parse_string(dados_json)
+
+		if dados_config != null:
+			for config in dados_config.keys():
+				configuracoes[config] = dados_config[config]
+
+		# print("configurações carregadas:\n" + str(dados_config))
+		aplicar_configuracoes(dados_config)
+		print("configurações carregadas:\n" + str(configuracoes))
+		arquivo.close()
+	else:
+		print("não consegui abrir o arquivo das configurações!!!")
+
+	$UI/Menu.carregar_configuracoes()
+	$UI/Menu.inicializar_botoes_circulares()
+
+func alterar_configuracao(nome : String, valor : Variant):
+	configuracoes[nome] = valor
+	aplicar_configuracoes()
+	$UI/Menu.carregar_configuracoes()
+	return
+	

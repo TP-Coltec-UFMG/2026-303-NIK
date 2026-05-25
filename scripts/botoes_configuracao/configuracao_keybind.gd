@@ -7,6 +7,7 @@ class_name ConfigButtonKeybind
 @export var valor : Key:
 	set(novo_valor):
 		valor = novo_valor
+		MestreSupremo.alterar_configuracao(id, valor)
 var editando : bool = false
 
 
@@ -22,7 +23,7 @@ func _draw() -> void:
 	var cor_valor
 	var contorno_valor
 	if editando: 
-		cor_valor = pressed_color
+		cor_valor = alt_color
 		contorno_valor = focus_color
 	else: 
 		cor_valor = normal_color
