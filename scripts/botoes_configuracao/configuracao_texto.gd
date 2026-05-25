@@ -1,4 +1,4 @@
-@tool
+# @tool
 extends ConfigButton
 class_name ConfigButtonString
 

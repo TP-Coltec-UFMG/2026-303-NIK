@@ -575,9 +575,7 @@ shortcut_in_tooltip = true
 script = ExtResource("6_nl2jp")
 id = "botao_sair"
 label = "Sair do Jogo"
-normal_color = Color(0.92941177, 0.6862745, 0.6862745, 1)
-focus_color = Color(0.93, 0.38130003, 0.38130003, 1)
-alt_color = Color(0.81, 0.105299994, 0.105299994, 1)
+variacao_tema = "ConfigButtonExit"
 metadata/_custom_type_script = "uid://dxcpaqjaydfjj"
 
 [node name="Acessibilidade" type="Control" parent="UI/Menu/Telas" unique_id=1099729742]
@@ -1120,8 +1118,7 @@ shortcut_in_tooltip = true
 script = ExtResource("6_nl2jp")
 id = "botao_salvar_acessibilidade"
 label = "Salvar"
-focus_color = Color(0.93, 0.38130003, 0.38130003, 1)
-alt_color = Color(0.81, 0.105299994, 0.105299994, 1)
+variacao_tema = "ConfigButtonExit"
 metadata/_custom_type_script = "uid://dxcpaqjaydfjj"
 
 [node name="Configuracoes" type="Control" parent="UI/Menu/Telas" unique_id=598092371]
@@ -1490,7 +1487,6 @@ shortcut_in_tooltip = true
 script = ExtResource("6_nl2jp")
 id = "botao_controles"
 label = "Editar controles"
-focus_color = Color(0.61960787, 0.93333334, 0.93333334, 1)
 metadata/_custom_type_script = "uid://dxcpaqjaydfjj"
 
 [node name="BotaoSalvar" type="BaseButton" parent="UI/Menu/Telas/Configuracoes" unique_id=1456524895]
@@ -1576,8 +1572,7 @@ shortcut_in_tooltip = true
 script = ExtResource("6_nl2jp")
 id = "botao_salvar_configuracoes"
 label = "Salvar"
-focus_color = Color(0.93, 0.38130003, 0.38130003, 1)
-alt_color = Color(0.81, 0.105299994, 0.105299994, 1)
+variacao_tema = "ConfigButtonExit"
 metadata/_custom_type_script = "uid://dxcpaqjaydfjj"
 
 [node name="Controles" type="Control" parent="UI/Menu/Telas" unique_id=571260202]
@@ -2116,6 +2111,5 @@ shortcut_in_tooltip = true
 script = ExtResource("6_nl2jp")
 id = "botao_salvar_controles"
 label = "Salvar"
-focus_color = Color(0.93, 0.38130003, 0.38130003, 1)
-alt_color = Color(0.81, 0.105299994, 0.105299994, 1)
+variacao_tema = "ConfigButtonExit"
 metadata/_custom_type_script = "uid://dxcpaqjaydfjj"

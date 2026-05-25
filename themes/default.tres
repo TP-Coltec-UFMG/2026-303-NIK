@@ -23,15 +23,24 @@ corner_radius_bottom_left = 2
 
 [resource]
 Button/colors/font_color = Color(1, 1, 1, 1)
-Button/colors/font_focus_color = Color(0.40392157, 0.75686276, 1, 1)
 Button/colors/font_hover_color = Color(0.40392157, 0.75686276, 1, 1)
-Button/colors/font_pressed_color = Color(0.2509804, 0.36078432, 0.627451, 1)
 Button/font_sizes/font_size = 24
 Button/fonts/font = ExtResource("1_2g1ym")
 Button/styles/focus = SubResource("StyleBoxEmpty_l6fbw")
 Button/styles/hover = SubResource("StyleBoxEmpty_l6fbw")
 Button/styles/normal = SubResource("StyleBoxEmpty_l6fbw")
 Button/styles/pressed = SubResource("StyleBoxEmpty_l6fbw")
+ConfigButton/colors/cor_foco = Color(0.24705882, 0.78431374, 0.8784314, 1)
+ConfigButton/colors/cor_foco_contorno = Color(0.08627451, 0.30980393, 0.67058825, 1)
+ConfigButton/colors/cor_normal = Color(1, 1, 1, 1)
+ConfigButton/colors/cor_pressionado = Color(0.08627451, 0.30980393, 0.67058825, 1)
+ConfigButton/colors/cor_pressionado_contorno = Color(0.24705882, 0.78431374, 0.8784314, 1)
+ConfigButtonExit/base_type = &"ConfigButton"
+ConfigButtonExit/colors/cor_foco = Color(1, 0.34901962, 0.40392157, 1)
+ConfigButtonExit/colors/cor_foco_contorno = Color(0.50980395, 0.039215688, 0.16470589, 1)
+ConfigButtonExit/colors/cor_normal = Color(1, 0.51, 0.51, 1)
+ConfigButtonExit/colors/cor_pressionado = Color(0.50980395, 0.039215688, 0.16470589, 1)
+ConfigButtonExit/colors/cor_pressionado_contorno = Color(1, 0.34901962, 0.40392157, 1)
 Label/fonts/font = ExtResource("1_2g1ym")
 LineEdit/colors/font_color = Color(1, 1, 1, 1)
 LineEdit/fonts/font = ExtResource("1_2g1ym")

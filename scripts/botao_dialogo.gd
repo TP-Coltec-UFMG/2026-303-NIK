@@ -1,11 +1,9 @@
-@tool
+# @tool
 extends BaseButton
 class_name DialogButton
 
 @export var label : String = ""
-@export var normal_color : Color = Color.PALE_GOLDENROD
-@export var focus_color : Color = Color.LIGHT_GOLDENROD
-@export var pressed_color : Color = Color.GOLDENROD
+var variacao_tema : String = "ConfigButton"
 
 var proxima_arvore : String = ""
 var tags_adicionar : Array[String]
@@ -25,11 +23,11 @@ func _notification(what: int) -> void:
 func desenha_texto(texto : String, offset : Vector2 = Vector2(16, 0), cor = null, contorno = null) -> Vector2:
 	var tem_foco = has_focus() or (get_viewport().gui_get_focus_owner() in get_children()) # ve se ta focado ele ou um bebê dele
 
-	var current_color = normal_color
+	var current_color = get_theme_color("cor_normal", variacao_tema)
 	if is_pressed():
-		current_color = pressed_color
+		current_color = get_theme_color("cor_pressionado", variacao_tema)
 	elif tem_foco:
-		current_color = focus_color
+		current_color = get_theme_color("cor_foco", variacao_tema)
 	if label.is_empty():
 		return Vector2.ZERO
 
@@ -45,8 +43,8 @@ func desenha_texto(texto : String, offset : Vector2 = Vector2(16, 0), cor = null
 
 	var outline_color
 	if tem_foco:
-		outline_color = pressed_color
-		if is_pressed(): outline_color = focus_color
+		outline_color = get_theme_color("cor_pressionado", variacao_tema)
+		if is_pressed(): outline_color = get_theme_color("cor_foco", variacao_tema)
 		if contorno:
 			outline_color = contorno
 	

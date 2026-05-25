@@ -119,8 +119,8 @@ func atualizar_botoes_circulares(delta : float):
 	$Telas.rotation = lerp($Telas.rotation, angulo, (delta / 0.1) if delta > 0 else 1.0)
 	$Telas.position = lerp($Telas.position, posicao, (delta / 0.1) if delta > 0 else 1.0)
 	
-	$Ponteiro.label_settings.outline_color = lerp($Ponteiro.label_settings.outline_color, lista_botoes[idx_opcao_atual].alt_color, (delta / 0.1) if delta > 0 else 1.0)
-	$Ponteiro.label_settings.font_color = lerp($Ponteiro.label_settings.font_color, lista_botoes[idx_opcao_atual].focus_color, (delta / 0.1) if delta > 0 else 1.0)
+	$Ponteiro.label_settings.outline_color = lerp($Ponteiro.label_settings.outline_color, get_theme_color("cor_foco_contorno", lista_botoes[idx_opcao_atual].variacao_tema), (delta / 0.1) if delta > 0 else 1.0)
+	$Ponteiro.label_settings.font_color = lerp($Ponteiro.label_settings.font_color, get_theme_color("cor_foco", lista_botoes[idx_opcao_atual].variacao_tema), (delta / 0.1) if delta > 0 else 1.0)
 	
 	if not menu_circular: 
 		$Ponteiro.position.x = lerp($Ponteiro.position.x, (get_viewport_rect().size.x / 2 + centro_menu_offset.x - raio_menu_base - 20) - 20 * sin(abs($Telas.position.y - posicao.y) / distancia_menu), (delta / 0.05) if delta > 0 else 1.0)

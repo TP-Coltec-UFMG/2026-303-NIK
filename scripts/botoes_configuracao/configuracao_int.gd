@@ -1,4 +1,4 @@
-@tool
+# @tool
 extends ConfigButton
 class_name ConfigButtonInt
 
@@ -11,7 +11,7 @@ class_name ConfigButtonInt
 		if line_edit:
 			line_edit.text = str(valor)
 		if slider:
-			animacao_slider()
+			valor_normal = float(valor - valor_minimo) / float(valor_maximo - valor_minimo)
 		MestreSupremo.alterar_configuracao(id, valor)
 @export var slider : bool = false
 @export var valor_minimo : int = 0
@@ -23,7 +23,13 @@ var espacamento = 10.0
 var valor_normal : float:
 	set(v):
 		valor_normal = v
+		animacao_slider()
+
+var posicao_slider : float:
+	set(valor):
+		posicao_slider = valor
 		queue_redraw()
+
 
 var tween : Tween
 
@@ -46,11 +52,18 @@ func _ready() -> void:
 		line_edit.text_submitted.connect(_on_text_submitted)
 		line_edit.focus_exited.connect(func(): _on_text_submitted(line_edit.text))
 
-func _process(delta: float) -> void:
-	valor_normal = lerpf(valor_normal, lerpf(0.0, 1.0, float(valor - valor_minimo) / float(valor_maximo - valor_minimo)), delta / 0.1)
-
 func _draw() -> void:
-	var offset = desenha_texto(label)
+	var cor = get_theme_color("cor_normal", variacao_tema)
+	var contorno = Color.TRANSPARENT
+	
+	if editando:
+		cor = get_theme_color("cor_pressionado", variacao_tema)
+		contorno = get_theme_color("cor_pressionado_contorno", variacao_tema)
+	elif has_focus():
+		cor = get_theme_color("cor_foco", variacao_tema)
+		contorno = get_theme_color("cor_foco_contorno", variacao_tema)
+
+	var offset = desenha_texto(label, Vector2.ZERO, cor, contorno)
 	
 	if line_edit and not slider:  # slider oculta o line edit
 		if not vertical:
@@ -63,16 +76,16 @@ func _draw() -> void:
 	if slider:
 		var expessura_barra = 16.0
 
-		var cor_preenchimento = focus_color
-		if has_focus() and editando: cor_preenchimento = alt_color
+		var cor_preenchimento = get_theme_color("cor_foco", variacao_tema)
+		if editando: cor_preenchimento = get_theme_color("cor_pressionado", variacao_tema)
 		
 		var posicao_barra : Vector2 = Vector2(0, offset.y + espacamento)
 
 		draw_rect(Rect2(posicao_barra + Vector2(1, 1), Vector2(valor_normal * size.x, expessura_barra - 2)), cor_preenchimento, true, -1, true)
 		draw_style_box(get_theme_stylebox("normal", "LineEdit"), Rect2(Vector2(0, espacamento + offset.y), Vector2(size.x, expessura_barra)))
-		draw_circle(Vector2(valor_normal * size.x, offset.y + espacamento + expessura_barra / 2), expessura_barra / 2 + 2, normal_color, true, -1, true)
+		draw_circle(Vector2(valor_normal * size.x, offset.y + espacamento + expessura_barra / 2), expessura_barra / 2 + 2, get_theme_color("cor_normal", variacao_tema), true, -1, true)
 
-		desenha_texto(str(valor), Vector2(size.x - tamanho_texto(str(valor)).x - 10.0, 0))
+		desenha_texto(str(valor), Vector2(size.x - tamanho_texto(str(valor)).x - 10.0, 0), cor, contorno)
 
 func animacao_slider() -> void:
 	var alvo_normal = float(valor - valor_minimo) / float(valor_maximo - valor_minimo)
@@ -85,7 +98,7 @@ func animacao_slider() -> void:
 	tween.set_trans(Tween.TRANS_CUBIC)
 	tween.set_ease(Tween.EASE_OUT)
 	
-	tween.tween_property(self, "valor_normal", alvo_normal, 0.1)
+	tween.tween_property(self, "posicao_slider", alvo_normal, 0.1)
 	
 func _on_text_submitted(novo_texto: String) -> void:
 	grab_focus()

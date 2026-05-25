@@ -1,4 +1,4 @@
-@tool
+# @tool
 extends ConfigButton
 class_name ConfigButtonList
 
@@ -27,19 +27,27 @@ func _ready() -> void:
 	else: _valor = 0
 
 func _draw() -> void:
+	var cor = get_theme_color("cor_normal", variacao_tema)
+	var contorno = Color.TRANSPARENT
+	
+	if editando:
+		cor = get_theme_color("cor_pressionado", variacao_tema)
+		contorno = get_theme_color("cor_pressionado_contorno", variacao_tema)
+	elif has_focus():
+		cor = get_theme_color("cor_foco", variacao_tema)
+		contorno = get_theme_color("cor_foco_contorno", variacao_tema)
+
 	var offset
-	if editando and pressed:
-		offset = desenha_texto(label, Vector2.ZERO, focus_color)
-	else: offset = desenha_texto(label)
+	offset = desenha_texto(label, Vector2.ZERO, cor, contorno)
 	
 	var cor_valor
 	var contorno_valor
 	if editando: 
-		cor_valor = alt_color
-		contorno_valor = focus_color
+		cor_valor = get_theme_color("cor_foco", variacao_tema)
+		contorno_valor = get_theme_color("cor_foco_contorno", variacao_tema)
 	else: 
-		cor_valor = normal_color
-		contorno_valor = focus_color
+		cor_valor = get_theme_color("cor_pressionado", variacao_tema)
+		contorno_valor = get_theme_color("cor_pressionado_contorno", variacao_tema)
 
 	var posicao_valor
 	if not vertical:

@@ -1,4 +1,4 @@
-@tool
+# @tool
 extends ConfigButton
 class_name ConfigButtonBool
 
@@ -12,7 +12,14 @@ func _ready() -> void:
 	super._ready() 
 
 func _draw() -> void:
-	var offset = desenha_texto(label)
+	var cor = get_theme_color("cor_normal", variacao_tema)
+	var contorno = Color.TRANSPARENT
+	
+	if has_focus():
+		cor = get_theme_color("cor_foco", variacao_tema)
+		contorno = get_theme_color("cor_foco_contorno", variacao_tema)
+
+	var offset = desenha_texto(label, Vector2.ZERO, cor, contorno)
 
 	var posicao_valor
 	var cor_valor
@@ -23,11 +30,11 @@ func _draw() -> void:
 		posicao_valor = Vector2(offset.x + 10, 0)
 
 	if valor:
-		cor_valor = alt_color
-		contorno_valor = focus_color
+		cor_valor = get_theme_color("cor_pressionado", variacao_tema)
+		contorno_valor = get_theme_color("cor_pressionado_contorno", variacao_tema)
 	else:
-		cor_valor = focus_color
-		contorno_valor = alt_color
+		cor_valor = get_theme_color("cor_foco", variacao_tema)
+		contorno_valor = get_theme_color("cor_foco_contorno", variacao_tema)
 
 	desenha_texto("ligado" if valor else "desligado", posicao_valor, cor_valor, contorno_valor)
 
