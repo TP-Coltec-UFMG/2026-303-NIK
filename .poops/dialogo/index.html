@@ -2,14 +2,14 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Editor de Diálogos Visual</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #11111b; color: #cdd6f4; margin: 0; padding: 0; overflow: hidden; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #11111b; color: #cdd6f4; margin: 0; padding: 0; overflow: hidden; touch-action: none; /* Previne os gestos nativos de voltar tela do Safari */}
         
         /* Controles do Topo */
-        .toolbar { position: fixed; top: 0; left: 0; right: 0; background-color: #1e1e2e; padding: 15px; display: flex; gap: 15px; align-items: center; z-index: 100; border-bottom: 2px solid #313244; box-shadow: 0 4px 6px rgba(0,0,0,0.3); flex-wrap: wrap;}
-        .toolbar h1 { margin: 0; color: #89b4fa; font-size: 1.2em; margin-right: 20px; }
+        .toolbar { position: fixed; top: 0; left: 0; right: 0; background-color: #1e1e2e; padding: 15px; display: flex; gap: 10px; align-items: center; z-index: 100; border-bottom: 2px solid #313244; box-shadow: 0 4px 6px rgba(0,0,0,0.3); flex-wrap: wrap;}
+        .toolbar h1 { margin: 0; color: #89b4fa; font-size: 1.2em; margin-right: 10px; }
         
         button, .btn-upload { background-color: #fab387; color: #11111b; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s; font-size: 0.9em; }
         button:hover, .btn-upload:hover { background-color: #f9e2af; }
@@ -24,9 +24,13 @@
         .btn-organize { background-color: #f38ba8; }
         .btn-organize:hover { background-color: #eba0ac; }
 
+        /* Controles de Zoom para iPad/Mobile */
+        .zoom-controls { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+        .zoom-controls button { width: 50px; height: 50px; font-size: 1.5em; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center;}
+
         /* Área de Trabalho (Canvas) */
         #workspace-container { 
-            position: absolute; top: 60px; left: 0; right: 0; bottom: 0; 
+            position: absolute; top: 75px; left: 0; right: 0; bottom: 0; 
             overflow: auto; 
             background-color: #1e1e2e; 
             cursor: grab; 
@@ -44,7 +48,7 @@
         .tree-node { position: absolute; background-color: #313244; width: 350px; border-radius: 8px; box-shadow: 0 8px 15px rgba(0,0,0,0.5); border: 1px solid #45475a; z-index: 10; display: flex; flex-direction: column; cursor: default; transition: top 0.1s ease, left 0.1s ease;}
         .tree-node.dragging { z-index: 100; opacity: 0.9; box-shadow: 0 12px 25px rgba(0,0,0,0.8); transition: none; }
         
-        .drag-handle { background-color: #89b4fa; color: #11111b; padding: 10px; border-top-left-radius: 7px; border-top-right-radius: 7px; cursor: grab; font-weight: bold; display: flex; justify-content: space-between; align-items: center; position: relative; }
+        .drag-handle { background-color: #89b4fa; color: #11111b; padding: 12px; border-top-left-radius: 7px; border-top-right-radius: 7px; cursor: grab; font-weight: bold; display: flex; justify-content: space-between; align-items: center; position: relative; user-select: none; }
         .drag-handle:active { cursor: grabbing; }
         
         .node-content { padding: 15px; }
@@ -56,13 +60,14 @@
         
         .input-group { display: flex; flex-direction: column; margin-bottom: 8px; }
         label { font-size: 0.8em; margin-bottom: 4px; color: #a6adc8; font-weight: bold; }
-        input[type="text"] { background-color: #1e1e2e; color: #cdd6f4; border: 1px solid #585b70; padding: 6px; border-radius: 4px; width: 100%; box-sizing: border-box; font-size: 0.9em; }
+        
+        /* O tamanho de 16px é OBRIGATÓRIO no iOS para a tela não dar zoom sozinha ao digitar */
+        input[type="text"] { background-color: #1e1e2e; color: #cdd6f4; border: 1px solid #585b70; padding: 8px; border-radius: 4px; width: 100%; box-sizing: border-box; font-size: 16px; }
         input[type="text"]:focus { outline: none; border-color: #89b4fa; }
         
-        .btn-toggle { background-color: transparent; color: #a6adc8; border: 1px solid #585b70; width: 100%; text-align: left; padding: 4px 8px; margin-top: 5px; font-size: 0.8em; }
+        .btn-toggle { background-color: transparent; color: #a6adc8; border: 1px solid #585b70; width: 100%; text-align: left; padding: 6px 8px; margin-top: 5px; font-size: 0.9em; }
         .btn-toggle:hover { background-color: #313244; color: #cdd6f4; }
         
-        /* Sistema de Tags com Ícones */
         .tag-section { background-color: #181825; padding: 8px; border-radius: 6px; margin-bottom: 8px; border-left: 3px solid; }
         .tag-section.gerais { border-color: #cba6f7; }
         .tag-section.personagem { border-color: #fab387; }
@@ -71,9 +76,9 @@
         .tag-section.personagem .tag-section-title { color: #fab387; }
         
         .tag-input-row { display: flex; align-items: center; gap: 6px; margin-bottom: 5px; }
-        .tag-icon { font-size: 0.9em; min-width: 18px; text-align: center; cursor: help;}
+        .tag-icon { font-size: 1.1em; min-width: 22px; text-align: center; cursor: help;}
         
-        .remove-btn-small { position: absolute; top: -10px; right: -5px; background: #f38ba8; color: #11111b; border: none; border-radius: 3px; font-size: 0.7em; cursor: pointer; padding: 2px 5px; z-index: 5;}
+        .remove-btn-small { position: absolute; top: -10px; right: -5px; background: #f38ba8; color: #11111b; border: none; border-radius: 3px; font-size: 0.8em; cursor: pointer; padding: 4px 8px; z-index: 5;}
 
         /* Bolinhas Visuais */
         .port-in { position: absolute; left: -6px; top: 50%; transform: translateY(-50%); width: 12px; height: 12px; background-color: #89b4fa; border-radius: 50%; border: 2px solid #1e1e2e; z-index: 10; box-shadow: 0 0 5px rgba(0,0,0,0.5); }
@@ -81,23 +86,28 @@
 
         /* Modal de Exportação */
         #export-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(17, 17, 27, 0.85); z-index: 1000; justify-content: center; align-items: center; }
-        .modal-content { background-color: #1e1e2e; padding: 20px; border-radius: 8px; width: 80%; max-width: 800px; display: flex; flex-direction: column; box-shadow: 0 10px 40px rgba(0,0,0,0.8); border: 2px solid #313244;}
+        .modal-content { background-color: #1e1e2e; padding: 20px; border-radius: 8px; width: 90%; max-width: 800px; display: flex; flex-direction: column; box-shadow: 0 10px 40px rgba(0,0,0,0.8); border: 2px solid #313244;}
         .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .modal-header h2 { margin: 0; color: #89b4fa; }
-        #json-output { width: 100%; height: 400px; background-color: #11111b; color: #a6e3a1; font-family: 'Courier New', Courier, monospace; padding: 15px; border-radius: 6px; border: 1px solid #45475a; resize: none; box-sizing: border-box; }
+        .modal-header h2 { margin: 0; color: #89b4fa; font-size: 1.2em;}
+        #json-output { width: 100%; height: 50vh; background-color: #11111b; color: #a6e3a1; font-family: 'Courier New', Courier, monospace; padding: 15px; border-radius: 6px; border: 1px solid #45475a; resize: none; box-sizing: border-box; font-size: 14px;}
         #json-output:focus { outline: none; border-color: #cba6f7; }
-        .modal-footer { display: flex; justify-content: flex-end; gap: 15px; margin-top: 15px; }
+        .modal-footer { display: flex; justify-content: flex-end; gap: 15px; margin-top: 15px; flex-wrap: wrap;}
     </style>
 </head>
 <body>
 
 <div class="toolbar">
-    <h1>Editor de Diálogos Visual</h1>
-    <button onclick="addTreeAtCenter()">➕ Novo Nó de Diálogo</button>
-    <button class="btn-organize" onclick="autoOrganizeNodes()">🪄 Organizar Automaticamente</button>
-    <label for="file-upload" class="btn-upload">📁 Carregar JSON</label>
+    <h1>Editor Visual</h1>
+    <button onclick="addTreeAtCenter()">➕ Novo Nó</button>
+    <button class="btn-organize" onclick="autoOrganizeNodes()">🪄 Auto-Organizar</button>
+    <label for="file-upload" class="btn-upload">📁 Carregar</label>
     <input id="file-upload" type="file" accept=".json" style="display: none;" onchange="loadJSON(event)">
     <button class="btn-export" onclick="exportData()">💾 Exportar JSON</button>
+</div>
+
+<div class="zoom-controls">
+    <button onclick="changeZoom(0.1)" title="Aumentar Zoom">➕</button>
+    <button onclick="changeZoom(-0.1)" title="Diminuir Zoom">➖</button>
 </div>
 
 <div id="workspace-container">
@@ -133,7 +143,6 @@
     const WORKSPACE_CENTER = WORKSPACE_SIZE / 2;
     const GRID_SIZE = 20;
     
-    // Variável para armazenar o JSON atual temporariamente
     let currentJSONString = "";
 
     window.onload = () => {
@@ -142,7 +151,27 @@
         addTreeAtCenter();
     };
 
-    // --- SISTEMA DE ZOOM ---
+    // --- SISTEMA DE ZOOM BOTÕES (iPad Support) ---
+    function changeZoom(delta) {
+        const newZoom = Math.min(Math.max(0.2, zoom + delta), 2.5);
+        
+        // Pega o centro da tela antes do zoom
+        const scrollX = workspaceContainer.scrollLeft;
+        const scrollY = workspaceContainer.scrollTop;
+        const centerX = (window.innerWidth / 2 + scrollX) / zoom;
+        const centerY = (window.innerHeight / 2 + scrollY) / zoom;
+
+        zoom = newZoom;
+        workspace.style.transform = `scale(${zoom})`;
+
+        // Ajusta o scroll pro centro da tela
+        workspaceContainer.scrollLeft = (centerX * zoom) - window.innerWidth / 2;
+        workspaceContainer.scrollTop = (centerY * zoom) - window.innerHeight / 2;
+
+        updateConnections();
+    }
+
+    // --- SISTEMA DE ZOOM MOUSE (Desktop) ---
     workspaceContainer.addEventListener('wheel', (e) => {
         e.preventDefault(); 
         const zoomSpeed = 0.001;
@@ -169,28 +198,48 @@
     }, { passive: false });
 
 
-    // --- ARRASTAR E PAN COM SNAP TO GRID ---
+    // --- ARRASTAR E PAN COM SNAP TO GRID (MOUSE & TOUCH) ---
     let draggedNode = null;
     let isPanning = false;
     let offsetX = 0;
     let offsetY = 0;
+    let lastTouchX = 0;
+    let lastTouchY = 0;
 
-    document.addEventListener('mousedown', (e) => {
+    function handleInputStart(e) {
         if (e.target.id === 'workspace' || e.target.id === 'workspace-container') {
             isPanning = true;
+            if (e.touches) {
+                lastTouchX = e.touches[0].clientX;
+                lastTouchY = e.touches[0].clientY;
+            }
         }
-    });
+    }
 
-    document.addEventListener('mousemove', (e) => {
+    document.addEventListener('mousedown', handleInputStart);
+    document.addEventListener('touchstart', handleInputStart, { passive: false });
+
+    function handleMove(e) {
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
         if (isPanning) {
-            workspaceContainer.scrollLeft -= e.movementX;
-            workspaceContainer.scrollTop -= e.movementY;
+            if (e.touches) {
+                workspaceContainer.scrollLeft -= (clientX - lastTouchX);
+                workspaceContainer.scrollTop -= (clientY - lastTouchY);
+                lastTouchX = clientX;
+                lastTouchY = clientY;
+            } else {
+                workspaceContainer.scrollLeft -= e.movementX;
+                workspaceContainer.scrollTop -= e.movementY;
+            }
             updateConnections();
+            if (e.touches) e.preventDefault(); // Impede o "Bouncing" do iOS
         } else if (draggedNode) {
             const workspaceRect = workspace.getBoundingClientRect();
             
-            let rawX = (e.clientX - workspaceRect.left) / zoom - offsetX;
-            let rawY = (e.clientY - workspaceRect.top) / zoom - offsetY;
+            let rawX = (clientX - workspaceRect.left) / zoom - offsetX;
+            let rawY = (clientY - workspaceRect.top) / zoom - offsetY;
 
             let snappedX = Math.round(rawX / GRID_SIZE) * GRID_SIZE;
             let snappedY = Math.round(rawY / GRID_SIZE) * GRID_SIZE;
@@ -199,24 +248,35 @@
             draggedNode.style.top = snappedY + 'px';
             
             updateConnections();
+            if (e.touches) e.preventDefault();
         }
-    });
+    }
 
-    document.addEventListener('mouseup', () => {
+    document.addEventListener('mousemove', handleMove);
+    document.addEventListener('touchmove', handleMove, { passive: false });
+
+    function handleEnd() {
         if (draggedNode) {
             draggedNode.classList.remove('dragging');
             draggedNode = null;
         }
         isPanning = false;
-    });
+    }
 
+    document.addEventListener('mouseup', handleEnd);
+    document.addEventListener('touchend', handleEnd);
+
+    // O ontouchstart foi adicionado diretamente no HTML gerado
     function startDrag(e, nodeElement) {
         if (e.target.tagName.toLowerCase() === 'button') return;
         draggedNode = nodeElement;
         
         const rect = draggedNode.getBoundingClientRect();
-        offsetX = (e.clientX - rect.left) / zoom;
-        offsetY = (e.clientY - rect.top) / zoom;
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+        offsetX = (clientX - rect.left) / zoom;
+        offsetY = (clientY - rect.top) / zoom;
         
         draggedNode.classList.add('dragging');
     }
@@ -384,9 +444,10 @@
         treeDiv.style.left = x + 'px';
         treeDiv.style.top = y + 'px';
         
+        // Adicionada compatibilidade touch (ontouchstart) diretamente na área de arrasto
         treeDiv.innerHTML = `
             <div class="port-in" style="top: 20px;"></div>
-            <div class="drag-handle" onmousedown="startDrag(event, this.parentElement)">
+            <div class="drag-handle" onmousedown="startDrag(event, this.parentElement)" ontouchstart="startDrag(event, this.parentElement)">
                 <span>Nó de Diálogo</span>
                 <button class="remove-btn-small" style="position:relative; top:0; right:0;" onclick="this.parentElement.parentElement.remove(); updateConnections();">X</button>
             </div>
@@ -479,6 +540,7 @@
                 path.setAttribute('stroke-width', '3');
                 path.setAttribute('fill', 'none');
                 path.setAttribute('stroke-linejoin', 'round'); 
+                path.setAttribute('marker-end', 'url(#arrowhead)');
 
                 svgCanvas.appendChild(path);
             }
@@ -532,7 +594,7 @@
 
     function closeModal() {
         document.getElementById('export-modal').style.display = 'none';
-        document.getElementById('btn-copy').innerText = '📋 Copiar Texto'; // Reseta o texto do botão
+        document.getElementById('btn-copy').innerText = '📋 Copiar Texto'; 
     }
 
     function copyJSON() {
