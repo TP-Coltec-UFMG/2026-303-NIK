@@ -118,6 +118,17 @@ shader = ExtResource("3_mpu0y")
 shader_parameter/filter_mode = 0
 shader_parameter/intensity = 1.0
 
+[sub_resource type="Gradient" id="Gradient_nl2jp"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.55709344, 0.7647059, 1)
+colors = PackedColorArray(0.09411765, 0.11764706, 0.14117648, 0.95686275, 0.09239999, 0.11778667, 0.14, 0.92156863, 0.07759488, 0.12796867, 0.17204571, 0.6421782, 0, 0.18133332, 0.34, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uyfw5"]
+gradient = SubResource("Gradient_nl2jp")
+fill = 1
+fill_from = Vector2(1, 0.5)
+fill_to = Vector2(0, 0.5)
+
 [sub_resource type="LabelSettings" id="LabelSettings_6n6ym"]
 font = ExtResource("5_0om2c")
 font_size = 82
@@ -192,15 +203,15 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("4_2tofl")
 
-[node name="ColorRect" type="ColorRect" parent="UI/Menu" unique_id=1683999435]
+[node name="Fundo" type="TextureRect" parent="UI/Menu" unique_id=986251261]
 z_index = -15
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.3137255)
+texture = SubResource("GradientTexture2D_uyfw5")
 
 [node name="Titulo Jogo" type="Label" parent="UI/Menu" unique_id=909425051]
 layout_mode = 1

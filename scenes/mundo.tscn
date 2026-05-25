@@ -17,7 +17,7 @@
 [ext_resource type="Script" uid="uid://pecq7v40nchd" path="res://scripts/river_wave.gd" id="11_g6hv0"]
 [ext_resource type="Texture2D" uid="uid://bpkveyhnxldso" path="res://sprites/props/grass/parallax_1.png" id="12_y4lqn"]
 [ext_resource type="Texture2D" uid="uid://b3xoegfo5dmdy" path="res://sprites/props/grass/parallax_2.png" id="13_wf7jv"]
-[ext_resource type="Script" uid="uid://cnn0sv7bqghri" path="res://scripts/dialogar.gd" id="20_vnytd"]
+[ext_resource type="Script" uid="uid://cnn0sv7bqghri" path="res://scripts/npc.gd" id="20_vnytd"]
 
 [sub_resource type="Environment" id="Environment_kvuet"]
 background_mode = 1

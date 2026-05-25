@@ -49,14 +49,14 @@ func aplicar_configuracoes(config : Dictionary = configuracoes):
 
 	if configuracoes.has("alto_contraste"): if configuracoes["alto_contraste"]:
 		menu.theme = preload("res://themes/alto_contraste.tres")
-		$UI/Menu/ColorRect.color = Color.BLACK
 	else:
 		menu.theme = preload("res://themes/default.tres")
-		$UI/Menu/ColorRect.color = Color(0, 0, 0, 0.1)
 
 	if configuracoes.has("escala_interface"): get_tree().root.content_scale_factor = configuracoes["escala_interface"]
 
-	if configuracoes.has("menu_circular"): menu.menu_circular = configuracoes["menu_circular"]
+	if configuracoes.has("menu_circular"): 
+		menu.menu_circular = configuracoes["menu_circular"]
+		($UI/Menu/Fundo.texture as GradientTexture2D).fill = GradientTexture2D.FILL_RADIAL if configuracoes["menu_circular"] else GradientTexture2D.FILL_LINEAR 
 	
 	var entradas = InputMap.get_actions()
 	for entrada in entradas:

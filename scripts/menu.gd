@@ -178,10 +178,11 @@ func abrir_tela(alvo : String):
 				
 				if not menu_circular:
 					angulo = 0
-					posicao.y -= (posicao_opcao_atual + 1) * distancia_menu
+					posicao.y -= (posicao_opcao_atual) * distancia_menu
 
 				$Telas.position = posicao
 				$Telas.rotation = angulo
+				atualizar_botoes_circulares(-1)
 			else:
 				menus[menu].node.visible = false
 	else:

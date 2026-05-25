@@ -3,201 +3,556 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editor de Diálogos</title>
+    <title>Editor de Diálogos Visual</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #1e1e2e; color: #cdd6f4; margin: 0; padding: 20px; }
-        h1 { color: #89b4fa; text-align: center; }
-        .container { max-width: 1000px; margin: 0 auto; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #11111b; color: #cdd6f4; margin: 0; padding: 0; overflow: hidden; }
         
-        /* Botões */
-        button, .btn-upload { background-color: #fab387; color: #11111b; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s; font-size: 0.95em; }
+        /* Controles do Topo */
+        .toolbar { position: fixed; top: 0; left: 0; right: 0; background-color: #1e1e2e; padding: 15px; display: flex; gap: 15px; align-items: center; z-index: 100; border-bottom: 2px solid #313244; box-shadow: 0 4px 6px rgba(0,0,0,0.3); flex-wrap: wrap;}
+        .toolbar h1 { margin: 0; color: #89b4fa; font-size: 1.2em; margin-right: 20px; }
+        
+        button, .btn-upload { background-color: #fab387; color: #11111b; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s; font-size: 0.9em; }
         button:hover, .btn-upload:hover { background-color: #f9e2af; }
         .btn-upload { background-color: #89b4fa; display: inline-block; } 
         .btn-upload:hover { background-color: #b4befe; }
         .btn-danger { background-color: #f38ba8; }
         .btn-danger:hover { background-color: #eba0ac; }
-        .btn-add-choice { background-color: #a6e3a1; margin-top: 10px; }
+        .btn-add-choice { background-color: #a6e3a1; margin-top: 10px; width: 100%; }
         .btn-add-choice:hover { background-color: #94e2d5; }
-        .btn-export { background-color: #cba6f7; font-size: 1.1em; padding: 12px 20px; width: 100%; margin-top: 20px;}
+        .btn-export { background-color: #cba6f7; }
         .btn-export:hover { background-color: #f5c2e7; }
+        .btn-organize { background-color: #f38ba8; }
+        .btn-organize:hover { background-color: #eba0ac; }
 
-        .top-controls { position: fixed; left: 8px; top: calc(100vh - 88px); display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; align-items: start; justify-content: center;}
+        /* Área de Trabalho (Canvas) */
+        #workspace-container { 
+            position: absolute; top: 60px; left: 0; right: 0; bottom: 0; 
+            overflow: auto; 
+            background-color: #1e1e2e; 
+            cursor: grab; 
+            -ms-overflow-style: none;  
+            scrollbar-width: none;  
+        }
+        #workspace-container::-webkit-scrollbar { display: none; }
+        #workspace-container:active { cursor: grabbing; }
 
-        /* Estruturas (Árvores) */
-        .tree-node { background-color: #313244; padding: 15px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); border-left: 5px solid #89b4fa; }
-        .tree-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 15px; gap: 15px; flex-wrap: wrap; }
+        #workspace { position: relative; width: 100000px; height: 100000px; background-image: radial-gradient(#313244 1px, transparent 1px); background-size: 20px 20px; transform-origin: 0 0;}
         
-        /* Escolhas */
-        .choices-container { margin-left: 20px; border-left: 2px dashed #45475a; padding-left: 15px; }
-        .choice-node { background-color: #45475a; padding: 15px; border-radius: 6px; margin-bottom: 10px; position: relative; }
-        .choice-row { display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
-        .input-group { display: flex; flex-direction: column; flex: 1; min-width: 150px; }
-        
-        /* Subseções de Tags */
-        .tag-section { background-color: #181825; padding: 10px; border-radius: 6px; margin-bottom: 10px; border-left: 3px solid; }
-        .tag-section.gerais { border-color: #cba6f7; }
-        .tag-section.personagem { border-color: #fab387; }
-        .tag-section-title { font-size: 0.8em; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; font-weight: bold; }
-        .tag-section.gerais .tag-section-title { color: #cba6f7; }
-        .tag-section.personagem .tag-section-title { color: #fab387; }
+        #svg-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
 
-        label { font-size: 0.85em; margin-bottom: 4px; color: #a6adc8; }
-        input[type="text"] { background-color: #1e1e2e; color: #cdd6f4; border: 1px solid #585b70; padding: 8px; border-radius: 4px; width: 100%; box-sizing: border-box; }
+        /* Nós */
+        .tree-node { position: absolute; background-color: #313244; width: 350px; border-radius: 8px; box-shadow: 0 8px 15px rgba(0,0,0,0.5); border: 1px solid #45475a; z-index: 10; display: flex; flex-direction: column; cursor: default; transition: top 0.1s ease, left 0.1s ease;}
+        .tree-node.dragging { z-index: 100; opacity: 0.9; box-shadow: 0 12px 25px rgba(0,0,0,0.8); transition: none; }
+        
+        .drag-handle { background-color: #89b4fa; color: #11111b; padding: 10px; border-top-left-radius: 7px; border-top-right-radius: 7px; cursor: grab; font-weight: bold; display: flex; justify-content: space-between; align-items: center; position: relative; }
+        .drag-handle:active { cursor: grabbing; }
+        
+        .node-content { padding: 15px; }
+
+        /* Escolhas e Inputs */
+        .choices-container { margin-top: 15px; border-top: 2px dashed #45475a; padding-top: 10px; }
+        .choice-node { background-color: #45475a; padding: 10px; border-radius: 6px; margin-bottom: 10px; position: relative; }
+        .choice-row { display: flex; gap: 8px; margin-bottom: 5px; }
+        
+        .input-group { display: flex; flex-direction: column; margin-bottom: 8px; }
+        label { font-size: 0.8em; margin-bottom: 4px; color: #a6adc8; font-weight: bold; }
+        input[type="text"] { background-color: #1e1e2e; color: #cdd6f4; border: 1px solid #585b70; padding: 6px; border-radius: 4px; width: 100%; box-sizing: border-box; font-size: 0.9em; }
         input[type="text"]:focus { outline: none; border-color: #89b4fa; }
         
-        .remove-choice { position: absolute; top: 15px; right: 15px; }
+        .btn-toggle { background-color: transparent; color: #a6adc8; border: 1px solid #585b70; width: 100%; text-align: left; padding: 4px 8px; margin-top: 5px; font-size: 0.8em; }
+        .btn-toggle:hover { background-color: #313244; color: #cdd6f4; }
+        
+        /* Sistema de Tags com Ícones */
+        .tag-section { background-color: #181825; padding: 8px; border-radius: 6px; margin-bottom: 8px; border-left: 3px solid; }
+        .tag-section.gerais { border-color: #cba6f7; }
+        .tag-section.personagem { border-color: #fab387; }
+        .tag-section-title { font-size: 0.75em; text-transform: uppercase; margin-bottom: 5px; font-weight: bold; }
+        .tag-section.gerais .tag-section-title { color: #cba6f7; }
+        .tag-section.personagem .tag-section-title { color: #fab387; }
+        
+        .tag-input-row { display: flex; align-items: center; gap: 6px; margin-bottom: 5px; }
+        .tag-icon { font-size: 0.9em; min-width: 18px; text-align: center; cursor: help;}
+        
+        .remove-btn-small { position: absolute; top: -10px; right: -5px; background: #f38ba8; color: #11111b; border: none; border-radius: 3px; font-size: 0.7em; cursor: pointer; padding: 2px 5px; z-index: 5;}
 
-        /* Preview */
-        pre { background-color: #11111b; padding: 15px; border-radius: 8px; overflow-x: auto; color: #a6e3a1; display: none;}
+        /* Bolinhas Visuais */
+        .port-in { position: absolute; left: -6px; top: 50%; transform: translateY(-50%); width: 12px; height: 12px; background-color: #89b4fa; border-radius: 50%; border: 2px solid #1e1e2e; z-index: 10; box-shadow: 0 0 5px rgba(0,0,0,0.5); }
+        .port-out { position: absolute; right: -6px; top: 50%; transform: translateY(-50%); width: 12px; height: 12px; background-color: #a6e3a1; border-radius: 50%; border: 2px solid #1e1e2e; z-index: 10; box-shadow: 0 0 5px rgba(0,0,0,0.5); }
+
+        /* Modal de Exportação */
+        #export-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(17, 17, 27, 0.85); z-index: 1000; justify-content: center; align-items: center; }
+        .modal-content { background-color: #1e1e2e; padding: 20px; border-radius: 8px; width: 80%; max-width: 800px; display: flex; flex-direction: column; box-shadow: 0 10px 40px rgba(0,0,0,0.8); border: 2px solid #313244;}
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .modal-header h2 { margin: 0; color: #89b4fa; }
+        #json-output { width: 100%; height: 400px; background-color: #11111b; color: #a6e3a1; font-family: 'Courier New', Courier, monospace; padding: 15px; border-radius: 6px; border: 1px solid #45475a; resize: none; box-sizing: border-box; }
+        #json-output:focus { outline: none; border-color: #cba6f7; }
+        .modal-footer { display: flex; justify-content: flex-end; gap: 15px; margin-top: 15px; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Editor de Diálogos</h1>
-    
-    <div class="top-controls">
-        <button onclick="addTree()">➕ Nova Árvore de Diálogo</button>
-        <label for="file-upload" class="btn-upload">📁 Carregar JSON Existente</label>
-        <input id="file-upload" type="file" accept=".json" style="display: none;" onchange="loadJSON(event)">
+<div class="toolbar">
+    <h1>Editor de Diálogos Visual</h1>
+    <button onclick="addTreeAtCenter()">➕ Novo Nó de Diálogo</button>
+    <button class="btn-organize" onclick="autoOrganizeNodes()">🪄 Organizar Automaticamente</button>
+    <label for="file-upload" class="btn-upload">📁 Carregar JSON</label>
+    <input id="file-upload" type="file" accept=".json" style="display: none;" onchange="loadJSON(event)">
+    <button class="btn-export" onclick="exportData()">💾 Exportar JSON</button>
+</div>
+
+<div id="workspace-container">
+    <div id="workspace">
+        <svg id="svg-canvas"></svg>
+        <div id="trees-container"></div>
     </div>
+</div>
 
-    <div id="trees-container"></div>
-
-    <button class="btn-export" onclick="exportData()">💾 Exportar para JSON</button>
-    <pre id="json-preview"></pre>
+<div id="export-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Pré-visualização do JSON</h2>
+            <button class="btn-danger" onclick="closeModal()">X</button>
+        </div>
+        <textarea id="json-output" readonly></textarea>
+        <div class="modal-footer">
+            <button class="btn-upload" id="btn-copy" onclick="copyJSON()">📋 Copiar Texto</button>
+            <button class="btn-export" onclick="downloadJSON()">💾 Baixar Arquivo</button>
+        </div>
+    </div>
 </div>
 
 <script>
+    const workspaceContainer = document.getElementById('workspace-container');
+    const workspace = document.getElementById('workspace');
     const treesContainer = document.getElementById('trees-container');
+    const svgCanvas = document.getElementById('svg-canvas');
+    let nodeIdCounter = 0;
+    let zoom = 1;
+
+    const WORKSPACE_SIZE = 100000;
+    const WORKSPACE_CENTER = WORKSPACE_SIZE / 2;
+    const GRID_SIZE = 20;
+    
+    // Variável para armazenar o JSON atual temporariamente
+    let currentJSONString = "";
+
+    window.onload = () => {
+        workspaceContainer.scrollLeft = WORKSPACE_CENTER - window.innerWidth / 2;
+        workspaceContainer.scrollTop = WORKSPACE_CENTER - window.innerHeight / 2;
+        addTreeAtCenter();
+    };
+
+    // --- SISTEMA DE ZOOM ---
+    workspaceContainer.addEventListener('wheel', (e) => {
+        e.preventDefault(); 
+        const zoomSpeed = 0.001;
+        const delta = e.deltaY * -zoomSpeed;
+        const newZoom = Math.min(Math.max(0.2, zoom + delta), 2.5); 
+
+        const rect = workspaceContainer.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        const scrollX = workspaceContainer.scrollLeft;
+        const scrollY = workspaceContainer.scrollTop;
+
+        const targetX = (mouseX + scrollX) / zoom;
+        const targetY = (mouseY + scrollY) / zoom;
+
+        zoom = newZoom;
+        workspace.style.transform = `scale(${zoom})`;
+
+        workspaceContainer.scrollLeft = (targetX * zoom) - mouseX;
+        workspaceContainer.scrollTop = (targetY * zoom) - mouseY;
+
+        updateConnections();
+    }, { passive: false });
+
+
+    // --- ARRASTAR E PAN COM SNAP TO GRID ---
+    let draggedNode = null;
+    let isPanning = false;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    document.addEventListener('mousedown', (e) => {
+        if (e.target.id === 'workspace' || e.target.id === 'workspace-container') {
+            isPanning = true;
+        }
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (isPanning) {
+            workspaceContainer.scrollLeft -= e.movementX;
+            workspaceContainer.scrollTop -= e.movementY;
+            updateConnections();
+        } else if (draggedNode) {
+            const workspaceRect = workspace.getBoundingClientRect();
+            
+            let rawX = (e.clientX - workspaceRect.left) / zoom - offsetX;
+            let rawY = (e.clientY - workspaceRect.top) / zoom - offsetY;
+
+            let snappedX = Math.round(rawX / GRID_SIZE) * GRID_SIZE;
+            let snappedY = Math.round(rawY / GRID_SIZE) * GRID_SIZE;
+
+            draggedNode.style.left = snappedX + 'px';
+            draggedNode.style.top = snappedY + 'px';
+            
+            updateConnections();
+        }
+    });
+
+    document.addEventListener('mouseup', () => {
+        if (draggedNode) {
+            draggedNode.classList.remove('dragging');
+            draggedNode = null;
+        }
+        isPanning = false;
+    });
+
+    function startDrag(e, nodeElement) {
+        if (e.target.tagName.toLowerCase() === 'button') return;
+        draggedNode = nodeElement;
+        
+        const rect = draggedNode.getBoundingClientRect();
+        offsetX = (e.clientX - rect.left) / zoom;
+        offsetY = (e.clientY - rect.top) / zoom;
+        
+        draggedNode.classList.add('dragging');
+    }
+
+    function addTreeAtCenter() {
+        let rawX = (workspaceContainer.scrollLeft + (window.innerWidth / 2)) / zoom - 175;
+        let rawY = (workspaceContainer.scrollTop + (window.innerHeight / 2)) / zoom - 100;
+        
+        let snappedX = Math.round(rawX / GRID_SIZE) * GRID_SIZE;
+        let snappedY = Math.round(rawY / GRID_SIZE) * GRID_SIZE;
+        
+        addTree(snappedX, snappedY);
+    }
+
+    // --- ALGORITMO DE AUTO-ORGANIZAÇÃO ---
+    function autoOrganizeNodes() {
+        const treeNodes = document.querySelectorAll('.tree-node');
+        let nodesData = [];
+        
+        treeNodes.forEach(node => {
+            const id = node.querySelector('.tree-id-input').value.trim();
+            const escolhas = [];
+            node.querySelectorAll('.choice-next').forEach(input => {
+                if (input.value.trim()) escolhas.push({ proxima_arvore: input.value.trim() });
+            });
+            nodesData.push({ id, escolhas, domElement: node });
+        });
+
+        const incoming = {};
+        nodesData.forEach(node => {
+            incoming[node.id] = incoming[node.id] || 0;
+            if (node.escolhas) {
+                node.escolhas.forEach(c => {
+                    if (c.proxima_arvore) incoming[c.proxima_arvore] = (incoming[c.proxima_arvore] || 0) + 1;
+                });
+            }
+        });
+
+        let roots = nodesData.filter(n => (incoming[n.id] || 0) === 0);
+        if (roots.length === 0 && nodesData.length > 0) roots = [nodesData[0]];
+
+        let placed = new Set();
+        let currentLevel = roots;
+        let col = 0;
+
+        const startX = Math.round((WORKSPACE_CENTER - (window.innerWidth / 2) + 100) / GRID_SIZE) * GRID_SIZE;
+        const startY = Math.round((WORKSPACE_CENTER - (window.innerHeight / 2) + 100) / GRID_SIZE) * GRID_SIZE;
+
+        while (currentLevel.length > 0) {
+            let nextLevel = [];
+            let currentY = startY; 
+
+            currentLevel.forEach((node) => {
+                if (!placed.has(node.id)) {
+                    const newX = Math.round((startX + (col * 500)) / GRID_SIZE) * GRID_SIZE;
+                    const newY = Math.round(currentY / GRID_SIZE) * GRID_SIZE;
+                    
+                    node.domElement.style.left = newX + 'px';
+                    node.domElement.style.top = newY + 'px';
+                    
+                    const nodeHeight = node.domElement.offsetHeight || 350;
+                    currentY += nodeHeight + 80; 
+                    
+                    placed.add(node.id);
+
+                    if (node.escolhas) {
+                        node.escolhas.forEach(c => {
+                            if (c.proxima_arvore) {
+                                let child = nodesData.find(n => n.id === c.proxima_arvore);
+                                if (child && !placed.has(child.id) && !nextLevel.includes(child)) {
+                                    nextLevel.push(child);
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+
+            if (nextLevel.length === 0 && placed.size < nodesData.length) {
+                let unplaced = nodesData.find(n => !placed.has(n.id));
+                if (unplaced) nextLevel.push(unplaced);
+            }
+
+            currentLevel = nextLevel;
+            col++;
+        }
+
+        setTimeout(updateConnections, 350); 
+    }
+
+    function toggleConfig(btn) {
+        const container = btn.nextElementSibling;
+        if (container.style.display === 'none') {
+            container.style.display = 'block';
+            btn.innerText = '▼ Ocultar Tags';
+        } else {
+            container.style.display = 'none';
+            btn.innerText = '▶ Expandir Tags';
+        }
+        updateConnections(); 
+    }
 
     function createChoiceHTML() {
         const choiceDiv = document.createElement('div');
         choiceDiv.className = 'choice-node';
         choiceDiv.innerHTML = `
-            <button class="btn-danger remove-choice" onclick="this.parentElement.remove()">X</button>
+            <div class="port-out"></div>
+            <button class="remove-btn-small" onclick="this.parentElement.remove(); updateConnections();">X</button>
+            
             <div class="choice-row">
                 <div class="input-group" style="flex: 2;">
-                    <label>Texto da Escolha (O que o jogador diz)</label>
-                    <input type="text" class="choice-text" placeholder="Ex: Estou em busca de uma aventura.">
+                    <label>Texto da Escolha</label>
+                    <input type="text" class="choice-text" placeholder="Ex: Estou pronto.">
                 </div>
                 <div class="input-group" style="flex: 1;">
-                    <label>Próxima Árvore (ID)</label>
-                    <input type="text" class="choice-next" placeholder="Ex: npc_conversa_02">
+                    <label>ID Destino</label>
+                    <input type="text" class="choice-next" placeholder="Ex: npc_02" oninput="updateConnections()">
                 </div>
             </div>
             
-            <div class="tag-section gerais">
-                <div class="tag-section-title">Tags Gerais (Mundo / Quests)</div>
-                <div class="choice-row">
-                    <div class="input-group">
-                        <label>Necessárias (,)</label>
-                        <input type="text" class="choice-req-tags" placeholder="Ex: mago">
+            <button class="btn-toggle" onclick="toggleConfig(this)">▶ Expandir Tags</button>
+            <div class="tags-container" style="display: none; margin-top: 10px;">
+                
+                <div class="tag-section gerais">
+                    <div class="tag-section-title">Gerais</div>
+                    <div class="tag-input-row">
+                        <span class="tag-icon" title="Tags Necessárias">❗</span>
+                        <input type="text" class="choice-req-tags" placeholder="Necessárias (,)">
                     </div>
-                    <div class="input-group">
-                        <label>Proibidas (,)</label>
-                        <input type="text" class="choice-forbid-tags" placeholder="Ex: cometeu_crime">
+                    <div class="tag-input-row">
+                        <span class="tag-icon" title="Tags Proibidas">❌</span>
+                        <input type="text" class="choice-forbid-tags" placeholder="Proibidas (,)">
                     </div>
-                    <div class="input-group">
-                        <label>Adicionadas (,)</label>
-                        <input type="text" class="choice-add-tags" placeholder="Ex: quest_aceita">
+                    <div class="tag-input-row">
+                        <span class="tag-icon" title="Tags Adicionadas">➕</span>
+                        <input type="text" class="choice-add-tags" placeholder="Adicionadas (,)">
                     </div>
                 </div>
-            </div>
 
-            <div class="tag-section personagem">
-                <div class="tag-section-title">Tags de Relacionamento</div>
-                <div class="choice-row">
-                    <div class="input-group">
-                        <label>Necessárias (,)</label>
-                        <input type="text" class="choice-char-req-tags" placeholder="Ex: amigo">
+                <div class="tag-section personagem">
+                    <div class="tag-section-title">Personagem</div>
+                    <div class="tag-input-row">
+                        <span class="tag-icon" title="Tags Necessárias">❗</span>
+                        <input type="text" class="choice-char-req-tags" placeholder="Necessárias (,)">
                     </div>
-                    <div class="input-group">
-                        <label>Proibidas (,)</label>
-                        <input type="text" class="choice-char-forbid-tags" placeholder="Ex: inimigo">
+                    <div class="tag-input-row">
+                        <span class="tag-icon" title="Tags Proibidas">❌</span>
+                        <input type="text" class="choice-char-forbid-tags" placeholder="Proibidas (,)">
                     </div>
-                    <div class="input-group">
-                        <label>Adicionadas (,)</label>
-                        <input type="text" class="choice-char-add-tags" placeholder="Ex: se_apresentou">
+                    <div class="tag-input-row">
+                        <span class="tag-icon" title="Tags Adicionadas">➕</span>
+                        <input type="text" class="choice-char-add-tags" placeholder="Adicionadas (,)">
                     </div>
                 </div>
+
             </div>
         `;
         return choiceDiv;
     }
 
-    function addTree() {
+    function addTree(x, y) {
+        nodeIdCounter++;
         const treeDiv = document.createElement('div');
         treeDiv.className = 'tree-node';
+        treeDiv.style.left = x + 'px';
+        treeDiv.style.top = y + 'px';
+        
         treeDiv.innerHTML = `
-            <div class="tree-header">
-                <div class="input-group" style="flex: 1; min-width: 150px;">
-                    <label style="color: #89b4fa; font-weight: bold;">ID da Árvore:</label>
-                    <input type="text" class="tree-id-input" placeholder="Ex: npc_01">
+            <div class="port-in" style="top: 20px;"></div>
+            <div class="drag-handle" onmousedown="startDrag(event, this.parentElement)">
+                <span>Nó de Diálogo</span>
+                <button class="remove-btn-small" style="position:relative; top:0; right:0;" onclick="this.parentElement.parentElement.remove(); updateConnections();">X</button>
+            </div>
+            <div class="node-content">
+                <div class="input-group">
+                    <label style="color: #89b4fa;">ID do Nó:</label>
+                    <input type="text" class="tree-id-input" placeholder="Ex: npc_01" value="no_${nodeIdCounter}" oninput="updateConnections()">
                 </div>
-                <div class="input-group" style="flex: 1; min-width: 150px;">
-                    <label style="color: #fab387; font-weight: bold;">Personagem:</label>
+                <div class="input-group">
+                    <label style="color: #fab387;">Personagem:</label>
                     <input type="text" class="tree-char-input" placeholder="Ex: Rei Paulo">
                 </div>
-                <div class="input-group" style="flex: 2; min-width: 250px;">
-                    <label style="color: #a6e3a1; font-weight: bold;">Texto / Fala:</label>
+                <div class="input-group">
+                    <label style="color: #a6e3a1;">Texto da Fala:</label>
                     <input type="text" class="tree-text-input" placeholder="Ex: Olá, viajante!">
                 </div>
-                <button class="btn-danger" onclick="this.parentElement.parentElement.remove()" style="height: 38px;">Remover</button>
+                
+                <div class="choices-container"></div>
+                <button class="btn-add-choice" onclick="addChoiceToTree(this)">+ Escolha</button>
             </div>
-            <div class="choices-container"></div>
-            <button class="btn-add-choice" onclick="addChoiceToTree(this)">+ Adicionar Escolha</button>
         `;
         treesContainer.appendChild(treeDiv);
+        updateConnections();
         return treeDiv;
     }
 
     function addChoiceToTree(button) {
         const choicesContainer = button.previousElementSibling;
         choicesContainer.appendChild(createChoiceHTML());
+        updateConnections();
+    }
+
+    function updateConnections() {
+        svgCanvas.innerHTML = `
+            <defs>
+                <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                    <polygon points="0 0, 10 3.5, 0 7" fill="#a6e3a1" />
+                </marker>
+            </defs>
+        `;
+
+        const choices = document.querySelectorAll('.choice-node');
+        const nodes = document.querySelectorAll('.tree-node');
+        const workspaceRect = workspace.getBoundingClientRect();
+
+        choices.forEach((choice, index) => {
+            const nextId = choice.querySelector('.choice-next').value.trim();
+            if (!nextId) return;
+
+            let targetNode = null;
+            nodes.forEach(n => {
+                if (n.querySelector('.tree-id-input').value.trim() === nextId) {
+                    targetNode = n;
+                }
+            });
+
+            if (targetNode) {
+                const outPort = choice.querySelector('.port-out');
+                const inPort = targetNode.querySelector('.port-in');
+                
+                const startRect = outPort.getBoundingClientRect();
+                const endRect = inPort.getBoundingClientRect();
+
+                const startX = (startRect.left + (startRect.width / 2) - workspaceRect.left) / zoom;
+                const startY = (startRect.top + (startRect.height / 2) - workspaceRect.top) / zoom;
+                
+                const endX = (endRect.left + (endRect.width / 2) - workspaceRect.left) / zoom;
+                const endY = (endRect.top + (endRect.height / 2) - workspaceRect.top) / zoom;
+
+                let pathD = '';
+                const staggerOffset = Math.abs(Math.round(startY) % 50); 
+                const startOffset = 25 + staggerOffset; 
+
+                if (endX > startX + startOffset + 30) {
+                    const midX = startX + startOffset + (endX - (startX + startOffset)) / 2;
+                    pathD = `M ${startX} ${startY} L ${midX} ${startY} L ${midX} ${endY} L ${endX} ${endY}`;
+                } else {
+                    const midY = startY + (endY - startY) / 2 + staggerOffset;
+                    pathD = `M ${startX} ${startY} 
+                             L ${startX + startOffset} ${startY} 
+                             L ${startX + startOffset} ${midY} 
+                             L ${endX - 30 - staggerOffset} ${midY} 
+                             L ${endX - 30 - staggerOffset} ${endY} 
+                             L ${endX} ${endY}`;
+                }
+
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                path.setAttribute('d', pathD);
+                path.setAttribute('stroke', '#a6e3a1');
+                path.setAttribute('stroke-width', '3');
+                path.setAttribute('fill', 'none');
+                path.setAttribute('stroke-linejoin', 'round'); 
+
+                svgCanvas.appendChild(path);
+            }
+        });
     }
 
     function parseTags(inputString) {
         return inputString ? inputString.split(',').map(s => s.trim()).filter(s => s !== "") : [];
     }
 
+    // --- SISTEMA DE EXPORTAÇÃO MODIFICADO ---
     function exportData() {
         const treesData = [];
         const treeNodes = document.querySelectorAll('.tree-node');
 
         treeNodes.forEach(treeNode => {
-            const treeId = treeNode.querySelector('.tree-id-input').value.trim();
-            const treeChar = treeNode.querySelector('.tree-char-input').value.trim();
-            const treeTexto = treeNode.querySelector('.tree-text-input').value.trim();
             const escolhasData = [];
-            
             const choiceNodes = treeNode.querySelectorAll('.choice-node');
+            
             choiceNodes.forEach(choiceNode => {
                 escolhasData.push({
                     texto: choiceNode.querySelector('.choice-text').value.trim(),
+                    
                     tags_necessarias: parseTags(choiceNode.querySelector('.choice-req-tags').value),
                     tags_proibidas: parseTags(choiceNode.querySelector('.choice-forbid-tags').value),
                     tags_adicionadas: parseTags(choiceNode.querySelector('.choice-add-tags').value),
+                    
                     tags_personagem_necessarias: parseTags(choiceNode.querySelector('.choice-char-req-tags').value),
                     tags_personagem_proibidas: parseTags(choiceNode.querySelector('.choice-char-forbid-tags').value),
                     tags_personagem_adicionadas: parseTags(choiceNode.querySelector('.choice-char-add-tags').value),
+                    
                     proxima_arvore: choiceNode.querySelector('.choice-next').value.trim()
                 });
             });
 
-            treesData.push({ id: treeId, personagem: treeChar, texto: treeTexto, escolhas: escolhasData });
+            treesData.push({ 
+                id: treeNode.querySelector('.tree-id-input').value.trim(), 
+                personagem: treeNode.querySelector('.tree-char-input').value.trim(), 
+                texto: treeNode.querySelector('.tree-text-input').value.trim(),
+                x: treeNode.style.left,
+                y: treeNode.style.top,
+                escolhas: escolhasData 
+            });
         });
 
-        const jsonString = JSON.stringify(treesData, null, 4);
-        const previewEl = document.getElementById('json-preview');
-        previewEl.style.display = 'block';
-        previewEl.textContent = jsonString;
+        // Gera a string do JSON e joga dentro do Modal
+        currentJSONString = JSON.stringify(treesData, null, 4);
+        document.getElementById('json-output').value = currentJSONString;
+        document.getElementById('export-modal').style.display = 'flex';
+    }
 
-        const blob = new Blob([jsonString], { type: 'application/json' });
+    function closeModal() {
+        document.getElementById('export-modal').style.display = 'none';
+        document.getElementById('btn-copy').innerText = '📋 Copiar Texto'; // Reseta o texto do botão
+    }
+
+    function copyJSON() {
+        navigator.clipboard.writeText(currentJSONString).then(() => {
+            const btn = document.getElementById('btn-copy');
+            btn.innerText = '✅ Copiado!';
+            setTimeout(() => {
+                btn.innerText = '📋 Copiar Texto';
+            }, 2000);
+        }).catch(err => {
+            alert("Erro ao copiar para a área de transferência: " + err);
+        });
+    }
+
+    function downloadJSON() {
+        const blob = new Blob([currentJSONString], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'dialogos.json';
+        a.download = 'dialogos_visuais.json';
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
@@ -214,8 +569,17 @@
                 const loadedData = JSON.parse(e.target.result);
                 treesContainer.innerHTML = '';
                 
+                let needsLayout = false;
+
                 loadedData.forEach(treeData => {
-                    const treeDiv = addTree();
+                    if (treeData.x === undefined || treeData.y === undefined) {
+                        needsLayout = true;
+                    }
+                    
+                    const x = treeData.x ? parseInt(treeData.x) : WORKSPACE_CENTER;
+                    const y = treeData.y ? parseInt(treeData.y) : WORKSPACE_CENTER;
+                    
+                    const treeDiv = addTree(x, y);
                     treeDiv.querySelector('.tree-id-input').value = treeData.id || '';
                     treeDiv.querySelector('.tree-char-input').value = treeData.personagem || '';
                     treeDiv.querySelector('.tree-text-input').value = treeData.texto || '';
@@ -228,20 +592,41 @@
                             choiceDiv.querySelector('.choice-text').value = choiceData.texto || '';
                             choiceDiv.querySelector('.choice-next').value = choiceData.proxima_arvore || '';
                             
-                            // Gerais
                             choiceDiv.querySelector('.choice-req-tags').value = (choiceData.tags_necessarias || []).join(', ');
                             choiceDiv.querySelector('.choice-forbid-tags').value = (choiceData.tags_proibidas || []).join(', ');
                             choiceDiv.querySelector('.choice-add-tags').value = (choiceData.tags_adicionadas || []).join(', ');
                             
-                            // Personagem
                             choiceDiv.querySelector('.choice-char-req-tags').value = (choiceData.tags_personagem_necessarias || []).join(', ');
                             choiceDiv.querySelector('.choice-char-forbid-tags').value = (choiceData.tags_personagem_proibidas || []).join(', ');
                             choiceDiv.querySelector('.choice-char-add-tags').value = (choiceData.tags_personagem_adicionadas || []).join(', ');
                             
+                            choiceDiv.querySelector('.tags-container').style.display = 'none';
+                            choiceDiv.querySelector('.btn-toggle').innerText = '▶ Expandir Tags';
+
                             choicesContainer.appendChild(choiceDiv);
                         });
                     }
                 });
+
+                if (needsLayout) {
+                    setTimeout(() => {
+                        autoOrganizeNodes();
+                        const firstNode = document.querySelector('.tree-node');
+                        if (firstNode) {
+                            const nx = parseInt(firstNode.style.left);
+                            const ny = parseInt(firstNode.style.top);
+                            workspaceContainer.scrollLeft = (nx * zoom) - window.innerWidth / 2 + 175;
+                            workspaceContainer.scrollTop = (ny * zoom) - window.innerHeight / 2 + 100;
+                        }
+                    }, 100);
+                } else {
+                    const firstX = parseInt(loadedData[0].x);
+                    const firstY = parseInt(loadedData[0].y);
+                    workspaceContainer.scrollLeft = (firstX * zoom) - window.innerWidth / 2 + 175;
+                    workspaceContainer.scrollTop = (firstY * zoom) - window.innerHeight / 2 + 100;
+                    updateConnections();
+                }
+
             } catch (error) {
                 alert("Erro ao ler o JSON!\n" + error);
             }
@@ -249,8 +634,6 @@
         reader.readAsText(file);
         event.target.value = '';
     }
-
-    addTree();
 </script>
 
 </body>

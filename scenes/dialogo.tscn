@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://5vdr3rv6ffgc"]
 
-[ext_resource type="Script" uid="uid://ct6xy2rxxijrd" path="res://scripts/gerenciador_dialogo.gd" id="1_hbhh0"]
+[ext_resource type="Script" uid="uid://ct6xy2rxxijrd" path="res://scripts/dialogos/gerenciador_dialogo.gd" id="1_hbhh0"]
 [ext_resource type="Texture2D" uid="uid://sxja7w7ats7l" path="res://sprites/dialogo/personagens/Nikole.png" id="2_hbhh0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hbhh0"]

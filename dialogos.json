@@ -2,10 +2,12 @@
 	{
 		"id": "pedro",
 		"personagem": "Pedro",
-		"texto": "",
+		"texto": "BUAAAA",
+		"x": "49160px",
+		"y": "49620px",
 		"escolhas": [
 			{
-				"texto": "*se apresentar*",
+				"texto": "*Perguntar o que está acontecendo*",
 				"tags_necessarias": [],
 				"tags_proibidas": [],
 				"tags_adicionadas": [],
@@ -19,7 +21,7 @@
 				"proxima_arvore": "pedro_apresentacao_0"
 			},
 			{
-				"texto": "*sair*",
+				"texto": "*Sair*",
 				"tags_necessarias": [],
 				"tags_proibidas": [],
 				"tags_adicionadas": [],
@@ -33,10 +35,12 @@
 	{
 		"id": "pedro_apresentacao_0",
 		"personagem": "Pedro",
-		"texto": "Oi Nikole...",
+		"texto": "Eu to tiste 🥺",
+		"x": "49660px",
+		"y": "49620px",
 		"escolhas": [
 			{
-				"texto": "*perguntar o que está acontecendo*",
+				"texto": "*Perguntar o porquê*",
 				"tags_necessarias": [],
 				"tags_proibidas": [],
 				"tags_adicionadas": [],
@@ -44,16 +48,28 @@
 				"tags_personagem_proibidas": [],
 				"tags_personagem_adicionadas": [],
 				"proxima_arvore": "pedro_apresentacao_1"
+			},
+			{
+				"texto": "*Abraçar*",
+				"tags_necessarias": [],
+				"tags_proibidas": [],
+				"tags_adicionadas": [],
+				"tags_personagem_necessarias": [],
+				"tags_personagem_proibidas": [],
+				"tags_personagem_adicionadas": [],
+				"proxima_arvore": "pedro_apresentacao_1_1"
 			}
 		]
 	},
 	{
 		"id": "pedro_apresentacao_1",
 		"personagem": "Pedro",
-		"texto": "Eu tô muito triste",
+		"texto": "Num sei... 😢",
+		"x": "50160px",
+		"y": "49620px",
 		"escolhas": [
 			{
-				"texto": "*perguntar o por quê*",
+				"texto": "*Perguntar onde estão os pais dele*",
 				"tags_necessarias": [],
 				"tags_proibidas": [],
 				"tags_adicionadas": [],
@@ -63,15 +79,13 @@
 				"proxima_arvore": "pedro_apresentacao_1_0"
 			},
 			{
-				"texto": "*mandar virar homem*",
+				"texto": "*Tentar consolar*",
 				"tags_necessarias": [],
 				"tags_proibidas": [],
 				"tags_adicionadas": [],
 				"tags_personagem_necessarias": [],
 				"tags_personagem_proibidas": [],
-				"tags_personagem_adicionadas": [
-                    "ofendeu"
-				],
+				"tags_personagem_adicionadas": [],
 				"proxima_arvore": "pedro_apresentacao_1_1"
 			}
 		]
@@ -79,13 +93,17 @@
 	{
 		"id": "pedro_apresentacao_1_1",
 		"personagem": "Pedro",
-		"texto": "Vá se fuder",
+		"texto": "BUUAAAAAA!!",
+		"x": "50160px",
+		"y": "50260px",
 		"escolhas": [
 			{
-				"texto": "*sair*",
+				"texto": "*Sair*",
 				"tags_necessarias": [],
 				"tags_proibidas": [],
-				"tags_adicionadas": [],
+				"tags_adicionadas": [
+                    "o_que_esta_acontecendo?"
+				],
 				"tags_personagem_necessarias": [],
 				"tags_personagem_proibidas": [],
 				"tags_personagem_adicionadas": [],
@@ -96,10 +114,12 @@
 	{
 		"id": "pedro_apresentacao_1_0",
 		"personagem": "Pedro",
-		"texto": "Não sei...",
+		"texto": "EU NUM SEEEEI! 😭",
+		"x": "50660px",
+		"y": "49620px",
 		"escolhas": [
 			{
-				"texto": "*sair*",
+				"texto": "*Sair*",
 				"tags_necessarias": [],
 				"tags_proibidas": [],
 				"tags_adicionadas": [
