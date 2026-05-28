@@ -1,23 +1,122 @@
 [gd_scene format=3 uid="uid://wd7up7mo5b5"]
 
 [ext_resource type="Script" uid="uid://wf151atkywwk" path="res://scripts/barra.gd" id="1_3d7gl"]
+[ext_resource type="Texture2D" uid="uid://c0d1bphg4iw1t" path="res://sprites/minigames/ritmo/botao_cura.png" id="2_0mvlm"]
+[ext_resource type="Texture2D" uid="uid://d3lsvrlyghwoy" path="res://sprites/minigames/ritmo/botao_defesa.png" id="3_skxrl"]
+[ext_resource type="Texture2D" uid="uid://cfq5teo7old7r" path="res://sprites/minigames/ritmo/botao_ataque.png" id="4_o2fig"]
+[ext_resource type="Texture2D" uid="uid://dfvmsh12tqwo4" path="res://sprites/minigames/ritmo/nikole_corpo.png" id="5_o2fig"]
+[ext_resource type="Texture2D" uid="uid://clb8r4drhnuqq" path="res://sprites/minigames/ritmo/nikole_cabeça.png" id="6_kx1gp"]
+[ext_resource type="Texture2D" uid="uid://c7ghwlv21cys5" path="res://sprites/minigames/ritmo/vorcaro.png" id="7_wqv1h"]
+[ext_resource type="Texture2D" uid="uid://dcecw52dd7743" path="res://sprites/minigames/ritmo/fundo.png" id="8_niss5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_niss5"]
+font_size = 48
 
 [node name="Ritmo" type="Node3D" unique_id=1505736203]
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1186081019]
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1521464532]
+[node name="Fundo" type="TextureRect" parent="UI" unique_id=410503023]
+z_index = -999
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_niss5")
 
-[node name="Barra" type="Control" parent="." unique_id=2117002390]
+[node name="VidaNikole" type="Control" parent="UI" unique_id=2117002390]
 layout_mode = 3
-anchors_preset = 0
-offset_left = 7.0
-offset_top = 27.0
-offset_right = 781.0
-offset_bottom = 68.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -56.0
+offset_right = 648.0
+offset_bottom = -8.0
+grow_vertical = 0
 script = ExtResource("1_3d7gl")
-preenchimento = 0.2
+preenchimento = 0.387
 cor_fundo = Color(0.12941177, 0.14509805, 0.34117648, 1)
 cor_contorno = Color(0.31, 0.64349985, 1, 1)
 cor_preenchimento = Color(0.05490196, 0.3529412, 0.7490196, 1)
 metadata/_custom_type_script = "uid://wf151atkywwk"
+
+[node name="Label" type="Label" parent="UI/VidaNikole" unique_id=835914428]
+layout_mode = 0
+offset_top = -64.0
+offset_right = 40.0
+text = "Nikole"
+label_settings = SubResource("LabelSettings_niss5")
+
+[node name="VidaInimigo" type="Control" parent="UI" unique_id=1037253994]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -648.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 56.0
+grow_horizontal = 0
+script = ExtResource("1_3d7gl")
+preenchimento = 1.0
+direcao = 1
+cor_fundo = Color(0.2784314, 0.105882354, 0.17254902, 1)
+cor_contorno = Color(1, 0.30588236, 0.36078432, 1)
+cor_preenchimento = Color(0.6666667, 0.078431375, 0.22352941, 1)
+metadata/_custom_type_script = "uid://wf151atkywwk"
+
+[node name="Label" type="Label" parent="UI/VidaInimigo" unique_id=804109748]
+layout_mode = 0
+offset_top = 48.0
+offset_right = 640.0
+offset_bottom = 112.0
+text = "Vorkaro"
+label_settings = SubResource("LabelSettings_niss5")
+horizontal_alignment = 2
+
+[node name="BotaoCura" type="TextureRect" parent="UI" unique_id=151813378]
+offset_left = 1109.0
+offset_top = 491.0
+offset_right = 1220.0
+offset_bottom = 598.0
+texture = ExtResource("2_0mvlm")
+
+[node name="BotaoDefesa" type="TextureRect" parent="UI" unique_id=945104024]
+offset_left = 949.0
+offset_top = 523.0
+offset_right = 1060.0
+offset_bottom = 630.0
+texture = ExtResource("3_skxrl")
+
+[node name="BotaoAtaque" type="TextureRect" parent="UI" unique_id=236147306]
+offset_left = 789.0
+offset_top = 555.0
+offset_right = 900.0
+offset_bottom = 662.0
+texture = ExtResource("4_o2fig")
+
+[node name="Nikole" type="TextureRect" parent="UI" unique_id=1924272399]
+offset_left = 183.0
+offset_top = 375.0
+offset_right = 390.0
+offset_bottom = 550.0
+texture = ExtResource("5_o2fig")
+
+[node name="Cabeca" type="TextureRect" parent="UI/Nikole" unique_id=1177676101]
+layout_mode = 0
+offset_left = -64.0
+offset_top = -175.0
+offset_right = 231.0
+offset_bottom = 112.0
+texture = ExtResource("6_kx1gp")
+
+[node name="Vorkaro" type="TextureRect" parent="UI" unique_id=409435174]
+offset_left = 822.0
+offset_top = 97.0
+offset_right = 1029.0
+offset_bottom = 307.0
+texture = ExtResource("7_wqv1h")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1521464532]

@@ -2,6 +2,8 @@
 extends Control
 class_name Barra
 
+enum Direcao { DIREITA, ESQUERDA, CIMA, BAIXO }
+
 var _preenchimento : float = 0:
 	set(valor):
 		_preenchimento = valor
@@ -10,6 +12,12 @@ var _preenchimento : float = 0:
 	set(valor):
 		preenchimento = valor
 		animacao_slider()
+
+@export var direcao : Direcao = Direcao.DIREITA:
+	set(valor):
+		direcao = valor
+		queue_redraw()
+
 
 @export var cor_fundo : Color = Color.DARK_GRAY:
 	set(valor):
@@ -41,9 +49,21 @@ func _ready() -> void:
 	style_box.anti_aliasing = true
 
 func _draw() -> void:
-	draw_rect(Rect2(Vector2.ZERO, size), cor_fundo)
-	draw_rect(Rect2(Vector2.ZERO, Vector2(size.x * _preenchimento, size.y)), cor_preenchimento)
-	draw_style_box(style_box, Rect2(Vector2.ZERO - Vector2(2, 2), size + Vector2(4, 4)))
+	var offset = Vector2(4, 4)
+	var tamanho_reducao = Vector2(8, 8)
+	draw_rect(Rect2(offset, size - tamanho_reducao), cor_fundo)
+
+	match direcao:
+		Direcao.DIREITA:
+			draw_rect(Rect2(offset + Vector2.ZERO, Vector2(size.x * _preenchimento, size.y) - tamanho_reducao), cor_preenchimento)
+		Direcao.ESQUERDA:
+			draw_rect(Rect2(offset + Vector2(size.x * (1 - _preenchimento), 0), Vector2(size.x * _preenchimento , size.y) - tamanho_reducao), cor_preenchimento)
+		Direcao.CIMA:
+			draw_rect(Rect2(offset + Vector2(0, size.y * (1 - _preenchimento)), Vector2(size.x, size.y * _preenchimento) - tamanho_reducao), cor_preenchimento)
+		Direcao.BAIXO:
+			draw_rect(Rect2(offset + Vector2.ZERO, Vector2(size.x, size.y * _preenchimento) - tamanho_reducao), cor_preenchimento)
+
+	draw_style_box(style_box, Rect2(Vector2.ZERO, size))
 
 	
 func animacao_slider() -> void:
