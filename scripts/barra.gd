@@ -72,8 +72,8 @@ func animacao_slider() -> void:
 		
 	tween = create_tween()
 	
-	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.set_trans(Tween.TRANS_EXPO)
 	tween.set_ease(Tween.EASE_OUT)
 	
-	tween.tween_property(self, "_preenchimento", preenchimento, 0.1)
+	tween.tween_property(self, "_preenchimento", preenchimento, 0.5)
 	

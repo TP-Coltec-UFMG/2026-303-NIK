@@ -77,6 +77,14 @@ func caractere_tecla(tecla : Key) -> String:
 
 	return str(OS.get_keycode_string(tecla))
 
+func acao_tecla(acao : String) -> String:
+	var eventos = InputMap.action_get_events(acao)
+
+	for evento in eventos:
+		if evento is InputEventKey:
+			return caractere_tecla(evento.physical_keycode)
+	return "erro"
+
 func salvar_configuracoes() -> void:
 	var dados_config = {}
 	for config in configuracoes.keys():

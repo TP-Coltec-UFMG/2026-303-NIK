@@ -119,6 +119,7 @@ texture_nota = ExtResource("6_ykjen")
 textura_centro = ExtResource("6_a6lt4")
 cor_texto = Color(0.14901961, 0.25490198, 0.14117648, 1)
 cor_contorno = Color(0.23921569, 0.8666667, 0.39215687, 1)
+tipo = "vida"
 metadata/_custom_type_script = "uid://do0nx5pn8qf60"
 
 [node name="BotaoDefesa" type="Control" parent="UI" unique_id=2015448100]
@@ -134,7 +135,7 @@ texture_nota = ExtResource("6_ykjen")
 textura_centro = ExtResource("7_jeaon")
 cor_texto = Color(0.25490198, 0.1764706, 0.14117648, 1)
 cor_contorno = Color(0.8666667, 0.56078434, 0.23921569, 1)
-tipo = 2
+tipo = "defesa"
 metadata/_custom_type_script = "uid://do0nx5pn8qf60"
 
 [node name="BotaoAtaque" type="Control" parent="UI" unique_id=391036642]
@@ -150,7 +151,7 @@ texture_nota = ExtResource("6_ykjen")
 textura_centro = ExtResource("8_6st0w")
 cor_texto = Color(0.14117648, 0.16862746, 0.25490198, 1)
 cor_contorno = Color(0.23921569, 0.7372549, 0.8666667, 1)
-tipo = 1
+tipo = "ataque"
 metadata/_custom_type_script = "uid://do0nx5pn8qf60"
 
 [node name="Nikole" type="TextureRect" parent="UI" unique_id=1924272399]
