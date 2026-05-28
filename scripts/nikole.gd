@@ -33,10 +33,6 @@ func _input(event: InputEvent) -> void:
 				interagir_objeto.interagir()
 			else: print_debug("não tem nada pra interagir...")
 
-		if event.is_action_pressed("pausar"):
-			MestreSupremo.menu.abrir_tela("Principal")
-			get_tree().paused = true
-
 func _physics_process(delta: float) -> void:
 	var raw_input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 

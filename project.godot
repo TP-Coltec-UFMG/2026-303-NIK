@@ -24,6 +24,10 @@ Dialogo="*uid://5vdr3rv6ffgc"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/initial_position_type=3
+window/size/resizable=false
+window/size/borderless=true
+window/vsync/vsync_mode=0
 mouse_cursor/custom_image="uid://bwaqfo7335omk"
 
 [editor]

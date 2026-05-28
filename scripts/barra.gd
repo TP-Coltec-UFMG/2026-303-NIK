@@ -10,7 +10,7 @@ var _preenchimento : float = 0:
 		queue_redraw()
 @export_range(0, 1) var preenchimento : float = 0.5:
 	set(valor):
-		preenchimento = valor
+		preenchimento = clampf(valor, 0.0, 1.0)
 		animacao_slider()
 
 @export var direcao : Direcao = Direcao.DIREITA:
@@ -53,15 +53,16 @@ func _draw() -> void:
 	var tamanho_reducao = Vector2(8, 8)
 	draw_rect(Rect2(offset, size - tamanho_reducao), cor_fundo)
 
+	var tamanho_preenchimento = size - tamanho_reducao
 	match direcao:
 		Direcao.DIREITA:
-			draw_rect(Rect2(offset + Vector2.ZERO, Vector2(size.x * _preenchimento, size.y) - tamanho_reducao), cor_preenchimento)
+			draw_rect(Rect2(offset + Vector2.ZERO, Vector2(tamanho_preenchimento.x * _preenchimento, tamanho_preenchimento.y)), cor_preenchimento)
 		Direcao.ESQUERDA:
-			draw_rect(Rect2(offset + Vector2(size.x * (1 - _preenchimento), 0), Vector2(size.x * _preenchimento , size.y) - tamanho_reducao), cor_preenchimento)
+			draw_rect(Rect2(offset + Vector2(tamanho_preenchimento.x * (1 - _preenchimento), tamanho_reducao.y / 2), Vector2(tamanho_preenchimento.x * _preenchimento + tamanho_reducao.x / 2 , tamanho_preenchimento.y) - tamanho_reducao), cor_preenchimento)
 		Direcao.CIMA:
-			draw_rect(Rect2(offset + Vector2(0, size.y * (1 - _preenchimento)), Vector2(size.x, size.y * _preenchimento) - tamanho_reducao), cor_preenchimento)
+			draw_rect(Rect2(offset + Vector2(0, tamanho_preenchimento.y * (1 - _preenchimento)), Vector2(tamanho_preenchimento.x, tamanho_preenchimento.y * _preenchimento) - tamanho_reducao), cor_preenchimento)
 		Direcao.BAIXO:
-			draw_rect(Rect2(offset + Vector2.ZERO, Vector2(size.x, size.y * _preenchimento) - tamanho_reducao), cor_preenchimento)
+			draw_rect(Rect2(offset + Vector2.ZERO, Vector2(tamanho_preenchimento.x, tamanho_preenchimento.y * _preenchimento) - tamanho_reducao), cor_preenchimento)
 
 	draw_style_box(style_box, Rect2(Vector2.ZERO, size))
 

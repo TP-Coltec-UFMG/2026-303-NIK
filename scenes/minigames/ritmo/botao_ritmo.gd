@@ -2,16 +2,19 @@ extends Control
 class_name BotaoRitmo
 
 class Nota:
-	var ultima_posicao : float
-	var posicao : float
+	var posicao : float: # nao a posicao literal, mas a posicao ele de 0 a 1, sendo 1 o topo da tela, 0 exatamente no botao, e negativo abaixo do botao
+		set(valor):
+			posicao = valor
 	var valor : float
 
-	func _init(_valor : float, _posicao : float) -> void:
+	func _init(_valor : float) -> void:
 		valor = _valor
-		posicao = _posicao
-		ultima_posicao = posicao
+		posicao = 1
+
 
 enum Tipo { CURA, ATAQUE, DEFESA }
+
+@onready var ritmo = get_parent().get_parent() as Ritmo
 
 @export var textura : Texture2D
 @export var texture_nota : Texture2D
@@ -20,26 +23,38 @@ enum Tipo { CURA, ATAQUE, DEFESA }
 @export var cor_contorno : Color
 @export var tipo : Tipo = Tipo.CURA
 @onready var tipo_string = "vida" if tipo == Tipo.CURA else ("ataque" if tipo == Tipo.ATAQUE else "defesa")
+
+@onready var posicao_inicial = position
+var tween : Tween
+
+const janela_acerto = 0.05
+const janela_critico = 0.01
+
 var notas : Array[Nota]
 
 @onready var offset_centro = -textura.get_height() / 2.0
 
-var tempo_nota = 1
-@onready var velocidade = get_viewport_rect().size.y / tempo_nota
-
-
 func _process(delta: float) -> void:
+	if notas.is_empty(): return
+
 	for i in range(notas.size() -1, -1, -1):
-		notas[i].posicao -= delta * get_viewport_rect().size.y
-		notas[i].ultima_posicao = notas[i].posicao
-		if notas[i].posicao < 0:
+		notas[i].posicao -= delta
+		if notas[i].posicao < -janela_acerto:
+			var nota = notas[i] 
 			notas.remove_at(i)
+			animacao_erro()
 
-	if notas.size() > 0:
-		queue_redraw()
+			if tipo == Tipo.DEFESA:
+				ritmo.vida_nikole -= nota.valor
+			if tipo == Tipo.ATAQUE:
+				notas.clear() # encerra o ataque
+				break
 
-		if Input.is_action_just_pressed("ritmo_" + tipo_string):
-			clicar_nota()
+	queue_redraw()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ritmo_" + tipo_string) and not notas.is_empty():
+		clicar_nota()
 
 func _draw() -> void:
 	var tecla = MestreSupremo.acao_tecla("ritmo_" + tipo_string)
@@ -47,7 +62,8 @@ func _draw() -> void:
 	desenhar_textura(textura_centro, Vector2(0, offset_centro))
 
 	for nota in notas:
-		desenhar_textura(texture_nota, Vector2(0, -nota.posicao - offset_centro))
+		var posicao_tela = get_viewport_rect().size.y * nota.posicao
+		desenhar_textura(texture_nota, Vector2(0, -posicao_tela + offset_centro))
 
 	desenhar_textura(textura, Vector2.ZERO)
 
@@ -63,21 +79,60 @@ func _draw() -> void:
 func desenhar_textura(texture : Texture2D, posicao : Vector2):
 	draw_texture_rect(texture, Rect2(posicao + size / 2 - texture.get_size() / 2, texture.get_size()), false)
 
-func adicionar_nota(dano : float):
-	notas.append(Nota.new(dano, get_viewport_rect().size.y))
+func adicionar_nota(valor : float):
+	notas.append(Nota.new(valor))
 
 func clicar_nota():
 	var nota_mais_perto : Nota = notas[0]
-	var menor_distancia : float = (notas[0].posicao + notas[0].ultima_posicao) / 2
+	var menor_distancia : float = absf(notas[0].posicao)
 
 	for nota in notas:
 		if absf(nota.posicao) < menor_distancia:
-			menor_distancia = absf((nota.posicao + nota.ultima_posicao) / 2)
+			menor_distancia = absf(nota.posicao)
 			nota_mais_perto = nota
 
 	notas.erase(nota_mais_perto)
 
-	var valor_final = (nota_mais_perto.valor * 1.5) if (menor_distancia < get_process_delta_time() * velocidade) else (nota_mais_perto.valor) # considerando precisão
-	match tipo:
-		Tipo.CURA: 
-			print("vida")
+	var valor = nota_mais_perto.valor
+	var critico = (menor_distancia < janela_critico)
+
+	if menor_distancia > janela_acerto:
+		match tipo:
+			Tipo.ATAQUE: 
+				notas.clear() # encerra o ataque
+			Tipo.DEFESA:
+				ritmo.vida_nikole -= valor # sofre o dano
+		animacao_erro()
+	else: 
+		match tipo:
+			Tipo.CURA: 
+				ritmo.vida_nikole += valor
+			Tipo.ATAQUE: 
+				if critico:
+					ritmo.vida_inimigo -= valor # causa dano completo
+				else:
+					ritmo.vida_inimigo -= valor * 0.5 # causa metade do dano
+			Tipo.DEFESA:
+				if critico:
+					ritmo.vida.adicionar_nota(valor / 2)
+					# bloqueia todo o dano e gera uma cura de metade do dano bloqueado
+				else:
+					ritmo.vida_nikole -= valor * 0.25 # toma um quarto do dano
+	queue_redraw()
+
+func animacao_erro():
+	var forca = 10
+
+	if tween:
+		tween.kill()
+		
+	tween = create_tween()
+	
+	for i in range(5):
+		var offset = Vector2(randf_range(-forca, forca), randf_range(-forca, forca))
+		tween.tween_property(self, "position", posicao_inicial + offset, 0.025)
+	
+	# Always return to the starting position at the end
+	tween.tween_property(self, "position", posicao_inicial, 0.025)
+
+	

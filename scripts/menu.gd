@@ -208,7 +208,9 @@ func carregar_configuracoes() -> void:
 
 # Função chamada quando há alguma entrada do usuário
 func _input(event: InputEvent) -> void:
-	if not get_tree().paused: return
+	if not get_tree().paused: 
+		if event.is_action_pressed("pausar"):
+			abrir_tela("Principal")
 	# A opção atual aumenta (positivo) quando aperta para baixo e
 	# diminui (negativo) quando aperta para cima
 	if event.is_action_pressed("ui_down") or event.is_action_pressed("ui_up"):
@@ -217,7 +219,6 @@ func _input(event: InputEvent) -> void:
 		menus[menu_ativo].botoes[idx_opcao_atual].grab_focus()
 		menus[menu_ativo].idx_ativo = idx_opcao_atual
 		accept_event()
-
 func inicializar_menus():
 	
 	# PRINCIPAL
