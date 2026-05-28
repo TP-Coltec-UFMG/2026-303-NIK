@@ -1,30 +1,23 @@
 [gd_scene format=3 uid="uid://wd7up7mo5b5"]
 
-[ext_resource type="Script" uid="uid://bsjnkkp7tdqs1" path="res://scenes/minigames/ritmo/dj.gd" id="1_m8qwt"]
-[ext_resource type="PackedScene" uid="uid://068odjqmnu3c" path="res://scenes/minigames/ritmo/pista.tscn" id="2_0mvlm"]
+[ext_resource type="Script" uid="uid://wf151atkywwk" path="res://scripts/barra.gd" id="1_3d7gl"]
 
 [node name="Ritmo" type="Node3D" unique_id=1505736203]
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1186081019]
 
-[node name="DJ" type="Control" parent="UI" unique_id=2010028586]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_m8qwt")
-numero_de_pistas = 6
-pista_prefab = ExtResource("2_0mvlm")
-espacamento_maximo = 128
-
-[node name="Pistas" type="Control" parent="UI/DJ" unique_id=2119661397]
-layout_mode = 1
-anchor_left = 0.65
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1521464532]
+
+[node name="Barra" type="Control" parent="." unique_id=2117002390]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 7.0
+offset_top = 27.0
+offset_right = 781.0
+offset_bottom = 68.0
+script = ExtResource("1_3d7gl")
+preenchimento = 0.2
+cor_fundo = Color(0.12941177, 0.14509805, 0.34117648, 1)
+cor_contorno = Color(0.31, 0.64349985, 1, 1)
+cor_preenchimento = Color(0.05490196, 0.3529412, 0.7490196, 1)
+metadata/_custom_type_script = "uid://wf151atkywwk"
