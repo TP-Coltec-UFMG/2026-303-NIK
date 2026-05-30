@@ -6,10 +6,13 @@ class Nota:
 		set(valor):
 			posicao = valor
 	var valor : float
+	var critico : bool
 
-	func _init(_valor : float) -> void:
+	func _init(_valor : float, _critico : bool = false) -> void:
 		valor = _valor
 		posicao = 1
+
+		critico = _critico
 
 
 enum Tipo { CURA, ATAQUE, DEFESA }
@@ -28,7 +31,10 @@ enum Tipo { CURA, ATAQUE, DEFESA }
 var tween : Tween
 
 const janela_acerto = 0.05
-const janela_critico = 0.01
+const janela_critico = 0.0075
+
+signal acerto(valor : float, critico : bool)
+signal erro(valor : float)
 
 var notas : Array[Nota]
 
@@ -39,7 +45,7 @@ func _process(delta: float) -> void:
 
 	for i in range(notas.size() -1, -1, -1):
 		notas[i].posicao -= delta
-		if notas[i].posicao < -janela_acerto:
+		if notas[i].posicao < -1:
 			var nota = notas[i] 
 			notas.remove_at(i)
 			animacao_erro()
@@ -63,7 +69,7 @@ func _draw() -> void:
 
 	for nota in notas:
 		var posicao_tela = get_viewport_rect().size.y * nota.posicao
-		desenhar_textura(texture_nota, Vector2(0, -posicao_tela + offset_centro))
+		desenhar_textura(texture_nota, Vector2(0, -posicao_tela + offset_centro), Color(1, 0.2, 0.2, 1) if nota.critico else Color.WHITE)
 
 	desenhar_textura(textura, Vector2.ZERO)
 
@@ -76,8 +82,8 @@ func _draw() -> void:
 	draw_string_outline(fonte, posicao_texto, tecla, HORIZONTAL_ALIGNMENT_RIGHT, -1, tamanho_fonte, 30, cor_contorno)
 	draw_string(fonte, posicao_texto, tecla, HORIZONTAL_ALIGNMENT_RIGHT, -1, tamanho_fonte, cor_texto)
 
-func desenhar_textura(texture : Texture2D, posicao : Vector2):
-	draw_texture_rect(texture, Rect2(posicao + size / 2 - texture.get_size() / 2, texture.get_size()), false)
+func desenhar_textura(texture : Texture2D, posicao : Vector2, cor : Color = Color.WHITE):
+	draw_texture_rect(texture, Rect2(posicao + size / 2 - texture.get_size() / 2, texture.get_size()), false, cor)
 
 func adicionar_nota(valor : float):
 	notas.append(Nota.new(valor))
@@ -94,30 +100,13 @@ func clicar_nota():
 	notas.erase(nota_mais_perto)
 
 	var valor = nota_mais_perto.valor
-	var critico = (menor_distancia < janela_critico)
+	var acerto_critico = (menor_distancia < janela_critico)
 
 	if menor_distancia > janela_acerto:
-		match tipo:
-			Tipo.ATAQUE: 
-				notas.clear() # encerra o ataque
-			Tipo.DEFESA:
-				ritmo.vida_nikole -= valor # sofre o dano
+		erro.emit(valor)
 		animacao_erro()
 	else: 
-		match tipo:
-			Tipo.CURA: 
-				ritmo.vida_nikole += valor
-			Tipo.ATAQUE: 
-				if critico:
-					ritmo.vida_inimigo -= valor # causa dano completo
-				else:
-					ritmo.vida_inimigo -= valor * 0.5 # causa metade do dano
-			Tipo.DEFESA:
-				if critico:
-					ritmo.vida.adicionar_nota(valor / 2)
-					# bloqueia todo o dano e gera uma cura de metade do dano bloqueado
-				else:
-					ritmo.vida_nikole -= valor * 0.25 # toma um quarto do dano
+		acerto.emit(valor, acerto_critico)
 	queue_redraw()
 
 func animacao_erro():

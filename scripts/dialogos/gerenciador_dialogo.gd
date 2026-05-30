@@ -19,6 +19,8 @@ func _ready() -> void:
 	iniciar_dialogo("")
 
 func iniciar_dialogo(dialogo : String):
+	if dialogo == "ritmo":
+		MestreSupremo.carregar_cena("ritmo")
 	if dialogo == "" or not dialogos.has(dialogo):
 		dialogo_atual = null
 		fechar_tela()

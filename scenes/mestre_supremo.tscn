@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://diklqpfu5xw8r" path="res://scenes/mundo.tscn" id="2_nl2jp"]
 [ext_resource type="AudioStream" uid="uid://dc11rpyyq1xjs" path="res://audio/musicas/pingano.mp3" id="2_wm5yj"]
 [ext_resource type="Shader" uid="uid://covi4n54bkdkf" path="res://shaders/filtro_daltonismo.gdshader" id="3_mpu0y"]
+[ext_resource type="PackedScene" uid="uid://wd7up7mo5b5" path="res://scenes/minigames/ritmo/ritmo.tscn" id="3_uyfw5"]
 [ext_resource type="Script" uid="uid://bm4rvfyvlss3y" path="res://scripts/menu.gd" id="4_2tofl"]
 [ext_resource type="FontFile" uid="uid://mb7lv5gfarwo" path="res://fonts/Chewy-Regular.ttf" id="5_0om2c"]
 [ext_resource type="Script" uid="uid://dxcpaqjaydfjj" path="res://scripts/botoes_configuracao/config_button.gd" id="6_nl2jp"]
@@ -157,7 +158,8 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_wm5yj")
 cenas = Dictionary[String, PackedScene]({
-"Principal": ExtResource("2_nl2jp")
+"Principal": ExtResource("2_nl2jp"),
+"ritmo": ExtResource("3_uyfw5")
 })
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1861454202]

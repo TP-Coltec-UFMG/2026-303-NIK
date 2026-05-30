@@ -16,15 +16,16 @@
 [ext_resource type="Texture2D" uid="uid://dy52pp1e402ti" path="res://sprites/minigames/ritmo/botao_ataque_centro.png" id="8_6st0w"]
 [ext_resource type="Texture2D" uid="uid://dcecw52dd7743" path="res://sprites/minigames/ritmo/fundo.png" id="8_niss5"]
 [ext_resource type="Script" uid="uid://y6m7y1necsdv" path="res://scenes/minigames/ritmo/sprite_inimigo.gd" id="11_untlp"]
+[ext_resource type="AudioStream" uid="uid://bhoblrhgyyac1" path="res://scenes/minigames/ritmo/vorkaro.wav" id="17_6d7xj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_niss5"]
 font_size = 48
 
-[node name="Ritmo" type="Node3D" unique_id=1505736203 node_paths=PackedStringArray("ataque", "defesa", "vida")]
+[node name="Ritmo" type="Node3D" unique_id=1505736203 node_paths=PackedStringArray("pista_ataque", "pista_defesa", "pista_cura")]
 script = ExtResource("1_3cg7h")
-ataque = NodePath("UI/BotaoAtaque")
-defesa = NodePath("UI/BotaoDefesa")
-vida = NodePath("UI/BotaoCura")
+pista_ataque = NodePath("UI/BotaoAtaque")
+pista_defesa = NodePath("UI/BotaoDefesa")
+pista_cura = NodePath("UI/BotaoCura")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1186081019]
 
@@ -173,3 +174,8 @@ position = Vector2(636, 248)
 texture = ExtResource("7_wqv1h")
 script = ExtResource("11_untlp")
 voa = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1262605292]
+stream = ExtResource("17_6d7xj")
+volume_db = -15.018
+autoplay = true
