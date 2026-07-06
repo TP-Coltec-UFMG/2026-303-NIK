@@ -16,6 +16,7 @@ O menu acessível consiste em:
     - Narração
     - Alto contraste
     - Filtros de daltonismo
+    - Edição de Controles
 - Sair
 
 É possível ativar o modo de alto contraste, que facilita a leitura de informações importantes da tela.
