@@ -13,17 +13,15 @@ _(Imagem do Menu Inicial, mostrando o título e alguns botões no jogo)_
 O menu acessível consiste em:
 - Jogar
 - Opções
-    - Narração
-    - Alto contraste
     - Filtros de daltonismo
+    - Redução de efeitos do menu
+    - Fonte de fácil leitura
     - Edição de Controles
-- Sair
+- Sair, que facilita a leitura de informações importantes da tela.
 
-É possível ativar o modo de alto contraste, que facilita a leitura de informações importantes da tela.
+![Menu no modo linear, com fonte mais fácil de ler.](readMeImages/menuAltoContraste.png)
 
-![Menu com Alto Contraste. É possível notar que os botões, por exemplo, contam com um fundo escuro.](readMeImages/menuAltoContraste.png)
-
-_(Menu com Alto Contraste. É possível notar que os botões, por exemplo, contam com um fundo escuro.)_
+_(Menu no modo linear, com fonte mais fácil de ler.)_
 
 
 ## Créditos
