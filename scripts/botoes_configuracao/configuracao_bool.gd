@@ -8,6 +8,9 @@ class_name ConfigButtonBool
 		valor = novo_valor
 		MestreSupremo.alterar_configuracao(id, valor)
 
+@export var textoLigado = "ligado";
+@export var textoDesligado = "desligado";
+
 func _ready() -> void:
 	super._ready() 
 
@@ -36,7 +39,11 @@ func _draw() -> void:
 		cor_valor = get_theme_color("cor_foco", variacao_tema)
 		contorno_valor = get_theme_color("cor_foco_contorno", variacao_tema)
 
-	desenha_texto("ligado" if valor else "desligado", posicao_valor, cor_valor, contorno_valor)
+	# if valorOverride:
+	# 	desenha_texto("ligado" if valor else "desligado", posicao_valor, cor_valor, contorno_valor)
+	# else:
+	# 	desenha_texto("ligado" if valor else "desligado", posicao_valor, cor_valor, contorno_valor)
+	desenha_texto(textoLigado if valor else textoDesligado, posicao_valor, cor_valor, contorno_valor)
 
 func _pressed() -> void:
 	valor = !valor

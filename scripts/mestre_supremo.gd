@@ -47,7 +47,7 @@ func aplicar_configuracoes(config : Dictionary = configuracoes):
 			(filtro_daltonismo.material as ShaderMaterial).set_shader_parameter("filter_mode", 0)
 	if configuracoes.has("intensidade_daltonismo"): (filtro_daltonismo.material as ShaderMaterial).set_shader_parameter("intensity", configuracoes["intensidade_daltonismo"])
 
-	if configuracoes.has("alto_contraste"): if configuracoes["alto_contraste"]:
+	if configuracoes.has("fonte_texto"): if configuracoes["fonte_texto"]:
 		menu.theme = preload("res://themes/alto_contraste.tres")
 	else:
 		menu.theme = preload("res://themes/default.tres")
