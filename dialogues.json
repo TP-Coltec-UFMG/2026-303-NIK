@@ -1,0 +1,34 @@
+[
+	{
+		"id": "dona_luzia_1",
+        "lines": [
+            {
+                "name": "Nikole",
+                "text": "Oi, dona Luzia! Como a senhora está hoje? Trouxe umas verduras frescas da avó."
+            },
+            {
+                "name": "Dona Luzia",
+                "text": "Quem... quem é você, menina? Eu me perdi de novo. Não sei onde fica a minha casa, e minha cabeça está confusa. Estou com medo..."
+            },
+            {
+                "name": "Nikole",
+                "text": "Sou eu, a Nikole! Não precisa ter medo. Essa confusão não é culpa sua, tem algo estranho vindo do bosque. Vem comigo, eu vou ajudar a senhora a encontrar o caminho."
+            }
+        ],
+        "redirect": "minigame_tester"
+	},
+	{
+		"id": "dona_luzia_2",
+        "lines": [
+            {
+                "name": "Dona Luzia",
+                "text": "Ah, Nikole, querida! Minha nossa, agora me lembro de tudo. A névoa sumiu! Muito obrigada por me guiar de volta para a minha casa e para mim mesma."
+            },
+            {
+                "name": "Nikole",
+                "text": "Fico muito feliz em ver a senhora bem e sorrindo de novo. Se cuida, dona Luzia! Até logo!"
+            }
+        ],
+        "redirect": "map"
+	}
+]

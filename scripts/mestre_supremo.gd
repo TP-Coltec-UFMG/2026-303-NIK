@@ -8,6 +8,8 @@ extends Control
 @export var cenas : Dictionary[String, PackedScene] = {}
 var cena_atual
 
+var posicao_mapa = 0;
+
 var caminho_configuracoes = "user://config.json"
 var configuracoes : Dictionary = {}
 
@@ -30,6 +32,11 @@ func carregar_cena(cena: String) -> void:
 	await animation_player.animation_finished
 	fundo_preto.visible = false
 
+func carregar_mapa(idx_node : int = posicao_mapa) -> void:
+	carregar_cena("map")
+	# (get_tree().get_root().get_child(0) as MapController).go_to_node(idx_node)
+
+
 func aplicar_configuracoes(config : Dictionary = configuracoes):
 	if menu == null: return
 	configuracoes = config
@@ -49,8 +56,10 @@ func aplicar_configuracoes(config : Dictionary = configuracoes):
 
 	if configuracoes.has("fonte_texto"): if configuracoes["fonte_texto"]:
 		menu.theme = preload("res://themes/alto_contraste.tres")
+		DialogueController.dialogue_box.theme = preload("res://themes/alto_contraste.tres")
 	else:
 		menu.theme = preload("res://themes/default.tres")
+		DialogueController.dialogue_box.theme = preload("res://themes/default.tres")
 
 	if configuracoes.has("escala_interface"): get_tree().root.content_scale_factor = configuracoes["escala_interface"]
 

@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="nikole"
-run/main_scene="uid://diklqpfu5xw8r"
+run/main_scene="uid://bq0hvgjehacve"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
+DialogueController="*uid://ce1kqfy7jw13a"
 MestreSupremo="*uid://greoit2058gm"
-Dialogo="*uid://5vdr3rv6ffgc"
 
 [display]
 

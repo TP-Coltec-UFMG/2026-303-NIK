@@ -195,15 +195,15 @@ func fechar_telas():
 		menu.node.visible = false
 
 func carregar_configuracoes() -> void:
-	var configuracoes = MestreSupremo.configuracoes
+	var settings = MestreSupremo.settings
 	for botao in botoes_configuracao:
-		if botao.id in configuracoes:
-			if botao.valor != configuracoes[botao.id]:
+		if botao.id in settings:
+			if botao.valor != settings[botao.id]:
 				if not botao is ConfigButtonList:
-					botao.valor = configuracoes[botao.id]
+					botao.valor = settings[botao.id]
 				else:
-					if configuracoes[botao.id] in botao.valores:
-						botao._valor = botao.valores.find(configuracoes[botao.id])
+					if settings[botao.id] in botao.valores:
+						botao._valor = botao.valores.find(settings[botao.id])
 					else: botao._valor = 0
 
 # Função chamada quando há alguma entrada do usuário

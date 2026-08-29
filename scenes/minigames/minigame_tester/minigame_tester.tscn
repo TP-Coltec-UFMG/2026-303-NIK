@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bgoc88jujeiyo"]
+
+[ext_resource type="Script" uid="uid://csmhxpxiw76s4" path="res://scenes/minigames/minigame_tester/minigame_tester.gd" id="1_qdy5n"]
+
+[node name="MinigameTester" type="CanvasLayer" unique_id=331250011]
+script = ExtResource("1_qdy5n")
+
+[node name="Complete" type="Button" parent="." unique_id=1555358260]
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 0.45
+anchor_right = 0.6
+anchor_bottom = 0.55
+grow_horizontal = 2
+grow_vertical = 2
+text = "completar minigame!"

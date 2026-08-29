@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://ce1kqfy7jw13a"]
+
+[ext_resource type="Script" uid="uid://bmauyiegxyk5s" path="res://scenes/mapa/dialogue_controller.gd" id="1_86us4"]
+
+[node name="DialogueController" type="CanvasLayer" unique_id=2074955925]
+process_mode = 3
+script = ExtResource("1_86us4")
+
+[node name="DialogueBox" type="ColorRect" parent="." unique_id=698114412]
+anchors_preset = -1
+anchor_top = 0.7
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.0987, 0.13765498, 0.21, 1)
+
+[node name="DialogueText" type="RichTextLabel" parent="DialogueBox" unique_id=831361168]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 120.0
+offset_top = 20.0
+offset_right = -120.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[font_size=32][color=#60bbff]Nikole
+[font_size=24][color=white]Oi luzia sei la oque bla bla bla
+"
+horizontal_alignment = 1
+
+[node name="NextDialogueLabel" type="Label" parent="DialogueBox" unique_id=1033394434]
+layout_mode = 0
+offset_left = 1126.0
+offset_top = 186.0
+offset_right = 1271.0
+offset_bottom = 207.0
+text = "clique para continuar..."
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Background" type="ColorRect" parent="DialogueBox" unique_id=507949068]
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -504.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5764706)
