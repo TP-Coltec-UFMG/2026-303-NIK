@@ -4,15 +4,15 @@ class_name ConfigButtonList
 
 @export var vertical : bool = false
 @export var valores : Array[String] = ["preciso de valores :("]
-@export var valor = "ay cabron"
+@export var value = "ay cabron"
 var _valor : int = 0:
 	set(valor_novo):
 		if valores.size() > 0:
 			_valor = (valor_novo + valores.size()) % valores.size()
-			valor = valores[_valor]
+			value = valores[_valor]
 		else:
 			_valor = 0
-		MestreSupremo.alterar_configuracao(id, valor)
+		GameManager.change_setting(id, value)
 		queue_redraw()
 
 var editando : bool = false:
@@ -22,8 +22,8 @@ var editando : bool = false:
 
 func _ready() -> void:
 	super._ready() 
-	if valor in valores:
-		_valor = valores.find(valor)
+	if value in valores:
+		_valor = valores.find(value)
 	else: _valor = 0
 
 func _draw() -> void:
@@ -55,7 +55,7 @@ func _draw() -> void:
 	else:
 		posicao_valor = Vector2(0, offset.y)
 
-	var offset_valor = desenha_texto(str(valor), posicao_valor, cor_valor, contorno_valor)
+	var offset_valor = desenha_texto(str(value), posicao_valor, cor_valor, contorno_valor)
 	if editando:
 		var font = get_theme_font("font", "Button")
 		var font_size = get_theme_font_size("font_size", "Button")
@@ -92,4 +92,4 @@ func _notification(what: int) -> void:
 			editando = false # tira o editando se sair (na teoria nao precisa, mas é bom garantir)
 
 # func _pressed() -> void:
-# 	editando = !editando # Alterna a edição do valor
+# 	editando = !editando # Alterna a edição do value

@@ -3,12 +3,12 @@ extends ConfigButton
 class_name ConfigButtonString
 
 @export var vertical : bool = false
-@export var valor : String = "":
+@export var value : String = "":
 	set(novo_valor):
-		valor = novo_valor
+		value = novo_valor
 		if line_edit:
 			line_edit.text = novo_valor
-		MestreSupremo.alterar_configuracao(id, valor)
+		GameManager.change_setting(id, value)
 
 var line_edit : LineEdit
 
@@ -19,7 +19,7 @@ func _ready() -> void:
 		line_edit = LineEdit.new()
 		add_child(line_edit)
 		
-		line_edit.text = str(valor)
+		line_edit.text = str(value)
 		
 		line_edit.text_submitted.connect(_on_text_submitted)
 		line_edit.focus_exited.connect(func(): _on_text_submitted(line_edit.text))
@@ -39,7 +39,7 @@ func _draw() -> void:
 
 func _on_text_submitted(novo_texto: String) -> void:
 	grab_focus()
-	valor = novo_texto
+	value = novo_texto
 
 func _pressed() -> void:
 	line_edit.grab_focus() # quando apertado foca o texto

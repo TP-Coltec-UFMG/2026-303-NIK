@@ -1,6 +1,11 @@
 [
 	{
-		"id": "dona_luzia_1",
+		"id": "dona_luzia",
+        "condition": {
+            "data": "minigame_dona_luzia_complete",
+            "value": "false",
+            "else": "dona_luiza_complete"
+        },
         "lines": [
             {
                 "name": "Nikole",
@@ -18,7 +23,7 @@
         "redirect": "minigame_tester"
 	},
 	{
-		"id": "dona_luzia_2",
+		"id": "dona_luzia_complete",
         "lines": [
             {
                 "name": "Dona Luzia",
@@ -30,5 +35,23 @@
             }
         ],
         "redirect": "map"
-	}
+	},
+    {
+        "id": "seu_jorge",
+        "lines": [
+            {
+                "name": "Nikole",
+                "text": "Bom dia, Seu Jorge! O senhor está muito pálido, aconteceu alguma coisa com a plantação?"
+            },
+            {
+                "name": "Jorge",
+                "text": "Oi, Nikole... A enxada parece pesar uma tonelada hoje. Perdi totalmente a vontade de comer, tudo tem gosto de terra seca. Não tenho força nem para levantar da cama direito."
+            },
+            {
+                "name": "Nikole",
+                "text": "Isso está muito estranho, não é normal o senhor ficar doente assim. Espere aqui! Minha avó tem uma receita perfeita para trazer o paladar de volta. Eu mesma vou preparar!"
+            }
+        ],
+        "redirect": "minigame_receita_da_vovó"
+    }
 ]

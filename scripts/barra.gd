@@ -5,32 +5,32 @@ class_name Barra
 enum Direcao { DIREITA, ESQUERDA, CIMA, BAIXO }
 
 var _preenchimento : float = 0:
-	set(valor):
-		_preenchimento = valor
+	set(value):
+		_preenchimento = value
 		queue_redraw()
 @export_range(0, 1) var preenchimento : float = 0.5:
-	set(valor):
-		preenchimento = clampf(valor, 0.0, 1.0)
+	set(value):
+		preenchimento = clampf(value, 0.0, 1.0)
 		animacao_slider()
 
 @export var direcao : Direcao = Direcao.DIREITA:
-	set(valor):
-		direcao = valor
+	set(value):
+		direcao = value
 		queue_redraw()
 
 
 @export var cor_fundo : Color = Color.DARK_GRAY:
-	set(valor):
-		cor_fundo = valor
+	set(value):
+		cor_fundo = value
 		queue_redraw()
 @export var cor_contorno : Color = Color.DARK_SLATE_BLUE:
-	set(valor):
-		cor_contorno = valor
+	set(value):
+		cor_contorno = value
 		if style_box: style_box.border_color = cor_contorno
 		queue_redraw()
 @export var cor_preenchimento : Color = Color.SLATE_BLUE:
-	set(valor):
-		cor_preenchimento = valor
+	set(value):
+		cor_preenchimento = value
 		queue_redraw()
 
 var style_box : StyleBoxFlat

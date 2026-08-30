@@ -2,14 +2,14 @@ extends Node3D
 class_name Ritmo
 
 var vida_nikole : float = 100:
-	set(valor):
-		vida_nikole = valor
-		barra_nikole.preenchimento = valor / 100
+	set(value):
+		vida_nikole = value
+		barra_nikole.preenchimento = value / 100
 
 var vida_inimigo : float = 100:
-	set(valor):
-		vida_inimigo = valor
-		barra_inimigo.preenchimento = valor / 100
+	set(value):
+		vida_inimigo = value
+		barra_inimigo.preenchimento = value / 100
 
 var som_nikole = preload("res://scenes/minigames/ritmo/ataque_nikole.wav")
 var som_nikole_critico = preload("res://scenes/minigames/ritmo/ataque_nikole_critico.wav")
@@ -93,20 +93,20 @@ func ataque_nikole():
 		if not i == 3:
 			await get_tree().create_timer(0.30).timeout
 
-func ataque(valor : float, critico : bool):
-	vida_inimigo -= valor
+func ataque(value : float, critico : bool):
+	vida_inimigo -= value
 	audio_player_nikole.stream = som_nikole# if not critico else som_nikole_critico
 	audio_player_nikole.play()
 
-func defesa(valor : float, critico : bool):
-	vida_nikole -= valor * (0.0 if critico else 0.5)
+func defesa(value : float, critico : bool):
+	vida_nikole -= value * (0.0 if critico else 0.5)
 	audio_player_vorkaro.stream = som_vorkaro# if not critico else som_vorkaro_critico
 	audio_player_vorkaro.play()
 
-func cura(valor : float, critico : bool):
-	vida_nikole += valor * 1.25 if critico else 1.0
+func cura(value : float, critico : bool):
+	vida_nikole += value * 1.25 if critico else 1.0
 	audio_player_cura.stream = som_cura# if not critico else som_vorkaro_critico
 	audio_player_cura.play()
 
-func erro_defesa(valor : float):
-	vida_nikole -= valor
+func erro_defesa(value : float):
+	vida_nikole -= value

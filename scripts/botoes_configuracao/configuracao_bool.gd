@@ -3,13 +3,13 @@ extends ConfigButton
 class_name ConfigButtonBool
 
 @export var vertical : bool = false
-@export var valor : bool = false:
+@export var value : bool = false:
 	set(novo_valor):
-		valor = novo_valor
-		MestreSupremo.alterar_configuracao(id, valor)
+		value = novo_valor
+		GameManager.change_setting(id, value)
 
 @export var textoLigado = "ligado";
-@export var textoDesligado = "desligado";
+@export var textoDesligado = "disabled";
 
 func _ready() -> void:
 	super._ready() 
@@ -32,7 +32,7 @@ func _draw() -> void:
 	else:
 		posicao_valor = Vector2(offset.x + 10, 0)
 
-	if valor:
+	if value:
 		cor_valor = get_theme_color("cor_pressionado", variacao_tema)
 		contorno_valor = get_theme_color("cor_pressionado_contorno", variacao_tema)
 	else:
@@ -40,10 +40,10 @@ func _draw() -> void:
 		contorno_valor = get_theme_color("cor_foco_contorno", variacao_tema)
 
 	# if valorOverride:
-	# 	desenha_texto("ligado" if valor else "desligado", posicao_valor, cor_valor, contorno_valor)
+	# 	desenha_texto("ligado" if value else "disabled", posicao_valor, cor_valor, contorno_valor)
 	# else:
-	# 	desenha_texto("ligado" if valor else "desligado", posicao_valor, cor_valor, contorno_valor)
-	desenha_texto(textoLigado if valor else textoDesligado, posicao_valor, cor_valor, contorno_valor)
+	# 	desenha_texto("ligado" if value else "disabled", posicao_valor, cor_valor, contorno_valor)
+	desenha_texto(textoLigado if value else textoDesligado, posicao_valor, cor_valor, contorno_valor)
 
 func _pressed() -> void:
-	valor = !valor
+	value = !value

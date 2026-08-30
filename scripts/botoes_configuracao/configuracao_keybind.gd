@@ -4,10 +4,10 @@ class_name ConfigButtonKeybind
 
 @export var vertical : bool = false
 @export var input : String = "move_right"
-@export var valor : Key:
+@export var value : Key:
 	set(novo_valor):
-		valor = novo_valor
-		MestreSupremo.alterar_configuracao(id, valor)
+		value = novo_valor
+		GameManager.change_setting(id, value)
 var editando : bool = false
 
 
@@ -44,17 +44,17 @@ func _draw() -> void:
 		posicao_valor = Vector2(0, offset.y)
 
 	if editando:
-		desenha_texto("pressione a tecla nova", posicao_valor, cor_valor, contorno_valor)
+		desenha_texto("pressione a key nova", posicao_valor, cor_valor, contorno_valor)
 	else:
-		desenha_texto(MestreSupremo.caractere_tecla(valor), posicao_valor, cor_valor, contorno_valor)
+		desenha_texto(GameManager.char_from_key(value), posicao_valor, cor_valor, contorno_valor)
 
 func _input(event: InputEvent) -> void:
 	if editando:
 		if event is InputEventKey:
 			if event.pressed and not event.echo:
-				valor = event.physical_keycode
+				value = event.physical_keycode
 				editando = false 
-				print("definindo a entrada como " + MestreSupremo.caractere_tecla(valor) + " e desligando o modo edição")
+				print("definindo a input como " + GameManager.char_from_key(value) + " e desligando o modo edição")
 				accept_event()
 				queue_redraw()
 				return

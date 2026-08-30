@@ -3,16 +3,16 @@ extends ConfigButton
 class_name ConfigButtonFloat
 
 @export var vertical : bool = false
-@export var valor : float = 0:
+@export var value : float = 0:
 	set(novo_valor):
-		valor = clampf(novo_valor, valor_minimo, valor_maximo)
+		value = clampf(novo_valor, valor_minimo, valor_maximo)
 		if passo > 0:
-			valor = snappedf(valor, passo)
+			value = snappedf(value, passo)
 		if line_edit:
-			line_edit.text = str(valor)
+			line_edit.text = str(value)
 		if slider:
 			animacao_slider()
-		if MestreSupremo: MestreSupremo.alterar_configuracao(id, valor)
+		if GameManager: GameManager.change_setting(id, value)
 @export var slider : bool = false
 @export var valor_minimo : float = 0.0
 @export var valor_maximo : float = 1.0
@@ -41,7 +41,7 @@ func _ready() -> void:
 		line_edit = LineEdit.new()
 		add_child(line_edit)
 		
-		line_edit.text = str(valor)
+		line_edit.text = str(value)
 		
 		line_edit.text_submitted.connect(_on_text_submitted)
 		line_edit.focus_exited.connect(func(): _on_text_submitted(line_edit.text))
@@ -79,10 +79,10 @@ func _draw() -> void:
 		draw_style_box(get_theme_stylebox("normal", "LineEdit"), Rect2(Vector2(0, espacamento + offset.y), Vector2(size.x, expessura_barra)))
 		draw_circle(Vector2(valor_normal * size.x, offset.y + espacamento + expessura_barra / 2), expessura_barra / 2 + 2, get_theme_color("cor_normal", variacao_tema), true, -1, true)
 
-		desenha_texto(str(valor), Vector2(size.x - tamanho_texto(str(valor)).x - 10.0, 0), cor, contorno)
+		desenha_texto(str(value), Vector2(size.x - tamanho_texto(str(value)).x - 10.0, 0), cor, contorno)
 
 func animacao_slider() -> void:
-	var alvo_normal = float(valor - valor_minimo) / float(valor_maximo - valor_minimo)
+	var alvo_normal = float(value - valor_minimo) / float(valor_maximo - valor_minimo)
 	
 	if tween:
 		tween.kill()
@@ -97,9 +97,9 @@ func animacao_slider() -> void:
 func _on_text_submitted(novo_texto: String) -> void:
 	grab_focus()
 	if novo_texto.is_valid_float():
-		valor = novo_texto.to_float()
+		value = novo_texto.to_float()
 	else:
-		line_edit.text = str(valor)
+		line_edit.text = str(value)
 
 func _pressed() -> void:
 	if not slider:
@@ -116,10 +116,10 @@ func _gui_input(event: InputEvent) -> void:
 	if editando:
 		var mudou = false
 		if event.is_action_pressed("ui_right"):
-			valor += passo
+			value += passo
 			mudou = true
 		elif event.is_action_pressed("ui_left"):
-			valor -= passo
+			value -= passo
 			mudou = true
 			
 		# nao deixa o godot passar o foco para outra configuracao

@@ -2,14 +2,14 @@ extends Control
 class_name BotaoRitmo
 
 class Nota:
-	var posicao : float: # nao a posicao literal, mas a posicao ele de 0 a 1, sendo 1 o topo da tela, 0 exatamente no botao, e negativo abaixo do botao
-		set(valor):
-			posicao = valor
-	var valor : float
+	var posicao : float: # nao a posicao literal, mas a posicao ele de 0 a 1, sendo 1 o topo da tela, 0 exatamente no button, e negativo abaixo do button
+		set(value):
+			posicao = value
+	var value : float
 	var critico : bool
 
 	func _init(_valor : float, _critico : bool = false) -> void:
-		valor = _valor
+		value = _valor
 		posicao = 1
 
 		critico = _critico
@@ -33,8 +33,8 @@ var tween : Tween
 const janela_acerto = 0.05
 const janela_critico = 0.0075
 
-signal acerto(valor : float, critico : bool)
-signal erro(valor : float)
+signal acerto(value : float, critico : bool)
+signal erro(value : float)
 
 var notas : Array[Nota]
 
@@ -51,7 +51,7 @@ func _process(delta: float) -> void:
 			animacao_erro()
 
 			if tipo == Tipo.DEFESA:
-				ritmo.vida_nikole -= nota.valor
+				ritmo.vida_nikole -= nota.value
 			if tipo == Tipo.ATAQUE:
 				notas.clear() # encerra o ataque
 				break
@@ -63,7 +63,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		clicar_nota()
 
 func _draw() -> void:
-	var tecla = MestreSupremo.acao_tecla("ritmo_" + tipo_string)
+	var key = GameManager.get_key_from_action("ritmo_" + tipo_string)
 
 	desenhar_textura(textura_centro, Vector2(0, offset_centro))
 
@@ -76,17 +76,17 @@ func _draw() -> void:
 	var fonte = get_theme_font("font", "Button")
 	var tamanho_fonte = get_theme_font_size("font_size", "Button") * 2
 
-	var tamanho_do_texto = fonte.get_string_size(tecla, HORIZONTAL_ALIGNMENT_RIGHT, -1, tamanho_fonte)
+	var tamanho_do_texto = fonte.get_string_size(key, HORIZONTAL_ALIGNMENT_RIGHT, -1, tamanho_fonte)
 	var posicao_texto = Vector2(textura.get_width() / 2.0 - tamanho_do_texto.x / 2, textura.get_height() - 12 + fonte.get_ascent(tamanho_fonte) + (size.y - tamanho_do_texto.y) / 2)
 
-	draw_string_outline(fonte, posicao_texto, tecla, HORIZONTAL_ALIGNMENT_RIGHT, -1, tamanho_fonte, 30, cor_contorno)
-	draw_string(fonte, posicao_texto, tecla, HORIZONTAL_ALIGNMENT_RIGHT, -1, tamanho_fonte, cor_texto)
+	draw_string_outline(fonte, posicao_texto, key, HORIZONTAL_ALIGNMENT_RIGHT, -1, tamanho_fonte, 30, cor_contorno)
+	draw_string(fonte, posicao_texto, key, HORIZONTAL_ALIGNMENT_RIGHT, -1, tamanho_fonte, cor_texto)
 
 func desenhar_textura(texture : Texture2D, posicao : Vector2, cor : Color = Color.WHITE):
 	draw_texture_rect(texture, Rect2(posicao + size / 2 - texture.get_size() / 2, texture.get_size()), false, cor)
 
-func adicionar_nota(valor : float):
-	notas.append(Nota.new(valor))
+func adicionar_nota(value : float):
+	notas.append(Nota.new(value))
 
 func clicar_nota():
 	var nota_mais_perto : Nota = notas[0]
@@ -99,14 +99,14 @@ func clicar_nota():
 
 	notas.erase(nota_mais_perto)
 
-	var valor = nota_mais_perto.valor
+	var value = nota_mais_perto.value
 	var acerto_critico = (menor_distancia < janela_critico)
 
 	if menor_distancia > janela_acerto:
-		erro.emit(valor)
+		erro.emit(value)
 		animacao_erro()
 	else: 
-		acerto.emit(valor, acerto_critico)
+		acerto.emit(value, acerto_critico)
 	queue_redraw()
 
 func animacao_erro():

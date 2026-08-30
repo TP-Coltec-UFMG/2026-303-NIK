@@ -20,7 +20,7 @@ func _ready() -> void:
 
 func iniciar_dialogo(dialogo : String):
 	if dialogo == "ritmo":
-		MestreSupremo.carregar_cena("ritmo")
+		GameManager.load_scene("ritmo")
 	if dialogo == "" or not dialogos.has(dialogo):
 		dialogo_atual = null
 		fechar_tela()
@@ -67,23 +67,23 @@ func iniciar_opcoes():
 		if not exibir: 
 			continue
 		
-		var botao = DialogButton.new()
-		botao.label = str(n) + ". " + escolha.texto
-		botao.proxima_arvore = escolha.proxima_arvore
+		var button = DialogButton.new()
+		button.label = str(n) + ". " + escolha.texto
+		button.proxima_arvore = escolha.proxima_arvore
 		
-		botao.tags_adicionar = escolha.tags_adicionadas
-		botao.tags_adicionar_personagem = escolha.tags_adicionadas_personagem 
+		button.tags_adicionar = escolha.tags_adicionadas
+		button.tags_adicionar_personagem = escolha.tags_adicionadas_personagem 
 		
-		container_opcoes.add_child(botao)
+		container_opcoes.add_child(button)
 		if n == 1:
-			botao.grab_focus()
+			button.grab_focus()
 		n += 1
 
 func ler_arquivo_dialogos():
-	var arquivo = FileAccess.open(arquivo_dialogos, FileAccess.READ)
-	if arquivo:
-		var dados_json = arquivo.get_as_text()
-		var dados_dialogos = JSON.parse_string(dados_json)
+	var file = FileAccess.open(arquivo_dialogos, FileAccess.READ)
+	if file:
+		var json = file.get_as_text()
+		var dados_dialogos = JSON.parse_string(json)
 
 		if dados_dialogos != null:
 			dialogos = {}
@@ -116,9 +116,9 @@ func ler_arquivo_dialogos():
 				dialogos[dialogo.id] = ArvoreDialogo.new(dialogo.id, dialogo.personagem, dialogo.texto, escolhas)
 
 		print("diálogos carregados!\n")
-		arquivo.close()
+		file.close()
 	else:
-		printerr("não consegui abrir o arquivo dos diálogos!!!")
+		printerr("não consegui abrir o file dos diálogos!!!")
 
 func adicionar_tags(tags_adicionar : Array[String]):
 	for tag in tags_adicionar:
