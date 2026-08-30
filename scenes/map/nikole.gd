@@ -74,10 +74,7 @@ func _process(delta: float) -> void:
 	animate(delta)
 
 func animate(delta : float):
-	if sprite.global_position.x < previous_x:
-		sprite.scale.x = -1
-	elif sprite.global_position.x > previous_x:
-		sprite.scale.x = 1
+	sprite.scale.x = -1.0 if (sprite.global_position.x < previous_x) else 1.0 if (sprite.global_position.x > previous_x) else sprite.scale.x
 	previous_x = sprite.global_position.x
 
 	walking_animation_weight = lerpf(walking_animation_weight, 1 if is_moving else 0, delta / .075)

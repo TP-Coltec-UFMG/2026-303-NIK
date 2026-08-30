@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bq0hvgjehacve" path="res://scenes/map/map.tscn" id="2_aonbx"]
 [ext_resource type="PackedScene" uid="uid://bgoc88jujeiyo" path="res://scenes/minigames/minigame_tester/minigame_tester.tscn" id="3_cjvif"]
 [ext_resource type="PackedScene" uid="uid://bd0j2ax5acbmj" path="res://scenes/minigames/receita_da_vovó/receita_da_vovó.tscn" id="4_30v7y"]
-[ext_resource type="AudioStream" uid="uid://bqpehdcxlg2wi" path="res://audio/musicas/Untitled.mp3" id="5_pc0jn"]
+[ext_resource type="AudioStream" uid="uid://dgjxajgfdxxia" path="res://audio/musicas/calminha.mp3" id="5_30v7y"]
 [ext_resource type="Shader" uid="uid://covi4n54bkdkf" path="res://shaders/filtro_daltonismo.gdshader" id="6_c7a3q"]
 [ext_resource type="Script" uid="uid://bm4rvfyvlss3y" path="res://scripts/menu.gd" id="7_4vth2"]
 [ext_resource type="FontFile" uid="uid://mb7lv5gfarwo" path="res://fonts/Chewy-Regular.ttf" id="8_yxe1x"]
@@ -184,7 +184,7 @@ speed_scale = 5.0
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="UI" unique_id=1278807957]
 process_mode = 3
-stream = ExtResource("5_pc0jn")
+stream = ExtResource("5_30v7y")
 autoplay = true
 
 [node name="ColorBlindessFilter" type="ColorRect" parent="UI" unique_id=1556381031]

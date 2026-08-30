@@ -167,6 +167,7 @@ func load_save() -> void:
 		print("could not open settings file!!!")
 		file.close()
 	else:
+		create_blank_save()
 		print("could not open settings file!!!")
 
 func get_game_data(key : String):
@@ -174,3 +175,10 @@ func get_game_data(key : String):
 
 func set_game_data(key : String, value):
 	game_data[key] = value
+
+func create_blank_save():
+	set_game_data("map_position", 0)
+
+	set_game_data("minigame_dona_luzia_complete", false)
+	set_game_data("minigame_seu_jorge_complete", false)
+	set_game_data("minigame_maria_complete", false)
