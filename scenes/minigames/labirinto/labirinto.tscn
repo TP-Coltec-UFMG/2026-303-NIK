@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://c80oo57ysn36d"]
+
+[ext_resource type="Script" uid="uid://d320083ifkgn0" path="res://scenes/minigames/labirinto/maze.gd" id="1_ibbmn"]
+[ext_resource type="Texture2D" uid="uid://cnrqyp0spp3k4" path="res://sprites/minigames/labirinto/labirinto1.png" id="2_a8sp5"]
+[ext_resource type="Texture2D" uid="uid://dcie0arucjoba" path="res://sprites/minigames/labirinto/labirinto_bitmap.png" id="2_xxv7r"]
+[ext_resource type="Texture2D" uid="uid://dfeyjo2mnrmlv" path="res://sprites/mapa/npcs/nikole.png" id="4_cyxjc"]
+[ext_resource type="Texture2D" uid="uid://bi2uc6lknxeu1" path="res://sprites/minigames/labirinto/labirinto2.png" id="4_o3sm5"]
+[ext_resource type="Texture2D" uid="uid://c8h5eienq2pl6" path="res://sprites/minigames/labirinto/labirinto3.png" id="5_os8al"]
+[ext_resource type="Texture2D" uid="uid://cqbjtfatjyrcl" path="res://sprites/minigames/labirinto/labirinto4.png" id="6_et2jy"]
+[ext_resource type="Script" uid="uid://bprss5c4da8iu" path="res://scenes/minigames/labirinto/nikole.gd" id="7_o3sm5"]
+[ext_resource type="Texture2D" uid="uid://vmfonmf4kqtu" path="res://sprites/minigames/ritmo/botao_defesa_centro.png" id="9_os8al"]
+
+[node name="Maze" type="Node2D" unique_id=734450241]
+script = ExtResource("1_ibbmn")
+
+[node name="MazeBitmap" type="Sprite2D" parent="." unique_id=1992365898]
+visible = false
+z_index = 50
+texture_filter = 1
+scale = Vector2(375, 375)
+texture = ExtResource("2_xxv7r")
+offset = Vector2(16, 16)
+
+[node name="Sprites" type="Node2D" parent="." unique_id=1342585327]
+z_index = -1
+
+[node name="Maze1" type="Sprite2D" parent="Sprites" unique_id=1870023909]
+texture = ExtResource("2_a8sp5")
+offset = Vector2(3000, 3000)
+
+[node name="Maze2" type="Sprite2D" parent="Sprites" unique_id=1583015392]
+position = Vector2(6000, 0)
+texture = ExtResource("4_o3sm5")
+offset = Vector2(3000, 3000)
+
+[node name="Maze3" type="Sprite2D" parent="Sprites" unique_id=1716590303]
+position = Vector2(0, 6000)
+texture = ExtResource("5_os8al")
+offset = Vector2(3000, 3000)
+
+[node name="Maze4" type="Sprite2D" parent="Sprites" unique_id=797884603]
+position = Vector2(6000, 6000)
+texture = ExtResource("6_et2jy")
+offset = Vector2(3000, 3000)
+
+[node name="Nikole" type="Node2D" parent="." unique_id=1673519271 node_paths=PackedStringArray("maze")]
+script = ExtResource("7_o3sm5")
+maze = NodePath("..")
+
+[node name="Camera2D" type="Camera2D" parent="Nikole" unique_id=572465459]
+zoom = Vector2(0.55, 0.55)
+position_smoothing_enabled = true
+
+[node name="Shadow" type="Sprite2D" parent="Nikole" unique_id=303687812]
+modulate = Color(0, 0, 0, 0.30588236)
+z_index = -1
+position = Vector2(70, 160)
+scale = Vector2(3.5554767, 1.2380953)
+texture = ExtResource("9_os8al")
+offset = Vector2(-20, -125)
+
+[node name="Sprite2D" type="Sprite2D" parent="Nikole" unique_id=1111365154]
+texture = ExtResource("4_cyxjc")
+offset = Vector2(-21, -125)

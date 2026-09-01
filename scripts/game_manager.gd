@@ -163,7 +163,7 @@ func load_save() -> void:
 			for save in save_data.keys():
 				game_data[save] = save_data[save]
 
-		load_map()
+		# load_map()
 		print("could not open settings file!!!")
 		file.close()
 	else:
