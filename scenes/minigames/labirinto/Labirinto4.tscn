@@ -1,12 +1,9 @@
 [gd_scene format=3 uid="uid://bj57u3wi7ctd0"]
 
-[ext_resource type="Script" uid="uid://dvrnlwokhw81t" path="res://scenes/minigames/labirinto/labirinto.gd" id="1_8srsv"]
 [ext_resource type="Texture2D" uid="uid://cqbjtfatjyrcl" path="res://sprites/minigames/labirinto/labirinto4.png" id="2_1nuwc"]
-[ext_resource type="Script" uid="uid://c1k1b14b2eouq" path="res://scenes/minigames/labirinto/nik.gd" id="3_v61b0"]
 [ext_resource type="Texture2D" uid="uid://dfeyjo2mnrmlv" path="res://sprites/mapa/npcs/nikole.png" id="4_c7mvb"]
 
 [node name="Labirinto4" type="Node2D" unique_id=1269007374]
-script = ExtResource("1_8srsv")
 
 [node name="labirinto_imagem" type="Sprite2D" parent="." unique_id=1470798869]
 texture_filter = 1
@@ -14,10 +11,8 @@ position = Vector2(3600, 3600)
 scale = Vector2(450, 450)
 texture = ExtResource("2_1nuwc")
 
-[node name="nik" type="CharacterBody2D" parent="." unique_id=681911981 node_paths=PackedStringArray("Labirinto")]
+[node name="nik" type="CharacterBody2D" parent="." unique_id=681911981]
 position = Vector2(3150, 3150)
-script = ExtResource("3_v61b0")
-Labirinto = NodePath("..")
 
 [node name="Camera2D" type="Camera2D" parent="nik" unique_id=1377888493]
 position = Vector2(196, 242)

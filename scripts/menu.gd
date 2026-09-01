@@ -213,7 +213,7 @@ func _input(event: InputEvent) -> void:
 			abrir_tela("Principal")
 	# A opção atual aumenta (positivo) quando aperta para baixo e
 	# diminui (negativo) quando aperta para cima
-	if event.is_action_pressed("ui_down") or event.is_action_pressed("ui_up"):
+	if visible == true and (event.is_action_pressed("ui_down") or event.is_action_pressed("ui_up")):
 		current_idx += int(event.is_action_pressed("ui_down")) - int(event.is_action_pressed("ui_up"));
 		current_idx = (current_idx + menus[active_menu].buttons.size()) % menus[active_menu].buttons.size()
 		menus[active_menu].buttons[current_idx].grab_focus()

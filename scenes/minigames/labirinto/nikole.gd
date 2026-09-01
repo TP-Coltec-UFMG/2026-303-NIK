@@ -17,19 +17,20 @@ var x_direction = 1
 
 func _ready() -> void:
 	current_pos = Vector2i(1, 1)
-	position = (Vector2(0.5, 0.5) + Vector2(current_pos)) * maze.tile_scale
+	position = (Vector2(0.5, 0.8) + Vector2(current_pos)) * maze.tile_scale
+	target_pos = position
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("move_up") or event.is_action_pressed("ui_up"):
 		move_to_tile(current_pos.x, current_pos.y - 1)
-			
+
 	if event.is_action_pressed("move_right") or event.is_action_pressed("ui_right"):
 		x_direction = 1
 		move_to_tile(current_pos.x + 1, current_pos.y)
 
 	if event.is_action_pressed("move_down") or event.is_action_pressed("ui_down"):
 		move_to_tile(current_pos.x, current_pos.y + 1)
-			
+
 	if event.is_action_pressed("move_left") or event.is_action_pressed("ui_left"):
 		x_direction = -1
 		move_to_tile(current_pos.x - 1, current_pos.y)
@@ -40,7 +41,9 @@ func move_to_tile(x : int, y : int, instant : bool = false):
 		current_pos.y = y
 
 		target_pos.x = (0.5 + current_pos.x) * maze.tile_scale 
-		target_pos.y = (0.75 + current_pos.y) * maze.tile_scale 
+		target_pos.y = (0.8 + current_pos.y) * maze.tile_scale 
+		
+		maze.check_item_pickup(x, y)
 
 		if instant:
 			position = target_pos
