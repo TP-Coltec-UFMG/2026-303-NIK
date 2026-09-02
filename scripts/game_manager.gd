@@ -27,6 +27,7 @@ func load_scene(cena: String) -> void:
 	if current_scene != cena:
 		get_tree().change_scene_to_packed(cenas[cena])
 		print("carregando cena \"" + cena+ "\"")
+		save_game()
 
 	await get_tree().process_frame 
 	
