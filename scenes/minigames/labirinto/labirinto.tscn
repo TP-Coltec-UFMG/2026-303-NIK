@@ -2,19 +2,32 @@
 
 [ext_resource type="Script" uid="uid://d320083ifkgn0" path="res://scenes/minigames/labirinto/maze.gd" id="1_ibbmn"]
 [ext_resource type="Texture2D" uid="uid://cnrqyp0spp3k4" path="res://sprites/minigames/labirinto/labirinto1.png" id="2_a8sp5"]
+[ext_resource type="Texture2D" uid="uid://c3bhwqmrqfx0c" path="res://sprites/minigames/labirinto/estrela_ligada_francisco.png" id="2_frkay"]
 [ext_resource type="Texture2D" uid="uid://dcie0arucjoba" path="res://sprites/minigames/labirinto/labirinto_bitmap.png" id="2_xxv7r"]
+[ext_resource type="Texture2D" uid="uid://htck3wks6ew4" path="res://sprites/minigames/labirinto/estrela_ligada_luis.png" id="3_aey8s"]
 [ext_resource type="Texture2D" uid="uid://dfeyjo2mnrmlv" path="res://sprites/mapa/npcs/nikole.png" id="4_cyxjc"]
+[ext_resource type="Texture2D" uid="uid://du8hdb7i3ms1d" path="res://sprites/minigames/labirinto/estrela_ligada_flavia.png" id="4_efptu"]
 [ext_resource type="Texture2D" uid="uid://bi2uc6lknxeu1" path="res://sprites/minigames/labirinto/labirinto2.png" id="4_o3sm5"]
 [ext_resource type="Texture2D" uid="uid://c8h5eienq2pl6" path="res://sprites/minigames/labirinto/labirinto3.png" id="5_os8al"]
 [ext_resource type="Texture2D" uid="uid://cqbjtfatjyrcl" path="res://sprites/minigames/labirinto/labirinto4.png" id="6_et2jy"]
 [ext_resource type="Script" uid="uid://bprss5c4da8iu" path="res://scenes/minigames/labirinto/nikole.gd" id="7_o3sm5"]
 [ext_resource type="Texture2D" uid="uid://vmfonmf4kqtu" path="res://sprites/minigames/ritmo/botao_defesa_centro.png" id="9_os8al"]
-[ext_resource type="Texture2D" uid="uid://dkmhwko6d3pb2" path="res://sprites/paulo/paulo_cabeca.png" id="10_et2jy"]
-[ext_resource type="Texture2D" uid="uid://dyewfnukfbxss" path="res://sprites/mapa/npcs/dona_luzia.png" id="10_wwsu8"]
+[ext_resource type="Texture2D" uid="uid://cqa1l7sin5v5s" path="res://sprites/mapa/npcs/francisco.png" id="10_sahm2"]
 [ext_resource type="Script" uid="uid://cx0n7fjrh07hx" path="res://scenes/minigames/labirinto/item.gd" id="11_jckl1"]
+[ext_resource type="Texture2D" uid="uid://gpi4f8mt5gih" path="res://sprites/mapa/npcs/luis.png" id="12_pkm1r"]
+[ext_resource type="Texture2D" uid="uid://xeo1llost0fn" path="res://sprites/mapa/npcs/flavia.png" id="13_gr3jy"]
+[ext_resource type="Texture2D" uid="uid://cbugkfbvc7cbu" path="res://sprites/minigames/labirinto/estrela_ligada_nikole.png" id="14_u45vi"]
+[ext_resource type="Texture2D" uid="uid://c3p3g67gltqvc" path="res://sprites/minigames/labirinto/estrela_desligada_francisco.png" id="15_u45vi"]
+[ext_resource type="Texture2D" uid="uid://btw58gnaw1cpu" path="res://sprites/minigames/labirinto/estrela_desligada_luis.png" id="16_xo3sy"]
+[ext_resource type="Texture2D" uid="uid://76u82brsyih3" path="res://sprites/minigames/labirinto/estrela_desligada_flavia.png" id="17_saydg"]
+[ext_resource type="Texture2D" uid="uid://3t34efkge520" path="res://sprites/minigames/labirinto/estrela_desligada_nikole.png" id="18_aey8s"]
 
 [node name="Maze" type="Node2D" unique_id=734450241]
 script = ExtResource("1_ibbmn")
+estrela_ligada_nikole = ExtResource("14_u45vi")
+estrela_ligada_francisco = ExtResource("2_frkay")
+estrela_ligada_luis = ExtResource("3_aey8s")
+estrela_ligada_flavia = ExtResource("4_efptu")
 
 [node name="MazeBitmap" type="Sprite2D" parent="." unique_id=1992365898]
 visible = false
@@ -66,16 +79,16 @@ offset = Vector2(-20, -125)
 texture = ExtResource("4_cyxjc")
 offset = Vector2(-21, -125)
 
-[node name="item1" type="Sprite2D" parent="." unique_id=1372355185 node_paths=PackedStringArray("nikole")]
+[node name="Francisco" type="Sprite2D" parent="." unique_id=1372355185 node_paths=PackedStringArray("nikole")]
 z_index = -1
-texture = ExtResource("10_wwsu8")
-offset = Vector2(0, -125)
+texture = ExtResource("10_sahm2")
+offset = Vector2(0, -85.5)
 script = ExtResource("11_jckl1")
 nikole = NodePath("../Nikole")
 follow_offset = Vector2(-120, -60)
 animated = true
 
-[node name="Shadow" type="Sprite2D" parent="item1" unique_id=816836837]
+[node name="Shadow" type="Sprite2D" parent="Francisco" unique_id=816836837]
 modulate = Color(0, 0, 0, 0.30588236)
 z_index = -1
 position = Vector2(70, 160)
@@ -83,15 +96,37 @@ scale = Vector2(3.5554767, 1.2380953)
 texture = ExtResource("9_os8al")
 offset = Vector2(-20, -125)
 
-[node name="item2" type="Sprite2D" parent="." unique_id=1246747068 node_paths=PackedStringArray("nikole")]
-texture = ExtResource("10_et2jy")
+[node name="Luis" type="Sprite2D" parent="." unique_id=1246747068 node_paths=PackedStringArray("nikole")]
+texture = ExtResource("12_pkm1r")
+offset = Vector2(0, -85.5)
 script = ExtResource("11_jckl1")
 nikole = NodePath("../Nikole")
+follow_offset = Vector2(-120, 60)
+animated = true
 
-[node name="item3" type="Sprite2D" parent="." unique_id=913206177 node_paths=PackedStringArray("nikole")]
-texture = ExtResource("10_et2jy")
+[node name="Shadow" type="Sprite2D" parent="Luis" unique_id=1828766873]
+modulate = Color(0, 0, 0, 0.30588236)
+z_index = -1
+position = Vector2(70, 160)
+scale = Vector2(3.5554767, 1.2380953)
+texture = ExtResource("9_os8al")
+offset = Vector2(-20, -125)
+
+[node name="Flavia" type="Sprite2D" parent="." unique_id=913206177 node_paths=PackedStringArray("nikole")]
+texture = ExtResource("13_gr3jy")
+offset = Vector2(0, -85.5)
 script = ExtResource("11_jckl1")
 nikole = NodePath("../Nikole")
+follow_offset = Vector2(-240, -40)
+animated = true
+
+[node name="Shadow" type="Sprite2D" parent="Flavia" unique_id=1511757869]
+modulate = Color(0, 0, 0, 0.30588236)
+z_index = -1
+position = Vector2(70, 160)
+scale = Vector2(3.5554767, 1.2380953)
+texture = ExtResource("9_os8al")
+offset = Vector2(-20, -125)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1160194427]
 layer = -1
@@ -104,3 +139,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.85882354, 0.64705884, 0.74509805, 1)
+
+[node name="Stars" type="Node2D" parent="." unique_id=435417707]
+
+[node name="NikoleS" type="Sprite2D" parent="Stars" unique_id=2029512294]
+z_index = -2
+position = Vector2(562.5, 562.5)
+texture = ExtResource("18_aey8s")
+
+[node name="FranciscoS" type="Sprite2D" parent="Stars" unique_id=1121971437]
+z_index = -2
+position = Vector2(1687.5, 5062.5)
+texture = ExtResource("15_u45vi")
+
+[node name="LuisS" type="Sprite2D" parent="Stars" unique_id=706246501]
+z_index = -2
+position = Vector2(11437.5, 6937.5)
+texture = ExtResource("16_xo3sy")
+
+[node name="FlaviaS" type="Sprite2D" parent="Stars" unique_id=1266380488]
+z_index = -2
+position = Vector2(7312.5, 562.5)
+texture = ExtResource("17_saydg")

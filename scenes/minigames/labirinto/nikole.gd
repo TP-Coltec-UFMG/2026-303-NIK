@@ -43,7 +43,9 @@ func move_to_tile(x : int, y : int, instant : bool = false):
 		target_pos.x = (0.5 + current_pos.x) * maze.tile_scale 
 		target_pos.y = (0.8 + current_pos.y) * maze.tile_scale 
 		
-		maze.check_item_pickup(x, y)
+		maze.check_kid_pickup(x, y)
+		maze.check_kid_dropout(x, y)
+		maze.check_end_game(x, y)
 
 		if instant:
 			position = target_pos

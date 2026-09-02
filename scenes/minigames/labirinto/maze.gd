@@ -5,14 +5,27 @@ var tile_scale : float = 375
 var height: int
 var width: int
 
-var has_item1 = false
-var has_item2 = false
-var has_item3 = false
+var has_francisco = false
+var has_luis = false
+var has_flavia = false
+
+const pos_star_nikole = Vector2i(1, 1)
+const pos_star_francisco = Vector2i(4, 13)
+const pos_star_luis = Vector2i(30, 18)
+const pos_star_flavia = Vector2i(19, 1)
+
+@export var estrela_ligada_nikole : Texture
+@export var estrela_ligada_francisco : Texture
+@export var estrela_ligada_luis : Texture
+@export var estrela_ligada_flavia : Texture
 
 func _ready() -> void:
 	maze = read_maze()
-	roll_pos_items()
-
+	maze[pos_star_nikole.x][pos_star_nikole.y] = 13
+	maze[pos_star_francisco.x][pos_star_francisco.y] = 10
+	maze[pos_star_luis.x][pos_star_luis.y] = 20
+	maze[pos_star_flavia.x][pos_star_flavia.y] = 30
+	roll_pos_kids()
 
 func read_maze() -> Array:
 	# Obtém a textura do labrinto.
@@ -30,56 +43,78 @@ func read_maze() -> Array:
 		for c in range(width):
 			var column = []
 			for r in range(height):
-				column.append(-1 if maze_bitmap.get_bit(c, r) else 0)
+				column.append(0 if maze_bitmap.get_bit(c, r) else 0)
 			matrix.append(column)
 
 	return matrix
-
 
 func is_walkable(column: int, row: int):
 	if maze[column][row] == -1: return false
 	else: return true
 
-func check_item_pickup(column: int, row: int) -> void:
+func check_kid_pickup(column: int, row: int) -> void:
 	match maze[column][row]:
 		1:
-			$item1.collected = true
+			$Francisco.collected = true
 			maze[column][row] = 0
-			has_item1 = true
+			has_francisco = true
 		2:
-			$item2.collected = true
+			$Luis.collected = true
 			maze[column][row] = 0
 			maze[column][row] = 0
-			has_item2 = true
+			has_luis = true
 		3:
-			$item3.collected = true
+			$Flavia.collected = true
 			maze[column][row] = 0
 			maze[column][row] = 0
-			has_item3 = true
+			has_flavia = true
 
-	if has_item1 and has_item2 and has_item3:
-		GameManager.load_map()
-		GameManager.set_game_data("minigame_dona_luzia_complete", true);
+func check_kid_dropout(column: int, row: int) -> void:
+	match maze[column][row]:
+		10:
+			if has_francisco:
+				$Francisco.position = (Vector2(pos_star_francisco) + Vector2(0.5, 0.5)) * tile_scale
+				$Francisco.placed = true
+				has_francisco = false
+				$Stars/FranciscoS.texture = estrela_ligada_francisco
+		20:
+			if has_luis:
+				$Luis.position = (Vector2(pos_star_luis) + Vector2(0.5, 0.5)) * tile_scale
+				$Luis.placed = true
+				has_luis = false
+				$Stars/LuisS.texture = estrela_ligada_luis
+		30:
+			if has_flavia:
+				$Flavia.position = (Vector2(pos_star_flavia) + Vector2(0.5, 0.5)) * tile_scale
+				$Flavia.placed = true
+				has_flavia = false
+				$Stars/FlaviaS.texture = estrela_ligada_flavia
 
-func roll_pos_items() -> void:
+func check_end_game(column: int, row: int) -> void:
+	if $Francisco.placed and $Luis.placed and $Flavia.placed:
+		$Stars/NikoleS.texture = estrela_ligada_nikole
+		if maze[column][row] == 13:
+			GameManager.load_map()
+			GameManager.set_game_data("minigame_dona_luzia_complete", true);
+
+func roll_pos_kids() -> void:
 	while true:
-		# var pos = Vector2i(2, 3)
 		var pos = Vector2i(randi_range(27, 31), randi_range(1, 5))
 		if maze[pos.x][pos.y] == 0:
-			$item1.position = (Vector2(pos) + Vector2(0.5, 0.5)) * tile_scale
+			$Francisco.position = (Vector2(pos) + Vector2(0.5, 0.5)) * tile_scale
 			maze[pos.x][pos.y] = 1
 			break
 
 	while true:
 		var pos = Vector2i(randi_range(1, 5), randi_range(27, 31))
 		if maze[pos.x][pos.y] == 0:
-			$item2.position = (Vector2(pos) + Vector2(0.5, 0.5)) * tile_scale
+			$Luis.position = (Vector2(pos) + Vector2(0.5, 0.5)) * tile_scale
 			maze[pos.x][pos.y] = 2
 			break
 
 	while true:
 		var pos = Vector2i(randi_range(27, 31), randi_range(27, 31))
 		if maze[pos.x][pos.y] == 0:
-			$item3.position = (Vector2(pos) + Vector2(0.5, 0.5)) * tile_scale
+			$Flavia.position = (Vector2(pos) + Vector2(0.5, 0.5)) * tile_scale
 			maze[pos.x][pos.y] = 3
 			break
