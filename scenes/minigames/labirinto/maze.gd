@@ -43,7 +43,7 @@ func read_maze() -> Array:
 		for c in range(width):
 			var column = []
 			for r in range(height):
-				column.append(0 if maze_bitmap.get_bit(c, r) else 0)
+				column.append(-1 if maze_bitmap.get_bit(c, r) else 0)
 			matrix.append(column)
 
 	return matrix
@@ -73,19 +73,19 @@ func check_kid_dropout(column: int, row: int) -> void:
 	match maze[column][row]:
 		10:
 			if has_francisco:
-				$Francisco.position = (Vector2(pos_star_francisco) + Vector2(0.5, 0.5)) * tile_scale
+				$Francisco.target_pos = (Vector2(pos_star_francisco) + Vector2(0.5, 0.5)) * tile_scale
 				$Francisco.placed = true
 				has_francisco = false
 				$Stars/FranciscoS.texture = estrela_ligada_francisco
 		20:
 			if has_luis:
-				$Luis.position = (Vector2(pos_star_luis) + Vector2(0.5, 0.5)) * tile_scale
+				$Luis.target_pos = (Vector2(pos_star_luis) + Vector2(0.5, 0.5)) * tile_scale
 				$Luis.placed = true
 				has_luis = false
 				$Stars/LuisS.texture = estrela_ligada_luis
 		30:
 			if has_flavia:
-				$Flavia.position = (Vector2(pos_star_flavia) + Vector2(0.5, 0.5)) * tile_scale
+				$Flavia.target_pos = (Vector2(pos_star_flavia) + Vector2(0.5, 0.5)) * tile_scale
 				$Flavia.placed = true
 				has_flavia = false
 				$Stars/FlaviaS.texture = estrela_ligada_flavia

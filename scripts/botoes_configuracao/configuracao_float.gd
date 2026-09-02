@@ -4,32 +4,32 @@ class_name ConfigButtonFloat
 
 @export var vertical : bool = false
 @export var value : float = 0:
-	set(novo_valor):
-		value = clampf(novo_valor, valor_minimo, valor_maximo)
-		if passo > 0:
-			value = snappedf(value, passo)
+	set(new_value):
+		value = clampf(new_value, min_value, max_value)
+		if step > 0:
+			value = snappedf(value, step)
 		if line_edit:
 			line_edit.text = str(value)
 		if slider:
-			animacao_slider()
+			slider_animation()
 		if GameManager: GameManager.change_setting(id, value)
 @export var slider : bool = false
-@export var valor_minimo : float = 0.0
-@export var valor_maximo : float = 1.0
-@export var passo : float = 0.1
+@export var min_value : float = 0.0
+@export var max_value : float = 1.0
+@export var step : float = 0.1
 
-var valor_normal : float:
+var normal_value : float:
 	set(v):
-		valor_normal = v
+		normal_value = v
 		queue_redraw()
 
-var espacamento = 10.0
+var gap = 10.0
 
 var line_edit : LineEdit
 
-var editando : bool = false:
+var is_editing : bool = false:
 	set(v):
-		editando = v
+		is_editing = v
 		queue_redraw()
 
 var tween : Tween
@@ -47,42 +47,42 @@ func _ready() -> void:
 		line_edit.focus_exited.connect(func(): _on_text_submitted(line_edit.text))
 
 func _draw() -> void:
-	var cor = get_theme_color("cor_normal", variacao_tema)
-	var contorno = Color.TRANSPARENT
+	var color = get_theme_color("color_default", theme_variation)
+	var outline = Color.TRANSPARENT
 	
-	if editando:
-		cor = get_theme_color("cor_pressionado", variacao_tema)
-		contorno = get_theme_color("cor_pressionado_contorno", variacao_tema)
+	if is_editing:
+		color = get_theme_color("color_pressed", theme_variation)
+		outline = get_theme_color("color_pressed_outline", theme_variation)
 	elif has_focus():
-		cor = get_theme_color("cor_foco", variacao_tema)
-		contorno = get_theme_color("cor_foco_contorno", variacao_tema)
+		color = get_theme_color("color_focus", theme_variation)
+		outline = get_theme_color("color_focus_outline", theme_variation)
 
-	var offset = desenha_texto(label, Vector2.ZERO, cor, contorno)
+	var offset = draw_text(label, Vector2.ZERO, color, outline)
 	
 	if line_edit and not slider:  # slider oculta o line edit
 		if not vertical:
-			line_edit.position = Vector2(offset.x + espacamento, (size.y - line_edit.size.y) / 2)
-			line_edit.size.x = size.x - offset.x - 2 * espacamento
+			line_edit.position = Vector2(offset.x + gap, (size.y - line_edit.size.y) / 2)
+			line_edit.size.x = size.x - offset.x - 2 * gap
 		else:
 			line_edit.position = Vector2(0, size.y - 5)
 			line_edit.size.x = size.x
 
 	if slider:
-		var expessura_barra = 16.0
+		var bar_width = 16.0
 
-		var cor_preenchimento = get_theme_color("cor_foco", variacao_tema)
-		if editando: cor_preenchimento = get_theme_color("cor_pressionado", variacao_tema)
+		var fill_color = get_theme_color("color_focus", theme_variation)
+		if is_editing: fill_color = get_theme_color("color_pressed", theme_variation)
 		
-		var posicao_barra : Vector2 = Vector2(0, offset.y + espacamento)
+		var bar_pos : Vector2 = Vector2(0, offset.y + gap)
 
-		draw_rect(Rect2(posicao_barra + Vector2(1, 1), Vector2(valor_normal * size.x, expessura_barra - 2)), cor_preenchimento, true, -1, true)
-		draw_style_box(get_theme_stylebox("normal", "LineEdit"), Rect2(Vector2(0, espacamento + offset.y), Vector2(size.x, expessura_barra)))
-		draw_circle(Vector2(valor_normal * size.x, offset.y + espacamento + expessura_barra / 2), expessura_barra / 2 + 2, get_theme_color("cor_normal", variacao_tema), true, -1, true)
+		draw_rect(Rect2(bar_pos + Vector2(1, 1), Vector2(normal_value * size.x, bar_width - 2)), fill_color, true, -1, true)
+		draw_style_box(get_theme_stylebox("normal", "LineEdit"), Rect2(Vector2(0, gap + offset.y), Vector2(size.x, bar_width)))
+		draw_circle(Vector2(normal_value * size.x, offset.y + gap + bar_width / 2), bar_width / 2 + 2, get_theme_color("color_default", theme_variation), true, -1, true)
 
-		desenha_texto(str(value), Vector2(size.x - tamanho_texto(str(value)).x - 10.0, 0), cor, contorno)
+		draw_text(str(value), Vector2(size.x - text_size(str(value)).x - 10.0, 0), color, outline)
 
-func animacao_slider() -> void:
-	var alvo_normal = float(value - valor_minimo) / float(valor_maximo - valor_minimo)
+func slider_animation() -> void:
+	var target_normal = float(value - min_value) / float(max_value - min_value)
 	
 	if tween:
 		tween.kill()
@@ -92,12 +92,12 @@ func animacao_slider() -> void:
 	tween.set_trans(Tween.TRANS_CUBIC)
 	tween.set_ease(Tween.EASE_OUT)
 	
-	tween.tween_property(self, "valor_normal", alvo_normal, 0.1)
+	tween.tween_property(self, "normal_value", target_normal, 0.1)
 
-func _on_text_submitted(novo_texto: String) -> void:
+func _on_text_submitted(new_text: String) -> void:
 	grab_focus()
-	if novo_texto.is_valid_float():
-		value = novo_texto.to_float()
+	if new_text.is_valid_float():
+		value = new_text.to_float()
 	else:
 		line_edit.text = str(value)
 
@@ -105,27 +105,27 @@ func _pressed() -> void:
 	if not slider:
 		line_edit.grab_focus() # quando apertado foca o texto
 	# else:
-	# 	editando = true
+	# 	is_editing = true
 
 func _notification(what: int) -> void:
 	match what:
 		NOTIFICATION_FOCUS_EXIT:
-			editando = false # tira o editando se sair (na teoria nao precisa, mas é bom garantir)
+			is_editing = false # tira o is_editing se sair (na teoria nao precisa, mas é bom garantir)
 
 func _gui_input(event: InputEvent) -> void:
-	if editando:
-		var mudou = false
+	if is_editing:
+		var changed = false
 		if event.is_action_pressed("ui_right"):
-			value += passo
-			mudou = true
+			value += step
+			changed = true
 		elif event.is_action_pressed("ui_left"):
-			value -= passo
-			mudou = true
+			value -= step
+			changed = true
 			
 		# nao deixa o godot passar o foco para outra configuracao
-		if mudou or event.is_action_pressed("ui_up") or event.is_action_pressed("ui_down"):
+		if changed or event.is_action_pressed("ui_up") or event.is_action_pressed("ui_down"):
 			accept_event() 
 			
 	# alterna o modo de edicao
 	if event.is_action_released("ui_accept"):
-		editando = !editando
+		is_editing = !is_editing

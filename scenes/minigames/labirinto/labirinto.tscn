@@ -69,18 +69,19 @@ position_smoothing_enabled = true
 
 [node name="Shadow" type="Sprite2D" parent="Nikole" unique_id=303687812]
 modulate = Color(0, 0, 0, 0.30588236)
-z_index = -1
+z_index = -5
 position = Vector2(70, 160)
 scale = Vector2(3.5554767, 1.2380953)
 texture = ExtResource("9_os8al")
 offset = Vector2(-20, -125)
 
 [node name="Sprite2D" type="Sprite2D" parent="Nikole" unique_id=1111365154]
+z_index = 4
 texture = ExtResource("4_cyxjc")
 offset = Vector2(-21, -125)
 
 [node name="Francisco" type="Sprite2D" parent="." unique_id=1372355185 node_paths=PackedStringArray("nikole")]
-z_index = -1
+z_index = 1
 texture = ExtResource("10_sahm2")
 offset = Vector2(0, -85.5)
 script = ExtResource("11_jckl1")
@@ -90,29 +91,31 @@ animated = true
 
 [node name="Shadow" type="Sprite2D" parent="Francisco" unique_id=816836837]
 modulate = Color(0, 0, 0, 0.30588236)
-z_index = -1
+z_index = -5
 position = Vector2(70, 160)
 scale = Vector2(3.5554767, 1.2380953)
 texture = ExtResource("9_os8al")
 offset = Vector2(-20, -125)
 
 [node name="Luis" type="Sprite2D" parent="." unique_id=1246747068 node_paths=PackedStringArray("nikole")]
+z_index = 3
 texture = ExtResource("12_pkm1r")
 offset = Vector2(0, -85.5)
 script = ExtResource("11_jckl1")
 nikole = NodePath("../Nikole")
-follow_offset = Vector2(-120, 60)
+follow_offset = Vector2(-200, 30)
 animated = true
 
 [node name="Shadow" type="Sprite2D" parent="Luis" unique_id=1828766873]
 modulate = Color(0, 0, 0, 0.30588236)
-z_index = -1
+z_index = -5
 position = Vector2(70, 160)
 scale = Vector2(3.5554767, 1.2380953)
 texture = ExtResource("9_os8al")
 offset = Vector2(-20, -125)
 
 [node name="Flavia" type="Sprite2D" parent="." unique_id=913206177 node_paths=PackedStringArray("nikole")]
+z_index = 2
 texture = ExtResource("13_gr3jy")
 offset = Vector2(0, -85.5)
 script = ExtResource("11_jckl1")
@@ -122,7 +125,7 @@ animated = true
 
 [node name="Shadow" type="Sprite2D" parent="Flavia" unique_id=1511757869]
 modulate = Color(0, 0, 0, 0.30588236)
-z_index = -1
+z_index = -5
 position = Vector2(70, 160)
 scale = Vector2(3.5554767, 1.2380953)
 texture = ExtResource("9_os8al")

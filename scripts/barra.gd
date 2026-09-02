@@ -11,7 +11,7 @@ var _preenchimento : float = 0:
 @export_range(0, 1) var preenchimento : float = 0.5:
 	set(value):
 		preenchimento = clampf(value, 0.0, 1.0)
-		animacao_slider()
+		slider_animation()
 
 @export var direcao : Direcao = Direcao.DIREITA:
 	set(value):
@@ -28,9 +28,9 @@ var _preenchimento : float = 0:
 		cor_contorno = value
 		if style_box: style_box.border_color = cor_contorno
 		queue_redraw()
-@export var cor_preenchimento : Color = Color.SLATE_BLUE:
+@export var fill_color : Color = Color.SLATE_BLUE:
 	set(value):
-		cor_preenchimento = value
+		fill_color = value
 		queue_redraw()
 
 var style_box : StyleBoxFlat
@@ -56,18 +56,18 @@ func _draw() -> void:
 	var tamanho_preenchimento = size - tamanho_reducao
 	match direcao:
 		Direcao.DIREITA:
-			draw_rect(Rect2(offset + Vector2.ZERO, Vector2(tamanho_preenchimento.x * _preenchimento, tamanho_preenchimento.y)), cor_preenchimento)
+			draw_rect(Rect2(offset + Vector2.ZERO, Vector2(tamanho_preenchimento.x * _preenchimento, tamanho_preenchimento.y)), fill_color)
 		Direcao.ESQUERDA:
-			draw_rect(Rect2(offset + Vector2(tamanho_preenchimento.x * (1 - _preenchimento), tamanho_reducao.y / 2), Vector2(tamanho_preenchimento.x * _preenchimento + tamanho_reducao.x / 2 , tamanho_preenchimento.y) - tamanho_reducao), cor_preenchimento)
+			draw_rect(Rect2(offset + Vector2(tamanho_preenchimento.x * (1 - _preenchimento), tamanho_reducao.y / 2), Vector2(tamanho_preenchimento.x * _preenchimento + tamanho_reducao.x / 2 , tamanho_preenchimento.y) - tamanho_reducao), fill_color)
 		Direcao.CIMA:
-			draw_rect(Rect2(offset + Vector2(0, tamanho_preenchimento.y * (1 - _preenchimento)), Vector2(tamanho_preenchimento.x, tamanho_preenchimento.y * _preenchimento) - tamanho_reducao), cor_preenchimento)
+			draw_rect(Rect2(offset + Vector2(0, tamanho_preenchimento.y * (1 - _preenchimento)), Vector2(tamanho_preenchimento.x, tamanho_preenchimento.y * _preenchimento) - tamanho_reducao), fill_color)
 		Direcao.BAIXO:
-			draw_rect(Rect2(offset + Vector2.ZERO, Vector2(tamanho_preenchimento.x, tamanho_preenchimento.y * _preenchimento) - tamanho_reducao), cor_preenchimento)
+			draw_rect(Rect2(offset + Vector2.ZERO, Vector2(tamanho_preenchimento.x, tamanho_preenchimento.y * _preenchimento) - tamanho_reducao), fill_color)
 
 	draw_style_box(style_box, Rect2(Vector2.ZERO, size))
 
 	
-func animacao_slider() -> void:
+func slider_animation() -> void:
 	if tween:
 		tween.kill()
 		

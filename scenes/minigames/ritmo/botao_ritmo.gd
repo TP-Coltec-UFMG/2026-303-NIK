@@ -8,8 +8,8 @@ class Nota:
 	var value : float
 	var critico : bool
 
-	func _init(_valor : float, _critico : bool = false) -> void:
-		value = _valor
+	func _init(_value : float, _critico : bool = false) -> void:
+		value = _value
 		posicao = 1
 
 		critico = _critico
@@ -82,8 +82,8 @@ func _draw() -> void:
 	draw_string_outline(fonte, posicao_texto, key, HORIZONTAL_ALIGNMENT_RIGHT, -1, tamanho_fonte, 30, cor_contorno)
 	draw_string(fonte, posicao_texto, key, HORIZONTAL_ALIGNMENT_RIGHT, -1, tamanho_fonte, cor_texto)
 
-func desenhar_textura(texture : Texture2D, posicao : Vector2, cor : Color = Color.WHITE):
-	draw_texture_rect(texture, Rect2(posicao + size / 2 - texture.get_size() / 2, texture.get_size()), false, cor)
+func desenhar_textura(texture : Texture2D, posicao : Vector2, color : Color = Color.WHITE):
+	draw_texture_rect(texture, Rect2(posicao + size / 2 - texture.get_size() / 2, texture.get_size()), false, color)
 
 func adicionar_nota(value : float):
 	notas.append(Nota.new(value))

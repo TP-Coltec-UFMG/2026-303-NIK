@@ -65,7 +65,7 @@ script = ExtResource("1_3d7gl")
 preenchimento = 1.0
 cor_fundo = Color(0.12941177, 0.14509805, 0.34117648, 1)
 cor_contorno = Color(0.31, 0.64349985, 1, 1)
-cor_preenchimento = Color(0.05490196, 0.3529412, 0.7490196, 1)
+fill_color = Color(0.05490196, 0.3529412, 0.7490196, 1)
 metadata/_custom_type_script = "uid://wf151atkywwk"
 
 [node name="Label" type="Label" parent="UI/VidaNikole" unique_id=835914428]
@@ -90,7 +90,7 @@ preenchimento = 1.0
 direcao = 1
 cor_fundo = Color(0.2784314, 0.105882354, 0.17254902, 1)
 cor_contorno = Color(1, 0.30588236, 0.36078432, 1)
-cor_preenchimento = Color(0.6666667, 0.078431375, 0.22352941, 1)
+fill_color = Color(0.6666667, 0.078431375, 0.22352941, 1)
 metadata/_custom_type_script = "uid://wf151atkywwk"
 
 [node name="Label" type="Label" parent="UI/VidaInimigo" unique_id=804109748]

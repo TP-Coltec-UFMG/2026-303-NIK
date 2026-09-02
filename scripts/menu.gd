@@ -31,7 +31,7 @@ var current_position : int = 0
 
 # Dicionário com todos os menus e seus botões
 var menus : Dictionary = {}
-var active_menu : String = "Principal"
+var active_menu : String = "Main"
 
 # Tamanho do raio da circunferência do Menu
 const base_menu_radius : int = 1000
@@ -59,19 +59,19 @@ func _ready() -> void:
 	setup_menus()
 	setup_circular_buttons()
 
-	for button in $Telas/Configuracoes.get_children():
+	for button in $Pages/Settings.get_children():
 		if button is ConfigButton and "value" in button:
 			setting_buttons.append(button)
-	for button in $Telas/Acessibilidade.get_children():
+	for button in $Pages/Accessibility.get_children():
 		if button is ConfigButton and "value" in button:
 			setting_buttons.append(button)
-	for button in $Telas/Controles.get_children():
+	for button in $Pages/Controls.get_children():
 		if button is ConfigButton and "value" in button:
 			setting_buttons.append(button)
 
 	# load_settings()
 	
-	# abrir_tela("Principal")
+	# open_screen("Main")
 
 # Função chamada a cada frame
 func _process(delta: float) -> void:
@@ -84,49 +84,49 @@ Atualiza a posição dos botões em uma organização circular a lista de botõe
 """
 func update_circular_buttons(delta : float):
 	var menu_data = menus[active_menu]
-	var lista_botoes = menu_data.buttons
-	var lista_objetos = menu_data.objects
+	var button_list = menu_data.buttons
+	var object_list = menu_data.objects
 
 	# Atualiza o index para apontar para o button com foco
-	current_idx = buscar_foco(lista_botoes)
-	current_position = lista_objetos.find(lista_botoes[current_idx])
+	current_idx = search_focus(button_list)
+	current_position = object_list.find(button_list[current_idx])
 
 	# Percorre todos os botões, definindo a posição de cada um
-	for i in range(lista_objetos.size()):
-		var button : Control = lista_objetos[i]
+	for i in range(object_list.size()):
+		var button : Control = object_list[i]
 
 		# Índice relativo à opção selecionada atualmente
-		var idx_relativo : int = i - current_position
+		var relative_idx : int = i - current_position
 
 		# Obtém o fator da escala para diminuir os botões mais distantes e aumentar o botão selecionado
-		var fator_escala : float = (selected_button_scale if idx_relativo == 0 else 1.0) * pow(.8, abs(idx_relativo))
+		var scale_factor : float = (selected_button_scale if relative_idx == 0 else 1.0) * pow(.8, abs(relative_idx))
 		
 		# Aplica o fator_escala no botão
-		button.scale = lerp(button.scale, Vector2(fator_escala, fator_escala), (delta / 0.1) if delta > 0 else 1.0)
+		button.scale = lerp(button.scale, Vector2(scale_factor, scale_factor), (delta / 0.1) if delta > 0 else 1.0)
 
 		# Diminui a opacidade dos botões distantes
-		var opacidade = clampf(1.0 - max(0, abs(idx_relativo) - 2) * 0.34, 0, 1)
-		button.modulate.a = lerp(button.modulate.a, opacidade, (delta / 0.1)  if delta > 0 else 1.0)
+		var alpha = clampf(1.0 - max(0, abs(relative_idx) - 2) * 0.34, 0, 1)
+		button.modulate.a = lerp(button.modulate.a, alpha, (delta / 0.1)  if delta > 0 else 1.0)
 
 	# Gira a tela inteira para deixar o button selecionado na esquerda
-	var angulo : float = current_position * menu_angle * get_tree().root.content_scale_factor
-	var posicao : Vector2 = get_viewport_rect().size / 2 + menu_center_offset / get_tree().root.content_scale_factor
+	var ang : float = current_position * menu_angle * get_tree().root.content_scale_factor
+	var pos : Vector2 = get_viewport_rect().size / 2 + menu_center_offset / get_tree().root.content_scale_factor
 
 	if not circular_menu: 
-		angulo = 0
-		posicao.y -= current_position * menu_distance
+		ang = 0
+		pos.y -= current_position * menu_distance
 
-	$Telas.rotation = lerp($Telas.rotation, angulo, (delta / 0.1) if delta > 0 else 1.0)
-	$Telas.position = lerp($Telas.position, posicao, (delta / 0.1) if delta > 0 else 1.0)
+	$Pages.rotation = lerp($Pages.rotation, ang, (delta / 0.1) if delta > 0 else 1.0)
+	$Pages.position = lerp($Pages.position, pos, (delta / 0.1) if delta > 0 else 1.0)
 	
-	$Ponteiro.label_settings.outline_color = lerp($Ponteiro.label_settings.outline_color, get_theme_color("cor_foco_contorno", lista_botoes[current_idx].variacao_tema), (delta / 0.1) if delta > 0 else 1.0)
-	$Ponteiro.label_settings.font_color = lerp($Ponteiro.label_settings.font_color, get_theme_color("cor_foco", lista_botoes[current_idx].variacao_tema), (delta / 0.1) if delta > 0 else 1.0)
+	$Pointer.label_settings.outline_color = lerp($Pointer.label_settings.outline_color, get_theme_color("color_focus_outline", button_list[current_idx].theme_variation), (delta / 0.1) if delta > 0 else 1.0)
+	$Pointer.label_settings.font_color = lerp($Pointer.label_settings.font_color, get_theme_color("color_focus", button_list[current_idx].theme_variation), (delta / 0.1) if delta > 0 else 1.0)
 	
 	if not circular_menu: 
-		$Ponteiro.position.x = lerp($Ponteiro.position.x, (get_viewport_rect().size.x / 2 + menu_center_offset.x - base_menu_radius - 20) - 20 * sin(abs($Telas.position.y - posicao.y) / menu_distance), (delta / 0.05) if delta > 0 else 1.0)
+		$Pointer.position.x = lerp($Pointer.position.x, (get_viewport_rect().size.x / 2 + menu_center_offset.x - base_menu_radius - 20) - 20 * sin(abs($Pages.position.y - pos.y) / menu_distance), (delta / 0.05) if delta > 0 else 1.0)
 	else:
-		$Ponteiro.position.x = lerp($Ponteiro.position.x, (get_viewport_rect().size.x / 2 + menu_center_offset.x - base_menu_radius - 20) - 20 * sin(abs($Telas.rotation - angulo) / (menu_angle * get_tree().root.content_scale_factor)), (delta / 0.05) if delta > 0 else 1.0)
-	$Ponteiro.position.y = get_viewport_rect().size.y / 2 + menu_center_offset.y - (10 if circular_menu else 8) 
+		$Pointer.position.x = lerp($Pointer.position.x, (get_viewport_rect().size.x / 2 + menu_center_offset.x - base_menu_radius - 20) - 20 * sin(abs($Pages.rotation - ang) / (menu_angle * get_tree().root.content_scale_factor)), (delta / 0.05) if delta > 0 else 1.0)
+	$Pointer.position.y = get_viewport_rect().size.y / 2 + menu_center_offset.y - (10 if circular_menu else 8) 
 
 func setup_circular_buttons():
 	menu_radius = int(base_menu_radius / get_tree().root.content_scale_factor)
@@ -134,36 +134,36 @@ func setup_circular_buttons():
 	# Percorre todos os botões, definindo a posição de cada um
 	for menu in menus.values():
 		for i in range(menu.objects.size()):
-			var objeto : Control = menu.objects[i]
+			var object : Control = menu.objects[i]
 
-			var angulo : float = (i * menu_angle * get_tree().root.content_scale_factor) - start_angle
-			if objeto is Label:
-				angulo += menu_angle * get_tree().root.content_scale_factor / 2
+			var ang : float = (i * menu_angle * get_tree().root.content_scale_factor) - start_angle
+			if object is Label:
+				ang += menu_angle * get_tree().root.content_scale_factor / 2
 
 			# Calcula e define a posição do botão
-			var x : float = (cos(angulo) * menu_radius)
-			var y : float = -(sin(angulo) * menu_radius)
+			var x : float = (cos(ang) * menu_radius)
+			var y : float = -(sin(ang) * menu_radius)
 			
 			if not circular_menu: 
 				x = -menu_radius
 				y = i * menu_distance
-				angulo = -PI
-			objeto.position = Vector2(x, y)
+				ang = -PI
+			object.position = Vector2(x, y)
 			# Aponta o botão para o centro do círculo
-			objeto.rotation = PI - angulo
+			object.rotation = PI - ang
 
-func buscar_foco(lista_botoes : Array) -> int:
-	for i in range(lista_botoes.size()):
-		var button : ConfigButton = lista_botoes[i]
+func search_focus(button_list : Array) -> int:
+	for i in range(button_list.size()):
+		var button : ConfigButton = button_list[i]
 		if button.has_focus():
 			return i
 	return current_idx
 
-func abrir_tela(alvo : String):
-	print("carregando tela \"" + alvo + "\"")
-	if alvo in menus.keys():
+func open_screen(target : String):
+	print("loading page \"" + target + "\"")
+	if target in menus.keys():
 		for menu in menus.keys():
-			if menu == alvo:
+			if menu == target:
 				current_idx = menus[menu].active_idx if menus[menu].keep_idx else 0
 				current_position = menus[menu].objects.find(menus[menu].buttons[current_idx])
 				active_menu = menu
@@ -173,20 +173,20 @@ func abrir_tela(alvo : String):
 				get_tree().paused = true
 				
 				# vai imediatamente para a posição do menu novo
-				var posicao : Vector2 = get_viewport_rect().size / 2 + menu_center_offset / get_tree().root.content_scale_factor
-				var angulo : float = current_position * menu_angle * get_tree().root.content_scale_factor
+				var pos : Vector2 = get_viewport_rect().size / 2 + menu_center_offset / get_tree().root.content_scale_factor
+				var ang : float = current_position * menu_angle * get_tree().root.content_scale_factor
 				
 				if not circular_menu:
-					angulo = 0
-					posicao.y -= (current_position) * menu_distance
+					ang = 0
+					pos.y -= (current_position) * menu_distance
 
-				$Telas.position = posicao
-				$Telas.rotation = angulo
+				$Pages.position = pos
+				$Pages.rotation = ang
 				update_circular_buttons(-1)
 			else:
 				menus[menu].node.visible = false
 	else:
-		print("tela \"" + alvo + "\" não existe!!!")
+		print("page \"" + target + "\" does not exist!!!")
 
 func close_pages():
 	visible = false
@@ -202,15 +202,15 @@ func load_settings() -> void:
 				if not button is ConfigButtonList:
 					button.value = settings[button.id]
 				else:
-					if settings[button.id] in button.valores:
-						button._valor = button.valores.find(settings[button.id])
-					else: button._valor = 0
+					if settings[button.id] in button.values:
+						button._value = button.values.find(settings[button.id])
+					else: button._value = 0
 
 # Função chamada quando há alguma input do usuário
 func _input(event: InputEvent) -> void:
 	if not get_tree().paused: 
-		if event.is_action_pressed("pausar"):
-			abrir_tela("Principal")
+		if event.is_action_pressed("pause"):
+			open_screen("Main")
 	# A opção atual aumenta (positivo) quando aperta para baixo e
 	# diminui (negativo) quando aperta para cima
 	if visible == true and (event.is_action_pressed("ui_down") or event.is_action_pressed("ui_up")):
@@ -219,66 +219,67 @@ func _input(event: InputEvent) -> void:
 		menus[active_menu].buttons[current_idx].grab_focus()
 		menus[active_menu].active_idx = current_idx
 		accept_event()
+
 func setup_menus():
 	
-	# PRINCIPAL
+	# MAIN
 
-	menus["Principal"] = MenuData.new($Telas/Principal, [], [], true)
+	menus["Main"] = MenuData.new($Pages/Main, [], [], true)
 
-	$Telas/Principal/BotaoJogar.connect("pressed", close_pages)
-	$Telas/Principal/BotaoConfiguracoes.connect("pressed", abrir_tela.bind("Configuracoes"))
-	$Telas/Principal/BotaoAcessibilidade.connect("pressed", abrir_tela.bind("Acessibilidade"))
-	$Telas/Principal/BotaoSalvar.connect("pressed", GameManager.save_game)
-	$Telas/Principal/BotaoSair.connect("pressed", get_tree().quit)
+	$Pages/Main/ButtonPlay.connect("pressed", close_pages)
+	$Pages/Main/ButtonSettings.connect("pressed", open_screen.bind("Settings"))
+	$Pages/Main/ButtonAccessibility.connect("pressed", open_screen.bind("Accessibility"))
+	$Pages/Main/ButtonSave.connect("pressed", GameManager.save_game)
+	$Pages/Main/ButtonQuit.connect("pressed", get_tree().quit)
 
-	for filho in $Telas/Principal.get_children():
-		if filho is ConfigButton:
-			menus["Principal"].buttons.append(filho)
-			filho.size.x = 300
-		menus["Principal"].objects.append(filho)
+	for child in $Pages/Main.get_children():
+		if child is ConfigButton:
+			menus["Main"].buttons.append(child)
+			child.size.x = 300
+		menus["Main"].objects.append(child)
 
-	# CONFIGURAÇÕES
+	# SETTINGS
 			
-	menus["Configuracoes"] = MenuData.new($Telas/Configuracoes, [], [], true)
-	for filho in $Telas/Configuracoes.get_children():
-		if filho is ConfigButton:
-			menus["Configuracoes"].buttons.append(filho)
-			filho.size.x = 300
-		menus["Configuracoes"].objects.append(filho)
+	menus["Settings"] = MenuData.new($Pages/Settings, [], [], true)
+	for child in $Pages/Settings.get_children():
+		if child is ConfigButton:
+			menus["Settings"].buttons.append(child)
+			child.size.x = 300
+		menus["Settings"].objects.append(child)
 
-	$Telas/Configuracoes/BotaoSalvar.connect("pressed", func():
+	$Pages/Settings/ButtonSave.connect("pressed", func():
 		save_settings()
-		menus["Configuracoes"].active_idx = 0
-		abrir_tela("Principal")
+		menus["Settings"].active_idx = 0
+		open_screen("Main")
 	)
-	$Telas/Configuracoes/BotaoControles.connect("pressed", abrir_tela.bind("Controles"))
+	$Pages/Settings/ButtonControls.connect("pressed", open_screen.bind("Controls"))
 
-	# ACESSIBILIDADE
+	# ACCESSIBILITY
 
-	menus["Acessibilidade"] = MenuData.new($Telas/Acessibilidade, [], [])
-	for filho in $Telas/Acessibilidade.get_children():
-		if filho is ConfigButton:
-			menus["Acessibilidade"].buttons.append(filho)
-			filho.size.x = 300
-		menus["Acessibilidade"].objects.append(filho)
+	menus["Accessibility"] = MenuData.new($Pages/Accessibility, [], [])
+	for child in $Pages/Accessibility.get_children():
+		if child is ConfigButton:
+			menus["Accessibility"].buttons.append(child)
+			child.size.x = 300
+		menus["Accessibility"].objects.append(child)
 
-	$Telas/Acessibilidade/BotaoSalvar.connect("pressed", func():
+	$Pages/Accessibility/ButtonSave.connect("pressed", func():
 		save_settings()
-		abrir_tela("Principal")
+		open_screen("Main")
 	)
 
-	# CONTROLES
+	# CONTROLS
 
-	menus["Controles"] = MenuData.new($Telas/Controles, [], [])
-	for filho in $Telas/Controles.get_children():
-		if filho is ConfigButton:
-			menus["Controles"].buttons.append(filho)
-			filho.size.x = 300
-		menus["Controles"].objects.append(filho)
+	menus["Controls"] = MenuData.new($Pages/Controls, [], [])
+	for child in $Pages/Controls.get_children():
+		if child is ConfigButton:
+			menus["Controls"].buttons.append(child)
+			child.size.x = 300
+		menus["Controls"].objects.append(child)
 
-	$Telas/Controles/BotaoSalvar.connect("pressed", func():
+	$Pages/Controls/ButtonSave.connect("pressed", func():
 		save_settings()
-		abrir_tela("Configuracoes")
+		open_screen("Settings")
 	)
 
 func save_settings() -> void:

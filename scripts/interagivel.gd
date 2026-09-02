@@ -1,4 +1,4 @@
 class_name Interagivel extends Area3D
 
-func interagir() -> void:
+func interact() -> void:
 	pass

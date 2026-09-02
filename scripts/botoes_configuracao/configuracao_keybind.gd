@@ -5,56 +5,56 @@ class_name ConfigButtonKeybind
 @export var vertical : bool = false
 @export var input : String = "move_right"
 @export var value : Key:
-	set(novo_valor):
-		value = novo_valor
+	set(new_value):
+		value = new_value
 		GameManager.change_setting(id, value)
-var editando : bool = false
+var is_editing : bool = false
 
 
 func _ready() -> void:
 	super._ready() 
 
 func _draw() -> void:
-	var cor = get_theme_color("cor_normal", variacao_tema)
-	var contorno = Color.TRANSPARENT
+	var color = get_theme_color("color_default", theme_variation)
+	var outline = Color.TRANSPARENT
 	
-	if editando:
-		cor = get_theme_color("cor_pressionado", variacao_tema)
-		contorno = get_theme_color("cor_pressionado_contorno", variacao_tema)
+	if is_editing:
+		color = get_theme_color("color_pressed", theme_variation)
+		outline = get_theme_color("color_pressed_outline", theme_variation)
 	elif has_focus():
-		cor = get_theme_color("cor_foco", variacao_tema)
-		contorno = get_theme_color("cor_foco_contorno", variacao_tema)
+		color = get_theme_color("color_focus", theme_variation)
+		outline = get_theme_color("color_focus_outline", theme_variation)
 
 	var offset
-	offset = desenha_texto(label, Vector2.ZERO, cor, contorno)
+	offset = draw_text(label, Vector2.ZERO, color, outline)
 	
-	var cor_valor
-	var contorno_valor
-	if editando: 
-		cor_valor = get_theme_color("cor_foco", variacao_tema)
-		contorno_valor = get_theme_color("cor_foco_contorno", variacao_tema)
+	var value_color
+	var outline_value
+	if is_editing: 
+		value_color = get_theme_color("color_focus", theme_variation)
+		outline_value = get_theme_color("color_focus_outline", theme_variation)
 	else: 
-		cor_valor = get_theme_color("cor_pressionado", variacao_tema)
-		contorno_valor = get_theme_color("cor_pressionado_contorno", variacao_tema)
+		value_color = get_theme_color("color_pressed", theme_variation)
+		outline_value = get_theme_color("color_pressed_outline", theme_variation)
 
-	var posicao_valor
+	var value_pos
 	if not vertical:
-		posicao_valor = Vector2(offset.x + 40, 0)
+		value_pos = Vector2(offset.x + 40, 0)
 	else:
-		posicao_valor = Vector2(0, offset.y)
+		value_pos = Vector2(0, offset.y)
 
-	if editando:
-		desenha_texto("pressione a key nova", posicao_valor, cor_valor, contorno_valor)
+	if is_editing:
+		draw_text("pressione a tecla nova", value_pos, value_color, outline_value)
 	else:
-		desenha_texto(GameManager.char_from_key(value), posicao_valor, cor_valor, contorno_valor)
+		draw_text(GameManager.char_from_key(value), value_pos, value_color, outline_value)
 
 func _input(event: InputEvent) -> void:
-	if editando:
+	if is_editing:
 		if event is InputEventKey:
 			if event.pressed and not event.echo:
 				value = event.physical_keycode
-				editando = false 
-				print("definindo a input como " + GameManager.char_from_key(value) + " e desligando o modo edição")
+				is_editing = false 
+				# print("definindo a input como " + GameManager.char_from_key(value) + " e desligando o modo edição")
 				accept_event()
 				queue_redraw()
 				return
@@ -62,11 +62,11 @@ func _input(event: InputEvent) -> void:
 func _gui_input(event: InputEvent) -> void:
 	if event.is_action_released("ui_accept"):
 		# liga o modo de edicao
-		print("ligando o modo edição")
-		editando = true
+		# print("ligando o modo edição")
+		is_editing = true
 		queue_redraw()
 
 func _notification(what: int) -> void:
 	match what:
 		NOTIFICATION_FOCUS_EXIT:
-			editando = false
+			is_editing = false

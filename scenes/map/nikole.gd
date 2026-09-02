@@ -54,12 +54,12 @@ func move_to_node(target_node: MapNode, target_path: Path2D, instant : bool = fa
 func _unhandled_input(event):
 	if is_moving: return
 	
-	if event.is_action_pressed("interagir") :
+	if event.is_action_pressed("interact") :
 		if current_node.can_interact:
-			print_debug("iniciando diálogo \"" + current_node.dialogue_id + "\"")
+			print("iniciando diálogo \"" + current_node.dialogue_id + "\"")
 			DialogueController.start_dialogue(current_node.dialogue_id)
 		else:
-			print_debug("não é possível interagir com esse nó")
+			print("não é possível interact com esse nó")
 
 	if event.is_action_pressed("move_up") and current_node.node_up:
 		move_to_node(current_node.node_up, current_node.path_up)

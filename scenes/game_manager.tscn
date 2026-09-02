@@ -218,7 +218,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_uyfw5")
 
-[node name="Titulo Jogo" type="Label" parent="UI/Menu" unique_id=909425051]
+[node name="Title" type="Label" parent="UI/Menu" unique_id=909425051]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.75
@@ -231,7 +231,7 @@ label_settings = SubResource("LabelSettings_6n6ym")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Ponteiro" type="Label" parent="UI/Menu" unique_id=1485042867]
+[node name="Pointer" type="Label" parent="UI/Menu" unique_id=1485042867]
 layout_mode = 0
 offset_left = 620.0
 offset_top = 352.0
@@ -242,18 +242,18 @@ text = ">"
 label_settings = SubResource("LabelSettings_tgywu")
 vertical_alignment = 1
 
-[node name="Telas" type="Control" parent="UI/Menu" unique_id=963581511]
+[node name="Pages" type="Control" parent="UI/Menu" unique_id=963581511]
 anchors_preset = 0
 offset_right = 10.0
 offset_bottom = 10.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 
-[node name="Principal" type="Control" parent="UI/Menu/Telas" unique_id=1357788077]
+[node name="Main" type="Control" parent="UI/Menu/Pages" unique_id=1357788077]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="BotaoJogar" type="BaseButton" parent="UI/Menu/Telas/Principal" unique_id=1370653171]
+[node name="ButtonPlay" type="BaseButton" parent="UI/Menu/Pages/Main" unique_id=1370653171]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -346,11 +346,11 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("9_jrl6a")
-id = "botao_jogar"
+id = "button_play"
 label = "Jogar"
 metadata/_custom_type_script = "uid://dxcpaqjaydfjj"
 
-[node name="BotaoConfiguracoes" type="BaseButton" parent="UI/Menu/Telas/Principal" unique_id=231753211]
+[node name="ButtonSettings" type="BaseButton" parent="UI/Menu/Pages/Main" unique_id=231753211]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -443,11 +443,11 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("9_jrl6a")
-id = "botao_configuracoes"
+id = "button_settings"
 label = "Configurações"
 metadata/_custom_type_script = "uid://dxcpaqjaydfjj"
 
-[node name="BotaoAcessibilidade" type="BaseButton" parent="UI/Menu/Telas/Principal" unique_id=536356699]
+[node name="ButtonAccessibility" type="BaseButton" parent="UI/Menu/Pages/Main" unique_id=536356699]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -540,11 +540,11 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("9_jrl6a")
-id = "botao_acessibilidade"
+id = "button_accessibility"
 label = "Acessibilidade"
 metadata/_custom_type_script = "uid://dxcpaqjaydfjj"
 
-[node name="BotaoSalvar" type="BaseButton" parent="UI/Menu/Telas/Principal" unique_id=726278835]
+[node name="ButtonSave" type="BaseButton" parent="UI/Menu/Pages/Main" unique_id=726278835]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -637,11 +637,11 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("9_jrl6a")
-id = "botao_salvar"
+id = "button_save"
 label = "Salvar"
 metadata/_custom_type_script = "uid://dxcpaqjaydfjj"
 
-[node name="BotaoSair" type="BaseButton" parent="UI/Menu/Telas/Principal" unique_id=1798534514]
+[node name="ButtonQuit" type="BaseButton" parent="UI/Menu/Pages/Main" unique_id=1798534514]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -734,24 +734,24 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("9_jrl6a")
-id = "botao_sair"
-label = "Sair do Jogo"
-variacao_tema = "ConfigButtonExit"
+id = "button_quit"
+label = "Salvar & Sair"
+theme_variation = "ConfigButtonExit"
 metadata/_custom_type_script = "uid://dxcpaqjaydfjj"
 
-[node name="Acessibilidade" type="Control" parent="UI/Menu/Telas" unique_id=1099729742]
+[node name="Accessibility" type="Control" parent="UI/Menu/Pages" unique_id=1099729742]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Daltonismo" type="Label" parent="UI/Menu/Telas/Acessibilidade" unique_id=282528396]
+[node name="ColurBlindness" type="Label" parent="UI/Menu/Pages/Accessibility" unique_id=282528396]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 21.0
 text = "Daltonismo"
 label_settings = SubResource("LabelSettings_0fj0i")
 
-[node name="TipoDaltonismo" type="BaseButton" parent="UI/Menu/Telas/Acessibilidade" unique_id=781584612]
+[node name="ColorBlindnessType" type="BaseButton" parent="UI/Menu/Pages/Accessibility" unique_id=781584612]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -845,13 +845,13 @@ shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("10_wcunu")
 vertical = true
-valores = Array[String](["disabled", "protanopia", "deuteranopia", "tritanopia"])
+values = Array[String](["disabled", "protanopia", "deuteranopia", "tritanopia"])
 value = "disabled"
-id = "colorblind_mode"
+id = "colorblindness_mode"
 label = "Daltonismo"
 metadata/_custom_type_script = "uid://dbttx0ech4g7u"
 
-[node name="IntensidadeDaltonismo" type="BaseButton" parent="UI/Menu/Telas/Acessibilidade" unique_id=1944906087]
+[node name="ColorBlindnessIntensity" type="BaseButton" parent="UI/Menu/Pages/Accessibility" unique_id=1944906087]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -946,18 +946,18 @@ shortcut_in_tooltip = true
 script = ExtResource("11_2j6ol")
 vertical = true
 slider = true
-id = "colorblind_intensity"
+id = "colorblindness_intensity"
 label = "Intensidade"
 metadata/_custom_type_script = "uid://blskgvcg8gal"
 
-[node name="Interface" type="Label" parent="UI/Menu/Telas/Acessibilidade" unique_id=571234937]
+[node name="Interface" type="Label" parent="UI/Menu/Pages/Accessibility" unique_id=571234937]
 layout_mode = 0
 offset_right = 203.0
 offset_bottom = 63.0
 text = "Interface"
 label_settings = SubResource("LabelSettings_0fj0i")
 
-[node name="MenuCircular" type="BaseButton" parent="UI/Menu/Telas/Acessibilidade" unique_id=156494143]
+[node name="CircularMenu" type="BaseButton" parent="UI/Menu/Pages/Accessibility" unique_id=156494143]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -1055,7 +1055,7 @@ id = "circular_menu"
 label = "Menu Circular"
 metadata/_custom_type_script = "uid://dws6dbyhxolq1"
 
-[node name="FonteTexto" type="BaseButton" parent="UI/Menu/Telas/Acessibilidade" unique_id=941187777]
+[node name="FontFamily" type="BaseButton" parent="UI/Menu/Pages/Accessibility" unique_id=941187777]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -1149,13 +1149,11 @@ shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("12_8ldib")
 vertical = true
-textoLigado = "leitura fácil"
-textoDesligado = "padrão"
 id = "font_family"
 label = "Fonte"
 metadata/_custom_type_script = "uid://dws6dbyhxolq1"
 
-[node name="EscalaInterface" type="BaseButton" parent="UI/Menu/Telas/Acessibilidade" unique_id=2105043782]
+[node name="UIScale" type="BaseButton" parent="UI/Menu/Pages/Accessibility" unique_id=2105043782]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -1251,14 +1249,14 @@ script = ExtResource("11_2j6ol")
 vertical = true
 value = 1.0
 slider = true
-valor_minimo = 0.5
-valor_maximo = 2.0
-passo = 0.25
+min_value = 0.5
+max_value = 2.0
+step = 0.25
 id = "ui_scale"
 label = "Escala da interface"
 metadata/_custom_type_script = "uid://blskgvcg8gal"
 
-[node name="BotaoSalvar" type="BaseButton" parent="UI/Menu/Telas/Acessibilidade" unique_id=1792684709]
+[node name="ButtonSave" type="BaseButton" parent="UI/Menu/Pages/Accessibility" unique_id=1792684709]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -1351,24 +1349,24 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("9_jrl6a")
-id = "botao_salvar_acessibilidade"
+id = "button_save_accessibility"
 label = "Salvar"
-variacao_tema = "ConfigButtonExit"
+theme_variation = "ConfigButtonExit"
 metadata/_custom_type_script = "uid://dxcpaqjaydfjj"
 
-[node name="Configuracoes" type="Control" parent="UI/Menu/Telas" unique_id=598092371]
+[node name="Settings" type="Control" parent="UI/Menu/Pages" unique_id=598092371]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Áudio" type="Label" parent="UI/Menu/Telas/Configuracoes" unique_id=615288316]
+[node name="Audio" type="Label" parent="UI/Menu/Pages/Settings" unique_id=615288316]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 21.0
 text = "Áudio"
 label_settings = SubResource("LabelSettings_0fj0i")
 
-[node name="VolumeMaster" type="BaseButton" parent="UI/Menu/Telas/Configuracoes" unique_id=2084773678]
+[node name="VolumeMaster" type="BaseButton" parent="UI/Menu/Pages/Settings" unique_id=2084773678]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -1463,12 +1461,12 @@ shortcut_in_tooltip = true
 script = ExtResource("13_kvitc")
 vertical = true
 slider = true
-passo = 5
+step = 5
 id = "volume_master"
-label = "Volume"
+label = "Volume Master"
 metadata/_custom_type_script = "uid://v4a1wtjtcbkn"
 
-[node name="VolumeVozes" type="BaseButton" parent="UI/Menu/Telas/Configuracoes" unique_id=112845173]
+[node name="VolumeVoices" type="BaseButton" parent="UI/Menu/Pages/Settings" unique_id=112845173]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -1563,12 +1561,12 @@ shortcut_in_tooltip = true
 script = ExtResource("13_kvitc")
 vertical = true
 slider = true
-passo = 5
-id = "volume_vozes"
+step = 5
+id = "volume_voices"
 label = "Volume Vozes"
 metadata/_custom_type_script = "uid://v4a1wtjtcbkn"
 
-[node name="VolumeMusica" type="BaseButton" parent="UI/Menu/Telas/Configuracoes" unique_id=1515997683]
+[node name="VolumeMusic" type="BaseButton" parent="UI/Menu/Pages/Settings" unique_id=1515997683]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -1663,19 +1661,19 @@ shortcut_in_tooltip = true
 script = ExtResource("13_kvitc")
 vertical = true
 slider = true
-passo = 5
+step = 5
 id = "volume_music"
 label = "Volume Música"
 metadata/_custom_type_script = "uid://v4a1wtjtcbkn"
 
-[node name="Controles" type="Label" parent="UI/Menu/Telas/Configuracoes" unique_id=603946296]
+[node name="Controls" type="Label" parent="UI/Menu/Pages/Settings" unique_id=603946296]
 layout_mode = 0
 offset_right = 106.0
 offset_bottom = 63.0
 text = "Controles"
 label_settings = SubResource("LabelSettings_0fj0i")
 
-[node name="BotaoControles" type="BaseButton" parent="UI/Menu/Telas/Configuracoes" unique_id=1155915980]
+[node name="ButtonControls" type="BaseButton" parent="UI/Menu/Pages/Settings" unique_id=1155915980]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -1768,11 +1766,11 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("9_jrl6a")
-id = "botao_controles"
+id = "button_controls"
 label = "Editar controles"
 metadata/_custom_type_script = "uid://dxcpaqjaydfjj"
 
-[node name="BotaoSalvar" type="BaseButton" parent="UI/Menu/Telas/Configuracoes" unique_id=1456524895]
+[node name="ButtonSave" type="BaseButton" parent="UI/Menu/Pages/Settings" unique_id=1456524895]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -1865,24 +1863,24 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("9_jrl6a")
-id = "botao_salvar_configuracoes"
+id = "button_save_settings"
 label = "Salvar"
-variacao_tema = "ConfigButtonExit"
+theme_variation = "ConfigButtonExit"
 metadata/_custom_type_script = "uid://dxcpaqjaydfjj"
 
-[node name="Controles" type="Control" parent="UI/Menu/Telas" unique_id=571260202]
+[node name="Controls" type="Control" parent="UI/Menu/Pages" unique_id=571260202]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Movimento" type="Label" parent="UI/Menu/Telas/Controles" unique_id=456857901]
+[node name="Movement" type="Label" parent="UI/Menu/Pages/Controls" unique_id=456857901]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 21.0
 text = "Movimento"
 label_settings = SubResource("LabelSettings_0fj0i")
 
-[node name="MoverEsquerda" type="BaseButton" parent="UI/Menu/Telas/Controles" unique_id=847211868]
+[node name="MoveLeft" type="BaseButton" parent="UI/Menu/Pages/Controls" unique_id=847211868]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -1981,7 +1979,7 @@ id = "move_left"
 label = "Esquerda"
 metadata/_custom_type_script = "uid://csl2o2drb1mft"
 
-[node name="MoverDireita" type="BaseButton" parent="UI/Menu/Telas/Controles" unique_id=1404896484]
+[node name="MoveRight" type="BaseButton" parent="UI/Menu/Pages/Controls" unique_id=1404896484]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -2079,7 +2077,7 @@ id = "move_right"
 label = "Direita"
 metadata/_custom_type_script = "uid://csl2o2drb1mft"
 
-[node name="MoverCima" type="BaseButton" parent="UI/Menu/Telas/Controles" unique_id=1939435078]
+[node name="MoveUp" type="BaseButton" parent="UI/Menu/Pages/Controls" unique_id=1939435078]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -2178,7 +2176,7 @@ id = "move_up"
 label = "Cima"
 metadata/_custom_type_script = "uid://csl2o2drb1mft"
 
-[node name="MoverBaixo" type="BaseButton" parent="UI/Menu/Telas/Controles" unique_id=1787976865]
+[node name="MoveDown" type="BaseButton" parent="UI/Menu/Pages/Controls" unique_id=1787976865]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -2277,14 +2275,14 @@ id = "move_down"
 label = "Baixo"
 metadata/_custom_type_script = "uid://csl2o2drb1mft"
 
-[node name="Interação" type="Label" parent="UI/Menu/Telas/Controles" unique_id=1810244912]
+[node name="Interaction" type="Label" parent="UI/Menu/Pages/Controls" unique_id=1810244912]
 layout_mode = 0
 offset_right = 106.0
 offset_bottom = 63.0
 text = "Interação"
 label_settings = SubResource("LabelSettings_0fj0i")
 
-[node name="Interagir" type="BaseButton" parent="UI/Menu/Telas/Controles" unique_id=37613302]
+[node name="Interact" type="BaseButton" parent="UI/Menu/Pages/Controls" unique_id=37613302]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -2378,12 +2376,12 @@ shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("14_hqtnj")
 vertical = true
-input = "interagir"
-id = "interagir"
+input = "interact"
+id = "interact"
 label = "Interagir"
 metadata/_custom_type_script = "uid://csl2o2drb1mft"
 
-[node name="BotaoSalvar" type="BaseButton" parent="UI/Menu/Telas/Controles" unique_id=303319681]
+[node name="ButtonSave" type="BaseButton" parent="UI/Menu/Pages/Controls" unique_id=303319681]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -2476,7 +2474,7 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("9_jrl6a")
-id = "botao_salvar_controles"
+id = "button_save_controls"
 label = "Salvar"
-variacao_tema = "ConfigButtonExit"
+theme_variation = "ConfigButtonExit"
 metadata/_custom_type_script = "uid://dxcpaqjaydfjj"

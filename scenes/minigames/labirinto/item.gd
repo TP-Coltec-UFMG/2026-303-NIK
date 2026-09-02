@@ -13,6 +13,7 @@ var animation_progress = 0.0
 func _process(delta: float) -> void:
 	if collected and not placed:
 		target_pos = nikole.position + Vector2(follow_offset.x * nikole.x_direction, follow_offset.y)
+	if collected or placed:
 		position = lerp(position, target_pos, delta / 0.1)
 
 	if animated: animate(delta)
