@@ -4,9 +4,10 @@ var maze : Array
 var tile_scale : float = 375
 var height: int
 var width: int
-var pos_item1 : Vector2i
-var pos_item2 : Vector2i
-var pos_item3 : Vector2i
+
+var has_item1 = false
+var has_item2 = false
+var has_item3 = false
 
 func _ready() -> void:
 	maze = read_maze()
@@ -29,40 +30,56 @@ func read_maze() -> Array:
 		for c in range(width):
 			var column = []
 			for r in range(height):
-				column.append(maze_bitmap.get_bit(c, r))
+				column.append(-1 if maze_bitmap.get_bit(c, r) else 0)
 			matrix.append(column)
 
 	return matrix
 
 
 func is_walkable(column: int, row: int):
-	if !maze[column][row]: return true
-	else: return false
+	if maze[column][row] == -1: return false
+	else: return true
 
 func check_item_pickup(column: int, row: int) -> void:
-	if column == pos_item1.x and row == pos_item1.y and is_instance_valid($item1):
-		$item1.queue_free()
-	if column == pos_item2.x and row == pos_item2.y and is_instance_valid($item2):
-		$item2.queue_free()
-	if column == pos_item3.x and row == pos_item3.y and is_instance_valid($item3):
-		$item3.queue_free()
+	match maze[column][row]:
+		1:
+			$item1.collected = true
+			maze[column][row] = 0
+			has_item1 = true
+		2:
+			$item2.collected = true
+			maze[column][row] = 0
+			maze[column][row] = 0
+			has_item2 = true
+		3:
+			$item3.collected = true
+			maze[column][row] = 0
+			maze[column][row] = 0
+			has_item3 = true
 
+	if has_item1 and has_item2 and has_item3:
+		GameManager.load_map()
+		GameManager.set_game_data("minigame_dona_luzia_complete", true);
 
 func roll_pos_items() -> void:
 	while true:
-		pos_item1 = Vector2(randi_range(27, 31), randi_range(1, 5))
-		if !maze[pos_item1.x][pos_item1.y]:
-			$item1.position = (Vector2(pos_item1) + Vector2(0.5, 0.5)) * tile_scale
+		# var pos = Vector2i(2, 3)
+		var pos = Vector2i(randi_range(27, 31), randi_range(1, 5))
+		if maze[pos.x][pos.y] == 0:
+			$item1.position = (Vector2(pos) + Vector2(0.5, 0.5)) * tile_scale
+			maze[pos.x][pos.y] = 1
 			break
 
 	while true:
-		pos_item2 = Vector2(randi_range(1, 5), randi_range(27, 31))
-		if !maze[pos_item2.x][pos_item2.y]:
-			$item2.position = (Vector2(pos_item2) + Vector2(0.5, 0.5)) * tile_scale
+		var pos = Vector2i(randi_range(1, 5), randi_range(27, 31))
+		if maze[pos.x][pos.y] == 0:
+			$item2.position = (Vector2(pos) + Vector2(0.5, 0.5)) * tile_scale
+			maze[pos.x][pos.y] = 2
 			break
 
 	while true:
-		pos_item3 = Vector2(randi_range(27, 31), randi_range(27, 31))
-		if !maze[pos_item3.x][pos_item3.y]:
-			$item3.position = (Vector2(pos_item3) + Vector2(0.5, 0.5)) * tile_scale
+		var pos = Vector2i(randi_range(27, 31), randi_range(27, 31))
+		if maze[pos.x][pos.y] == 0:
+			$item3.position = (Vector2(pos) + Vector2(0.5, 0.5)) * tile_scale
+			maze[pos.x][pos.y] = 3
 			break

@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://bprss5c4da8iu" path="res://scenes/minigames/labirinto/nikole.gd" id="7_o3sm5"]
 [ext_resource type="Texture2D" uid="uid://vmfonmf4kqtu" path="res://sprites/minigames/ritmo/botao_defesa_centro.png" id="9_os8al"]
 [ext_resource type="Texture2D" uid="uid://dkmhwko6d3pb2" path="res://sprites/paulo/paulo_cabeca.png" id="10_et2jy"]
+[ext_resource type="Texture2D" uid="uid://dyewfnukfbxss" path="res://sprites/mapa/npcs/dona_luzia.png" id="10_wwsu8"]
+[ext_resource type="Script" uid="uid://cx0n7fjrh07hx" path="res://scenes/minigames/labirinto/item.gd" id="11_jckl1"]
 
 [node name="Maze" type="Node2D" unique_id=734450241]
 script = ExtResource("1_ibbmn")
@@ -23,7 +25,7 @@ texture = ExtResource("2_xxv7r")
 offset = Vector2(16, 16)
 
 [node name="Sprites" type="Node2D" parent="." unique_id=1342585327]
-z_index = -1
+z_index = -20
 
 [node name="Maze1" type="Sprite2D" parent="Sprites" unique_id=1870023909]
 texture = ExtResource("2_a8sp5")
@@ -64,11 +66,41 @@ offset = Vector2(-20, -125)
 texture = ExtResource("4_cyxjc")
 offset = Vector2(-21, -125)
 
-[node name="item1" type="Sprite2D" parent="." unique_id=1372355185]
-texture = ExtResource("10_et2jy")
+[node name="item1" type="Sprite2D" parent="." unique_id=1372355185 node_paths=PackedStringArray("nikole")]
+z_index = -1
+texture = ExtResource("10_wwsu8")
+offset = Vector2(0, -125)
+script = ExtResource("11_jckl1")
+nikole = NodePath("../Nikole")
+follow_offset = Vector2(-120, -60)
+animated = true
 
-[node name="item2" type="Sprite2D" parent="." unique_id=1246747068]
-texture = ExtResource("10_et2jy")
+[node name="Shadow" type="Sprite2D" parent="item1" unique_id=816836837]
+modulate = Color(0, 0, 0, 0.30588236)
+z_index = -1
+position = Vector2(70, 160)
+scale = Vector2(3.5554767, 1.2380953)
+texture = ExtResource("9_os8al")
+offset = Vector2(-20, -125)
 
-[node name="item3" type="Sprite2D" parent="." unique_id=913206177]
+[node name="item2" type="Sprite2D" parent="." unique_id=1246747068 node_paths=PackedStringArray("nikole")]
 texture = ExtResource("10_et2jy")
+script = ExtResource("11_jckl1")
+nikole = NodePath("../Nikole")
+
+[node name="item3" type="Sprite2D" parent="." unique_id=913206177 node_paths=PackedStringArray("nikole")]
+texture = ExtResource("10_et2jy")
+script = ExtResource("11_jckl1")
+nikole = NodePath("../Nikole")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1160194427]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=497781323]
+z_index = -4096
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.85882354, 0.64705884, 0.74509805, 1)

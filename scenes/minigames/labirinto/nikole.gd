@@ -52,6 +52,7 @@ func move_to_tile(x : int, y : int, instant : bool = false):
 			walking_animation_weight = 1
 
 func _process(delta: float) -> void:
+	# funny()	
 	if is_moving and position.distance_to(target_pos) < 5:
 		is_moving = false
 		position = target_pos
@@ -59,6 +60,23 @@ func _process(delta: float) -> void:
 		position = lerp(position, target_pos, delta / 0.1)
 
 	animate(delta)
+
+func funny():
+	var r = randi_range(1, 4)
+	if r == 1:
+		move_to_tile(current_pos.x, current_pos.y - 1)
+
+	if r == 2:
+		x_direction = 1
+		move_to_tile(current_pos.x + 1, current_pos.y)
+
+	if r == 3:
+		move_to_tile(current_pos.x, current_pos.y + 1)
+
+	if r == 4:
+		x_direction = -1
+		move_to_tile(current_pos.x - 1, current_pos.y)
+	await get_tree().create_timer(0.5).timeout
 
 func animate(delta : float):
 	sprite.scale.x = x_direction

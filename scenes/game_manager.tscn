@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bblc0sjp0q7jq" path="res://scripts/game_manager.gd" id="1_0rse5"]
 [ext_resource type="PackedScene" uid="uid://bq0hvgjehacve" path="res://scenes/map/map.tscn" id="2_aonbx"]
 [ext_resource type="PackedScene" uid="uid://bgoc88jujeiyo" path="res://scenes/minigames/minigame_tester/minigame_tester.tscn" id="3_cjvif"]
-[ext_resource type="PackedScene" uid="uid://bd0j2ax5acbmj" path="res://scenes/minigames/receita_da_vovó/receita_da_vovó.tscn" id="4_30v7y"]
+[ext_resource type="PackedScene" uid="uid://c80oo57ysn36d" path="res://scenes/minigames/labirinto/labirinto.tscn" id="4_30v7y"]
 [ext_resource type="AudioStream" uid="uid://dgjxajgfdxxia" path="res://audio/musicas/calminha.mp3" id="5_30v7y"]
 [ext_resource type="Shader" uid="uid://covi4n54bkdkf" path="res://shaders/filtro_daltonismo.gdshader" id="6_c7a3q"]
 [ext_resource type="Script" uid="uid://bm4rvfyvlss3y" path="res://scripts/menu.gd" id="7_4vth2"]
@@ -160,7 +160,7 @@ anchors_preset = 0
 script = ExtResource("1_0rse5")
 cenas = Dictionary[String, PackedScene]({
 "map": ExtResource("2_aonbx"),
-"minigame receita da vovó": ExtResource("4_30v7y"),
+"minigame_dona_luzia": ExtResource("4_30v7y"),
 "minigame_tester": ExtResource("3_cjvif")
 })
 
