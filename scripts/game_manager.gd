@@ -56,7 +56,31 @@ func apply_settings(config : Dictionary = settings):
 			"disabled":
 				(color_blind_filter.material as ShaderMaterial).set_shader_parameter("filter_mode", 0)
 
-	if settings.has("colorblind_intensity"): (color_blind_filter.material as ShaderMaterial).set_shader_parameter("intensity", settings["colorblind_intensity"])
+	var mode_key = null
+	if settings.has("colorblind_mode"):
+		mode_key = "colorblind_mode"
+	elif settings.has("colorblindness_mode"):
+		mode_key = "colorblindness_mode"
+
+	if mode_key != null:
+		match settings[mode_key]:
+			"protanopia":
+				(color_blind_filter.material as ShaderMaterial).set_shader_parameter("filter_mode", 4)
+			"deuteranopia":
+				(color_blind_filter.material as ShaderMaterial).set_shader_parameter("filter_mode", 5)
+			"tritanopia":
+				(color_blind_filter.material as ShaderMaterial).set_shader_parameter("filter_mode", 6)
+			"disabled":
+				(color_blind_filter.material as ShaderMaterial).set_shader_parameter("filter_mode", 0)
+
+	var intensity_key = null
+	if settings.has("colorblind_intensity"):
+		intensity_key = "colorblind_intensity"
+	elif settings.has("colorblindness_intensity"):
+		intensity_key = "colorblindness_intensity"
+
+	if intensity_key != null:
+		(color_blind_filter.material as ShaderMaterial).set_shader_parameter("intensity", settings[intensity_key])
 
 	if settings.has("font_family"): if settings["font_family"]:
 		menu.theme = preload("res://themes/easy_read.tres")
