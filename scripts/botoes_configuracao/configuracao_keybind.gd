@@ -7,7 +7,6 @@ class_name ConfigButtonKeybind
 @export var value : Key:
 	set(new_value):
 		value = new_value
-		GameManager.change_setting(id, value)
 var is_editing : bool = false
 
 
@@ -54,6 +53,8 @@ func _input(event: InputEvent) -> void:
 			if event.pressed and not event.echo:
 				value = event.physical_keycode
 				is_editing = false 
+
+				GameManager.change_setting(id, value)
 				# print("definindo a input como " + GameManager.char_from_key(value) + " e desligando o modo edição")
 				accept_event()
 				queue_redraw()

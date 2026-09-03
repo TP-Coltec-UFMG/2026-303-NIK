@@ -3,27 +3,33 @@ extends ConfigButton
 class_name ConfigButtonFloat
 
 @export var vertical : bool = false
-@export var value : float = 0:
+@export var value : float = 0.0:
 	set(new_value):
-		value = clampf(new_value, min_value, max_value)
+		value = clamp(new_value, min_value, max_value)
 		if step > 0:
-			value = snappedf(value, step)
+			value = snapped(value, step)
 		if line_edit:
 			line_edit.text = str(value)
 		if slider:
-			slider_animation()
-		if GameManager: GameManager.change_setting(id, value)
+			normal_value = float(value - min_value) / float(max_value - min_value)
 @export var slider : bool = false
-@export var min_value : float = 0.0
-@export var max_value : float = 1.0
-@export var step : float = 0.1
+@export var min_value : float = 0
+@export var max_value : float = 100
+@export var step : float = 1
+
+var gap = 10.0
 
 var normal_value : float:
 	set(v):
 		normal_value = v
+		slider_animation()
+
+var slider_position : float:
+	set(value):
+		slider_position = value
 		queue_redraw()
 
-var gap = 10.0
+var tween : Tween
 
 var line_edit : LineEdit
 
@@ -31,8 +37,6 @@ var is_editing : bool = false:
 	set(v):
 		is_editing = v
 		queue_redraw()
-
-var tween : Tween
 
 func _ready() -> void:
 	super._ready() 
@@ -59,7 +63,7 @@ func _draw() -> void:
 
 	var offset = draw_text(label, Vector2.ZERO, color, outline)
 	
-	if line_edit and not slider:  # slider oculta o line edit
+	if line_edit and not slider:  
 		if not vertical:
 			line_edit.position = Vector2(offset.x + gap, (size.y - line_edit.size.y) / 2)
 			line_edit.size.x = size.x - offset.x - 2 * gap
@@ -69,20 +73,19 @@ func _draw() -> void:
 
 	if slider:
 		var bar_width = 16.0
-
 		var fill_color = get_theme_color("color_focus", theme_variation)
 		if is_editing: fill_color = get_theme_color("color_pressed", theme_variation)
 		
-		var bar_pos : Vector2 = Vector2(0, offset.y + gap)
+		var bar_position : Vector2 = Vector2(0, offset.y + gap)
 
-		draw_rect(Rect2(bar_pos + Vector2(1, 1), Vector2(normal_value * size.x, bar_width - 2)), fill_color, true, -1, true)
+		draw_rect(Rect2(bar_position + Vector2(1, 1), Vector2(slider_position * size.x, bar_width - 2)), fill_color, true, -1, true)
 		draw_style_box(get_theme_stylebox("normal", "LineEdit"), Rect2(Vector2(0, gap + offset.y), Vector2(size.x, bar_width)))
-		draw_circle(Vector2(normal_value * size.x, offset.y + gap + bar_width / 2), bar_width / 2 + 2, get_theme_color("color_default", theme_variation), true, -1, true)
+		draw_circle(Vector2(slider_position * size.x, offset.y + gap + bar_width / 2), bar_width / 2 + 2, get_theme_color("color_default", theme_variation), true, -1, true)
 
 		draw_text(str(value), Vector2(size.x - text_size(str(value)).x - 10.0, 0), color, outline)
 
 func slider_animation() -> void:
-	var target_normal = float(value - min_value) / float(max_value - min_value)
+	var target_normal = (value - min_value) / (max_value - min_value)
 	
 	if tween:
 		tween.kill()
@@ -92,8 +95,8 @@ func slider_animation() -> void:
 	tween.set_trans(Tween.TRANS_CUBIC)
 	tween.set_ease(Tween.EASE_OUT)
 	
-	tween.tween_property(self, "normal_value", target_normal, 0.1)
-
+	tween.tween_property(self, "slider_position", target_normal, 0.1)
+	
 func _on_text_submitted(new_text: String) -> void:
 	grab_focus()
 	if new_text.is_valid_float():
@@ -103,14 +106,12 @@ func _on_text_submitted(new_text: String) -> void:
 
 func _pressed() -> void:
 	if not slider:
-		line_edit.grab_focus() # quando apertado foca o texto
-	# else:
-	# 	is_editing = true
+		line_edit.grab_focus() 
 
 func _notification(what: int) -> void:
 	match what:
 		NOTIFICATION_FOCUS_EXIT:
-			is_editing = false # tira o is_editing se sair (na teoria nao precisa, mas é bom garantir)
+			is_editing = false 
 
 func _gui_input(event: InputEvent) -> void:
 	if is_editing:
@@ -122,10 +123,11 @@ func _gui_input(event: InputEvent) -> void:
 			value -= step
 			changed = true
 			
-		# nao deixa o godot passar o foco para outra configuracao
 		if changed or event.is_action_pressed("ui_up") or event.is_action_pressed("ui_down"):
 			accept_event() 
+		
+		if changed:
+			GameManager.change_setting(id, value)
 			
-	# alterna o modo de edicao
 	if event.is_action_released("ui_accept"):
 		is_editing = !is_editing

@@ -6,7 +6,6 @@ class_name ConfigButtonBool
 @export var value : bool = false:
 	set(new_value):
 		value = new_value
-		GameManager.change_setting(id, value)
 
 @export var textEnabled = "ligado";
 @export var textDisabled = "disabled";
@@ -47,3 +46,5 @@ func _draw() -> void:
 
 func _pressed() -> void:
 	value = !value
+
+	GameManager.change_setting(id, value)

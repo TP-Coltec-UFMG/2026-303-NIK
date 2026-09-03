@@ -8,7 +8,6 @@ class_name ConfigButtonString
 		value = new_value
 		if line_edit:
 			line_edit.text = new_value
-		GameManager.change_setting(id, value)
 
 var line_edit : LineEdit
 
@@ -40,6 +39,8 @@ func _draw() -> void:
 func _on_text_submitted(new_text: String) -> void:
 	grab_focus()
 	value = new_text
+		
+	GameManager.change_setting(id, value)
 
 func _pressed() -> void:
 	line_edit.grab_focus() # quando apertado foca o texto

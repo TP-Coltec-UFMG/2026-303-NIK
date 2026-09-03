@@ -12,7 +12,6 @@ var _value : int = 0:
 			value = values[_value]
 		else:
 			_value = 0
-		GameManager.change_setting(id, value)
 		queue_redraw()
 
 var is_editing : bool = false:
@@ -81,6 +80,9 @@ func _gui_input(event: InputEvent) -> void:
 		# nao deixa o godot passar o foco para outra configuracao
 		if changed or event.is_action_pressed("ui_up") or event.is_action_pressed("ui_down"):
 			accept_event() 
+		
+		if changed:
+			GameManager.change_setting(id, value)
 			
 	# alterna o modo de edicao
 	if event.is_action_released("ui_accept"):

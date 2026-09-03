@@ -12,7 +12,6 @@ class_name ConfigButtonInt
 			line_edit.text = str(value)
 		if slider:
 			normal_value = float(value - min_value) / float(max_value - min_value)
-		GameManager.change_setting(id, value)
 @export var slider : bool = false
 @export var min_value : int = 0
 @export var max_value : int = 100
@@ -80,9 +79,9 @@ func _draw() -> void:
 		
 		var bar_position : Vector2 = Vector2(0, offset.y + gap)
 
-		draw_rect(Rect2(bar_position + Vector2(1, 1), Vector2(normal_value * size.x, bar_width - 2)), fill_color, true, -1, true)
+		draw_rect(Rect2(bar_position + Vector2(1, 1), Vector2(slider_position * size.x, bar_width - 2)), fill_color, true, -1, true)
 		draw_style_box(get_theme_stylebox("normal", "LineEdit"), Rect2(Vector2(0, gap + offset.y), Vector2(size.x, bar_width)))
-		draw_circle(Vector2(normal_value * size.x, offset.y + gap + bar_width / 2), bar_width / 2 + 2, get_theme_color("color_default", theme_variation), true, -1, true)
+		draw_circle(Vector2(slider_position * size.x, offset.y + gap + bar_width / 2), bar_width / 2 + 2, get_theme_color("color_default", theme_variation), true, -1, true)
 
 		draw_text(str(value), Vector2(size.x - text_size(str(value)).x - 10.0, 0), color, outline)
 
@@ -130,6 +129,9 @@ func _gui_input(event: InputEvent) -> void:
 		# nao deixa o godot passar o foco para outra configuracao
 		if changed or event.is_action_pressed("ui_up") or event.is_action_pressed("ui_down"):
 			accept_event() 
+		
+		if changed:
+			GameManager.change_setting(id, value)
 			
 	# alterna o modo de edicao
 	if event.is_action_released("ui_accept"):

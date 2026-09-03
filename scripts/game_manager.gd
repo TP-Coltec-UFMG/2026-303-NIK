@@ -45,8 +45,19 @@ func apply_settings(config : Dictionary = settings):
 
 	if settings.has("volume_music"): music_player.volume_linear = (settings["volume_music"] / 100.0) * (settings["volume_master"] / 100.0)
 	
-	if settings.has("colorblind_mode"): 
-		match settings["colorblind_mode"]:
+	if settings.has("colorblindness_mode"): 
+		match settings["colorblindness_mode"]:
+			"protanopia":
+				(color_blind_filter.material as ShaderMaterial).set_shader_parameter("filter_mode", 4)
+			"deuteranopia":
+				(color_blind_filter.material as ShaderMaterial).set_shader_parameter("filter_mode", 5)
+			"tritanopia":
+				(color_blind_filter.material as ShaderMaterial).set_shader_parameter("filter_mode", 6)
+			"desligado":
+				(color_blind_filter.material as ShaderMaterial).set_shader_parameter("filter_mode", 0)
+
+	if settings.has("colorblindness_mode"):
+		match settings["colorblindness_mode"]:
 			"protanopia":
 				(color_blind_filter.material as ShaderMaterial).set_shader_parameter("filter_mode", 4)
 			"deuteranopia":
@@ -56,31 +67,8 @@ func apply_settings(config : Dictionary = settings):
 			"disabled":
 				(color_blind_filter.material as ShaderMaterial).set_shader_parameter("filter_mode", 0)
 
-	var mode_key = null
-	if settings.has("colorblind_mode"):
-		mode_key = "colorblind_mode"
-	elif settings.has("colorblindness_mode"):
-		mode_key = "colorblindness_mode"
-
-	if mode_key != null:
-		match settings[mode_key]:
-			"protanopia":
-				(color_blind_filter.material as ShaderMaterial).set_shader_parameter("filter_mode", 4)
-			"deuteranopia":
-				(color_blind_filter.material as ShaderMaterial).set_shader_parameter("filter_mode", 5)
-			"tritanopia":
-				(color_blind_filter.material as ShaderMaterial).set_shader_parameter("filter_mode", 6)
-			"disabled":
-				(color_blind_filter.material as ShaderMaterial).set_shader_parameter("filter_mode", 0)
-
-	var intensity_key = null
-	if settings.has("colorblind_intensity"):
-		intensity_key = "colorblind_intensity"
-	elif settings.has("colorblindness_intensity"):
-		intensity_key = "colorblindness_intensity"
-
-	if intensity_key != null:
-		(color_blind_filter.material as ShaderMaterial).set_shader_parameter("intensity", settings[intensity_key])
+	if settings.has("colorblindness_intensity"):
+		(color_blind_filter.material as ShaderMaterial).set_shader_parameter("intensity", settings["colorblindness_intensity"])
 
 	if settings.has("font_family"): if settings["font_family"]:
 		menu.theme = preload("res://themes/easy_read.tres")
@@ -137,6 +125,22 @@ func save_settings() -> void:
 		print("could not open settings file!!!")
 	load_settings()
 
+func create_default_settings() -> void:
+	settings["circular_menu"] = true
+	settings["colorblindness_intensity"] = 0.0
+	settings["colorblindness_mode"] = "desligado"
+	settings["font_family"] = false
+	settings["interact"] = 69.0
+	settings["move_down"] = 83.0
+	settings["move_left"] = 65.0
+	settings["move_right"] = 68.0
+	settings["move_up"] = 87.0
+	settings["ui_scale"] = 1.0
+	settings["volume_master"] = 50.0
+	settings["volume_music"] = 50.0
+	settings["volume_voices"] = 50.0
+	save_settings()
+
 func load_settings() -> void:
 	var file = FileAccess.open(path_config, FileAccess.READ)
 	if file:
@@ -152,13 +156,14 @@ func load_settings() -> void:
 		print("could not open settings file!!!")
 		file.close()
 	else:
+		create_default_settings()
 		print("could not open settings file!!!")
 
 	$UI/Menu.load_settings()
 	$UI/Menu.setup_circular_buttons()
 
-func change_setting(name : String, value : Variant):
-	settings[name] = value
+func change_setting(key : String, value : Variant):
+	settings[key] = value
 	apply_settings()
 	$UI/Menu.load_settings()
 	return
