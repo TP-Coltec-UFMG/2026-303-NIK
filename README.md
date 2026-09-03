@@ -6,7 +6,7 @@ Cabe a você salvar todos os membros da vila por meio de diversos _minigames_ e 
 
 Os _minigames_ do jogo são únicos! Seguem alguns exemplos de joguinhos que serão feitos pela protagonista:
 ![Imagem do Jogo de Labirinto](readMeImages/minigame_labirinto.png)
-
+![Imagem do Jogo de Ritmo](readMeImages/minigame_ritmo.png)
 
 ## Características Gerais
 Plataforma: PC
