@@ -1,5 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
+_.godot/
+__.godot/
 .vscode/
 /android/
-/readMeImages/
+
