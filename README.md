@@ -52,3 +52,5 @@ Agradecimento Especial:
 - Você: por tomar seu tempo vendo nossa obra :D
 
 Acesse os slides sobre o Menu _(Parte 1)_ [aqui](https://canva.link/0i8k9a8wbgczz79)
+
+![Um belo pibble.](readMeImages/pibble.png)
