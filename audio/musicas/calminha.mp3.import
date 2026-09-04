@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/calminha.mp3-1f3ace443d6647b1681cefd0976ed51a
 
 [params]
 
-loop=false
-loop_offset=0
-bpm=0
+loop=true
+loop_offset=2.0
+bpm=0.0
 beat_count=0
 bar_beats=4

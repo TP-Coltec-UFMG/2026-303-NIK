@@ -17,10 +17,12 @@ var x_direction = 1
 
 func _ready() -> void:
 	current_pos = Vector2i(1, 1)
+	$Camera2D.position_smoothing_enabled = false
 	position = (Vector2(0.5, 0.8) + Vector2(current_pos)) * maze.tile_scale
 	target_pos = position
 
 func _unhandled_input(event: InputEvent) -> void:
+	$Camera2D.position_smoothing_enabled = true
 	if event.is_action_pressed("move_up") or event.is_action_pressed("ui_up"):
 		move_to_tile(current_pos.x, current_pos.y - 1)
 

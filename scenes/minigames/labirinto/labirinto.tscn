@@ -22,6 +22,15 @@
 [ext_resource type="Texture2D" uid="uid://76u82brsyih3" path="res://sprites/minigames/labirinto/estrela_desligada_flavia.png" id="17_saydg"]
 [ext_resource type="Texture2D" uid="uid://3t34efkge520" path="res://sprites/minigames/labirinto/estrela_desligada_nikole.png" id="18_aey8s"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_bhunq"]
+font_size = 48
+font_color = Color(1, 0.78, 0.91933334, 1)
+outline_size = 24
+outline_color = Color(0.67, 0.20100002, 0.46676663, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_aey8s"]
+font_size = 32
+
 [node name="Maze" type="Node2D" unique_id=734450241]
 script = ExtResource("1_ibbmn")
 estrela_ligada_nikole = ExtResource("14_u45vi")
@@ -64,8 +73,8 @@ script = ExtResource("7_o3sm5")
 maze = NodePath("..")
 
 [node name="Camera2D" type="Camera2D" parent="Nikole" unique_id=572465459]
+process_mode = 3
 zoom = Vector2(0.55, 0.55)
-position_smoothing_enabled = true
 
 [node name="Shadow" type="Sprite2D" parent="Nikole" unique_id=303687812]
 modulate = Color(0, 0, 0, 0.30588236)
@@ -82,6 +91,7 @@ offset = Vector2(-21, -125)
 
 [node name="Francisco" type="Sprite2D" parent="." unique_id=1372355185 node_paths=PackedStringArray("nikole")]
 z_index = 1
+position = Vector2(0, -306)
 texture = ExtResource("10_sahm2")
 offset = Vector2(0, -85.5)
 script = ExtResource("11_jckl1")
@@ -99,6 +109,7 @@ offset = Vector2(-20, -125)
 
 [node name="Luis" type="Sprite2D" parent="." unique_id=1246747068 node_paths=PackedStringArray("nikole")]
 z_index = 3
+position = Vector2(240, -306)
 texture = ExtResource("12_pkm1r")
 offset = Vector2(0, -85.5)
 script = ExtResource("11_jckl1")
@@ -116,6 +127,7 @@ offset = Vector2(-20, -125)
 
 [node name="Flavia" type="Sprite2D" parent="." unique_id=913206177 node_paths=PackedStringArray("nikole")]
 z_index = 2
+position = Vector2(480, -306)
 texture = ExtResource("13_gr3jy")
 offset = Vector2(0, -85.5)
 script = ExtResource("11_jckl1")
@@ -131,10 +143,10 @@ scale = Vector2(3.5554767, 1.2380953)
 texture = ExtResource("9_os8al")
 offset = Vector2(-20, -125)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1160194427]
+[node name="BG" type="CanvasLayer" parent="." unique_id=1160194427]
 layer = -1
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=497781323]
+[node name="ColorRect" type="ColorRect" parent="BG" unique_id=497781323]
 z_index = -4096
 anchors_preset = 15
 anchor_right = 1.0
@@ -142,6 +154,142 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.85882354, 0.64705884, 0.74509805, 1)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=307479745]
+process_mode = 2
+
+[node name="Background" type="ColorRect" parent="UI" unique_id=554797391]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1665, 0.23433338, 0.37, 0.7490196)
+
+[node name="Title" type="Label" parent="UI/Background" unique_id=2007195205]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 30.0
+offset_bottom = 93.0
+grow_horizontal = 2
+text = "LABIRINTO DA MEMÓRIA"
+label_settings = SubResource("LabelSettings_bhunq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Subtitle" type="Label" parent="UI/Background" unique_id=781797538]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 80.0
+offset_bottom = 143.0
+grow_horizontal = 2
+text = "Ajude Nikole a reorganizar as memórias!"
+label_settings = SubResource("LabelSettings_aey8s")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="UI/Background" unique_id=1164040600]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.5
+anchor_right = 0.85
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+text = "Encontre as lembranças dos três netinhos de Dona Luzia e leve-os para suas estrelas respectivas!"
+label_settings = SubResource("LabelSettings_aey8s")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Background" unique_id=2010936050]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.75
+anchor_right = 0.5
+anchor_bottom = 0.75
+offset_left = -460.0
+offset_top = -85.0
+offset_right = 460.0
+offset_bottom = 183.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset_ratio = Vector2(0.5, 0)
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Francisco" type="TextureRect" parent="UI/Background/HBoxContainer" unique_id=848035686]
+z_index = 2
+layout_mode = 2
+texture = ExtResource("15_u45vi")
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/Background/HBoxContainer/Francisco" unique_id=2113140269]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 26.0
+offset_right = 241.0
+offset_bottom = 213.0
+
+[node name="Francisco" type="TextureRect" parent="UI/Background/HBoxContainer/Francisco/CenterContainer" unique_id=1833149076]
+z_index = 1
+layout_mode = 2
+offset_transform_enabled = true
+texture = ExtResource("10_sahm2")
+
+[node name="Flavia" type="TextureRect" parent="UI/Background/HBoxContainer" unique_id=1211488946]
+z_index = 2
+layout_mode = 2
+texture = ExtResource("17_saydg")
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/Background/HBoxContainer/Flavia" unique_id=496398887]
+layout_mode = 1
+anchors_preset = -1
+offset_left = -2.0
+offset_top = 2.0
+offset_right = 268.0
+offset_bottom = 215.0
+
+[node name="Flavia" type="TextureRect" parent="UI/Background/HBoxContainer/Flavia/CenterContainer" unique_id=116331593]
+z_index = 1
+layout_mode = 2
+texture = ExtResource("13_gr3jy")
+
+[node name="Luis" type="TextureRect" parent="UI/Background/HBoxContainer" unique_id=426631831]
+z_index = 2
+layout_mode = 2
+texture = ExtResource("16_xo3sy")
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/Background/HBoxContainer/Luis" unique_id=462426449]
+layout_mode = 1
+anchors_preset = -1
+offset_top = 6.0
+offset_right = 270.0
+offset_bottom = 219.0
+
+[node name="Luis" type="TextureRect" parent="UI/Background/HBoxContainer/Luis/CenterContainer" unique_id=483184069]
+z_index = 1
+layout_mode = 2
+offset_transform_enabled = true
+texture = ExtResource("12_pkm1r")
+
+[node name="Play" type="Button" parent="UI/Background" unique_id=1448434416]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.85
+anchor_right = 0.7
+anchor_bottom = 1.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Jogar"
 
 [node name="Stars" type="Node2D" parent="." unique_id=435417707]
 

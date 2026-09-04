@@ -271,6 +271,7 @@ texture = ExtResource("13_78kcs")
 offset = Vector2(-20, -125)
 
 [node name="Camera2D" type="Camera2D" parent="Nikole/Path2D/PathFollow2D" unique_id=1718117411]
+process_mode = 3
 zoom = Vector2(0.15, 0.15)
 position_smoothing_enabled = true
 

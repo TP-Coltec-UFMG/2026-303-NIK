@@ -19,13 +19,23 @@ const pos_star_flavia = Vector2i(19, 1)
 @export var estrela_ligada_luis : Texture
 @export var estrela_ligada_flavia : Texture
 
+@onready var tutorial_button : Button = $UI/Background/Play
+
 func _ready() -> void:
+	tutorial_button.connect("pressed", start_game)
+	get_tree().paused = true
+
 	maze = read_maze()
 	maze[pos_star_nikole.x][pos_star_nikole.y] = 13
 	maze[pos_star_francisco.x][pos_star_francisco.y] = 10
 	maze[pos_star_luis.x][pos_star_luis.y] = 20
 	maze[pos_star_flavia.x][pos_star_flavia.y] = 30
 	roll_pos_kids()
+
+func start_game():
+	$UI.visible = false
+	get_tree().paused = false
+
 
 func read_maze() -> Array:
 	# Obtém a textura do labrinto.
