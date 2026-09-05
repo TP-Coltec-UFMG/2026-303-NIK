@@ -14,8 +14,11 @@
 [ext_resource type="Texture2D" uid="uid://vmfonmf4kqtu" path="res://sprites/minigames/ritmo/botao_defesa_centro.png" id="9_os8al"]
 [ext_resource type="Texture2D" uid="uid://cqa1l7sin5v5s" path="res://sprites/mapa/npcs/francisco.png" id="10_sahm2"]
 [ext_resource type="Script" uid="uid://cx0n7fjrh07hx" path="res://scenes/minigames/labirinto/item.gd" id="11_jckl1"]
+[ext_resource type="Texture2D" uid="uid://b10q3my5brk3h" path="res://sprites/minigames/labirinto/seta_francisco.png" id="12_kpldb"]
 [ext_resource type="Texture2D" uid="uid://gpi4f8mt5gih" path="res://sprites/mapa/npcs/luis.png" id="12_pkm1r"]
 [ext_resource type="Texture2D" uid="uid://xeo1llost0fn" path="res://sprites/mapa/npcs/flavia.png" id="13_gr3jy"]
+[ext_resource type="Texture2D" uid="uid://d2ho70t8236aq" path="res://sprites/minigames/labirinto/seta_luis.png" id="13_mhd7j"]
+[ext_resource type="Texture2D" uid="uid://13wrmqyu7m37" path="res://sprites/minigames/labirinto/seta_flavia.png" id="14_gr1nu"]
 [ext_resource type="Texture2D" uid="uid://cbugkfbvc7cbu" path="res://sprites/minigames/labirinto/estrela_ligada_nikole.png" id="14_u45vi"]
 [ext_resource type="Texture2D" uid="uid://c3p3g67gltqvc" path="res://sprites/minigames/labirinto/estrela_desligada_francisco.png" id="15_u45vi"]
 [ext_resource type="Texture2D" uid="uid://btw58gnaw1cpu" path="res://sprites/minigames/labirinto/estrela_desligada_luis.png" id="16_xo3sy"]
@@ -68,9 +71,9 @@ position = Vector2(6000, 6000)
 texture = ExtResource("6_et2jy")
 offset = Vector2(3000, 3000)
 
-[node name="Nikole" type="Node2D" parent="." unique_id=1673519271 node_paths=PackedStringArray("maze")]
+[node name="Nikole" type="Node2D" parent="." unique_id=1673519271]
 script = ExtResource("7_o3sm5")
-maze = NodePath("..")
+arrow_sprites = Array[Texture2D]([ExtResource("12_kpldb"), ExtResource("13_mhd7j"), ExtResource("14_gr1nu")])
 
 [node name="Camera2D" type="Camera2D" parent="Nikole" unique_id=572465459]
 process_mode = 3

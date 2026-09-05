@@ -1,6 +1,6 @@
-extends Node2D
+class_name NikoleMaze extends Node2D
 
-@export var maze: Maze
+@onready var maze : Maze = get_tree().current_scene as Maze
 @onready var sprite : Sprite2D = $Sprite2D
 
 const speed = 20.0
@@ -14,6 +14,11 @@ var target_pos : Vector2
 var is_moving : bool = false
 
 var x_direction = 1
+
+var targets : Array[Vector2] = [Vector2(), Vector2(), Vector2()]
+@export var arrow_sprites : Array[Texture2D]
+var arrow_orbit_radius : float = 300
+var arrow_orbit_offset : Vector2 = Vector2(0, -80)
 
 func _ready() -> void:
 	current_pos = Vector2i(1, 1)
@@ -36,6 +41,25 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("move_left") or event.is_action_pressed("ui_left"):
 		x_direction = -1
 		move_to_tile(current_pos.x - 1, current_pos.y)
+
+func _draw() -> void:
+	if not maze.dropped_francisco: draw_arrow(0)
+	if not maze.dropped_luis: draw_arrow(1)
+	if not maze.dropped_flavia: draw_arrow(2)
+
+func draw_arrow(target : int):
+	var deg = (targets[target] - position).angle()
+	var arrow_position = Vector2.from_angle(deg) * (arrow_orbit_radius - (sin(animation_progress / 5) * arrow_orbit_radius * 0.05)) + arrow_orbit_offset
+
+	# print(deg)
+
+	var texture = arrow_sprites[target]
+	var texture_size = texture.get_size()
+
+	var rect = Rect2(-texture_size / 2, texture_size)
+	draw_set_transform(arrow_position, deg)
+	draw_texture_rect(arrow_sprites[target], rect, false)
+	draw_set_transform(Vector2(), 0)
 
 func move_to_tile(x : int, y : int, instant : bool = false):
 	if maze.is_walkable(x, y):
@@ -62,6 +86,7 @@ func _process(delta: float) -> void:
 		position = target_pos
 	else:
 		position = lerp(position, target_pos, delta / 0.1)
+	queue_redraw()
 
 	animate(delta)
 
@@ -80,7 +105,6 @@ func funny():
 	if r == 4:
 		x_direction = -1
 		move_to_tile(current_pos.x - 1, current_pos.y)
-	await get_tree().create_timer(0.5).timeout
 
 func animate(delta : float):
 	sprite.scale.x = x_direction

@@ -1,4 +1,4 @@
-class_name nikole extends Node2D
+class_name NikoleProtector extends Node2D
 
 @onready var sprite : Sprite2D = $Sprite2D
 @onready var previous_x = sprite.global_position.x;

@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dg1s5fy4fcb54" path="res://sprites/mapa/mapa7.png" id="8_30ska"]
 [ext_resource type="Texture2D" uid="uid://br71rnf6c4qqd" path="res://sprites/mapa/mapa8.png" id="9_tmgcv"]
 [ext_resource type="Script" uid="uid://1neh7ky2veon" path="res://scenes/map/map_node.gd" id="10_omedl"]
+[ext_resource type="Texture2D" uid="uid://2100rt7r3r5q" path="res://sprites/mapa/mapa9.png" id="10_rqo2c"]
 [ext_resource type="Script" uid="uid://db0j0gq3i6832" path="res://scenes/map/nikole.gd" id="11_3xi6f"]
 [ext_resource type="Texture2D" uid="uid://vmfonmf4kqtu" path="res://sprites/minigames/ritmo/botao_defesa_centro.png" id="12_xks3a"]
 [ext_resource type="Texture2D" uid="uid://dfeyjo2mnrmlv" path="res://sprites/mapa/npcs/nikole.png" id="13_78kcs"]
@@ -75,6 +76,7 @@ y_sort_enabled = true
 script = ExtResource("1_mgs8m")
 
 [node name="Pieces" type="Node2D" parent="." unique_id=1565263921]
+position = Vector2(-294, -45)
 
 [node name="Mapa1" type="Sprite2D" parent="Pieces" unique_id=615680915]
 z_index = -1
@@ -121,6 +123,12 @@ offset = Vector2(-20, -125)
 z_index = -1
 position = Vector2(12000, 4000)
 texture = ExtResource("9_tmgcv")
+offset = Vector2(-20, -125)
+
+[node name="Mapa9" type="Sprite2D" parent="Pieces" unique_id=139966770]
+z_index = -1
+position = Vector2(6000, 4000)
+texture = ExtResource("10_rqo2c")
 offset = Vector2(-20, -125)
 
 [node name="Path" type="Node2D" parent="." unique_id=1350687154]

@@ -1,5 +1,6 @@
 class_name Maze extends Node2D
 
+@onready var nikole : NikoleMaze = $Nikole
 var maze : Array
 var tile_scale : float = 375
 var height: int
@@ -8,6 +9,10 @@ var width: int
 var has_francisco = false
 var has_luis = false
 var has_flavia = false
+
+var dropped_francisco = false
+var dropped_luis = false
+var dropped_flavia = false
 
 const pos_star_nikole = Vector2i(1, 1)
 const pos_star_francisco = Vector2i(4, 13)
@@ -68,16 +73,19 @@ func check_kid_pickup(column: int, row: int) -> void:
 			$Francisco.collected = true
 			maze[column][row] = 0
 			has_francisco = true
+			nikole.targets[0] = $Stars/FranciscoS.position
 		2:
 			$Luis.collected = true
 			maze[column][row] = 0
 			maze[column][row] = 0
 			has_luis = true
+			nikole.targets[1] = $Stars/LuisS.position 
 		3:
 			$Flavia.collected = true
 			maze[column][row] = 0
 			maze[column][row] = 0
 			has_flavia = true
+			nikole.targets[2] = $Stars/FlaviaS.position
 
 func check_kid_dropout(column: int, row: int) -> void:
 	match maze[column][row]:
@@ -86,18 +94,21 @@ func check_kid_dropout(column: int, row: int) -> void:
 				$Francisco.target_pos = (Vector2(pos_star_francisco) + Vector2(0.5, 0.5)) * tile_scale
 				$Francisco.placed = true
 				has_francisco = false
+				dropped_francisco = true
 				$Stars/FranciscoS.texture = estrela_ligada_francisco
 		20:
 			if has_luis:
 				$Luis.target_pos = (Vector2(pos_star_luis) + Vector2(0.5, 0.5)) * tile_scale
 				$Luis.placed = true
 				has_luis = false
+				dropped_luis = true
 				$Stars/LuisS.texture = estrela_ligada_luis
 		30:
 			if has_flavia:
 				$Flavia.target_pos = (Vector2(pos_star_flavia) + Vector2(0.5, 0.5)) * tile_scale
 				$Flavia.placed = true
 				has_flavia = false
+				dropped_flavia = true
 				$Stars/FlaviaS.texture = estrela_ligada_flavia
 
 func check_end_game(column: int, row: int) -> void:
@@ -128,3 +139,6 @@ func roll_pos_kids() -> void:
 			$Flavia.position = (Vector2(pos) + Vector2(0.5, 0.5)) * tile_scale
 			maze[pos.x][pos.y] = 3
 			break
+	nikole.targets[0] = $Francisco.position
+	nikole.targets[1] = $Luis.position 
+	nikole.targets[2] = $Flavia.position
