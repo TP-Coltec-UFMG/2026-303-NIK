@@ -2502,7 +2502,7 @@ label = "Salvar"
 theme_variation = "ConfigButtonExit"
 metadata/_custom_type_script = "uid://dxcpaqjaydfjj"
 
-[node name="Control" type="Control" parent="UI/Menu" unique_id=877074626]
+[node name="ControlsTip" type="Control" parent="UI/Menu" unique_id=877074626]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -2512,7 +2512,7 @@ offset_right = 1000.0
 grow_vertical = 0
 offset_transform_position = Vector2(5, -5)
 
-[node name="BackGround" type="TextureRect" parent="UI/Menu/Control" unique_id=68174577]
+[node name="BackGround" type="TextureRect" parent="UI/Menu/ControlsTip" unique_id=68174577]
 z_index = -15
 layout_mode = 1
 anchors_preset = 15
@@ -2525,7 +2525,7 @@ grow_vertical = 2
 scale = Vector2(0.24000002, 2.1599998)
 texture = SubResource("GradientTexture2D_5xtl8")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Menu/Control" unique_id=1398675704]
+[node name="List" type="VBoxContainer" parent="UI/Menu/ControlsTip" unique_id=1398675704]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -2537,13 +2537,13 @@ offset_transform_enabled = true
 offset_transform_position = Vector2(5, -5)
 alignment = 2
 
-[node name="E" type="HBoxContainer" parent="UI/Menu/Control/VBoxContainer" unique_id=2135331985]
+[node name="interact" type="HBoxContainer" parent="UI/Menu/ControlsTip/List" unique_id=2135331985]
 custom_minimum_size = Vector2(80, 20)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/separation = 8
 
-[node name="Panel" type="PanelContainer" parent="UI/Menu/Control/VBoxContainer/E" unique_id=214169617]
+[node name="Panel" type="PanelContainer" parent="UI/Menu/ControlsTip/List/interact" unique_id=214169617]
 custom_minimum_size = Vector2(28, 0)
 propagate_maximum_size = false
 layout_mode = 2
@@ -2551,7 +2551,7 @@ size_flags_horizontal = 3
 theme = ExtResource("15_5xtl8")
 theme_override_styles/panel = SubResource("StyleBoxFlat_cjvif")
 
-[node name="Botao" type="RichTextLabel" parent="UI/Menu/Control/VBoxContainer/E/Panel" unique_id=895515145]
+[node name="Botao" type="RichTextLabel" parent="UI/Menu/ControlsTip/List/interact/Panel" unique_id=895515145]
 layout_mode = 2
 theme = ExtResource("15_5xtl8")
 theme_override_font_sizes/normal_font_size = 18
@@ -2563,7 +2563,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Funcao" type="RichTextLabel" parent="UI/Menu/Control/VBoxContainer/E" unique_id=384501320]
+[node name="Funcao" type="RichTextLabel" parent="UI/Menu/ControlsTip/List/interact" unique_id=384501320]
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 theme = ExtResource("15_5xtl8")
@@ -2572,13 +2572,13 @@ text = "Interagir"
 fit_content = true
 vertical_alignment = 1
 
-[node name="Enter" type="HBoxContainer" parent="UI/Menu/Control/VBoxContainer" unique_id=1010129189]
+[node name="Continuar (nao achei o mapa de entrada pra esse)" type="HBoxContainer" parent="UI/Menu/ControlsTip/List" unique_id=1010129189]
 custom_minimum_size = Vector2(80, 20)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/separation = 8
 
-[node name="Panel" type="PanelContainer" parent="UI/Menu/Control/VBoxContainer/Enter" unique_id=48664370]
+[node name="Panel" type="PanelContainer" parent="UI/Menu/ControlsTip/List/Continuar (nao achei o mapa de entrada pra esse)" unique_id=48664370]
 custom_minimum_size = Vector2(28, 0)
 propagate_maximum_size = false
 layout_mode = 2
@@ -2586,7 +2586,7 @@ size_flags_horizontal = 3
 theme = ExtResource("15_5xtl8")
 theme_override_styles/panel = SubResource("StyleBoxFlat_cjvif")
 
-[node name="Botao" type="RichTextLabel" parent="UI/Menu/Control/VBoxContainer/Enter/Panel" unique_id=1889331959]
+[node name="Botao" type="RichTextLabel" parent="UI/Menu/ControlsTip/List/Continuar (nao achei o mapa de entrada pra esse)/Panel" unique_id=1889331959]
 layout_mode = 2
 theme = ExtResource("15_5xtl8")
 theme_override_font_sizes/normal_font_size = 18
@@ -2598,22 +2598,22 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Funcao" type="RichTextLabel" parent="UI/Menu/Control/VBoxContainer/Enter" unique_id=332140797]
+[node name="Funcao" type="RichTextLabel" parent="UI/Menu/ControlsTip/List/Continuar (nao achei o mapa de entrada pra esse)" unique_id=332140797]
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 theme = ExtResource("15_5xtl8")
 bbcode_enabled = true
-text = "Salvar"
+text = "Continuar"
 fit_content = true
 vertical_alignment = 1
 
-[node name="WASD" type="HBoxContainer" parent="UI/Menu/Control/VBoxContainer" unique_id=827566148]
+[node name="move" type="HBoxContainer" parent="UI/Menu/ControlsTip/List" unique_id=827566148]
 custom_minimum_size = Vector2(80, 20)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/separation = 8
 
-[node name="Panel" type="PanelContainer" parent="UI/Menu/Control/VBoxContainer/WASD" unique_id=1268953329]
+[node name="up" type="PanelContainer" parent="UI/Menu/ControlsTip/List/move" unique_id=1268953329]
 custom_minimum_size = Vector2(28, 0)
 propagate_maximum_size = false
 layout_mode = 2
@@ -2621,7 +2621,7 @@ size_flags_horizontal = 3
 theme = ExtResource("15_5xtl8")
 theme_override_styles/panel = SubResource("StyleBoxFlat_cjvif")
 
-[node name="Botao" type="RichTextLabel" parent="UI/Menu/Control/VBoxContainer/WASD/Panel" unique_id=1785637003]
+[node name="Botao" type="RichTextLabel" parent="UI/Menu/ControlsTip/List/move/up" unique_id=1785637003]
 layout_mode = 2
 theme = ExtResource("15_5xtl8")
 theme_override_font_sizes/normal_font_size = 18
@@ -2633,7 +2633,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Panel2" type="PanelContainer" parent="UI/Menu/Control/VBoxContainer/WASD" unique_id=1603952350]
+[node name="left" type="PanelContainer" parent="UI/Menu/ControlsTip/List/move" unique_id=1603952350]
 custom_minimum_size = Vector2(28, 0)
 propagate_maximum_size = false
 layout_mode = 2
@@ -2641,7 +2641,7 @@ size_flags_horizontal = 3
 theme = ExtResource("15_5xtl8")
 theme_override_styles/panel = SubResource("StyleBoxFlat_cjvif")
 
-[node name="Botao" type="RichTextLabel" parent="UI/Menu/Control/VBoxContainer/WASD/Panel2" unique_id=67717696]
+[node name="Botao" type="RichTextLabel" parent="UI/Menu/ControlsTip/List/move/left" unique_id=67717696]
 layout_mode = 2
 theme = ExtResource("15_5xtl8")
 theme_override_font_sizes/normal_font_size = 18
@@ -2653,7 +2653,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Panel3" type="PanelContainer" parent="UI/Menu/Control/VBoxContainer/WASD" unique_id=1588154604]
+[node name="down" type="PanelContainer" parent="UI/Menu/ControlsTip/List/move" unique_id=1588154604]
 custom_minimum_size = Vector2(28, 0)
 propagate_maximum_size = false
 layout_mode = 2
@@ -2661,7 +2661,7 @@ size_flags_horizontal = 3
 theme = ExtResource("15_5xtl8")
 theme_override_styles/panel = SubResource("StyleBoxFlat_cjvif")
 
-[node name="Botao" type="RichTextLabel" parent="UI/Menu/Control/VBoxContainer/WASD/Panel3" unique_id=1470158413]
+[node name="Botao" type="RichTextLabel" parent="UI/Menu/ControlsTip/List/move/down" unique_id=1470158413]
 layout_mode = 2
 theme = ExtResource("15_5xtl8")
 theme_override_font_sizes/normal_font_size = 18
@@ -2673,7 +2673,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Panel4" type="PanelContainer" parent="UI/Menu/Control/VBoxContainer/WASD" unique_id=303973021]
+[node name="right" type="PanelContainer" parent="UI/Menu/ControlsTip/List/move" unique_id=303973021]
 custom_minimum_size = Vector2(28, 0)
 propagate_maximum_size = false
 layout_mode = 2
@@ -2681,7 +2681,7 @@ size_flags_horizontal = 3
 theme = ExtResource("15_5xtl8")
 theme_override_styles/panel = SubResource("StyleBoxFlat_cjvif")
 
-[node name="Botao" type="RichTextLabel" parent="UI/Menu/Control/VBoxContainer/WASD/Panel4" unique_id=531678889]
+[node name="Botao" type="RichTextLabel" parent="UI/Menu/ControlsTip/List/move/right" unique_id=531678889]
 layout_mode = 2
 theme = ExtResource("15_5xtl8")
 theme_override_font_sizes/normal_font_size = 18
@@ -2693,7 +2693,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Funcao" type="RichTextLabel" parent="UI/Menu/Control/VBoxContainer/WASD" unique_id=1155762415]
+[node name="Funcao" type="RichTextLabel" parent="UI/Menu/ControlsTip/List/move" unique_id=1155762415]
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 theme = ExtResource("15_5xtl8")

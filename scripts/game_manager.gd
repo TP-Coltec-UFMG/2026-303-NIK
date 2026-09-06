@@ -90,6 +90,8 @@ func apply_settings(config : Dictionary = settings):
 			var new_event = InputEventKey.new()
 			new_event.physical_keycode = settings[input]
 			InputMap.action_add_event(input, new_event)
+			# Atualiza no menu de dicas de controles
+			menu.update_controls_tip(input, settings[input])
 
 	menu.setup_circular_buttons()
 

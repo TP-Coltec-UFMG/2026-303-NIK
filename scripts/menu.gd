@@ -285,5 +285,17 @@ func save_settings() -> void:
 	GameManager.save_settings()
 
 # Atualiza a lista dos controles com as respectivas teclas
-func update_controls_tip() -> void:
-	pass
+func update_controls_tip(action_name : String, key : Key) -> void:
+
+	# Nó que vai guardar o texto com a tecla.
+	# É definido logo abaixo.
+	var key_node : RichTextLabel = null
+	
+	# se for movimento, retira a parte do "move_"
+	if action_name.begins_with("move_"):
+		var direction : String = action_name.substr(5)
+		key_node = $ControlsTip/List.get_node("move").get_node(direction).get_node("Botao")
+	else:
+		key_node = $ControlsTip/List.get_node(action_name).get_node("Panel").get_node("Botao")
+			
+	key_node.text = OS.get_keycode_string(key)
