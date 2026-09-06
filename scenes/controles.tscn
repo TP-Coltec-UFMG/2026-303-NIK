@@ -1,0 +1,142 @@
+[gd_scene format=3 uid="uid://bidn0hiberani"]
+
+[node name="Controles" type="CanvasLayer" unique_id=1603382489]
+
+[node name="Control" type="Control" parent="." unique_id=1188730402]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 1000.0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1921144145]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -300.0
+offset_right = 300.0
+grow_vertical = 0
+alignment = 2
+
+[node name="eu to brincando com o ui" type="HBoxContainer" parent="Control/VBoxContainer" unique_id=2061101655]
+custom_minimum_size = Vector2(80, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 8
+
+[node name="ColorRect" type="ColorRect" parent="Control/VBoxContainer/eu to brincando com o ui" unique_id=2082668592]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+color = Color(0.48178947, 0.48178947, 0.48178947, 1)
+
+[node name="Botao" type="RichTextLabel" parent="Control/VBoxContainer/eu to brincando com o ui/ColorRect" unique_id=1784616162]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 0
+offset_right = 10.0
+offset_bottom = 21.0
+bbcode_enabled = true
+text = "E"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Funcao" type="RichTextLabel" parent="Control/VBoxContainer/eu to brincando com o ui" unique_id=99099230]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+bbcode_enabled = true
+text = "teste teste dasdsa"
+fit_content = true
+vertical_alignment = 1
+
+[node name="vou fazer mais bonitinho" type="HBoxContainer" parent="Control/VBoxContainer" unique_id=19061599]
+custom_minimum_size = Vector2(80, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 8
+
+[node name="ColorRect" type="ColorRect" parent="Control/VBoxContainer/vou fazer mais bonitinho" unique_id=956762294]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+color = Color(0.48178947, 0.48178947, 0.48178947, 1)
+
+[node name="Botao" type="RichTextLabel" parent="Control/VBoxContainer/vou fazer mais bonitinho/ColorRect" unique_id=191261014]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 0
+offset_right = 10.0
+offset_bottom = 21.0
+bbcode_enabled = true
+text = "E"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Funcao" type="RichTextLabel" parent="Control/VBoxContainer/vou fazer mais bonitinho" unique_id=1662801285]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+bbcode_enabled = true
+text = "teste teste dasdsa"
+fit_content = true
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer" unique_id=1138640084]
+custom_minimum_size = Vector2(80, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 8
+
+[node name="ColorRect" type="ColorRect" parent="Control/VBoxContainer/HBoxContainer" unique_id=946610748]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+color = Color(0.48178947, 0.48178947, 0.48178947, 1)
+
+[node name="Botao" type="RichTextLabel" parent="Control/VBoxContainer/HBoxContainer/ColorRect" unique_id=11053575]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 0
+offset_right = 10.0
+offset_bottom = 21.0
+bbcode_enabled = true
+text = "E"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Funcao" type="RichTextLabel" parent="Control/VBoxContainer/HBoxContainer" unique_id=1609159533]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+bbcode_enabled = true
+text = "teste teste dasdsa"
+fit_content = true
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/VBoxContainer" unique_id=456390251]
+custom_minimum_size = Vector2(80, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 8
+
+[node name="ColorRect" type="ColorRect" parent="Control/VBoxContainer/HBoxContainer2" unique_id=1033235824]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+color = Color(0.48178947, 0.48178947, 0.48178947, 1)
+
+[node name="Botao" type="RichTextLabel" parent="Control/VBoxContainer/HBoxContainer2/ColorRect" unique_id=2249079]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 0
+offset_right = 10.0
+offset_bottom = 21.0
+bbcode_enabled = true
+text = "E"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Funcao" type="RichTextLabel" parent="Control/VBoxContainer/HBoxContainer2" unique_id=2067824485]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+bbcode_enabled = true
+text = "teste teste dasdsa"
+fit_content = true
+vertical_alignment = 1
