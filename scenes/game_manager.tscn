@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://dws6dbyhxolq1" path="res://scripts/botoes_configuracao/configuracao_bool.gd" id="12_8ldib"]
 [ext_resource type="Script" uid="uid://v4a1wtjtcbkn" path="res://scripts/botoes_configuracao/configuracao_int.gd" id="13_kvitc"]
 [ext_resource type="Script" uid="uid://csl2o2drb1mft" path="res://scripts/botoes_configuracao/configuracao_keybind.gd" id="14_hqtnj"]
+[ext_resource type="Theme" uid="uid://gmvr2lib4uc3" path="res://themes/default.tres" id="15_5xtl8"]
 
 [sub_resource type="Animation" id="Animation_rerct"]
 length = 0.001
@@ -153,6 +154,24 @@ font_size = 48
 font_color = Color(1, 0.8360001, 0.18, 1)
 outline_size = 16
 outline_color = Color(0.92, 0.53313994, 0.1196, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5xtl8"]
+gradient = SubResource("Gradient_nl2jp")
+fill = 1
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0.765812, 0.2863248)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cjvif"]
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 4
+anti_aliasing_size = 0.01
 
 [node name="GameManager" type="Control" unique_id=644995863]
 layout_mode = 3
@@ -2482,3 +2501,203 @@ id = "button_save_controls"
 label = "Salvar"
 theme_variation = "ConfigButtonExit"
 metadata/_custom_type_script = "uid://dxcpaqjaydfjj"
+
+[node name="Control" type="Control" parent="UI/Menu" unique_id=877074626]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 1000.0
+grow_vertical = 0
+offset_transform_position = Vector2(5, -5)
+
+[node name="BackGround" type="TextureRect" parent="UI/Menu/Control" unique_id=68174577]
+z_index = -15
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -98.0
+offset_bottom = -74.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.24000002, 2.1599998)
+texture = SubResource("GradientTexture2D_5xtl8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Menu/Control" unique_id=1398675704]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -300.0
+offset_right = 300.0
+grow_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(5, -5)
+alignment = 2
+
+[node name="E" type="HBoxContainer" parent="UI/Menu/Control/VBoxContainer" unique_id=2135331985]
+custom_minimum_size = Vector2(80, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 8
+
+[node name="Panel" type="PanelContainer" parent="UI/Menu/Control/VBoxContainer/E" unique_id=214169617]
+custom_minimum_size = Vector2(28, 0)
+propagate_maximum_size = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("15_5xtl8")
+theme_override_styles/panel = SubResource("StyleBoxFlat_cjvif")
+
+[node name="Botao" type="RichTextLabel" parent="UI/Menu/Control/VBoxContainer/E/Panel" unique_id=895515145]
+layout_mode = 2
+theme = ExtResource("15_5xtl8")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "E"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Funcao" type="RichTextLabel" parent="UI/Menu/Control/VBoxContainer/E" unique_id=384501320]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+theme = ExtResource("15_5xtl8")
+bbcode_enabled = true
+text = "Interagir"
+fit_content = true
+vertical_alignment = 1
+
+[node name="Enter" type="HBoxContainer" parent="UI/Menu/Control/VBoxContainer" unique_id=1010129189]
+custom_minimum_size = Vector2(80, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 8
+
+[node name="Panel" type="PanelContainer" parent="UI/Menu/Control/VBoxContainer/Enter" unique_id=48664370]
+custom_minimum_size = Vector2(28, 0)
+propagate_maximum_size = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("15_5xtl8")
+theme_override_styles/panel = SubResource("StyleBoxFlat_cjvif")
+
+[node name="Botao" type="RichTextLabel" parent="UI/Menu/Control/VBoxContainer/Enter/Panel" unique_id=1889331959]
+layout_mode = 2
+theme = ExtResource("15_5xtl8")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "Enter"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Funcao" type="RichTextLabel" parent="UI/Menu/Control/VBoxContainer/Enter" unique_id=332140797]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+theme = ExtResource("15_5xtl8")
+bbcode_enabled = true
+text = "Salvar"
+fit_content = true
+vertical_alignment = 1
+
+[node name="WASD" type="HBoxContainer" parent="UI/Menu/Control/VBoxContainer" unique_id=827566148]
+custom_minimum_size = Vector2(80, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 8
+
+[node name="Panel" type="PanelContainer" parent="UI/Menu/Control/VBoxContainer/WASD" unique_id=1268953329]
+custom_minimum_size = Vector2(28, 0)
+propagate_maximum_size = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("15_5xtl8")
+theme_override_styles/panel = SubResource("StyleBoxFlat_cjvif")
+
+[node name="Botao" type="RichTextLabel" parent="UI/Menu/Control/VBoxContainer/WASD/Panel" unique_id=1785637003]
+layout_mode = 2
+theme = ExtResource("15_5xtl8")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "W"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel2" type="PanelContainer" parent="UI/Menu/Control/VBoxContainer/WASD" unique_id=1603952350]
+custom_minimum_size = Vector2(28, 0)
+propagate_maximum_size = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("15_5xtl8")
+theme_override_styles/panel = SubResource("StyleBoxFlat_cjvif")
+
+[node name="Botao" type="RichTextLabel" parent="UI/Menu/Control/VBoxContainer/WASD/Panel2" unique_id=67717696]
+layout_mode = 2
+theme = ExtResource("15_5xtl8")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "A"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel3" type="PanelContainer" parent="UI/Menu/Control/VBoxContainer/WASD" unique_id=1588154604]
+custom_minimum_size = Vector2(28, 0)
+propagate_maximum_size = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("15_5xtl8")
+theme_override_styles/panel = SubResource("StyleBoxFlat_cjvif")
+
+[node name="Botao" type="RichTextLabel" parent="UI/Menu/Control/VBoxContainer/WASD/Panel3" unique_id=1470158413]
+layout_mode = 2
+theme = ExtResource("15_5xtl8")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "S"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel4" type="PanelContainer" parent="UI/Menu/Control/VBoxContainer/WASD" unique_id=303973021]
+custom_minimum_size = Vector2(28, 0)
+propagate_maximum_size = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("15_5xtl8")
+theme_override_styles/panel = SubResource("StyleBoxFlat_cjvif")
+
+[node name="Botao" type="RichTextLabel" parent="UI/Menu/Control/VBoxContainer/WASD/Panel4" unique_id=531678889]
+layout_mode = 2
+theme = ExtResource("15_5xtl8")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "D"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Funcao" type="RichTextLabel" parent="UI/Menu/Control/VBoxContainer/WASD" unique_id=1155762415]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+theme = ExtResource("15_5xtl8")
+bbcode_enabled = true
+text = "Andar"
+fit_content = true
+vertical_alignment = 1

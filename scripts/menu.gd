@@ -80,7 +80,6 @@ func _process(delta: float) -> void:
 
 """
 Atualiza a posição dos botões em uma organização circular a lista de botões dado 
-@param menu_data estrutura com os dados do menu ativo
 """
 func update_circular_buttons(delta : float):
 	var menu_data = menus[active_menu]
@@ -206,7 +205,7 @@ func load_settings() -> void:
 						button._value = button.values.find(settings[button.id])
 					else: button._value = 0
 
-# Função chamada quando há alguma input do usuário
+# Função chamada quando há algum input do usuário
 func _input(event: InputEvent) -> void:
 	if not get_tree().paused: 
 		if event.is_action_pressed("pause"):
@@ -284,3 +283,7 @@ func setup_menus():
 
 func save_settings() -> void:
 	GameManager.save_settings()
+
+# Atualiza a lista dos controles com as respectivas teclas
+func update_controls_tip() -> void:
+	pass
