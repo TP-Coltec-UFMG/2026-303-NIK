@@ -2,67 +2,55 @@
 
 [ext_resource type="Script" uid="uid://cg1ipy0wjnp2g" path="res://scenes/minigames/protetor/nikole.gd" id="1_gx4cg"]
 [ext_resource type="Script" uid="uid://ctha3xkjp6c3q" path="res://scenes/minigames/protetor/protector.gd" id="1_k5nnu"]
-[ext_resource type="Texture2D" uid="uid://vmfonmf4kqtu" path="res://sprites/minigames/ritmo/botao_defesa_centro.png" id="2_k5nnu"]
-[ext_resource type="Texture2D" uid="uid://dfeyjo2mnrmlv" path="res://sprites/mapa/npcs/nikole.png" id="3_2vsbs"]
-[ext_resource type="Texture2D" uid="uid://dkmhwko6d3pb2" path="res://sprites/paulo/paulo_cabeca.png" id="4_po32r"]
+[ext_resource type="Texture2D" uid="uid://bnqq8uipelgtr" path="res://sprites/mapa/npcs/joao.png" id="2_brdkm"]
+[ext_resource type="Texture2D" uid="uid://cqybyntp3ychg" path="res://sprites/minigames/protetor/fundo.png" id="2_jmh7e"]
 [ext_resource type="Script" uid="uid://dlwimra5tgayr" path="res://scenes/minigames/protetor/thought_generator.gd" id="5_ok8qm"]
-[ext_resource type="Texture2D" uid="uid://bjurpufuxf0y7" path="res://sprites/paulo/arbusto_1.png" id="6_brdkm"]
+[ext_resource type="Texture2D" uid="uid://fan3x477e0ey" path="res://sprites/minigames/protetor/pensamento_feliz.png" id="6_ok8qm"]
 [ext_resource type="PackedScene" uid="uid://bmd6emdq44kfy" path="res://scenes/minigames/protetor/pensamento.tscn" id="7_2vsbs"]
-[ext_resource type="Texture2D" uid="uid://3gteamtnt3sf" path="res://sprites/paulo/arbusto_2.png" id="7_jmh7e"]
-[ext_resource type="Texture2D" uid="uid://cibu6mny7ulhj" path="res://sprites/paulo/arbusto_3.png" id="8_nls1e"]
+[ext_resource type="Texture2D" uid="uid://c7hyh1rwiep1" path="res://sprites/minigames/protetor/pensamento_triste.png" id="8_po32r"]
+[ext_resource type="Texture2D" uid="uid://b84a0yhod1pap" path="res://sprites/minigames/protetor/nikole_escudo.png" id="10_brdkm"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
-size = Vector2(205.485, 297.692)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ob7ed"]
+size = Vector2(120, 20)
 
 [node name="Protector" type="Node2D" unique_id=1650022209]
 script = ExtResource("1_k5nnu")
 
-[node name="Field" type="Sprite2D" parent="." unique_id=26465363]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1880343103]
+position = Vector2(3048, 1715)
+position_smoothing_enabled = true
+
+[node name="Background" type="Sprite2D" parent="Camera2D" unique_id=26465363]
+z_index = -10
+texture = ExtResource("2_jmh7e")
+
+[node name="ThoughtGenerator" type="Node2D" parent="Camera2D" unique_id=882556118 node_paths=PackedStringArray("joao")]
+script = ExtResource("5_ok8qm")
+thought_scene = ExtResource("7_2vsbs")
+thought_textures = Array[Texture2D]([ExtResource("8_po32r"), ExtResource("6_ok8qm")])
+joao = NodePath("../../Joao")
 
 [node name="Joao" type="Sprite2D" parent="." unique_id=1054201552]
 z_index = 1
 position = Vector2(3048, 1715)
-texture = ExtResource("4_po32r")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_brdkm")
+offset = Vector2(0, -80)
 metadata/_edit_group_ = true
 
-[node name="Camera2D" type="Camera2D" parent="Joao" unique_id=1880343103]
-zoom = Vector2(0.21, 0.21)
-position_smoothing_enabled = true
-
-[node name="Shadow" type="Sprite2D" parent="Joao" unique_id=681066524]
-modulate = Color(0, 0, 0, 0.30588236)
-z_index = -5
-position = Vector2(70, 160)
-scale = Vector2(3.5554767, 1.2380953)
-texture = ExtResource("2_k5nnu")
-offset = Vector2(-20, -125)
-
-[node name="Thought_Generator" type="Node" parent="." unique_id=206746091 node_paths=PackedStringArray("joao")]
-script = ExtResource("5_ok8qm")
-thought_scene = ExtResource("7_2vsbs")
-thought_textures = Array[Texture2D]([ExtResource("6_brdkm"), ExtResource("7_jmh7e"), ExtResource("8_nls1e")])
-joao = NodePath("../Joao")
-
 [node name="Nikole" type="Area2D" parent="." unique_id=661086269 node_paths=PackedStringArray("joao")]
-position = Vector2(3048, 1191)
+position = Vector2(3048, 1575.55)
 script = ExtResource("1_gx4cg")
 joao = NodePath("../Joao")
 metadata/_edit_group_ = true
 
-[node name="Shadow" type="Sprite2D" parent="Nikole" unique_id=40571940]
-modulate = Color(0, 0, 0, 0.30588236)
-z_index = -5
-position = Vector2(70, 160)
-scale = Vector2(3.5554767, 1.2380953)
-texture = ExtResource("2_k5nnu")
-offset = Vector2(-20, -20)
-
 [node name="Sprite2D" type="Sprite2D" parent="Nikole" unique_id=1232900798]
 z_index = 4
-texture = ExtResource("3_2vsbs")
-offset = Vector2(-21, 0)
+texture = ExtResource("10_brdkm")
+offset = Vector2(-13.5, -15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Nikole" unique_id=1531547180]
-shape = SubResource("RectangleShape2D_g4v7s")
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_ob7ed")
 
 [connection signal="area_entered" from="Nikole" to="Nikole" method="_on_area_entered"]

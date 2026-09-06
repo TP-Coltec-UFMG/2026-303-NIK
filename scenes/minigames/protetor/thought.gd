@@ -13,14 +13,13 @@ func destroy() -> void:
 	emit_signal("destroyed");
 	queue_free()
 
-func slider_animation() -> void:
-	var target_pos = Vector2(3048.0, 1715.0)
+func move() -> void:
+	var target_pos = Vector2(0, 0)
 	
 	if tween:
 		tween.kill()
 		
 	tween = create_tween()
-	tween.set_trans(Tween.TRANS_CUBIC)
-	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_LINEAR)
 	
-	tween.tween_property(self, "global_position", target_pos, 20)
+	tween.tween_property(self, "position", target_pos, 5)

@@ -1,15 +1,19 @@
 [gd_scene format=3 uid="uid://bmd6emdq44kfy"]
 
 [ext_resource type="Script" uid="uid://cj77himrl0b21" path="res://scenes/minigames/protetor/thought.gd" id="1_rsbvi"]
+[ext_resource type="Texture2D" uid="uid://c7hyh1rwiep1" path="res://sprites/minigames/protetor/pensamento_triste.png" id="2_ob7ed"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ob7ed"]
-size = Vector2(84.41, 32.385)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_po32r"]
+size = Vector2(75, 150)
 
 [node name="Thought" type="Area2D" unique_id=418587498]
 script = ExtResource("1_rsbvi")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1044001525]
-shape = SubResource("RectangleShape2D_ob7ed")
+position = Vector2(-0.5, 0.50000095)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_po32r")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1758830565]
+texture = ExtResource("2_ob7ed")
