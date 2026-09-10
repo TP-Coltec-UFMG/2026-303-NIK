@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bgoc88jujeiyo" path="res://scenes/minigames/minigame_tester/minigame_tester.tscn" id="3_cjvif"]
 [ext_resource type="PackedScene" uid="uid://c80oo57ysn36d" path="res://scenes/minigames/minigame_luzia/minigame_luzia.tscn" id="4_30v7y"]
 [ext_resource type="AudioStream" uid="uid://dgjxajgfdxxia" path="res://audio/musics/calminha.mp3" id="5_30v7y"]
+[ext_resource type="PackedScene" uid="uid://08c71k7x2pq0" path="res://scenes/minigames/minigame_joao/minigame_joao.tscn" id="5_cjvif"]
 [ext_resource type="Shader" uid="uid://covi4n54bkdkf" path="res://shaders/filtro_daltonismo.gdshader" id="6_c7a3q"]
 [ext_resource type="Script" uid="uid://bm4rvfyvlss3y" path="res://scripts/menu.gd" id="7_4vth2"]
 [ext_resource type="FontFile" uid="uid://mb7lv5gfarwo" path="res://fonts/Chewy-Regular.ttf" id="8_yxe1x"]
@@ -179,6 +180,7 @@ anchors_preset = 0
 script = ExtResource("1_0rse5")
 cenas = Dictionary[String, PackedScene]({
 "map": ExtResource("2_aonbx"),
+"minigame_joao": ExtResource("5_cjvif"),
 "minigame_luzia": ExtResource("4_30v7y"),
 "minigame_tester": ExtResource("3_cjvif")
 })

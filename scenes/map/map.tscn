@@ -12,10 +12,10 @@
 [ext_resource type="Script" uid="uid://1neh7ky2veon" path="res://scenes/map/map_node.gd" id="10_omedl"]
 [ext_resource type="Texture2D" uid="uid://2100rt7r3r5q" path="res://sprites/map/map9.png" id="10_rqo2c"]
 [ext_resource type="Script" uid="uid://db0j0gq3i6832" path="res://scenes/map/nikole.gd" id="11_3xi6f"]
-[ext_resource type="Texture2D" uid="uid://vmfonmf4kqtu" path="res://sprites/minigames/ritmo/botao_defesa_centro.png" id="12_xks3a"]
 [ext_resource type="Texture2D" uid="uid://dfeyjo2mnrmlv" path="res://sprites/map/npcs/nikole.png" id="13_78kcs"]
 [ext_resource type="Texture2D" uid="uid://dyewfnukfbxss" path="res://sprites/map/npcs/dona_luzia.png" id="14_2kc6l"]
-[ext_resource type="Texture2D" uid="uid://cv5efjruq6778" path="res://sprites/map/npcs/seu_jorge.png" id="14_mrjnl"]
+[ext_resource type="Texture2D" uid="uid://b56qyswhmu100" path="res://sprites/map/npcs/caio.png" id="14_rqo2c"]
+[ext_resource type="Texture2D" uid="uid://bnqq8uipelgtr" path="res://sprites/map/npcs/joao.png" id="15_rqo2c"]
 
 [sub_resource type="Curve2D" id="Curve2D_crek2"]
 _data = {
@@ -41,33 +41,21 @@ _data = {
 }
 point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_jc0fu"]
+[sub_resource type="Curve2D" id="Curve2D_mrjnl"]
 _data = {
-"points": PackedVector2Array(-1964.9663, -2949.1563, 1964.9663, 2949.1563, 18002, 1721, 2510.6143, -450.65332, -2510.6143, 450.65332, 16062, 5086)
+"points": PackedVector2Array(651.84985, -1053.8901, -651.84985, 1053.8901, 18002, 1721, 1532.1853, -190.15614, -1532.1853, 190.15614, 13589, 3602)
 }
 point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_p0s4h"]
+[sub_resource type="Curve2D" id="Curve2D_rqo2c"]
 _data = {
-"points": PackedVector2Array(4485.1543, -510.69604, -4485.1543, 510.69604, 16062, 5086, -2801.9702, 1824.2029, 2801.9702, -1824.2029, 15324, 1473)
+"points": PackedVector2Array(2043.0974, -337.54572, -2043.0974, 337.54572, 13589, 3602, 1117.7711, 313.06104, -1117.7711, -313.06104, 9614, 3474)
 }
 point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_5wgba"]
+[sub_resource type="Curve2D" id="Curve2D_e07uo"]
 _data = {
-"points": PackedVector2Array(-710.5371, 1314.1006, 710.5371, -1314.1006, 6155, -1451, 558.0713, 1380.25, -558.0713, -1380.25, 6202, -4859)
-}
-point_count = 2
-
-[sub_resource type="Curve2D" id="Curve2D_t6s33"]
-_data = {
-"points": PackedVector2Array(1997.1438, -581.83203, -1997.1438, 581.83203, 6202, -4859, -1065.4253, 1697.1655, 1065.4253, -1697.1655, 4392, -6191)
-}
-point_count = 2
-
-[sub_resource type="Curve2D" id="Curve2D_2rmvy"]
-_data = {
-"points": PackedVector2Array(526.7726, 1783.0767, -526.7726, -1783.0767, 4392, -6191, -1048.4609, -298.22357, 1048.4609, 298.22357, 6330, -8519)
+"points": PackedVector2Array(1557.7024, 823.93536, -1557.7024, -823.93536, 9614, 3474, -971.1613, 833.12726, 971.1613, -833.12726, 10363, 345)
 }
 point_count = 2
 
@@ -141,79 +129,69 @@ script = ExtResource("10_omedl")
 path_right = NodePath("../../Paths/Path1")
 node_right = NodePath("../MapNode2")
 
-[node name="MapNode2" type="Node2D" parent="Path/Nodes" unique_id=1279879671 node_paths=PackedStringArray("path_up", "path_left", "path_right", "node_up", "node_left", "node_right")]
+[node name="MapNode2" type="Node2D" parent="Path/Nodes" unique_id=1279879671 node_paths=PackedStringArray("path_left", "path_right", "node_left", "node_right")]
 position = Vector2(6155, -1451)
 script = ExtResource("10_omedl")
-path_up = NodePath("../../Paths/Path7")
 path_left = NodePath("../../Paths/Path1")
 path_right = NodePath("../../Paths/Path2")
-node_up = NodePath("../MapNode8")
 node_left = NodePath("../MapNode1")
 node_right = NodePath("../MapNode3")
 dialogue_id = "luzia_pre_minigame"
 can_interact = true
 
-[node name="MapNode3" type="Node2D" parent="Path/Nodes" unique_id=30385646 node_paths=PackedStringArray("path_left", "path_right", "node_left", "node_right")]
+[node name="MapNode3" type="Node2D" parent="Path/Nodes" unique_id=30385646 node_paths=PackedStringArray("path_left", "path_right", "path_down", "node_left", "node_right", "node_down")]
 position = Vector2(10363, 345)
 script = ExtResource("10_omedl")
 path_left = NodePath("../../Paths/Path2")
 path_right = NodePath("../../Paths/Path3")
+path_down = NodePath("../../Paths/Path7")
 node_left = NodePath("../MapNode2")
 node_right = NodePath("../MapNode4")
-dialogue_id = "seu_jorge"
+node_down = NodePath("../MapNode7")
+dialogue_id = "caio_pre_minigame"
 can_interact = true
 
-[node name="MapNode4" type="Node2D" parent="Path/Nodes" unique_id=1058803581 node_paths=PackedStringArray("path_left", "path_right", "node_left", "node_right")]
+[node name="MapNode4" type="Node2D" parent="Path/Nodes" unique_id=1058803581 node_paths=PackedStringArray("path_up", "path_left", "path_right", "path_down", "node_up", "node_left", "node_right", "node_down")]
 position = Vector2(14979, -370)
 script = ExtResource("10_omedl")
+path_up = NodePath("../../Paths/Path4")
 path_left = NodePath("../../Paths/Path3")
 path_right = NodePath("../../Paths/Path4")
+path_down = NodePath("../../Paths/Path3")
+node_up = NodePath("../MapNode5")
 node_left = NodePath("../MapNode3")
 node_right = NodePath("../MapNode5")
+node_down = NodePath("../MapNode3")
+dialogue_id = "joao_pre_minigame"
+can_interact = true
 
-[node name="MapNode5" type="Node2D" parent="Path/Nodes" unique_id=1529243064 node_paths=PackedStringArray("path_up", "path_down", "node_up", "node_down")]
+[node name="MapNode5" type="Node2D" parent="Path/Nodes" unique_id=1529243064 node_paths=PackedStringArray("path_up", "path_left", "path_down", "node_up", "node_left", "node_down")]
 position = Vector2(18002, 1721)
 script = ExtResource("10_omedl")
 path_up = NodePath("../../Paths/Path4")
+path_left = NodePath("../../Paths/Path5")
 path_down = NodePath("../../Paths/Path5")
 node_up = NodePath("../MapNode4")
+node_left = NodePath("../MapNode6")
 node_down = NodePath("../MapNode6")
 
 [node name="MapNode6" type="Node2D" parent="Path/Nodes" unique_id=1482406757 node_paths=PackedStringArray("path_left", "path_right", "node_left", "node_right")]
-position = Vector2(16062, 5086)
+position = Vector2(13589, 3602)
 script = ExtResource("10_omedl")
 path_left = NodePath("../../Paths/Path6")
 path_right = NodePath("../../Paths/Path5")
 node_left = NodePath("../MapNode7")
 node_right = NodePath("../MapNode5")
 
-[node name="MapNode7" type="Node2D" parent="Path/Nodes" unique_id=1030177186 node_paths=PackedStringArray("path_down", "node_down")]
-position = Vector2(15324, 1473)
+[node name="MapNode7" type="Node2D" parent="Path/Nodes" unique_id=1030177186 node_paths=PackedStringArray("path_up", "path_left", "path_right", "node_up", "node_left", "node_right")]
+position = Vector2(9614, 3474)
 script = ExtResource("10_omedl")
-path_down = NodePath("../../Paths/Path6")
-node_down = NodePath("../MapNode6")
-
-[node name="MapNode8" type="Node2D" parent="Path/Nodes" unique_id=115769271 node_paths=PackedStringArray("path_left", "path_down", "node_left", "node_down")]
-position = Vector2(6202, -4859)
-script = ExtResource("10_omedl")
-path_left = NodePath("../../Paths/Path8")
-path_down = NodePath("../../Paths/Path7")
-node_left = NodePath("../MapNode9")
-node_down = NodePath("../MapNode2")
-
-[node name="MapNode9" type="Node2D" parent="Path/Nodes" unique_id=1990064394 node_paths=PackedStringArray("path_up", "path_down", "node_up", "node_down")]
-position = Vector2(4392, -6191)
-script = ExtResource("10_omedl")
-path_up = NodePath("../../Paths/Path9")
-path_down = NodePath("../../Paths/Path8")
-node_up = NodePath("../MapNode10")
-node_down = NodePath("../MapNode8")
-
-[node name="MapNode10" type="Node2D" parent="Path/Nodes" unique_id=226839335 node_paths=PackedStringArray("path_left", "node_left")]
-position = Vector2(6330, -8519)
-script = ExtResource("10_omedl")
-path_left = NodePath("../../Paths/Path9")
-node_left = NodePath("../MapNode9")
+path_up = NodePath("../../Paths/Path7")
+path_left = NodePath("../../Paths/Path7")
+path_right = NodePath("../../Paths/Path6")
+node_up = NodePath("../MapNode3")
+node_left = NodePath("../MapNode3")
+node_right = NodePath("../MapNode6")
 
 [node name="Paths" type="Node2D" parent="Path" unique_id=1510341413]
 
@@ -233,25 +211,17 @@ curve = SubResource("Curve2D_do0j7")
 z_index = 50
 curve = SubResource("Curve2D_sj5qj")
 
-[node name="Path5" type="Path2D" parent="Path/Paths" unique_id=1796700128]
+[node name="Path5" type="Path2D" parent="Path/Paths" unique_id=1816792060]
 z_index = 50
-curve = SubResource("Curve2D_jc0fu")
+curve = SubResource("Curve2D_mrjnl")
 
-[node name="Path6" type="Path2D" parent="Path/Paths" unique_id=2126148161]
+[node name="Path6" type="Path2D" parent="Path/Paths" unique_id=540340502]
 z_index = 50
-curve = SubResource("Curve2D_p0s4h")
+curve = SubResource("Curve2D_rqo2c")
 
-[node name="Path7" type="Path2D" parent="Path/Paths" unique_id=286259566]
+[node name="Path7" type="Path2D" parent="Path/Paths" unique_id=846502078]
 z_index = 50
-curve = SubResource("Curve2D_5wgba")
-
-[node name="Path8" type="Path2D" parent="Path/Paths" unique_id=1084858865]
-z_index = 50
-curve = SubResource("Curve2D_t6s33")
-
-[node name="Path9" type="Path2D" parent="Path/Paths" unique_id=1327361096]
-z_index = 50
-curve = SubResource("Curve2D_2rmvy")
+curve = SubResource("Curve2D_e07uo")
 
 [node name="Nikole" type="Node2D" parent="." unique_id=309553364 node_paths=PackedStringArray("current_node")]
 script = ExtResource("11_3xi6f")
@@ -270,7 +240,6 @@ modulate = Color(0, 0, 0, 0.30588236)
 z_index = -1
 position = Vector2(67, 160)
 scale = Vector2(3.5554767, 1.2380953)
-texture = ExtResource("12_xks3a")
 offset = Vector2(-20, -125)
 
 [node name="Sprite2D" type="Sprite2D" parent="Nikole/Path2D/PathFollow2D" unique_id=1175123349]
@@ -283,21 +252,37 @@ process_mode = 3
 zoom = Vector2(0.15, 0.15)
 position_smoothing_enabled = true
 
-[node name="SeuJorge" type="Node2D" parent="." unique_id=2012274107]
+[node name="Caio" type="Node2D" parent="." unique_id=2012274107]
 position = Vector2(10609, 105)
 
-[node name="Shadow" type="Sprite2D" parent="SeuJorge" unique_id=1914284326]
+[node name="Shadow" type="Sprite2D" parent="Caio" unique_id=1914284326]
 modulate = Color(0, 0, 0, 0.30588236)
 z_index = 1
 position = Vector2(67, 160)
 scale = Vector2(3.5554767, 1.2380953)
-texture = ExtResource("12_xks3a")
 offset = Vector2(-20, -125)
 
-[node name="Sprite2D" type="Sprite2D" parent="SeuJorge" unique_id=180133658]
+[node name="Sprite2D" type="Sprite2D" parent="Caio" unique_id=180133658]
 z_index = 50
 scale = Vector2(-1, 1)
-texture = ExtResource("14_mrjnl")
+texture = ExtResource("14_rqo2c")
+offset = Vector2(-5, -110)
+
+[node name="Joao" type="Node2D" parent="." unique_id=583138275]
+position = Vector2(14654, -558)
+scale = Vector2(-1, 1)
+
+[node name="Shadow" type="Sprite2D" parent="Joao" unique_id=1748447363]
+modulate = Color(0, 0, 0, 0.30588236)
+z_index = 1
+position = Vector2(67, 160)
+scale = Vector2(3.5554767, 1.2380953)
+offset = Vector2(-20, -125)
+
+[node name="Sprite2D" type="Sprite2D" parent="Joao" unique_id=1955650647]
+z_index = 50
+scale = Vector2(-1, 1)
+texture = ExtResource("15_rqo2c")
 offset = Vector2(-5, -110)
 
 [node name="DonaLuzia" type="Node2D" parent="." unique_id=2125736831]
@@ -308,7 +293,6 @@ modulate = Color(0, 0, 0, 0.30588236)
 z_index = 1
 position = Vector2(67, 160)
 scale = Vector2(3.5554767, 1.2380953)
-texture = ExtResource("12_xks3a")
 offset = Vector2(-20, -125)
 
 [node name="Sprite2D" type="Sprite2D" parent="DonaLuzia" unique_id=603875863]

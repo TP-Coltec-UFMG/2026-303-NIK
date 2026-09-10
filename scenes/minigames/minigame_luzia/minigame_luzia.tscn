@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://c8h5eienq2pl6" path="res://sprites/minigames/minigame_luzia/maze3.png" id="5_os8al"]
 [ext_resource type="Texture2D" uid="uid://cqbjtfatjyrcl" path="res://sprites/minigames/minigame_luzia/maze4.png" id="6_et2jy"]
 [ext_resource type="Script" uid="uid://bprss5c4da8iu" path="res://scenes/minigames/minigame_luzia/nikole.gd" id="7_o3sm5"]
-[ext_resource type="Texture2D" uid="uid://vmfonmf4kqtu" path="res://sprites/minigames/ritmo/botao_defesa_centro.png" id="9_os8al"]
 [ext_resource type="Texture2D" uid="uid://cqa1l7sin5v5s" path="res://sprites/map/npcs/francisco.png" id="10_sahm2"]
 [ext_resource type="Script" uid="uid://cx0n7fjrh07hx" path="res://scenes/minigames/minigame_luzia/item.gd" id="11_jckl1"]
 [ext_resource type="Texture2D" uid="uid://b10q3my5brk3h" path="res://sprites/minigames/minigame_luzia/arrow_francisco.png" id="12_kpldb"]
@@ -20,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://d2ho70t8236aq" path="res://sprites/minigames/minigame_luzia/arrow_luis.png" id="13_mhd7j"]
 [ext_resource type="Texture2D" uid="uid://13wrmqyu7m37" path="res://sprites/minigames/minigame_luzia/arrow_flavia.png" id="14_gr1nu"]
 [ext_resource type="Texture2D" uid="uid://cbugkfbvc7cbu" path="res://sprites/minigames/minigame_luzia/activated_star_nikole.png" id="14_u45vi"]
+[ext_resource type="Texture2D" uid="uid://dsplgekwgni7j" path="res://sprites/sombra.png" id="15_33v6b"]
 [ext_resource type="Texture2D" uid="uid://c3p3g67gltqvc" path="res://sprites/minigames/minigame_luzia/deactivated_star_francisco.png" id="15_u45vi"]
 [ext_resource type="Texture2D" uid="uid://btw58gnaw1cpu" path="res://sprites/minigames/minigame_luzia/deactivated_star_luis.png" id="16_xo3sy"]
 [ext_resource type="Texture2D" uid="uid://76u82brsyih3" path="res://sprites/minigames/minigame_luzia/deactivated_star_flavia.png" id="17_saydg"]
@@ -84,7 +84,7 @@ modulate = Color(0, 0, 0, 0.30588236)
 z_index = -5
 position = Vector2(70, 160)
 scale = Vector2(3.5554767, 1.2380953)
-texture = ExtResource("9_os8al")
+texture = ExtResource("15_33v6b")
 offset = Vector2(-20, -125)
 
 [node name="Sprite2D" type="Sprite2D" parent="Nikole" unique_id=1111365154]
@@ -107,7 +107,7 @@ modulate = Color(0, 0, 0, 0.30588236)
 z_index = -5
 position = Vector2(70, 160)
 scale = Vector2(3.5554767, 1.2380953)
-texture = ExtResource("9_os8al")
+texture = ExtResource("15_33v6b")
 offset = Vector2(-20, -125)
 
 [node name="Luis" type="Sprite2D" parent="." unique_id=1246747068 node_paths=PackedStringArray("nikole")]
@@ -125,7 +125,7 @@ modulate = Color(0, 0, 0, 0.30588236)
 z_index = -5
 position = Vector2(70, 160)
 scale = Vector2(3.5554767, 1.2380953)
-texture = ExtResource("9_os8al")
+texture = ExtResource("15_33v6b")
 offset = Vector2(-20, -125)
 
 [node name="Flavia" type="Sprite2D" parent="." unique_id=913206177 node_paths=PackedStringArray("nikole")]
@@ -143,7 +143,7 @@ modulate = Color(0, 0, 0, 0.30588236)
 z_index = -5
 position = Vector2(70, 160)
 scale = Vector2(3.5554767, 1.2380953)
-texture = ExtResource("9_os8al")
+texture = ExtResource("15_33v6b")
 offset = Vector2(-20, -125)
 
 [node name="BG" type="CanvasLayer" parent="." unique_id=1160194427]

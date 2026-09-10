@@ -58,7 +58,7 @@ func read_maze() -> Array:
 		for c in range(width):
 			var column = []
 			for r in range(height):
-				column.append(0 if maze_bitmap.get_bit(c, r) else 0)
+				column.append(-1 if maze_bitmap.get_bit(c, r) else 0)
 			matrix.append(column)
 
 	return matrix
@@ -111,12 +111,17 @@ func check_kid_dropout(column: int, row: int) -> void:
 				dropped_flavia = true
 				$Stars/FlaviaS.texture = estrela_ligada_flavia
 
-func check_end_game(column: int, row: int) -> void:
+func check_end_game(column: int, row: int, force : bool = false) -> void:
+	if force:
+		GameManager.load_map()
+		GameManager.set_game_data("luzia_dialogue_completed", true);
+		DialogueController.start_dialogue("luzia_post_minigame")
 	if $Francisco.placed and $Luis.placed and $Flavia.placed:
 		$Stars/NikoleS.texture = estrela_ligada_nikole
 		if maze[column][row] == 13:
 			GameManager.load_map()
-			GameManager.set_game_data("minigame_dona_luzia_complete", true);
+			GameManager.set_game_data("luzia_dialogue_completed", true);
+			DialogueController.start_dialogue("luzia_post_minigame")
 
 func roll_pos_kids() -> void:
 	while true:
