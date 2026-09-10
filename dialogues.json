@@ -1,57 +1,512 @@
 [
 	{
-		"id": "dona_luzia",
-        "condition": {
-            "data": "minigame_dona_luzia_complete",
-            "value": "false",
-            "else": "dona_luiza_complete"
-        },
-        "lines": [
-            {
-                "name": "Nikole",
-                "text": "Oi, dona Luzia! Como a senhora está hoje? Trouxe umas verduras frescas da avó."
-            },
-            {
-                "name": "Dona Luzia",
-                "text": "Quem... quem é você, menina? Eu me perdi de novo. Não sei onde fica a minha casa, e minha cabeça está confusa. Estou com medo..."
-            },
-            {
-                "name": "Nikole",
-                "text": "Sou eu, a Nikole! Não precisa ter medo. Essa confusão não é culpa sua, tem algo estranho vindo do bosque. Vem comigo, eu vou ajudar a senhora a encontrar o caminho."
-            }
-        ],
-        "redirect": "minigame_dona_luzia"
+		"id": "luzia_pre_minigame",
+		"condition": {
+			"data": "luzia_dialogue_completed",
+			"value": "false",
+			"else": "luzia_completed"
+		},
+		"lines": [
+			{
+				"name": "Nikole",
+				"text": "Bom dia, dona Luzia! Tudo bem?"
+			},
+			{
+				"name": "Dona Luzia",
+				"text": "Desculpa, mas eu te conheço, garota?"
+			},
+			{
+				"name": "Nikole",
+				"text": "Sou eu, dona Luzia, a Nikole! Moro aqui perto da senhora."
+			},
+			{
+				"name": "Dona Luzia",
+				"text": "Ah sim… Nikole! Quanto tempo não te vejo, minha filha."
+			},
+			{
+				"name": "Nikole",
+				"text": "Que bom que a senhora se lembrou de mim! Está tudo bem com a senhora?"
+			},
+			{
+				"name": "Dona Luzia",
+				"text": "Está tudo bem sim. Só estava caminhando por aqui e encontrei essa foto no meu bolso. Dá uma olhadinha."
+			},
+			{
+				"name": "",
+				"text": "*Nikole observa a fotografia na mão de dona Dona Luzia*"
+			},
+			{
+				"name": "Dona Luzia",
+				"text": "Você sabe quem são essas pessoas? Porque essa foto está comigo afinal?"
+			}
+		],
+		"redirect": "minigame_luzia"
 	},
+
 	{
-		"id": "dona_luzia_complete",
-        "lines": [
-            {
-                "name": "Dona Luzia",
-                "text": "Ah, Nikole, querida! Minha nossa, agora me lembro de tudo. A névoa sumiu! Muito obrigada por me guiar de volta para a minha casa e para mim mesma."
-            },
-            {
-                "name": "Nikole",
-                "text": "Fico muito feliz em ver a senhora bem e sorrindo de novo. Se cuida, dona Luzia! Até logo!"
-            }
-        ],
-        "redirect": "map"
+		"id": "luzia_francisco",
+		"condition": {
+			"data": "luzia_francisco_delivered",
+			"value": "false",
+		},
+		"lines": [
+			{
+				"name": "Nikole",
+				"text": "Esse de blusa laranja é o Francisco. Ele gosta muito de biscoitos!"
+			},
+			{
+				"name": "Dona Luzia",
+				"text": "Francisco… sabia que foi em mesma que escolhi o nome dele?"
+			}
+		]
 	},
-    {
-        "id": "seu_jorge",
-        "lines": [
-            {
-                "name": "Nikole",
-                "text": "Bom dia, Seu Jorge! O senhor está muito pálido, aconteceu alguma coisa com a plantação?"
-            },
-            {
-                "name": "Jorge",
-                "text": "Oi, Nikole... A enxada parece pesar uma tonelada hoje. Perdi totalmente a vontade de comer, tudo tem gosto de terra seca. Não tenho força nem para levantar da cama direito."
-            },
-            {
-                "name": "Nikole",
-                "text": "Isso está muito estranho, não é normal o senhor ficar doente assim. Espere aqui! Minha avó tem uma receita perfeita para trazer o paladar de volta. Eu mesma vou preparar!"
-            }
-        ],
-        "redirect": "minigame_receita_da_vovó"
-    }
+
+	{
+		"id": "luzia_flavia",
+		"condition": {
+			"data": "luzia_flavia_delivered",
+			"value": "false",
+		},
+		"lines": [
+			{
+				"name": "Nikole",
+				"text": "A garota é a Flávia. Ela tem o cabelo mais bonito da cidade! Você sabe o porquê?"
+			},
+			{
+				"name": "Dona Luzia",
+				"text": "Claro que sei! Eu que faço o cabelo dela todos os dias."
+			}
+		]
+	},
+
+	{
+		"id": "luzia_luis",
+		"condition": {
+			"data": "luzia_luis_delivered",
+			"value": "false",
+		},
+		"lines": [
+			{
+				"name": "Nikole",
+				"text": "O menino com o cabelo super descolado é o Luís…"
+			},
+			{
+				"name": "Dona Luzia",
+				"text": "Ahh, você já foi em uma das partidas de futebol dele? Ele é muito bom!"
+			}
+		]
+	},
+
+	{
+		"id": "luzia_post_minigame",
+		"condition": {
+			"data": "luzia_dialogue_completed",
+			"value": "false",
+			"else": "luzia_completed"
+		},
+		"lines": [
+			{
+				"name": "Nikole",
+				"text": "Esses são os seus netinhos, dona Luzia."
+			},
+			{
+				"name": "Dona Luzia",
+				"text": "Chico, Luisinho e Flavinha… Onde eles estão agora? Preciso apresentá-los ao meu namorado Antônio. Ele vai amar eles!"
+			},
+			{
+				"name": "Nikole",
+				"text": "Eles devem estar na casa da senhora te procurando. Vamos voltar para casa? Eu te acompanho pelo caminho."
+			},
+			{
+				"name": "Dona Luzia",
+				"text": "Claro, minha filha. Vamos."
+			},
+			{
+				"name": "Francisco",
+				"text": "Obrigado por trazer ela de volta, moça! Estávamos preocupados…"
+			},
+			{
+				"name": "Nikole",
+				"text": "Não precisa agradecer, foi um prazer poder acompanhá-la até em casa."
+			},
+			{
+				"name": "Francisco",
+				"text": "O Alzheimer é uma doença difícil sabe? Conviver com alguém que não se lembra de você, apesar de você a conhecer desde o seu nascimento dói, mas mesmo assim vamos continuar amando ela sempre."
+			},
+			{
+				"name": "Nikole",
+				"text": "Eu sinto muito. Desejo a vocês muita força para lidar com esse momento. Podem contar comigo para qualquer coisa!"
+			},
+			{
+				"name": "Francisco",
+				"text": "Obrigado Nik, cuidar dela constantemente está sendo difícil e saber que podemos contar com você ajuda muito! Passe aqui para visitá-la sempre que quiser! Até mais!"
+			},
+			{
+				"name": "Nikole",
+				"text": "Tchau, Francisco!"
+			}
+		],
+		"redirect": "map"
+	},
+
+	{
+		"id": "luzia_completed",
+		"lines": [
+			{
+				"name": "Francisco",
+				"text": "Oi de novo, Nikole! Obrigado mais uma vez por trazer nossa vó de volta!"
+			},
+			{
+				"name": "Francisco",
+				"text": "Ela está ali agora vendo televisão. Pode deixar que não vamos deixar ela sair sozinha de novo. Falou!"
+			}
+		],
+		"redirect": "map"
+	},
+
+
+	{
+		"id": "joao_pre_minigame",
+		"condition": {
+			"data": "joao_dialogue_completed",
+			"value": "false",
+			"else": "joao_completed"
+		},
+		"lines": [
+			{
+				"name": "Nikole",
+				"text": "Bom dia, Jão! Tudo bom?"
+			},
+			{
+				"name": "João",
+				"text": "E aí, Nik! Tô bem, e você?"
+			},
+			{
+				"name": "Nikole",
+				"text": "Estou bem sim. Está curtindo bem o dia? O clima está super agradável."
+			},
+			{
+				"name": "João",
+				"text": "Ah, pode ser. Pra falar a verdade, nem tinha reparado."
+			},
+			{
+				"name": "Nikole",
+				"text": "Por quê? Tem alguma coisa acontecendo?"
+			},
+			{
+				"name": "João",
+				"text": "... Sendo sincero, tem algo me incomodando."
+			},
+			{
+				"name": "Nikole",
+				"text": "Sério? O que é? Claro, se você se sente confortável em falar."
+			},
+			{
+				"name": "João",
+				"text": "É que, recentemente, comecei a escutar uns comentários sobre mim…"
+			},
+			{
+				"name": "João",
+				"text": "... e sobre minha sexualidade."
+			},
+			{
+				"name": "Nikole",
+				"text": "Como as–"
+			},
+			{
+				"name": "João",
+				"text": "Nik, você acha que é errado eu ser gay?"
+			},
+			{
+				"name": "João",
+				"text": "Você acha que é errado eu ser… eu?"
+			},
+			{
+				"name": "João",
+				"text": "Tipo, eu não deveria gostar de mulheres? Eu não deveria gostar de você??"
+			},
+			{
+				"name": "Nikole",
+				"text": "Calma, João!"
+			},
+			{
+				"name": "João",
+				"text": "Então, por que tantos comentários homofóbicos contra mim? Você acha que algum deles me define, Nikole?"
+			},
+			{
+				"name": "Nikole",
+				"text": "Claro que não! Nenhum! Nenhumzinho!"
+			},
+			{
+				"name": "Nikole",
+				"text": "Olha…"
+			}
+		],
+		"redirect": "minigame_joao"
+	},
+
+	{
+		"id": "joao_minigame_dialogue_1",
+		"condition": {},
+		"lines": [
+			{
+				"name": "Nikole",
+				"text": "João…  eu imagino que isso seja difícil, mas você não pode dar ouvidos a essas pessoas!"
+			},
+			{
+				"name": "Nikole",
+				"text": "Nunca, em nenhum mundo, comentários como esses podem te definir!"
+			},
+			{
+				"name": "João",
+				"text": "Eu… só queria essa confiança que você tem."
+			},
+		]
+	},
+
+	{
+		"id": "joao_minigame_dialogue_2",
+		"condition": {},
+		"lines": [
+			{
+				"name": "Nikole",
+				"text": "Confiança é algo que se constrói enfrentando seus medos."
+			},
+			{
+				"name": "Nikole",
+				"text": "E, só de comentar isso comigo, eu já percebo o quão corajoso você é!"
+			}
+		]
+	},
+
+	{
+		"id": "joao_post_minigame",
+		"condition": {
+			"data": "joao_dialogue_completed",
+			"value": "false",
+			"else": "joao_completed"
+		},
+		"lines": [
+			{
+				"name": "João",
+				"text": "Acho que talvez você tenha razão…"
+			},
+			{
+				"name": "João",
+				"text": "“Eu fico tão incomodado quando começam a falar essas coisas de mim, sabe? Eles todos fazem parecer…"
+			},
+			{
+				"name": "João",
+				"text": "... que sou um erro."
+			},
+			{
+				"name": "Nikole",
+				"text": "Eles não sabem o que falam. Eu conheço você e sei que você é muito mais do que só o que eles dizem que você é."
+			},
+			{
+				"name": "Nikole",
+				"text": "Você é companheiro, carismático, respeitoso, confiável e muitas, muitas mais coisas, João!"
+			},
+			{
+				"name": "Nikole",
+				"text": "Você não pode deixar comentários de pessoas que nem te conhecem ditar a sua vida."
+			},
+			{
+				"name": "João",
+				"text": "Não sei… Preciso pensar um pouco mais sobre."
+			},
+			{
+				"name": "Nikole",
+				"text": "Tudo bem, João. Só saiba que estarei sempre aqui quando precisar conversar."
+			},
+			{
+				"name": "João",
+				"text": "Obrigado, Nikole."
+			},
+			{
+				"name": "João",
+				"text": "Saiba que nossa conversa ajudou muito, viu?!"
+			},
+			{
+				"name": "Nikole",
+				"text": "Mais uma vez, quando precisar, só me chamar, Jão!"
+			},
+			{
+				"name": "Nikole",
+				"text": "Uma última coisa, nunca se esqueça que não tem nada de errado se é o que te faz feliz. Falou!"
+			}
+		],
+		"redirect": "map"
+	},
+
+	{
+		"id": "joao_completed",
+		"lines": [
+			{
+				"name": "João",
+				"text": "E aí, Nikole. Obrigado mais uma vez. De verdade."
+			}
+		],
+		"redirect": "map"
+	},
+
+
+	{
+		"id": "caio_pre_minigame",
+		"condition": {
+			"data": "caio_dialogue_completed",
+			"value": "false",
+			"else": "caio_completed"},
+		"lines": [
+			{
+				"name": "Nikole",
+				"text": "Bom dia, Caio! O que você está fazendo aí?"
+			},
+			{
+				"name": "Caio",
+				"text": "Bom dia, Nikole. Estou apenas regando essas lindas rosas aqui. Elas gostam de água pela manhã."
+			},
+			{
+				"name": "Nikole",
+				"text": "Elas são mesmo de tirar o fôlego… Foi você que plantou elas?"
+			},
+			{
+				"name": "Caio",
+				"text": "Ah não, não. Foi minha falecida mãe. Ela tinha o jeito para jardinagem… Pensando melhor, ela tinha o jeito para muitas coisas!"
+			},
+			{
+				"name": "Nikole",
+				"text": "Meus pêsames, Caio. Eu não sabia…"
+			},
+			{
+				"name": "Caio",
+				"text": "Está tudo bem, Nik. Sei que não tinha a intenção. Gostaria de ouvir mais sobre ela? Sempre adorei relembrar nossos momentos juntos."
+			},
+			{
+				"name": "Nikole",
+				"text": "É claro! Eu adoraria."
+			},
+			{
+				"name": "Caio",
+				"text": "Vamos lá, por onde eu começo… Ah sim."
+			},
+			{
+				"name": "",
+				"text": "*caio, coloca o regador de lado.*"
+			},
+			{
+				"name": "Caio",
+				"text": "Como eu tinha dito, ela era boa em muitas coisas, mas se tinha uma coisa em que ela era a melhor era em cozinhar!"
+			},
+			{
+				"name": "Nikole",
+				"text": "Saiba que você puxou ela então! Sempre que passo pela sua casa, sinto um cheiro delicioso de comida no fogão!"
+			},
+			{
+				"name": "Caio",
+				"text": "E olha que eu não sou nada se comparado a ela, viu! Toda comida que ela fazia era tão mas tão saborosa que parecia que nossa casa era um restaurante 5 estrelas!"
+			},
+			{
+				"name": "Nikole",
+				"text": "Imagino! Você devia acompanhar muito ela na cozinha. Poderia me ensinar alguma receita dela?"
+			},
+			{
+				"name": "Caio",
+				"text": "Que ótima ideia! Eu tinha comprado alguns ingredientes para fazer a melhor receita que ela tinha. Pode ser agora?"
+			},
+			{
+				"name": "Nikole",
+				"text": "Com certeza!"
+			},
+			{
+				"name": "Caio",
+				"text": "Mãos à massa então!"
+			},
+		],
+		"redirect": "minigame_caio"
+	},
+
+	{
+		"id": "caio_minigame_dialogue_1",
+		"condition": {},
+		"lines": [
+			{
+				"name": "Caio",
+				"text": "Comece cortando os ingredientes para adicionarmos a panela."
+			}
+		]
+	},
+
+	{
+		"id": "caio_minigame_dialogue_2",
+		"condition": {},
+		"lines": [
+			{
+				"name": "Caio",
+				"text": "Misture eles com cuidado para não derramar."
+			}
+		]
+	},
+
+	{
+		"id": "caio_minigame_dialogue_3",
+		"condition": {},
+		"lines": [
+			{
+				"name": "Caio",
+				"text": "Já que somos amigos, vou te contar um segredo. Quando ela servia a sopa já no prato, ela ralava queijo por cima. Dava um toque tão especial."
+			}
+		]
+	},
+
+	{
+		"id": "caio_post_minigame",
+		"condition": {
+			"data": "caio_dialogue_completed",
+			"value": "false",
+			"else": "caio_completed"
+		},
+		"lines": [
+			{
+				"name": "Caio",
+				"text": "E aí? O que você achou? Estava uma delícia não estava?"
+			},
+			{
+				"name": "Nikole",
+				"text": "Eu nunca tinha comido algo tão delicioso na minha vida."
+			},
+			{
+				"name": "Caio",
+				"text": "Nem me fala! Obrigado pela companhia, Nikole. Cozinhar as receitas dela é como ser transportado de volta para a minha infância e ter ela comigo de novo…"
+			},
+			{
+				"name": "Nikole",
+				"text": "Eu que agradeço pela oportunidade, Caio. Foi incrível. Apenas saiba que ela sempre estará com você."
+			},
+			{
+				"name": "Caio",
+				"text": "Você tem razão! Ela sempre estará comigo sim… A vida é efêmera, mas, afinal de contas, é justamente isso que a torna especial. Obrigado mais uma vez. Se cuida, viu?"
+			},
+			{
+				"name": "Nikole",
+				"text": "Adeus, Caio!"
+			}
+		],
+		"redirect": "map"
+	},
+
+	{
+		"id": "caio_completed",
+		"lines": [
+			{
+				"name": "Caio",
+				"text": "Aquela comida estava boa mesmo. ein?"
+			},
+			{
+				"name": "Caio",
+				"text": "Parece que a sua ajuda trouxe um tchã a mais, tá ligado?"
+			}
+		],
+		"redirect": "map"
+	},
 ]

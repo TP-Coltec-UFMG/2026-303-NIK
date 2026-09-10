@@ -47,9 +47,9 @@ func end_dialogue():
 	var dialogue_redirect = active_dialogue.redirect
 	active_dialogue = null
 	# redirecionar para a cena
+	active_camera.zoom = previous_camera_zoom
 	if dialogue_redirect:
 		GameManager.load_scene(dialogue_redirect)
-	active_camera.zoom = previous_camera_zoom
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -70,7 +70,7 @@ func read_dialogue_file():
 				for line in dialogue.lines:
 					lines.append(DialogueLine.new(line.name, line.text))
 				
-				dialogues[dialogue.id] = DialogueString.new(dialogue.id, lines, dialogue.redirect)
+				dialogues[dialogue.id] = DialogueString.new(dialogue.id, lines, dialogue.get("redirect", ""))
 
 		print("diálogos carregados!\n")
 		file.close()

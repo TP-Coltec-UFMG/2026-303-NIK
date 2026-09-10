@@ -1,21 +1,21 @@
 [gd_scene format=3 uid="uid://bq0hvgjehacve"]
 
 [ext_resource type="Script" uid="uid://cli6ntwb6yxup" path="res://scenes/map/map.gd" id="1_mgs8m"]
-[ext_resource type="Texture2D" uid="uid://hqdkg05r0yy3" path="res://sprites/mapa/mapa1.png" id="2_mrjnl"]
-[ext_resource type="Texture2D" uid="uid://cxce0mj8non5e" path="res://sprites/mapa/mapa2.png" id="3_rqo2c"]
-[ext_resource type="Texture2D" uid="uid://2r5yiorne17r" path="res://sprites/mapa/mapa3.png" id="4_e07uo"]
-[ext_resource type="Texture2D" uid="uid://cq3qh20h81pj3" path="res://sprites/mapa/mapa4.png" id="5_58ndj"]
-[ext_resource type="Texture2D" uid="uid://7uenhlky4aa5" path="res://sprites/mapa/mapa5.png" id="6_nykyp"]
-[ext_resource type="Texture2D" uid="uid://di137t2e783eb" path="res://sprites/mapa/mapa6.png" id="7_uclq6"]
-[ext_resource type="Texture2D" uid="uid://dg1s5fy4fcb54" path="res://sprites/mapa/mapa7.png" id="8_30ska"]
-[ext_resource type="Texture2D" uid="uid://br71rnf6c4qqd" path="res://sprites/mapa/mapa8.png" id="9_tmgcv"]
+[ext_resource type="Texture2D" uid="uid://hqdkg05r0yy3" path="res://sprites/map/map1.png" id="2_mrjnl"]
+[ext_resource type="Texture2D" uid="uid://cxce0mj8non5e" path="res://sprites/map/map2.png" id="3_rqo2c"]
+[ext_resource type="Texture2D" uid="uid://2r5yiorne17r" path="res://sprites/map/map3.png" id="4_e07uo"]
+[ext_resource type="Texture2D" uid="uid://cq3qh20h81pj3" path="res://sprites/map/map4.png" id="5_58ndj"]
+[ext_resource type="Texture2D" uid="uid://7uenhlky4aa5" path="res://sprites/map/map5.png" id="6_nykyp"]
+[ext_resource type="Texture2D" uid="uid://di137t2e783eb" path="res://sprites/map/map6.png" id="7_uclq6"]
+[ext_resource type="Texture2D" uid="uid://dg1s5fy4fcb54" path="res://sprites/map/map7.png" id="8_30ska"]
+[ext_resource type="Texture2D" uid="uid://br71rnf6c4qqd" path="res://sprites/map/map8.png" id="9_tmgcv"]
 [ext_resource type="Script" uid="uid://1neh7ky2veon" path="res://scenes/map/map_node.gd" id="10_omedl"]
-[ext_resource type="Texture2D" uid="uid://2100rt7r3r5q" path="res://sprites/mapa/mapa9.png" id="10_rqo2c"]
+[ext_resource type="Texture2D" uid="uid://2100rt7r3r5q" path="res://sprites/map/map9.png" id="10_rqo2c"]
 [ext_resource type="Script" uid="uid://db0j0gq3i6832" path="res://scenes/map/nikole.gd" id="11_3xi6f"]
 [ext_resource type="Texture2D" uid="uid://vmfonmf4kqtu" path="res://sprites/minigames/ritmo/botao_defesa_centro.png" id="12_xks3a"]
-[ext_resource type="Texture2D" uid="uid://dfeyjo2mnrmlv" path="res://sprites/mapa/npcs/nikole.png" id="13_78kcs"]
-[ext_resource type="Texture2D" uid="uid://dyewfnukfbxss" path="res://sprites/mapa/npcs/dona_luzia.png" id="14_2kc6l"]
-[ext_resource type="Texture2D" uid="uid://cv5efjruq6778" path="res://sprites/mapa/npcs/seu_jorge.png" id="14_mrjnl"]
+[ext_resource type="Texture2D" uid="uid://dfeyjo2mnrmlv" path="res://sprites/map/npcs/nikole.png" id="13_78kcs"]
+[ext_resource type="Texture2D" uid="uid://dyewfnukfbxss" path="res://sprites/map/npcs/dona_luzia.png" id="14_2kc6l"]
+[ext_resource type="Texture2D" uid="uid://cv5efjruq6778" path="res://sprites/map/npcs/seu_jorge.png" id="14_mrjnl"]
 
 [sub_resource type="Curve2D" id="Curve2D_crek2"]
 _data = {
@@ -150,7 +150,7 @@ path_right = NodePath("../../Paths/Path2")
 node_up = NodePath("../MapNode8")
 node_left = NodePath("../MapNode1")
 node_right = NodePath("../MapNode3")
-dialogue_id = "dona_luzia"
+dialogue_id = "luzia_pre_minigame"
 can_interact = true
 
 [node name="MapNode3" type="Node2D" parent="Path/Nodes" unique_id=30385646 node_paths=PackedStringArray("path_left", "path_right", "node_left", "node_right")]

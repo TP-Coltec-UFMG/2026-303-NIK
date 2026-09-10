@@ -1,0 +1,185 @@
+[
+	{
+		"id": "luzia_pre_minigame",
+		"condition": {
+			"data": "luzia_dialogue_completed",
+			"value": "false",
+			"else": "luzia_completed"
+		},
+		"lines": [
+			{
+				"name": "Nikole",
+				"text": "Bom dia, dona Luzia! Tudo bem?"
+			},
+			{
+				"name": "Luzia",
+				"text": "Desculpa, mas eu te conheço, garota?"
+			},
+			{
+				"name": "Nikole",
+				"text": "Sou eu, dona Luzia, a Nikole! Moro aqui perto da senhora."
+			},
+			{
+				"name": "Luzia",
+				"text": "Ah sim… Nikole! Quanto tempo não te vejo, minha filha."
+			},
+			{
+				"name": "Nikole",
+				"text": "Que bom que a senhora se lembrou de mim! Está tudo bem com a senhora?"
+			},
+			{
+				"name": "Luzia",
+				"text": "Está tudo bem sim. Só estava caminhando por aqui e encontrei essa foto no meu bolso. Dá uma olhadinha."
+			},
+			{
+				"name": "",
+				"text": "*Nikole observa a fotografia na mão de dona Luzia*"
+			},
+			{
+				"name": "Luzia",
+				"text": "Você sabe quem são essas pessoas? Porque essa foto está comigo afinal?"
+			}
+		],
+		"redirect": "minigame_luzia"
+	},
+	
+	{
+		"id": "luzia_francisco",
+		"condition": {
+			"data": "luzia_francisco_delivered",
+			"value": "false",
+		},
+		"lines": [
+			{
+				"name": "Nikole",
+				"text": "Esse de blusa laranja é o Francisco. Ele gosta muito de biscoitos!"
+			},
+			{
+				"name": "Luzia",
+				"text": "Francisco… sabia que foi em mesma que escolhi o nome dele?"
+			}
+		]
+	},
+		
+	{
+		"id": "luzia_flavia",
+		"condition": {
+			"data": "luzia_flavia_delivered",
+			"value": "false",
+		},
+		"lines": [
+			{
+				"name": "Nikole",
+				"text": "A garota é a Flávia. Ela tem o cabelo mais bonito da cidade! Você sabe o porquê?"
+			},
+			{
+				"name": "Luzia",
+				"text": "Claro que sei! Eu que faço o cabelo dela todos os dias."
+			}
+		]
+	},
+
+	{
+		"id": "luzia_luis",
+		"condition": {
+			"data": "luzia_luis_delivered",
+			"value": "false",
+		},
+		"lines": [
+			{
+				"name": "Nikole",
+				"text": "O menino com o cabelo super descolado é o Luís…"
+			},
+			{
+				"name": "Luzia",
+				"text": "Ahh, você já foi em uma das partidas de futebol dele? Ele é muito bom!"
+			}
+		]
+	},
+	
+	{
+		"id": "luzia_post_minigame",
+		"condition": {
+			"data": "luzia_dialogue_completed",
+			"value": "false",
+			"else": "luzia_completed"
+		},
+		"lines": [
+			{
+				"name": "Nikole",
+				"text": "Esses são os seus netinhos, dona Luzia."
+			},
+			{
+				"name": "Luzia",
+				"text": "Chico, Luisinho e Flavinha… Onde eles estão agora? Preciso apresentá-los ao meu namorado Antônio. Ele vai amar eles!"
+			},
+			{
+				"name": "Nikole",
+				"text": "Eles devem estar na casa da senhora te procurando. Vamos voltar para casa? Eu te acompanho pelo caminho."
+			},
+			{
+				"name": "Luzia",
+				"text": "Claro, minha filha. Vamos."
+			},
+			{
+				"name": "Francisco",
+				"text": "Obrigado por trazer ela de volta, moça! Estávamos preocupados…"
+			},
+			{
+				"name": "Nikole",
+				"text": "Não precisa agradecer, foi um prazer poder acompanhá-la até em casa."
+			},
+			{
+				"name": "Francisco",
+				"text": "O Alzheimer é uma doença difícil sabe? Conviver com alguém que não se lembra de você, apesar de você a conhecer desde o seu nascimento dói, mas mesmo assim vamos continuar amando ela sempre."
+			},
+			{
+				"name": "Nikole",
+				"text": "Eu sinto muito. Desejo a vocês muita força para lidar com esse momento. Podem contar comigo para qualquer coisa!"
+			},
+			{
+				"name": "Francisco",
+				"text": "Obrigado Nik, cuidar dela constantemente está sendo difícil e saber que podemos contar com você ajuda muito! Passe aqui para visitá-la sempre que quiser! Até mais!"
+			},
+			{
+				"name": "Nikole",
+				"text": "Tchau, Francisco!"
+			}
+		],
+		"redirect": "map"
+	},
+	
+	{
+		"id": "luzia_completed",
+		"lines": [
+			{
+				"name": "Francisco",
+				"text": "Oi de novo, Nikole! Obrigado mais uma vez por trazer nossa vó de volta!"
+			},
+			{
+				"name": "Francisco",
+				"text": "Ela está ali agora vendo televisão. Pode deixar que não vamos deixar ela sair sozinha de novo. Falou!"
+			}
+		],
+		"redirect": "map"
+	},
+
+	{
+		"id": "seu_jorge",
+		"lines": [
+			{
+				"name": "Nikole",
+				"text": "Bom dia, Seu Jorge! O senhor está muito pálido, aconteceu alguma coisa com a plantação?"
+			},
+			{
+				"name": "Jorge",
+				"text": "Oi, Nikole... A enxada parece pesar uma tonelada hoje. Perdi totalmente a vontade de comer, tudo tem gosto de terra seca. Não tenho força nem para levantar da cama direito."
+			},
+			{
+				"name": "Nikole",
+				"text": "Isso está muito estranho, não é normal o senhor ficar doente assim. Espere aqui! Minha avó tem uma receita perfeita para trazer o paladar de volta. Eu mesma vou preparar!"
+			}
+		],
+		"redirect": "minigame_receita_da_vovó"
+	}
+]
