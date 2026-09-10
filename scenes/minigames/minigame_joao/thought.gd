@@ -1,6 +1,7 @@
 class_name Thought extends Area2D
 
 @export var textura : Texture2D
+@export var damage : bool = randf_range(0, 1) < 0.5
 @onready var sprite = $Sprite2D
 var tween : Tween
 signal destroyed
@@ -23,3 +24,8 @@ func move() -> void:
 	tween.set_trans(Tween.TRANS_LINEAR)
 	
 	tween.tween_property(self, "position", target_pos, 5)
+	tween.finished.connect(_on_tween_finished)
+
+func _on_tween_finished() -> void:
+	emit_signal("destroyed");
+	queue_free()

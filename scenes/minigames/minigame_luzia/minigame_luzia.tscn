@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://d2ho70t8236aq" path="res://sprites/minigames/minigame_luzia/arrow_luis.png" id="13_mhd7j"]
 [ext_resource type="Texture2D" uid="uid://13wrmqyu7m37" path="res://sprites/minigames/minigame_luzia/arrow_flavia.png" id="14_gr1nu"]
 [ext_resource type="Texture2D" uid="uid://cbugkfbvc7cbu" path="res://sprites/minigames/minigame_luzia/activated_star_nikole.png" id="14_u45vi"]
-[ext_resource type="Texture2D" uid="uid://dsplgekwgni7j" path="res://sprites/sombra.png" id="15_33v6b"]
+[ext_resource type="Texture2D" uid="uid://dsplgekwgni7j" path="res://sprites/shadow.png" id="15_33v6b"]
 [ext_resource type="Texture2D" uid="uid://c3p3g67gltqvc" path="res://sprites/minigames/minigame_luzia/deactivated_star_francisco.png" id="15_u45vi"]
 [ext_resource type="Texture2D" uid="uid://btw58gnaw1cpu" path="res://sprites/minigames/minigame_luzia/deactivated_star_luis.png" id="16_xo3sy"]
 [ext_resource type="Texture2D" uid="uid://76u82brsyih3" path="res://sprites/minigames/minigame_luzia/deactivated_star_flavia.png" id="17_saydg"]

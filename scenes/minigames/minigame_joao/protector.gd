@@ -20,6 +20,7 @@ func animate(delta : float):
 
 	joao.reset_physics_interpolation()
 
-
-func start_game() -> void:
-	pass
+func end_game() -> void:
+	GameManager.load_map()
+	GameManager.set_game_data("joao_dialogue_completed", true);
+	DialogueController.start_dialogue("joao_post_minigame")
