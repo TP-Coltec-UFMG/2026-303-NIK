@@ -9,9 +9,6 @@ var dialogues = {}
 var active_dialogue : DialogueString = null
 var current_line = 0;
 
-var active_camera : Camera2D
-var previous_camera_zoom : Vector2
-@export var zoom_on_dialogue : Vector2 = Vector2(1, 1)
 
 func _ready() -> void:
 	read_dialogue_file()
@@ -28,10 +25,6 @@ func start_dialogue(dialogue_id : String):
 	current_line = 0
 	next_line(0)
 
-	active_camera = get_viewport().get_camera_2d()
-	previous_camera_zoom = active_camera.zoom
-	active_camera.zoom = zoom_on_dialogue
-
 
 func next_line(idx : int = current_line + 1):
 	current_line = idx
@@ -39,7 +32,7 @@ func next_line(idx : int = current_line + 1):
 		end_dialogue()
 		return
 
-	dialogue_text.text = "[font_size=32][color=#60bbff]" + active_dialogue.lines[current_line].name + "\n[font_size=24][color=white]" + active_dialogue.lines[current_line].text
+	dialogue_text.text = "[font_size=36][color=#60bbff]" + active_dialogue.lines[current_line].name + "\n[font_size=28][color=black]" + active_dialogue.lines[current_line].text
 
 func end_dialogue():
 	get_tree().paused = false
@@ -49,7 +42,6 @@ func end_dialogue():
 	# redirecionar para a cena
 	if dialogue_redirect:
 		GameManager.load_scene(dialogue_redirect)
-	active_camera.zoom = previous_camera_zoom
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -70,7 +62,7 @@ func read_dialogue_file():
 				for line in dialogue.lines:
 					lines.append(DialogueLine.new(line.name, line.text))
 				
-				dialogues[dialogue.id] = DialogueString.new(dialogue.id, lines, dialogue.redirect)
+				dialogues[dialogue.id] = DialogueString.new(dialogue.id, lines, dialogue.get("redirect", ""))
 
 		print("diálogos carregados!\n")
 		file.close()

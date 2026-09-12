@@ -1,0 +1,317 @@
+[gd_scene format=3 uid="uid://c80oo57ysn36d"]
+
+[ext_resource type="Script" uid="uid://d320083ifkgn0" path="res://scenes/minigames/minigame_luzia/maze.gd" id="1_ibbmn"]
+[ext_resource type="Texture2D" uid="uid://cnrqyp0spp3k4" path="res://sprites/minigames/minigame_luzia/maze1.png" id="2_a8sp5"]
+[ext_resource type="Texture2D" uid="uid://c3bhwqmrqfx0c" path="res://sprites/minigames/minigame_luzia/activated_star_francisco.png" id="2_frkay"]
+[ext_resource type="Texture2D" uid="uid://dcie0arucjoba" path="res://sprites/minigames/minigame_luzia/maze_bitmap.png" id="2_xxv7r"]
+[ext_resource type="Texture2D" uid="uid://htck3wks6ew4" path="res://sprites/minigames/minigame_luzia/activated_star_luis.png" id="3_aey8s"]
+[ext_resource type="Texture2D" uid="uid://dfeyjo2mnrmlv" path="res://sprites/map/npcs/nikole.png" id="4_cyxjc"]
+[ext_resource type="Texture2D" uid="uid://du8hdb7i3ms1d" path="res://sprites/minigames/minigame_luzia/activated_star_flavia.png" id="4_efptu"]
+[ext_resource type="Texture2D" uid="uid://bi2uc6lknxeu1" path="res://sprites/minigames/minigame_luzia/maze2.png" id="4_o3sm5"]
+[ext_resource type="Texture2D" uid="uid://c8h5eienq2pl6" path="res://sprites/minigames/minigame_luzia/maze3.png" id="5_os8al"]
+[ext_resource type="Texture2D" uid="uid://cqbjtfatjyrcl" path="res://sprites/minigames/minigame_luzia/maze4.png" id="6_et2jy"]
+[ext_resource type="Script" uid="uid://bprss5c4da8iu" path="res://scenes/minigames/minigame_luzia/nikole.gd" id="7_o3sm5"]
+[ext_resource type="Texture2D" uid="uid://cqa1l7sin5v5s" path="res://sprites/map/npcs/francisco.png" id="10_sahm2"]
+[ext_resource type="Script" uid="uid://cx0n7fjrh07hx" path="res://scenes/minigames/minigame_luzia/item.gd" id="11_jckl1"]
+[ext_resource type="Texture2D" uid="uid://b10q3my5brk3h" path="res://sprites/minigames/minigame_luzia/arrow_francisco.png" id="12_kpldb"]
+[ext_resource type="Texture2D" uid="uid://gpi4f8mt5gih" path="res://sprites/map/npcs/luis.png" id="12_pkm1r"]
+[ext_resource type="Texture2D" uid="uid://xeo1llost0fn" path="res://sprites/map/npcs/flavia.png" id="13_gr3jy"]
+[ext_resource type="Texture2D" uid="uid://d2ho70t8236aq" path="res://sprites/minigames/minigame_luzia/arrow_luis.png" id="13_mhd7j"]
+[ext_resource type="Texture2D" uid="uid://13wrmqyu7m37" path="res://sprites/minigames/minigame_luzia/arrow_flavia.png" id="14_gr1nu"]
+[ext_resource type="Texture2D" uid="uid://cbugkfbvc7cbu" path="res://sprites/minigames/minigame_luzia/activated_star_nikole.png" id="14_u45vi"]
+[ext_resource type="Texture2D" uid="uid://dsplgekwgni7j" path="res://sprites/shadow.png" id="15_33v6b"]
+[ext_resource type="Texture2D" uid="uid://c3p3g67gltqvc" path="res://sprites/minigames/minigame_luzia/deactivated_star_francisco.png" id="15_u45vi"]
+[ext_resource type="Texture2D" uid="uid://btw58gnaw1cpu" path="res://sprites/minigames/minigame_luzia/deactivated_star_luis.png" id="16_xo3sy"]
+[ext_resource type="Texture2D" uid="uid://76u82brsyih3" path="res://sprites/minigames/minigame_luzia/deactivated_star_flavia.png" id="17_saydg"]
+[ext_resource type="Texture2D" uid="uid://3t34efkge520" path="res://sprites/minigames/minigame_luzia/deactivated_star_nikole.png" id="18_aey8s"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bhunq"]
+font_size = 48
+font_color = Color(1, 0.78, 0.91933334, 1)
+outline_size = 24
+outline_color = Color(0.67, 0.20100002, 0.46676663, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_aey8s"]
+font_size = 32
+
+[node name="Maze" type="Node2D" unique_id=734450241]
+script = ExtResource("1_ibbmn")
+estrela_ligada_nikole = ExtResource("14_u45vi")
+estrela_ligada_francisco = ExtResource("2_frkay")
+estrela_ligada_luis = ExtResource("3_aey8s")
+estrela_ligada_flavia = ExtResource("4_efptu")
+
+[node name="MazeBitmap" type="Sprite2D" parent="." unique_id=1992365898]
+visible = false
+z_index = 50
+texture_filter = 1
+scale = Vector2(375, 375)
+texture = ExtResource("2_xxv7r")
+offset = Vector2(16, 16)
+
+[node name="Sprites" type="Node2D" parent="." unique_id=1342585327]
+z_index = -20
+
+[node name="Maze1" type="Sprite2D" parent="Sprites" unique_id=1870023909]
+texture = ExtResource("2_a8sp5")
+offset = Vector2(3000, 3000)
+
+[node name="Maze2" type="Sprite2D" parent="Sprites" unique_id=1583015392]
+position = Vector2(6000, 0)
+texture = ExtResource("4_o3sm5")
+offset = Vector2(3000, 3000)
+
+[node name="Maze3" type="Sprite2D" parent="Sprites" unique_id=1716590303]
+position = Vector2(0, 6000)
+texture = ExtResource("5_os8al")
+offset = Vector2(3000, 3000)
+
+[node name="Maze4" type="Sprite2D" parent="Sprites" unique_id=797884603]
+position = Vector2(6000, 6000)
+texture = ExtResource("6_et2jy")
+offset = Vector2(3000, 3000)
+
+[node name="Nikole" type="Node2D" parent="." unique_id=1673519271]
+script = ExtResource("7_o3sm5")
+arrow_sprites = Array[Texture2D]([ExtResource("12_kpldb"), ExtResource("13_mhd7j"), ExtResource("14_gr1nu")])
+
+[node name="Camera2D" type="Camera2D" parent="Nikole" unique_id=572465459]
+process_mode = 3
+zoom = Vector2(0.55, 0.55)
+
+[node name="Shadow" type="Sprite2D" parent="Nikole" unique_id=303687812]
+modulate = Color(0, 0, 0, 0.30588236)
+z_index = -5
+position = Vector2(70, 160)
+scale = Vector2(3.5554767, 1.2380953)
+texture = ExtResource("15_33v6b")
+offset = Vector2(-20, -125)
+
+[node name="Sprite2D" type="Sprite2D" parent="Nikole" unique_id=1111365154]
+z_index = 4
+texture = ExtResource("4_cyxjc")
+offset = Vector2(-21, -125)
+
+[node name="Francisco" type="Sprite2D" parent="." unique_id=1372355185 node_paths=PackedStringArray("nikole")]
+z_index = 1
+position = Vector2(0, -306)
+texture = ExtResource("10_sahm2")
+offset = Vector2(0, -85.5)
+script = ExtResource("11_jckl1")
+nikole = NodePath("../Nikole")
+follow_offset = Vector2(-120, -60)
+animated = true
+
+[node name="Shadow" type="Sprite2D" parent="Francisco" unique_id=816836837]
+modulate = Color(0, 0, 0, 0.30588236)
+z_index = -5
+position = Vector2(70, 160)
+scale = Vector2(3.5554767, 1.2380953)
+texture = ExtResource("15_33v6b")
+offset = Vector2(-20, -125)
+
+[node name="Luis" type="Sprite2D" parent="." unique_id=1246747068 node_paths=PackedStringArray("nikole")]
+z_index = 3
+position = Vector2(240, -306)
+texture = ExtResource("12_pkm1r")
+offset = Vector2(0, -85.5)
+script = ExtResource("11_jckl1")
+nikole = NodePath("../Nikole")
+follow_offset = Vector2(-200, 30)
+animated = true
+
+[node name="Shadow" type="Sprite2D" parent="Luis" unique_id=1828766873]
+modulate = Color(0, 0, 0, 0.30588236)
+z_index = -5
+position = Vector2(70, 160)
+scale = Vector2(3.5554767, 1.2380953)
+texture = ExtResource("15_33v6b")
+offset = Vector2(-20, -125)
+
+[node name="Flavia" type="Sprite2D" parent="." unique_id=913206177 node_paths=PackedStringArray("nikole")]
+z_index = 2
+position = Vector2(480, -306)
+texture = ExtResource("13_gr3jy")
+offset = Vector2(0, -85.5)
+script = ExtResource("11_jckl1")
+nikole = NodePath("../Nikole")
+follow_offset = Vector2(-240, -40)
+animated = true
+
+[node name="Shadow" type="Sprite2D" parent="Flavia" unique_id=1511757869]
+modulate = Color(0, 0, 0, 0.30588236)
+z_index = -5
+position = Vector2(70, 160)
+scale = Vector2(3.5554767, 1.2380953)
+texture = ExtResource("15_33v6b")
+offset = Vector2(-20, -125)
+
+[node name="BG" type="CanvasLayer" parent="." unique_id=1160194427]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="BG" unique_id=497781323]
+z_index = -4096
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.85882354, 0.64705884, 0.74509805, 1)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=307479745]
+process_mode = 2
+
+[node name="Background" type="ColorRect" parent="UI" unique_id=554797391]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1665, 0.23433338, 0.37, 0.7490196)
+
+[node name="Title" type="Label" parent="UI/Background" unique_id=2007195205]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 30.0
+offset_bottom = 93.0
+grow_horizontal = 2
+text = "LABIRINTO DA MEMÓRIA"
+label_settings = SubResource("LabelSettings_bhunq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Subtitle" type="Label" parent="UI/Background" unique_id=781797538]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 80.0
+offset_bottom = 143.0
+grow_horizontal = 2
+text = "Ajude Nikole a reorganizar as memórias!"
+label_settings = SubResource("LabelSettings_aey8s")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="UI/Background" unique_id=1164040600]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.5
+anchor_right = 0.85
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+text = "Encontre as lembranças dos três netinhos de Dona Luzia e leve-os para suas estrelas respectivas!"
+label_settings = SubResource("LabelSettings_aey8s")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Background" unique_id=2010936050]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.75
+anchor_right = 0.5
+anchor_bottom = 0.75
+offset_left = -460.0
+offset_top = -85.0
+offset_right = 460.0
+offset_bottom = 183.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset_ratio = Vector2(0.5, 0)
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Francisco" type="TextureRect" parent="UI/Background/HBoxContainer" unique_id=848035686]
+z_index = 2
+layout_mode = 2
+texture = ExtResource("15_u45vi")
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/Background/HBoxContainer/Francisco" unique_id=2113140269]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 26.0
+offset_right = 241.0
+offset_bottom = 213.0
+
+[node name="Francisco" type="TextureRect" parent="UI/Background/HBoxContainer/Francisco/CenterContainer" unique_id=1833149076]
+z_index = 1
+layout_mode = 2
+offset_transform_enabled = true
+texture = ExtResource("10_sahm2")
+
+[node name="Flavia" type="TextureRect" parent="UI/Background/HBoxContainer" unique_id=1211488946]
+z_index = 2
+layout_mode = 2
+texture = ExtResource("17_saydg")
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/Background/HBoxContainer/Flavia" unique_id=496398887]
+layout_mode = 1
+anchors_preset = -1
+offset_left = -2.0
+offset_top = 2.0
+offset_right = 268.0
+offset_bottom = 215.0
+
+[node name="Flavia" type="TextureRect" parent="UI/Background/HBoxContainer/Flavia/CenterContainer" unique_id=116331593]
+z_index = 1
+layout_mode = 2
+texture = ExtResource("13_gr3jy")
+
+[node name="Luis" type="TextureRect" parent="UI/Background/HBoxContainer" unique_id=426631831]
+z_index = 2
+layout_mode = 2
+texture = ExtResource("16_xo3sy")
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/Background/HBoxContainer/Luis" unique_id=462426449]
+layout_mode = 1
+anchors_preset = -1
+offset_top = 6.0
+offset_right = 270.0
+offset_bottom = 219.0
+
+[node name="Luis" type="TextureRect" parent="UI/Background/HBoxContainer/Luis/CenterContainer" unique_id=483184069]
+z_index = 1
+layout_mode = 2
+offset_transform_enabled = true
+texture = ExtResource("12_pkm1r")
+
+[node name="Play" type="Button" parent="UI/Background" unique_id=1448434416]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.85
+anchor_right = 0.7
+anchor_bottom = 1.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Jogar"
+
+[node name="Stars" type="Node2D" parent="." unique_id=435417707]
+
+[node name="NikoleS" type="Sprite2D" parent="Stars" unique_id=2029512294]
+z_index = -2
+position = Vector2(562.5, 562.5)
+texture = ExtResource("18_aey8s")
+
+[node name="FranciscoS" type="Sprite2D" parent="Stars" unique_id=1121971437]
+z_index = -2
+position = Vector2(1687.5, 5062.5)
+texture = ExtResource("15_u45vi")
+
+[node name="LuisS" type="Sprite2D" parent="Stars" unique_id=706246501]
+z_index = -2
+position = Vector2(11437.5, 6937.5)
+texture = ExtResource("16_xo3sy")
+
+[node name="FlaviaS" type="Sprite2D" parent="Stars" unique_id=1266380488]
+z_index = -2
+position = Vector2(7312.5, 562.5)
+texture = ExtResource("17_saydg")
