@@ -218,9 +218,8 @@ func _pathfind(from : Vector2i, to : Vector2i, show_first_point : bool = true, p
 	# Obtém o caminho
 	current_path = _calculate_path(from, to)
 
-	# Limpa os pontos antigos
-	for child in $PathfinderPoints.get_children():
-		child.queue_free()
+	# Limpa o pathfinding feito antes
+	clear_pathfinding()
 
 	# Coloca um sprite de ponto em cada célula
 	for pos in current_path:
@@ -300,15 +299,22 @@ func pathfind_to_nearest_task(from : Vector2i, show_first_point : bool = false) 
 		return
 	
 	var color : Color
+	# TODO: colocar as cores certinhas
 	match best_i:
-		0:
+		0: # Flávia
 			color = Color.MEDIUM_PURPLE
-		1:
+		1: # Francisco
 			color = Color.RED
-		2:
+		2: # Luís
 			color = Color.YELLOW
 	_pathfind(from, positions[best_i], show_first_point, color)
 
+
+# Limpa todos os pontos visuais do sistema de pathfinding
+func clear_pathfinding() -> void:
+	# Limpa os pontos antigos
+	for child in $PathfinderPoints.get_children():
+		child.queue_free()
 			
 		
 		
