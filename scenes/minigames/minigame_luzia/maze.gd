@@ -206,7 +206,7 @@ func initialize_pathfinding() -> void:
 # a posição `from`), defina show_first_point como `true`.
 	# Cabe a essa função, entidade responsável pelo processo de pathfinding durante o jogo, pathfindear, por meio do a*, 
 	# a fim de encontrar o possível melhor caminho de from até to.
-func _pathfind(from : Vector2i, to : Vector2i, show_first_point : bool = true) -> void:
+func _pathfind(from : Vector2i, to : Vector2i, show_first_point : bool = true, point_color : Color = Color.WHITE) -> void:
 	var path_coordinates : Vector4i = Vector4i(from.x, from.y, to.x, to.y)
 
 	# Se o caminho não mudou, não há necessidade de calcular
@@ -234,15 +234,18 @@ func _pathfind(from : Vector2i, to : Vector2i, show_first_point : bool = true) -
 		var sprite = Sprite2D.new()
 		sprite.texture = load("res://sprites/minigames/minigame_luzia/path_point.png")
 		sprite.position = real_pos;
+		sprite.modulate = point_color;
 
 		$PathfinderPoints.add_child(sprite)
 
 # Mostra o caminho para a tarefa mais próxima
 # Se precisar mostrar (visualmente) a primeira posição (ou seja, 
 # a posição `from`), defina show_first_point como `true`.
-func pathfind_to_nearest_task(from : Vector2i, show_first : bool = false) -> void:
+func pathfind_to_nearest_task(from : Vector2i, show_first_point : bool = false) -> void:
 	var positions : Array[Vector2i] = []
 
+	# Adiciona a posição da criança. Se ela já tiver sido pega,
+	# adiciona a posição da estrela.
 	if !has_flavia:
 		positions.append(pos_flavia)
 	else:
@@ -255,20 +258,27 @@ func pathfind_to_nearest_task(from : Vector2i, show_first : bool = false) -> voi
 		positions.append(pos_luis)
 	else:
 		positions.append(pos_star_luis)
-	
+
 	# Obtém a posição com o menor caminho
 	var best_i : int = -1 # '-1' significa que o caminho não está inicializado e, portanto, precisa ser inicializado
 	var path : Array[Vector2i]
 	for i in range(0, 3):
-		# Calcula o caminho para a i-ésima posição. Se
-		# esse caminho for menor que o atual, define ele
-		# como o menor.
+		# Calcula o caminho para a i-ésima posição. Se esse 
+		# caminho for menor que o atual, define ele como o menor.
 		var curr_path : Array[Vector2i] = _calculate_path(from, positions[i])
-		if (best_i == -1) or curr_path.size() < path.size():
+		if best_i == -1 or curr_path.size() < path.size():
 			best_i = i
 			path = curr_path
 	
-	_pathfind(from, positions[best_i], show_first)
+	var color : Color
+	match best_i:
+		0:
+			color = Color.WEB_PURPLE
+		1:
+			color = Color.RED
+		2:
+			color = Color.YELLOW
+	_pathfind(from, positions[best_i], show_first_point, color)
 
 			
 		
