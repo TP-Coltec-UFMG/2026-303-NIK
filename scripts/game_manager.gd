@@ -211,6 +211,6 @@ func set_game_data(key : String, value):
 func create_blank_save():
 	set_game_data("map_position", 0)
 
-	set_game_data("luzia_dialogue_completed", false)
-	set_game_data("joao_dialogue_completed", false)
-	set_game_data("caio_dialogue_completed", false)
+	set_game_data("luzia_minigame_completed", false)
+	set_game_data("joao_minigame_completed", false)
+	set_game_data("caio_minigame_completed", false)

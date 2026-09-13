@@ -2,7 +2,7 @@
 	{
 		"id": "luzia_pre_minigame",
 		"condition": {
-			"data": "luzia_dialogue_completed",
+			"data": "luzia_minigame_completed",
 			"value": "false",
 			"else": "luzia_completed"
 		},
@@ -45,46 +45,20 @@
 
 	{
 		"id": "luzia_francisco",
-		"condition": {
-			"data": "luzia_francisco_delivered",
-			"value": "false",
-		},
 		"lines": [
 			{
 				"name": "Nikole",
-				"text": "Esse de blusa laranja é o Francisco. Ele gosta muito de biscoitos!"
+				"text": "Esse de blusa vermelha é o Francisco. Ele gosta muito de biscoitos!"
 			},
 			{
 				"name": "Dona Luzia",
 				"text": "Francisco… sabia que foi em mesma que escolhi o nome dele?"
 			}
-		]
-	},
-
-	{
-		"id": "luzia_flavia",
-		"condition": {
-			"data": "luzia_flavia_delivered",
-			"value": "false",
-		},
-		"lines": [
-			{
-				"name": "Nikole",
-				"text": "A garota é a Flávia. Ela tem o cabelo mais bonito da cidade! Você sabe o porquê?"
-			},
-			{
-				"name": "Dona Luzia",
-				"text": "Claro que sei! Eu que faço o cabelo dela todos os dias."
-			}
-		]
+		],
 	},
 
 	{
 		"id": "luzia_luis",
-		"condition": {
-			"data": "luzia_luis_delivered",
-			"value": "false",
-		},
 		"lines": [
 			{
 				"name": "Nikole",
@@ -94,15 +68,29 @@
 				"name": "Dona Luzia",
 				"text": "Ahh, você já foi em uma das partidas de futebol dele? Ele é muito bom!"
 			}
-		]
+		],
+	},
+	
+	{
+		"id": "luzia_flavia",
+		"lines": [
+			{
+				"name": "Nikole",
+				"text": "A garota é a Flávia. Ela tem o cabelo mais bonito da cidade! Você sabe o porquê?"
+			},
+			{
+				"name": "Dona Luzia",
+				"text": "Claro que sei! Eu que faço o cabelo dela todos os dias."
+			}
+		],
 	},
 
 	{
 		"id": "luzia_post_minigame",
 		"condition": {
-			"data": "luzia_dialogue_completed",
-			"value": "false",
-			"else": "luzia_completed"
+			"data": "luzia_minigame_completed",
+			"value": "true",
+			"else": "luzia_pre_minigame"
 		},
 		"lines": [
 			{
@@ -123,7 +111,7 @@
 			},
 			{
 				"name": "Francisco",
-				"text": "Obrigado por trazer ela de volta, moça! Estávamos preocupados…"
+				"text": "Obrigado por trazer ela de volta, Nik! Estávamos preocupados…"
 			},
 			{
 				"name": "Nikole",
@@ -168,7 +156,7 @@
 	{
 		"id": "joao_pre_minigame",
 		"condition": {
-			"data": "joao_dialogue_completed",
+			"data": "joao_minigame_completed",
 			"value": "false",
 			"else": "joao_completed"
 		},
@@ -282,9 +270,9 @@
 	{
 		"id": "joao_post_minigame",
 		"condition": {
-			"data": "joao_dialogue_completed",
-			"value": "false",
-			"else": "joao_completed"
+			"data": "joao_minigame_completed",
+			"value": "true",
+			"else": "joao_pre_minigame"
 		},
 		"lines": [
 			{
@@ -354,7 +342,7 @@
 	{
 		"id": "caio_pre_minigame",
 		"condition": {
-			"data": "caio_dialogue_completed",
+			"data": "caio_minigame_completed",
 			"value": "false",
 			"else": "caio_completed"},
 		"lines": [
@@ -462,9 +450,9 @@
 	{
 		"id": "caio_post_minigame",
 		"condition": {
-			"data": "caio_dialogue_completed",
-			"value": "false",
-			"else": "caio_completed"
+			"data": "caio_minigame_completed",
+			"value": "true",
+			"else": "caio_pre_minigame"
 		},
 		"lines": [
 			{

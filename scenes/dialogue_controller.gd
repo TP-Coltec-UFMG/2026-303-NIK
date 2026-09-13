@@ -21,10 +21,13 @@ func _ready() -> void:
 func start_dialogue(dialogue_id : String):
 	get_tree().paused = true
 	dialogue_box.show()
-	active_dialogue = dialogues[dialogue_id]
+	if dialogues[dialogue_id].condition:
+		if GameManager.get_game_data(dialogues[dialogue_id].condition.data) == dialogues[dialogue_id].condition.value:
+			active_dialogue = dialogues[dialogue_id]
+		else: active_dialogue = dialogues[dialogues[dialogue_id].condition.elseDialogue]
+	else: active_dialogue = dialogues[dialogue_id]
 	current_line = 0
 	next_line(0)
-
 
 func next_line(idx : int = current_line + 1):
 	current_line = idx
@@ -58,11 +61,12 @@ func read_dialogue_file():
 		if data != null:
 			dialogues = {}
 			for dialogue in data:
+				var condition = DialogueCondition.new(dialogue.condition.data, dialogue.condition.value == "true", dialogue.condition.else) if dialogue.get("condition") else null
 				var lines : Array[DialogueLine] = []
 				for line in dialogue.lines:
 					lines.append(DialogueLine.new(line.name, line.text))
-				
-				dialogues[dialogue.id] = DialogueString.new(dialogue.id, lines, dialogue.get("redirect", ""))
+
+				dialogues[dialogue.id] = DialogueString.new(dialogue.id, condition, lines, dialogue.get("redirect", ""))
 
 		print("diálogos carregados!\n")
 		file.close()
@@ -71,13 +75,25 @@ func read_dialogue_file():
 
 class DialogueString:
 	var id : String
+	var condition : DialogueCondition
 	var lines : Array[DialogueLine]
 	var redirect : String
 
-	func _init(_id : String, _lines : Array[DialogueLine], _redirect : String):
+	func _init(_id : String, _condition : DialogueCondition, _lines : Array[DialogueLine], _redirect : String):
 		id = _id
+		condition = _condition
 		lines = _lines
 		redirect = _redirect
+
+class DialogueCondition:
+	var data : String
+	var value : bool
+	var elseDialogue : String
+	
+	func _init(_data : String, _value : bool, _elseData : String):
+		data = _data
+		value = _value
+		elseDialogue = _elseData
 
 class DialogueLine:
 	var name : String

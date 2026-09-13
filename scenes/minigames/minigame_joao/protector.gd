@@ -11,7 +11,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	animate(delta)
 	
-
 func animate(delta : float):
 	animation_progress += 15 * delta
 	
@@ -22,5 +21,5 @@ func animate(delta : float):
 
 func end_game() -> void:
 	GameManager.load_map()
-	GameManager.set_game_data("joao_dialogue_completed", true);
+	GameManager.set_game_data("joao_minigame_completed", true)
 	DialogueController.start_dialogue("joao_post_minigame")

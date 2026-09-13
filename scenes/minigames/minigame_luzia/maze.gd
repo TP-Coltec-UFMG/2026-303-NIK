@@ -63,7 +63,7 @@ func read_maze() -> Array:
 
 	return matrix
 
-func is_walkable(column: int, row: int):
+func try_walk(column: int, row: int):
 	if maze[column][row] == -1: return false
 	else: return true
 
@@ -87,7 +87,7 @@ func check_kid_pickup(column: int, row: int) -> void:
 			has_flavia = true
 			nikole.targets[2] = $Stars/FlaviaS.position
 
-func check_kid_dropout(column: int, row: int) -> void:
+func check_kid_dropout(column: int, row: int) -> bool:
 	match maze[column][row]:
 		10:
 			if has_francisco:
@@ -96,6 +96,8 @@ func check_kid_dropout(column: int, row: int) -> void:
 				has_francisco = false
 				dropped_francisco = true
 				$Stars/FranciscoS.texture = estrela_ligada_francisco
+				wait_a_lil_time_and_start_dialogue("luzia_francisco")
+				return true
 		20:
 			if has_luis:
 				$Luis.target_pos = (Vector2(pos_star_luis) + Vector2(0.5, 0.5)) * tile_scale
@@ -103,6 +105,8 @@ func check_kid_dropout(column: int, row: int) -> void:
 				has_luis = false
 				dropped_luis = true
 				$Stars/LuisS.texture = estrela_ligada_luis
+				wait_a_lil_time_and_start_dialogue("luzia_luis")
+				return true
 		30:
 			if has_flavia:
 				$Flavia.target_pos = (Vector2(pos_star_flavia) + Vector2(0.5, 0.5)) * tile_scale
@@ -110,17 +114,20 @@ func check_kid_dropout(column: int, row: int) -> void:
 				has_flavia = false
 				dropped_flavia = true
 				$Stars/FlaviaS.texture = estrela_ligada_flavia
+				wait_a_lil_time_and_start_dialogue("luzia_flavia")
+				return true
+	return false
 
 func check_end_game(column: int, row: int, force : bool = false) -> void:
 	if force:
 		GameManager.load_map()
-		GameManager.set_game_data("luzia_dialogue_completed", true);
+		GameManager.set_game_data("luzia_minigame_completed", true);
 		DialogueController.start_dialogue("luzia_post_minigame")
 	if $Francisco.placed and $Luis.placed and $Flavia.placed:
 		$Stars/NikoleS.texture = estrela_ligada_nikole
 		if maze[column][row] == 13:
 			GameManager.load_map()
-			GameManager.set_game_data("luzia_dialogue_completed", true);
+			GameManager.set_game_data("luzia_minigame_completed", true);
 			DialogueController.start_dialogue("luzia_post_minigame")
 
 func roll_pos_kids() -> void:
@@ -147,3 +154,7 @@ func roll_pos_kids() -> void:
 	nikole.targets[0] = $Francisco.position
 	nikole.targets[1] = $Luis.position 
 	nikole.targets[2] = $Flavia.position
+
+func wait_a_lil_time_and_start_dialogue(dialogua_name : String) -> void:
+	await get_tree().create_timer(0.5).timeout
+	DialogueController.start_dialogue(dialogua_name)
