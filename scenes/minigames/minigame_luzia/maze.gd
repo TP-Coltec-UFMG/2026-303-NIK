@@ -242,38 +242,67 @@ func _pathfind(from : Vector2i, to : Vector2i, show_first_point : bool = true, p
 # Se precisar mostrar (visualmente) a primeira posição (ou seja, 
 # a posição `from`), defina show_first_point como `true`.
 func pathfind_to_nearest_task(from : Vector2i, show_first_point : bool = false) -> void:
+	const ignore_position : Vector2i = Vector2i(-1, -3) # valor para indicar que é para pular aquela posição
 	var positions : Array[Vector2i] = []
-
+	
 	# Adiciona a posição da criança. Se ela já tiver sido pega,
 	# adiciona a posição da estrela.
-	if !has_flavia:
-		positions.append(pos_flavia)
+	# NOTA: se a criança já está na estrela, um valor será adicionado
+	# 	    na sua respectiva posição (em `positions`) mesmo assim,
+	#		para manter o sistema de cores. :P (por isso que existe
+	#		o valor `ignore_position`)
+	if !dropped_flavia:
+		if !has_flavia:
+			positions.append(pos_flavia)
+		else:
+			positions.append(pos_star_flavia)
 	else:
-		positions.append(pos_star_flavia)
-	if !has_francisco:
-		positions.append(pos_francisco)
+		positions.append(ignore_position)
+
+	if !dropped_francisco:
+		if !has_francisco:
+			positions.append(pos_francisco)
+		else:
+			positions.append(pos_star_francisco)
 	else:
-		positions.append(pos_star_francisco)
-	if !has_luis:
-		positions.append(pos_luis)
+		positions.append(ignore_position)
+
+	if !dropped_luis:
+		if !has_luis:
+			positions.append(pos_luis)
+		else:
+			positions.append(pos_star_luis)
 	else:
-		positions.append(pos_star_luis)
+		positions.append(ignore_position)
+	
+	# Se não há posição, ou seja, pegou todas as crianças e colocou
+	# em sua respectiva estrela, mostra o caminho de volta
 
 	# Obtém a posição com o menor caminho
-	var best_i : int = -1 # '-1' significa que o caminho não está inicializado e, portanto, precisa ser inicializado
+	var best_i : int = -1 # -1 significa que o caminho não encontrou ainda e, portanto, precisa ser inicializado (ou acabou as tarefas)
 	var path : Array[Vector2i]
-	for i in range(0, 3):
+	for i in range(0, positions.size()):
+		# Se a posição atual for para ignorar, então pula ela
+		if positions[i] == ignore_position:
+			continue
+
 		# Calcula o caminho para a i-ésima posição. Se esse 
 		# caminho for menor que o atual, define ele como o menor.
 		var curr_path : Array[Vector2i] = _calculate_path(from, positions[i])
 		if best_i == -1 or curr_path.size() < path.size():
 			best_i = i
 			path = curr_path
+
+	# Se não encontrou nenhum caminho, é porque acabaram as
+	# tarefas. Logo, mostra o caminho para o início.
+	if best_i == -1:
+		_pathfind(from, Vector2i(1, 1), show_first_point)
+		return
 	
 	var color : Color
 	match best_i:
 		0:
-			color = Color.WEB_PURPLE
+			color = Color.MEDIUM_PURPLE
 		1:
 			color = Color.RED
 		2:
