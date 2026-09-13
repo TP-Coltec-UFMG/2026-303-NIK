@@ -65,7 +65,7 @@ func draw_arrow(target : int):
 	draw_set_transform(Vector2(), 0)
 
 func move_to_tile(x : int, y : int, instant : bool = false):
-	if maze.is_walkable(x, y):
+	if maze.try_walk(x, y) and !maze.check_kid_dropout(x, y):
 		current_pos.x = x
 		current_pos.y = y
 
@@ -73,7 +73,6 @@ func move_to_tile(x : int, y : int, instant : bool = false):
 		target_pos.y = (0.8 + current_pos.y) * maze.tile_scale 
 		
 		maze.check_kid_pickup(x, y)
-		maze.check_kid_dropout(x, y)
 		maze.check_end_game(x, y)
 
 		if instant:
