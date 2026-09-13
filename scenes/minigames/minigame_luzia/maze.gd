@@ -232,8 +232,10 @@ func _pathfind(from : Vector2i, to : Vector2i, show_first_point : bool = true, p
 
 	# Coloca um sprite de ponto em cada célula
 	for pos in current_path:
-		# Se a posição do ponto atual for igual a do início
+		# Se a posição do ponto atual for igual a do início ou a do final, não mostra
 		if !show_first_point and pos == from:
+			continue
+		if pos == to:
 			continue
 		# Obtém a posição centralizada na tela
 		var real_pos = (Vector2(pos) + Vector2(0.5, 0.5)) * tile_scale
@@ -308,14 +310,13 @@ func pathfind_to_nearest_task(from : Vector2i, show_first_point : bool = false) 
 		return
 	
 	var color : Color
-	# TODO: colocar as cores certinhas
 	match best_i:
 		0: # Flávia
-			color = Color.MEDIUM_PURPLE
+			color = Color("BC65FF")
 		1: # Francisco
-			color = Color.RED
+			color = Color("FF6965")
 		2: # Luís
-			color = Color.YELLOW
+			color = Color("FFDE65")
 	_pathfind(from, positions[best_i], show_first_point, color)
 
 

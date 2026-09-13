@@ -92,15 +92,19 @@ func _process(delta: float) -> void:
 
 	animate(delta)
 
-	# Para evitar bugs visuais (tipo um ponto sumindo ou gerando do nada),
-	# ele só vai mostrar o primeiro ponto se o jogador estiver indo para a próxima
-	# posição do path (para "o ponto que o usuário está indo para" não sumir visualmente).
-	# Experimente definir como `false` ou `true` esse valor se quiser ver o efeito
-	# de cada caso.
-	var show_first : bool = is_moving && (maze.current_path && maze.current_path.size() > 1 && current_pos == maze.current_path[1])
-	# NOTA: teoricamente, não tem problema chamar essa função a cada frame,
-	# uma vez que, se não houver mudança, essa função automaticamente retorna.
-	maze.pathfind_to_nearest_task(current_pos, show_first)
+	# Se o pathfinding estiver ligado, faz o cálculo
+	if GameManager.settings.has("pathfinding_enabled") and GameManager.settings["pathfinding_enabled"]:
+		# Para evitar bugs visuais (tipo um ponto sumindo ou gerando do nada),
+		# ele só vai mostrar o primeiro ponto se o jogador estiver indo para a próxima
+		# posição do path (para "o ponto que o usuário está indo para" não sumir visualmente).
+		# Experimente definir como `false` ou `true` esse valor se quiser ver o efeito
+		# de cada caso.
+		var show_first : bool = is_moving && (maze.current_path && maze.current_path.size() > 1 && current_pos == maze.current_path[1])
+		# NOTA: teoricamente, não tem problema chamar essa função a cada frame,
+		# uma vez que, se não houver mudança, essa função automaticamente retorna.
+		maze.pathfind_to_nearest_task(current_pos, show_first)
+	else:
+		maze.clear_pathfinding()
 
 func funny():
 	var r = randi_range(1, 4)
