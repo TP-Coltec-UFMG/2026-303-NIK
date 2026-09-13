@@ -215,8 +215,6 @@ func initialize_pathfinding() -> void:
 # ele, por meio de sprites indicativos, no mapa.
 # Se precisar mostrar (visualmente) a primeira posição (ou seja, 
 # a posição `from`), defina show_first_point como `true`.
-	# Cabe a essa função, entidade responsável pelo processo de pathfinding durante o jogo, pathfindear, por meio do a*, 
-	# a fim de encontrar o possível melhor caminho de from até to.
 func _pathfind(from : Vector2i, to : Vector2i, show_first_point : bool = true, point_color : Color = Color.WHITE) -> void:
 	var path_coordinates : Vector4i = Vector4i(from.x, from.y, to.x, to.y)
 
