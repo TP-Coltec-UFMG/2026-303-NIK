@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dcou5lg1traep"
-path="res://.godot/imported/luis.png-01c787b8e7bd24fc1259fb44f19c4ea7.ctex"
+path="res://.godot/imported/luis.png-3a3d2082a36b3f4145b6b6db7cf26c88.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/dialogo/pessoas/luis.png"
-dest_files=["res://.godot/imported/luis.png-01c787b8e7bd24fc1259fb44f19c4ea7.ctex"]
+source_file="res://sprites/dialogue/npcs/luis.png"
+dest_files=["res://.godot/imported/luis.png-3a3d2082a36b3f4145b6b6db7cf26c88.ctex"]
 
 [params]
 

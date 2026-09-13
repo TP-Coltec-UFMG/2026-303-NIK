@@ -19,6 +19,10 @@ const pos_star_francisco = Vector2i(4, 13)
 const pos_star_luis = Vector2i(30, 18)
 const pos_star_flavia = Vector2i(19, 1)
 
+var pos_francisco : Vector2i
+var pos_luis : Vector2i
+var pos_flavia : Vector2i
+
 @export var estrela_ligada_nikole : Texture
 @export var estrela_ligada_francisco : Texture
 @export var estrela_ligada_luis : Texture
@@ -36,6 +40,7 @@ func _ready() -> void:
 	maze[pos_star_luis.x][pos_star_luis.y] = 20
 	maze[pos_star_flavia.x][pos_star_flavia.y] = 30
 	roll_pos_kids()
+	initialize_pathfinding()
 
 func start_game():
 	$UI.visible = false
@@ -50,7 +55,7 @@ func read_maze() -> Array:
 	var matrix = []
 
 	if maze_texture:
-		# Obtém a imagem do maze e cria um bitmap a partir disso.
+		# Obtém a imagem da mazé e cria um bitmap a partir disso.
 		var maze_image: Image = maze_texture.get_image()
 		var maze_bitmap = BitMap.new()
 		maze_bitmap.create_from_image_alpha(maze_image)
@@ -125,25 +130,148 @@ func check_end_game(column: int, row: int, force : bool = false) -> void:
 
 func roll_pos_kids() -> void:
 	while true:
-		var pos = Vector2i(randi_range(27, 31), randi_range(1, 5))
-		if maze[pos.x][pos.y] == 0:
-			$Francisco.position = (Vector2(pos) + Vector2(0.5, 0.5)) * tile_scale
-			maze[pos.x][pos.y] = 1
+		pos_francisco = Vector2i(randi_range(27, 31), randi_range(1, 5))
+		if maze[pos_francisco.x][pos_francisco.y] == 0:
+			$Francisco.position = (Vector2(pos_francisco) + Vector2(0.5, 0.5)) * tile_scale
+			maze[pos_francisco.x][pos_francisco.y] = 1
 			break
 
 	while true:
-		var pos = Vector2i(randi_range(1, 5), randi_range(27, 31))
-		if maze[pos.x][pos.y] == 0:
-			$Luis.position = (Vector2(pos) + Vector2(0.5, 0.5)) * tile_scale
-			maze[pos.x][pos.y] = 2
+		pos_luis = Vector2i(randi_range(1, 5), randi_range(27, 31))
+		if maze[pos_luis.x][pos_luis.y] == 0:
+			$Luis.position = (Vector2(pos_luis) + Vector2(0.5, 0.5)) * tile_scale
+			maze[pos_luis.x][pos_luis.y] = 2
 			break
 
 	while true:
-		var pos = Vector2i(randi_range(27, 31), randi_range(27, 31))
-		if maze[pos.x][pos.y] == 0:
-			$Flavia.position = (Vector2(pos) + Vector2(0.5, 0.5)) * tile_scale
-			maze[pos.x][pos.y] = 3
+		pos_flavia = Vector2i(randi_range(27, 31), randi_range(27, 31))
+		if maze[pos_flavia.x][pos_flavia.y] == 0:
+			$Flavia.position = (Vector2(pos_flavia) + Vector2(0.5, 0.5)) * tile_scale
+			maze[pos_flavia.x][pos_flavia.y] = 3
 			break
 	nikole.targets[0] = $Francisco.position
 	nikole.targets[1] = $Luis.position 
 	nikole.targets[2] = $Flavia.position
+
+
+# Grid do pathfinding (que usa A*)
+var _astar_grid : AStarGrid2D = AStarGrid2D.new()
+# Cache do pathfinding, para não gastar tempo calculando 
+# algo que já foi calculado
+var _pathfinding_cache: Dictionary = {}
+# Coordenadas (início e fim) do caminho que está sendo mostrado atualmente
+var _current_path_coordinates : Vector4i
+# Caminho que está atualmente sendo mostrado
+var current_path : Array[Vector2i]
+
+# Obtém o caminho possivelmente mais rápido de `from` até `to`, retornando
+# um array de posições. Se esse caminho já foi calculado, retorna o caminho
+# já calculado. Se não, calcula o caminho.
+# NOTA: como as paredes do labirinto nunca mudam, usar essa técnica é seguro.
+func _calculate_path(from : Vector2i, to : Vector2i) -> Array[Vector2i]:
+	# Obtém uma chave que identifica o ponto de partida e de chegada
+	var cache_key = Vector4i(from.x, from.y, to.x, to.y)
+
+	# Se já foi calculado, retorna o já calculado
+	if _pathfinding_cache.has(cache_key):
+		return _pathfinding_cache[cache_key]
+
+	# Se chegou até aqui, não foi calculado. Então, calcula.
+	var new_path = _astar_grid.get_id_path(from, to)
+	_pathfinding_cache[cache_key] = new_path
+	return new_path
+
+func initialize_pathfinding() -> void:
+	# Define a borda e o tamanho das células do grid
+	_astar_grid.region = Rect2i(0, 0, width, height)
+	_astar_grid.cell_size = Vector2(tile_scale, tile_scale)
+	
+	# Determina o modo de movimento
+	_astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER 
+	
+	# Inicializa o grid
+	_astar_grid.update()
+
+	# Coloca as paredes
+	for c in range(width):
+		for r in range(height):
+			_astar_grid.set_point_solid( Vector2i(c, r), true if maze[c][r] == -1 else false)
+
+	# Atualiza o grid (com as novas informações de parede e tal)
+	_astar_grid.update()
+
+# Obtém o melhor caminho da posição `from` até a `to`, colocando
+# ele, por meio de sprites indicativos, no mapa.
+# Se precisar mostrar (visualmente) a primeira posição (ou seja, 
+# a posição `from`), defina show_first_point como `true`.
+	# Cabe a essa função, entidade responsável pelo processo de pathfinding durante o jogo, pathfindear, por meio do a*, 
+	# a fim de encontrar o possível melhor caminho de from até to.
+func _pathfind(from : Vector2i, to : Vector2i, show_first_point : bool = true) -> void:
+	var path_coordinates : Vector4i = Vector4i(from.x, from.y, to.x, to.y)
+
+	# Se o caminho não mudou, não há necessidade de calcular
+	if path_coordinates == _current_path_coordinates:
+		return
+
+	_current_path_coordinates = path_coordinates
+	
+	# Obtém o caminho
+	current_path = _calculate_path(from, to)
+
+	# Limpa os pontos antigos
+	for child in $PathfinderPoints.get_children():
+		child.queue_free()
+
+	# Coloca um sprite de ponto em cada célula
+	for pos in current_path:
+		# Se a posição do ponto atual for igual a do início
+		if !show_first_point and pos == from:
+			continue
+		# Obtém a posição centralizada na tela
+		var real_pos = (Vector2(pos) + Vector2(0.5, 0.5)) * tile_scale
+		
+		# Cria o sprite e coloca na posição
+		var sprite = Sprite2D.new()
+		sprite.texture = load("res://sprites/minigames/minigame_luzia/path_point.png")
+		sprite.position = real_pos;
+
+		$PathfinderPoints.add_child(sprite)
+
+# Mostra o caminho para a tarefa mais próxima
+# Se precisar mostrar (visualmente) a primeira posição (ou seja, 
+# a posição `from`), defina show_first_point como `true`.
+func pathfind_to_nearest_task(from : Vector2i, show_first : bool = false) -> void:
+	var positions : Array[Vector2i] = []
+
+	if !has_flavia:
+		positions.append(pos_flavia)
+	else:
+		positions.append(pos_star_flavia)
+	if !has_francisco:
+		positions.append(pos_francisco)
+	else:
+		positions.append(pos_star_francisco)
+	if !has_luis:
+		positions.append(pos_luis)
+	else:
+		positions.append(pos_star_luis)
+	
+	# Obtém a posição com o menor caminho
+	var best_i : int = -1 # '-1' significa que o caminho não está inicializado e, portanto, precisa ser inicializado
+	var path : Array[Vector2i]
+	for i in range(0, 3):
+		# Calcula o caminho para a i-ésima posição. Se
+		# esse caminho for menor que o atual, define ele
+		# como o menor.
+		var curr_path : Array[Vector2i] = _calculate_path(from, positions[i])
+		if (best_i == -1) or curr_path.size() < path.size():
+			best_i = i
+			path = curr_path
+	
+	_pathfind(from, positions[best_i], show_first)
+
+			
+		
+		
+	
+	

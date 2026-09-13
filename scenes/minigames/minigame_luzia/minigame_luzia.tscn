@@ -315,3 +315,5 @@ texture = ExtResource("16_xo3sy")
 z_index = -2
 position = Vector2(7312.5, 562.5)
 texture = ExtResource("17_saydg")
+
+[node name="PathfinderPoints" type="Node2D" parent="." unique_id=987828616]
