@@ -1,49 +1,51 @@
 [gd_scene format=3 uid="uid://bq0hvgjehacve"]
 
 [ext_resource type="Script" uid="uid://cli6ntwb6yxup" path="res://scenes/map/map.gd" id="1_mgs8m"]
-[ext_resource type="Texture2D" uid="uid://hqdkg05r0yy3" path="res://sprites/map/map1.png" id="2_mrjnl"]
-[ext_resource type="Texture2D" uid="uid://cxce0mj8non5e" path="res://sprites/map/map2.png" id="3_rqo2c"]
-[ext_resource type="Texture2D" uid="uid://2r5yiorne17r" path="res://sprites/map/map3.png" id="4_e07uo"]
-[ext_resource type="Texture2D" uid="uid://cq3qh20h81pj3" path="res://sprites/map/map4.png" id="5_58ndj"]
-[ext_resource type="Texture2D" uid="uid://7uenhlky4aa5" path="res://sprites/map/map5.png" id="6_nykyp"]
-[ext_resource type="Texture2D" uid="uid://di137t2e783eb" path="res://sprites/map/map6.png" id="7_uclq6"]
-[ext_resource type="Texture2D" uid="uid://dg1s5fy4fcb54" path="res://sprites/map/map7.png" id="8_30ska"]
-[ext_resource type="Texture2D" uid="uid://br71rnf6c4qqd" path="res://sprites/map/map8.png" id="9_tmgcv"]
+[ext_resource type="Texture2D" uid="uid://hqdkg05r0yy3" path="res://sprites/map/map2.png" id="2_mrjnl"]
+[ext_resource type="Texture2D" uid="uid://cxce0mj8non5e" path="res://sprites/map/map3.png" id="3_rqo2c"]
+[ext_resource type="Texture2D" uid="uid://2r5yiorne17r" path="res://sprites/map/map4.png" id="4_e07uo"]
+[ext_resource type="Texture2D" uid="uid://cq3qh20h81pj3" path="res://sprites/map/map5.png" id="5_58ndj"]
+[ext_resource type="Texture2D" uid="uid://7uenhlky4aa5" path="res://sprites/map/map1.png" id="6_nykyp"]
+[ext_resource type="Texture2D" uid="uid://dg1s5fy4fcb54" path="res://sprites/map/map8.png" id="8_30ska"]
+[ext_resource type="Texture2D" uid="uid://br71rnf6c4qqd" path="res://sprites/map/map7.png" id="9_tmgcv"]
 [ext_resource type="Script" uid="uid://1neh7ky2veon" path="res://scenes/map/map_node.gd" id="10_omedl"]
-[ext_resource type="Texture2D" uid="uid://2100rt7r3r5q" path="res://sprites/map/map9.png" id="10_rqo2c"]
+[ext_resource type="Texture2D" uid="uid://2100rt7r3r5q" path="res://sprites/map/map6.png" id="10_rqo2c"]
 [ext_resource type="Script" uid="uid://db0j0gq3i6832" path="res://scenes/map/nikole.gd" id="11_3xi6f"]
 [ext_resource type="Texture2D" uid="uid://dfeyjo2mnrmlv" path="res://sprites/map/npcs/nikole.png" id="13_78kcs"]
 [ext_resource type="Texture2D" uid="uid://dyewfnukfbxss" path="res://sprites/map/npcs/dona_luzia.png" id="14_2kc6l"]
+[ext_resource type="Texture2D" uid="uid://t0o7yeajbqa" path="res://sprites/map/npcs/leonardo.png" id="14_e07uo"]
 [ext_resource type="Texture2D" uid="uid://b56qyswhmu100" path="res://sprites/map/npcs/caio.png" id="14_rqo2c"]
+[ext_resource type="Texture2D" uid="uid://cqa1l7sin5v5s" path="res://sprites/map/npcs/francisco.png" id="15_58ndj"]
+[ext_resource type="Texture2D" uid="uid://wc38btkrp2b" path="res://sprites/map/npcs/alex.png" id="15_e07uo"]
 [ext_resource type="Texture2D" uid="uid://bnqq8uipelgtr" path="res://sprites/map/npcs/joao.png" id="15_rqo2c"]
 
 [sub_resource type="Curve2D" id="Curve2D_crek2"]
 _data = {
-"points": PackedVector2Array(-1429.568, -340.6554, 1429.568, 340.6554, 750, -97, -1224.7313, 1350.7008, 1224.7313, -1350.7008, 6155, -1451)
+"points": PackedVector2Array(-3942.9631, -399.85742, 3942.9631, 399.85742, 750, -97, -1365.4692, 62.289734, 1365.4692, -62.289734, 6228, -1014)
 }
 point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_vt6gj"]
 _data = {
-"points": PackedVector2Array(-1234.9512, -921.61865, 1234.9512, 921.61865, 6155, -1451, -676.7145, -246.45775, 676.7145, 246.45775, 8541, -734, -816.31506, -128.05472, 816.31506, 128.05472, 10363, 345)
+"points": PackedVector2Array(-969.77185, 0.42890167, 969.77185, -0.42890167, 6228, -1014, -676.7145, -246.45775, 676.7145, 246.45775, 8529, -673, -757.11304, -111.90871, 757.11304, 111.90871, 10363, 345)
 }
 point_count = 3
 
 [sub_resource type="Curve2D" id="Curve2D_do0j7"]
 _data = {
-"points": PackedVector2Array(-1276.306, -379.41168, 1276.306, 379.41168, 10363, 345, -961.60284, 984.9954, 961.60284, -984.9954, 14979, -370)
+"points": PackedVector2Array(-1276.306, -379.41168, 1276.306, 379.41168, 10363, 345, -961.60284, 984.9954, 961.60284, -984.9954, 14950, -349)
 }
 point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_sj5qj"]
 _data = {
-"points": PackedVector2Array(-1816.1835, 1217.1796, 1816.1835, -1217.1796, 14979, -370, 1228.243, -2472.973, -1228.243, 2472.973, 18002, 1721)
+"points": PackedVector2Array(-1816.1835, 1217.1796, 1816.1835, -1217.1796, 14950, -349, 1281.5249, -2437.4517, -1281.5249, 2437.4517, 17946, 1721)
 }
 point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_mrjnl"]
 _data = {
-"points": PackedVector2Array(651.84985, -1053.8901, -651.84985, 1053.8901, 18002, 1721, 1532.1853, -190.15614, -1532.1853, 190.15614, 13589, 3602)
+"points": PackedVector2Array(603.9175, -1083.5625, -603.9175, 1083.5625, 17946, 1721, 1532.1853, -190.15614, -1532.1853, 190.15614, 13589, 3602)
 }
 point_count = 2
 
@@ -66,57 +68,51 @@ script = ExtResource("1_mgs8m")
 [node name="Pieces" type="Node2D" parent="." unique_id=1565263921]
 position = Vector2(-294, -45)
 
-[node name="Mapa1" type="Sprite2D" parent="Pieces" unique_id=615680915]
-z_index = -1
-texture = ExtResource("2_mrjnl")
-offset = Vector2(-20, -125)
-
-[node name="Mapa2" type="Sprite2D" parent="Pieces" unique_id=615610437]
-z_index = -1
-position = Vector2(6000, 0)
-texture = ExtResource("3_rqo2c")
-offset = Vector2(-20, -125)
-
-[node name="Mapa3" type="Sprite2D" parent="Pieces" unique_id=709136357]
-z_index = -1
-position = Vector2(12000, 0)
-texture = ExtResource("4_e07uo")
-offset = Vector2(-20, -125)
-
-[node name="Mapa4" type="Sprite2D" parent="Pieces" unique_id=373644834]
-z_index = -1
-position = Vector2(18000, 0)
-texture = ExtResource("5_58ndj")
-offset = Vector2(-20, -125)
-
-[node name="Mapa5" type="Sprite2D" parent="Pieces" unique_id=1292292278]
+[node name="Mapa1" type="Sprite2D" parent="Pieces" unique_id=1292292278]
 z_index = -1
 position = Vector2(6000, -4000)
 texture = ExtResource("6_nykyp")
 offset = Vector2(-20, -125)
 
-[node name="Mapa6" type="Sprite2D" parent="Pieces" unique_id=1567645163]
+[node name="Mapa2" type="Sprite2D" parent="Pieces" unique_id=615680915]
 z_index = -1
-position = Vector2(6000, -8000)
-texture = ExtResource("7_uclq6")
+texture = ExtResource("2_mrjnl")
 offset = Vector2(-20, -125)
 
-[node name="Mapa7" type="Sprite2D" parent="Pieces" unique_id=1155627797]
+[node name="Mapa3" type="Sprite2D" parent="Pieces" unique_id=615610437]
 z_index = -1
-position = Vector2(18000, 4000)
-texture = ExtResource("8_30ska")
+position = Vector2(6000, 0)
+texture = ExtResource("3_rqo2c")
 offset = Vector2(-20, -125)
 
-[node name="Mapa8" type="Sprite2D" parent="Pieces" unique_id=675725030]
+[node name="Mapa4" type="Sprite2D" parent="Pieces" unique_id=709136357]
+z_index = -1
+position = Vector2(12000, 0)
+texture = ExtResource("4_e07uo")
+offset = Vector2(-20, -125)
+
+[node name="Mapa5" type="Sprite2D" parent="Pieces" unique_id=373644834]
+z_index = -1
+position = Vector2(18000, 0)
+texture = ExtResource("5_58ndj")
+offset = Vector2(-20, -125)
+
+[node name="Mapa6" type="Sprite2D" parent="Pieces" unique_id=139966770]
+z_index = -1
+position = Vector2(6000, 4000)
+texture = ExtResource("10_rqo2c")
+offset = Vector2(-20, -125)
+
+[node name="Mapa7" type="Sprite2D" parent="Pieces" unique_id=675725030]
 z_index = -1
 position = Vector2(12000, 4000)
 texture = ExtResource("9_tmgcv")
 offset = Vector2(-20, -125)
 
-[node name="Mapa9" type="Sprite2D" parent="Pieces" unique_id=139966770]
+[node name="Mapa8" type="Sprite2D" parent="Pieces" unique_id=1155627797]
 z_index = -1
-position = Vector2(6000, 4000)
-texture = ExtResource("10_rqo2c")
+position = Vector2(18000, 4000)
+texture = ExtResource("8_30ska")
 offset = Vector2(-20, -125)
 
 [node name="Path" type="Node2D" parent="." unique_id=1350687154]
@@ -130,7 +126,7 @@ path_right = NodePath("../../Paths/Path1")
 node_right = NodePath("../MapNode2")
 
 [node name="MapNode2" type="Node2D" parent="Path/Nodes" unique_id=1279879671 node_paths=PackedStringArray("path_left", "path_right", "node_left", "node_right")]
-position = Vector2(6155, -1451)
+position = Vector2(6228, -1014)
 script = ExtResource("10_omedl")
 path_left = NodePath("../../Paths/Path1")
 path_right = NodePath("../../Paths/Path2")
@@ -152,7 +148,7 @@ dialogue_id = "caio_pre_minigame"
 can_interact = true
 
 [node name="MapNode4" type="Node2D" parent="Path/Nodes" unique_id=1058803581 node_paths=PackedStringArray("path_up", "path_left", "path_right", "path_down", "node_up", "node_left", "node_right", "node_down")]
-position = Vector2(14979, -370)
+position = Vector2(14950, -349)
 script = ExtResource("10_omedl")
 path_up = NodePath("../../Paths/Path4")
 path_left = NodePath("../../Paths/Path3")
@@ -166,7 +162,7 @@ dialogue_id = "joao_pre_minigame"
 can_interact = true
 
 [node name="MapNode5" type="Node2D" parent="Path/Nodes" unique_id=1529243064 node_paths=PackedStringArray("path_up", "path_left", "path_down", "node_up", "node_left", "node_down")]
-position = Vector2(18002, 1721)
+position = Vector2(17946, 1721)
 script = ExtResource("10_omedl")
 path_up = NodePath("../../Paths/Path4")
 path_left = NodePath("../../Paths/Path5")
@@ -192,6 +188,7 @@ path_right = NodePath("../../Paths/Path6")
 node_up = NodePath("../MapNode3")
 node_left = NodePath("../MapNode3")
 node_right = NodePath("../MapNode6")
+dialogue_id = "luzia_completed"
 
 [node name="Paths" type="Node2D" parent="Path" unique_id=1510341413]
 
@@ -249,57 +246,8 @@ offset = Vector2(-20, -125)
 
 [node name="Camera2D" type="Camera2D" parent="Nikole/Path2D/PathFollow2D" unique_id=1718117411]
 process_mode = 3
-zoom = Vector2(0.15, 0.15)
+zoom = Vector2(0.24, 0.24)
 position_smoothing_enabled = true
-
-[node name="Caio" type="Node2D" parent="." unique_id=2012274107]
-position = Vector2(10609, 105)
-
-[node name="Shadow" type="Sprite2D" parent="Caio" unique_id=1914284326]
-modulate = Color(0, 0, 0, 0.30588236)
-z_index = 1
-position = Vector2(67, 160)
-scale = Vector2(3.5554767, 1.2380953)
-offset = Vector2(-20, -125)
-
-[node name="Sprite2D" type="Sprite2D" parent="Caio" unique_id=180133658]
-z_index = 50
-scale = Vector2(-1, 1)
-texture = ExtResource("14_rqo2c")
-offset = Vector2(-5, -110)
-
-[node name="Joao" type="Node2D" parent="." unique_id=583138275]
-position = Vector2(14654, -558)
-scale = Vector2(-1, 1)
-
-[node name="Shadow" type="Sprite2D" parent="Joao" unique_id=1748447363]
-modulate = Color(0, 0, 0, 0.30588236)
-z_index = 1
-position = Vector2(67, 160)
-scale = Vector2(3.5554767, 1.2380953)
-offset = Vector2(-20, -125)
-
-[node name="Sprite2D" type="Sprite2D" parent="Joao" unique_id=1955650647]
-z_index = 50
-scale = Vector2(-1, 1)
-texture = ExtResource("15_rqo2c")
-offset = Vector2(-5, -110)
-
-[node name="DonaLuzia" type="Node2D" parent="." unique_id=2125736831]
-position = Vector2(6631, -1606)
-
-[node name="Shadow" type="Sprite2D" parent="DonaLuzia" unique_id=11705547]
-modulate = Color(0, 0, 0, 0.30588236)
-z_index = 1
-position = Vector2(67, 160)
-scale = Vector2(3.5554767, 1.2380953)
-offset = Vector2(-20, -125)
-
-[node name="Sprite2D" type="Sprite2D" parent="DonaLuzia" unique_id=603875863]
-z_index = 50
-scale = Vector2(-1, 1)
-texture = ExtResource("14_2kc6l")
-offset = Vector2(-5, -110)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=520956887]
 layer = -1
@@ -312,3 +260,107 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.60784316, 0.81960785, 0.41568628, 1)
+
+[node name="npc" type="Node2D" parent="." unique_id=93395397]
+
+[node name="Caio" type="Node2D" parent="npc" unique_id=2012274107]
+position = Vector2(10609, 105)
+
+[node name="Shadow" type="Sprite2D" parent="npc/Caio" unique_id=1914284326]
+modulate = Color(0, 0, 0, 0.30588236)
+z_index = 1
+position = Vector2(67, 160)
+scale = Vector2(3.5554767, 1.2380953)
+offset = Vector2(-20, -125)
+
+[node name="Sprite2D" type="Sprite2D" parent="npc/Caio" unique_id=180133658]
+z_index = 50
+scale = Vector2(-1, 1)
+texture = ExtResource("14_rqo2c")
+offset = Vector2(-5, -110)
+
+[node name="Leonardo" type="Node2D" parent="npc" unique_id=405018188]
+position = Vector2(17407, 1623)
+rotation = 3.1415927
+scale = Vector2(1, -1)
+
+[node name="Shadow" type="Sprite2D" parent="npc/Leonardo" unique_id=1263899258]
+modulate = Color(0, 0, 0, 0.30588236)
+z_index = 1
+position = Vector2(67, 160)
+scale = Vector2(3.5554767, 1.2380953)
+offset = Vector2(-20, -125)
+
+[node name="Sprite2D" type="Sprite2D" parent="npc/Leonardo" unique_id=492001391]
+z_index = 50
+scale = Vector2(-1, 1)
+texture = ExtResource("14_e07uo")
+offset = Vector2(-5, -110)
+
+[node name="Francisco" type="Node2D" parent="npc" unique_id=1940497751]
+position = Vector2(10087, 3239)
+
+[node name="Shadow" type="Sprite2D" parent="npc/Francisco" unique_id=768097861]
+modulate = Color(0, 0, 0, 0.30588236)
+z_index = 1
+position = Vector2(67, 160)
+scale = Vector2(3.5554767, 1.2380953)
+offset = Vector2(-20, -125)
+
+[node name="Sprite2D" type="Sprite2D" parent="npc/Francisco" unique_id=2050251298]
+z_index = 50
+scale = Vector2(-1, 1)
+texture = ExtResource("15_58ndj")
+offset = Vector2(-5, -110)
+
+[node name="Alex" type="Node2D" parent="npc" unique_id=742610899]
+position = Vector2(13565, 3998)
+
+[node name="Shadow" type="Sprite2D" parent="npc/Alex" unique_id=895346016]
+modulate = Color(0, 0, 0, 0.30588236)
+z_index = 1
+position = Vector2(67, 160)
+scale = Vector2(3.5554767, 1.2380953)
+offset = Vector2(-20, -125)
+
+[node name="Sprite2D" type="Sprite2D" parent="npc/Alex" unique_id=1096906891]
+z_index = 50
+scale = Vector2(-1, 1)
+texture = ExtResource("15_e07uo")
+offset = Vector2(-5, -110)
+
+[node name="Joao" type="Node2D" parent="npc" unique_id=583138275]
+position = Vector2(14654, -558)
+rotation = 3.1415927
+scale = Vector2(1, -1)
+
+[node name="Shadow" type="Sprite2D" parent="npc/Joao" unique_id=1748447363]
+modulate = Color(0, 0, 0, 0.30588236)
+z_index = 1
+position = Vector2(67, 160)
+scale = Vector2(3.5554767, 1.2380953)
+offset = Vector2(-20, -125)
+
+[node name="Sprite2D" type="Sprite2D" parent="npc/Joao" unique_id=1955650647]
+z_index = 50
+scale = Vector2(-1, 1)
+texture = ExtResource("15_rqo2c")
+offset = Vector2(-5, -110)
+
+[node name="DonaLuzia" type="Node2D" parent="npc" unique_id=2125736831]
+position = Vector2(5907, -1214)
+rotation = 3.1415927
+scale = Vector2(1, -1)
+
+[node name="Shadow" type="Sprite2D" parent="npc/DonaLuzia" unique_id=11705547]
+modulate = Color(0, 0, 0, 0.30588236)
+z_index = 1
+position = Vector2(67, 160)
+scale = Vector2(3.5554767, 1.2380953)
+offset = Vector2(-20, -125)
+
+[node name="Sprite2D" type="Sprite2D" parent="npc/DonaLuzia" unique_id=603875863]
+z_index = 50
+scale = Vector2(-1, 1)
+texture = ExtResource("14_2kc6l")
+offset = Vector2(-5, -110)
