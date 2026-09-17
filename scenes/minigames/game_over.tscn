@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://3ogfv3sla2h4"]
+
+[ext_resource type="Theme" uid="uid://gmvr2lib4uc3" path="res://themes/default.tres" id="1_ddsiy"]
+[ext_resource type="Script" uid="uid://ctsgy8x03jagx" path="res://scenes/minigames/game_over.gd" id="1_y2jg7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_esmnr"]
+
+[node name="GameOver" type="CanvasLayer" unique_id=849362953]
+script = ExtResource("1_y2jg7")
+
+[node name="Control" type="Control" parent="." unique_id=432784376]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.0
+offset_top = 151.0
+offset_right = 1.0
+offset_bottom = 191.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=383429857]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -68.0
+offset_top = -30.0
+offset_right = 68.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TentarNovamente" type="Button" parent="Control/HBoxContainer" unique_id=1090493932]
+custom_minimum_size = Vector2(230, 42)
+layout_mode = 2
+
+[node name="TentarNovamente" type="RichTextLabel" parent="Control/HBoxContainer/TentarNovamente" unique_id=2030079430]
+layout_mode = 0
+offset_right = 230.0
+offset_bottom = 42.0
+mouse_filter = 2
+theme = ExtResource("1_ddsiy")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "Tentar Novamente"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Espaco" type="Panel" parent="Control/HBoxContainer" unique_id=869958346]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_esmnr")
+
+[node name="Sair" type="Button" parent="Control/HBoxContainer" unique_id=1347240173]
+custom_minimum_size = Vector2(48, 42)
+layout_mode = 2
+
+[node name="Sair" type="RichTextLabel" parent="Control/HBoxContainer/Sair" unique_id=368814685]
+layout_mode = 0
+offset_right = 48.0
+offset_bottom = 42.0
+mouse_filter = 2
+theme = ExtResource("1_ddsiy")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "Sair"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Control/HBoxContainer/TentarNovamente" to="." method="_on_try_again_pressed"]
+[connection signal="pressed" from="Control/HBoxContainer/Sair" to="." method="_on_exit_pressed"]
