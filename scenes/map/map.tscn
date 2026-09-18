@@ -170,6 +170,8 @@ path_down = NodePath("../../Paths/Path5")
 node_up = NodePath("../MapNode4")
 node_left = NodePath("../MapNode6")
 node_down = NodePath("../MapNode6")
+dialogue_id = "leonardo_pre_minigame"
+can_interact = true
 
 [node name="MapNode6" type="Node2D" parent="Path/Nodes" unique_id=1482406757 node_paths=PackedStringArray("path_left", "path_right", "node_left", "node_right")]
 position = Vector2(13589, 3602)

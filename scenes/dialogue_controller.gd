@@ -9,6 +9,8 @@ var dialogues = {}
 var active_dialogue : DialogueString = null
 var current_line = 0;
 
+signal dialogue_finished
+
 
 func _ready() -> void:
 	read_dialogue_file()
@@ -33,6 +35,7 @@ func next_line(idx : int = current_line + 1):
 	current_line = idx
 	if current_line >= active_dialogue.lines.size():
 		end_dialogue()
+		emit_signal("dialogue_finished")
 		return
 
 	dialogue_text.text = "[font_size=36][color=#60bbff]" + active_dialogue.lines[current_line].name + "\n[font_size=28][color=black]" + active_dialogue.lines[current_line].text

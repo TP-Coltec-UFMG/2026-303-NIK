@@ -344,7 +344,8 @@
 		"condition": {
 			"data": "caio_minigame_completed",
 			"value": "false",
-			"else": "caio_completed"},
+			"else": "caio_completed"
+		},
 		"lines": [
 			{
 				"name": "Nikole",
@@ -493,6 +494,215 @@
 			{
 				"name": "Caio",
 				"text": "Parece que a sua ajuda trouxe um tchã a mais, tá ligado?"
+			}
+		],
+		"redirect": "map"
+	},
+
+
+	{
+		"id": "leonardo_pre_minigame",
+		"condition": {
+			"data": "leonardo_minigame_completed",
+			"value": "false",
+			"else": "leonardo_completed"
+		},
+		"lines": [
+			{
+				"name": "Nikole",
+				"text": "Bom dia, seu Léo! Como o senhor está?"
+			},
+			{
+				"name": "Leonardo",
+				"text": "Bom dia, Nikole! Tudo bem sim, e com você? Aproveitando o dia?"
+			},
+			{
+				"name": "Nikole",
+				"text": "Tudo bem também, obrigada por perguntar!"
+			},
+			{
+				"name": "Nikole",
+				"text": "Estou aproveitando sim. Tirando um dia de folga para colocar o papo em dia com o pessoal da cidade. Sabe como é, né?"
+			},
+			{
+				"name": "Leonardo",
+				"text": "Ô se sei viu! Já faço isso todos os dias há 10 anos. Como sou aposentando, posso ficar aqui e bater papo com quem passar."
+			},
+			{
+				"name": "Nikole",
+				"text": "Até imagino... Mas afinal, o senhor trabalhava com o quê mesmo?"
+			},
+			{
+				"name": "Leonardo",
+				"text": "Você acreditaria se eu te contasse que era um professor de português?"
+			},
+			{
+				"name": "Nikole",
+				"text": "Mas é claro, seu Léo! Sempre fui curiosa sobre seus conhecimentos. Agora sei o porquê!"
+			},
+			{
+				"name": "Leonardo",
+				"text": "Pois é né. Mas confesso que foi difícil me adaptar… Eu era o único professor negro na escola."
+			},
+			{
+				"name": "Nikole",
+				"text": "Ah… Eu entendo…"
+			},
+			{
+				"name": "Leonardo",
+				"text": "Lidar com isso era complicado. Eu passava o dia todo escutando certas expressões dos meus colegas que serviam apenas para me ridicularizar."
+			},
+			{
+				"name": "Leonardo",
+				"text": "Mas apesar disso, segui firme e continuei trabalhando com amor. Afinal, convenhamos, eu era o melhor professor daquela escola! Os alunos me amavam!"
+			},
+			{
+				"name": "Nikole",
+				"text": "Fico feliz pelo senhor! Ainda bem que não usam mais essas expressões hoje em dia."
+			},
+			{
+				"name": "Leonardo",
+				"text": "É justamente aí que está o problema. Veja bem: toda essa situação que eu passei me motivou a pesquisar e estudar mais sobre a língua."
+			},
+			{
+				"name": "Leonardo",
+				"text": "E por isso posso dizer que apenas trocar uma expressão por outra não é o suficiente."
+			},
+			{
+				"name": "Nikole",
+				"text": "Mas por que não seria, seu Léo? Há tempos eu não escuto uma expressão racista… As pessoas estão mudando."
+			},
+			{
+				"name": "Leonardo",
+				"text": "Essas expressões podem não ser usadas, mas quem disse que ainda não há racismo na língua? Olha só…"
+			}
+		],
+		"redirect": "minigame_leonardo"
+	},
+
+	{
+		"id": "leonardo_minigame_dialogue_1",
+		"condition": {},
+		"lines": [
+			{
+				"name": "Leonardo",
+				"text": "Existem 3 tipos de racismo na língua: os racismos “na”, “pela” e “através” da língua."
+			}
+		]
+	},
+
+	{
+		"id": "leonardo_minigame_dialogue_2",
+		"condition": {},
+		"lines": [
+			{
+				"name": "Leonardo",
+				"text": "O racismo “na” língua é representado pelas expressões diretas de caráter racista."
+			}
+		]
+	},
+
+	{
+		"id": "leonardo_minigame_dialogue_3",
+		"condition": {},
+		"lines": [
+			{
+				"name": "Leonardo",
+				"text": "O racismo “pela” língua é caracterizado pelo uso de metáforas como forma de ataque."
+			}
+		]
+	},
+
+	{
+		"id": "leonardo_minigame_dialogue_4",
+		"condition": {},
+		"lines": [
+			{
+				"name": "Leonardo",
+				"text": "E por fim, o racismo “através” da língua é aquele que invalida o falar negro se comparado ao branco."
+			}
+		]
+	},
+
+	{
+		"id": "leonardo_minigame_dialogue_5",
+		"condition": {},
+		"lines": [
+			{
+				"name": "Leonardo",
+				"text": "Esse último é o mais profundo e sério dos problemas, pois é ele que mantém a presença do racismo na língua."
+			}
+		]
+	},
+
+	{
+		"id": "leonardo_minigame_dialogue_6",
+		"condition": {},
+		"lines": [
+			{
+				"name": "Leonardo",
+				"text": "Isso acontece, porque ele engessa o racismo estrutural na fala, dando mais material para o prolongamento do racismo."
+			}
+		]
+	},
+
+	{
+		"id": "leonardo_minigame_dialogue_7",
+		"condition": {},
+		"lines": [
+			{
+				"name": "Leonardo",
+				"text": "E é justamente ele que continua presente na nossa sociedade…"
+			}
+		]
+	},
+
+	{
+		"id": "leonardo_post_minigame",
+		"condition": {
+			"data": "leonardo_minigame_completed",
+			"value": "true",
+			"else": "leonardo_pre_minigame"
+		},
+		"lines": [
+			{
+				"name": "Nikole",
+				"text": "Que interessante… Então quer dizer que não adianta apenas mudar a superfície, né? Precisamos também olhar para as raízes."
+			},
+			{
+				"name": "Leonardo",
+				"text": "Isso mesmo, minha filha! Se a origem dessas expressões não for analisada e entendida, o racismo na fala voltará a aparecer! É como dizem, o problema deve ser cortado pela raiz."
+			},
+			{
+				"name": "Nikole",
+				"text": "Você é mesmo um ótimo professor, seu Léo! Agradeço pela aula. Pode deixar que prestarei mais atenção nas conversas que eu tenho agora."
+			},
+			{
+				"name": "Leonardo",
+				"text": "Feliz por ter gostado! Posso não estar nos meus melhores dias fisicamente, mas o cérebro é com certeza o músculo que nunca parei de treinar!"
+			},
+			{
+				"name": "Nikole",
+				"text": "Realmente! Obrigado de novo. Nossa conversa foi incrível como de costume. Adeus, seu Léo!"
+			},
+			{
+				"name": "Leonardo",
+				"text": "Tchau, Nikole!"
+			}
+		],
+		"redirect": "map"
+	},
+
+	{
+		"id": "leonardo_completed",
+		"lines": [
+			{
+				"name": "Leonardo",
+				"text": "Zzzzzzzzzzzz..."
+			},
+			{
+				"name": "Leonardo",
+				"text": "Zzzzzzzz..."
 			}
 		],
 		"redirect": "map"

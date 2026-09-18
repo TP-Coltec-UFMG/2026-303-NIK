@@ -23,7 +23,7 @@ func move() -> void:
 	tween = create_tween()
 	tween.set_trans(Tween.TRANS_LINEAR)
 	
-	tween.tween_property(self, "position", target_pos, 5)
+	tween.tween_property(self, "position", target_pos, 3)
 	tween.finished.connect(_on_tween_finished)
 
 func _on_tween_finished() -> void:

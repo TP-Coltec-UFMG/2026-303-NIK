@@ -7,6 +7,7 @@ const speed = 20.0
 const radius : float = 338.7/2
 var animation_progress : float = 0
 var walking_animation_weight : float = 0
+var points : int = 0
 
 var current_angle = 0
 var target_angle
@@ -22,10 +23,8 @@ func _process(delta: float) -> void:
 
 	sprite.rotation = current_angle + PI / 2
 	position = Vector2(cos(current_angle) * radius + joao.position.x, sin(current_angle) * radius + joao.position.y)
-	# if position.x <= joao.position.x: x_direction = -1
-	# else: x_direction = 1
-	# scale.x = x_direction
 	
 func _on_area_entered(area: Area2D) -> void:
 	if area is Thought:
+		if area.damage: points += 1
 		area.destroy()

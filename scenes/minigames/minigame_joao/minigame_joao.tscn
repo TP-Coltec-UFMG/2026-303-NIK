@@ -13,34 +13,38 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ob7ed"]
 size = Vector2(120, 20)
 
+[sub_resource type="LabelSettings" id="LabelSettings_8iq46"]
+font_size = 30
+
 [node name="Protector" type="Node2D" unique_id=1650022209]
 script = ExtResource("1_k5nnu")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1880343103]
-position = Vector2(3048, 1715)
+position = Vector2(639.5, 359.44995)
 position_smoothing_enabled = true
 
 [node name="Background" type="Sprite2D" parent="Camera2D" unique_id=26465363]
 z_index = -10
 texture = ExtResource("2_jmh7e")
 
-[node name="ThoughtGenerator" type="Node2D" parent="Camera2D" unique_id=882556118 node_paths=PackedStringArray("joao")]
+[node name="ThoughtGenerator" type="Node2D" parent="Camera2D" unique_id=882556118 node_paths=PackedStringArray("joao", "label_points")]
 script = ExtResource("5_ok8qm")
 thought_scene = ExtResource("7_2vsbs")
 good_thought_textures = Array[Texture2D]([ExtResource("6_ok8qm")])
 bad_thought_textures = Array[Texture2D]([ExtResource("8_po32r")])
 joao = NodePath("../../Joao")
+label_points = NodePath("../../CanvasLayer/Label")
 
 [node name="Joao" type="Sprite2D" parent="." unique_id=1054201552]
 z_index = 1
-position = Vector2(3048, 1715)
+position = Vector2(639.5, 359.44995)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_brdkm")
 offset = Vector2(0, -80)
 metadata/_edit_group_ = true
 
 [node name="Nikole" type="Area2D" parent="." unique_id=661086269 node_paths=PackedStringArray("joao")]
-position = Vector2(3048, 1575.55)
+position = Vector2(639.5, 220)
 script = ExtResource("1_gx4cg")
 joao = NodePath("../Joao")
 metadata/_edit_group_ = true
@@ -53,5 +57,15 @@ offset = Vector2(-13.5, -15)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Nikole" unique_id=1531547180]
 position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_ob7ed")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1708274768]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=1693216234]
+offset_left = 1182.0
+offset_top = 29.0
+offset_right = 1245.0
+offset_bottom = 69.0
+text = "0/30"
+label_settings = SubResource("LabelSettings_8iq46")
 
 [connection signal="area_entered" from="Nikole" to="Nikole" method="_on_area_entered"]
