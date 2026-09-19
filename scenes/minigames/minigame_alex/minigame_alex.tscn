@@ -3,6 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://c6cnqrnppfpu2" path="res://sprites/minigames/minigame_alex/background.png" id="1_i2a8w"]
 [ext_resource type="Script" uid="uid://do2dfv8t4ja1k" path="res://scenes/minigames/minigame_alex/task_generator.gd" id="2_6i0g0"]
 [ext_resource type="Texture2D" uid="uid://bcqolfqc52j3l" path="res://sprites/minigames/minigame_alex/letter.png" id="3_ewbu0"]
+[ext_resource type="Script" uid="uid://bp0aidx1n1pbv" path="res://scenes/minigames/minigame_alex/skill_check.gd" id="4_6dts0"]
+[ext_resource type="Texture2D" uid="uid://duupd47daodrt" path="res://sprites/minigames/minigame_alex/skill_check_bar_border.png" id="5_n2v2g"]
+[ext_resource type="Texture2D" uid="uid://wxyjfm7h6yq" path="res://sprites/minigames/minigame_alex/skill_check_bar_background.png" id="5_q57vx"]
 
 [node name="MinigameAlex" type="Node2D" unique_id=812858914]
 
@@ -36,3 +39,58 @@ position = Vector2(-355.5, -195.44995)
 
 [node name="LowerRightCorner" type="Marker2D" parent="Camera2D/TaskGenerator" unique_id=1594371789]
 position = Vector2(262.5, 107.55005)
+
+[node name="SkillCheck" type="Node2D" parent="Camera2D" unique_id=345064300]
+script = ExtResource("4_6dts0")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D/SkillCheck" unique_id=52577233]
+
+[node name="Bar" type="TextureRect" parent="Camera2D/SkillCheck/CanvasLayer" unique_id=1883645602]
+clip_children = 2
+custom_maximum_size = Vector2(1000, 100)
+clip_contents = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -255.0
+offset_top = -131.0
+offset_right = 255.0
+offset_bottom = -71.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("5_q57vx")
+stretch_mode = 5
+
+[node name="Area" type="ColorRect" parent="Camera2D/SkillCheck/CanvasLayer/Bar" unique_id=944365473]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 9.0
+offset_right = 80.0
+offset_bottom = 51.0
+color = Color(0, 1, 0, 0.39607844)
+
+[node name="Pointer" type="ColorRect" parent="Camera2D/SkillCheck/CanvasLayer/Bar" unique_id=778236036]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 9.0
+offset_right = 19.0
+offset_bottom = 51.0
+color = Color(1, 0, 0, 1)
+
+[node name="BarBorder" type="TextureRect" parent="Camera2D/SkillCheck/CanvasLayer" unique_id=426584609]
+custom_maximum_size = Vector2(1000, 100)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -255.0
+offset_top = -131.0
+offset_right = 255.0
+offset_bottom = -71.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("5_n2v2g")
+stretch_mode = 5
