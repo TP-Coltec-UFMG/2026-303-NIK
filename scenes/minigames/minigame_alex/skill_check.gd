@@ -30,8 +30,8 @@ const SKILL_CHECK_TRY_COOLDOWN : float = 0.7
 @onready var pointer_rect: ColorRect = $CanvasLayer/Control/Bar/Pointer
 
 # Ponto horizontal mínimo e máximo da barra (retirando a borda)
-@onready var bar_min_x : float = 10
-@onready var bar_max_x : float = $CanvasLayer/Control/Bar.size.x - 20 + 1
+@onready var bar_min_x : float = 10 - 1
+@onready var bar_max_x : float = $CanvasLayer/Control/Bar.size.x - 10 + 1
 
 # Tempo até a próxima skill check
 var next_check_time : float = 99
@@ -86,7 +86,7 @@ func skill_check() -> void:
 	# Coloca o ponteiro em uma posição aleatória com uma direção aleatória
 	var pointer_pos: Vector2 = get_random_position_on_bar()
 	pointer_rect.position = pointer_pos
-	pointer_dir = -1 if randf() > 0.5 else 1
+	pointer_dir = -1 if randi() % 2 else 1
 
 	# Obtém a largura da área
 	var width : float = randf_range(MIN_AREA_SIZE, MAX_STARTER_SIZE)
@@ -136,41 +136,74 @@ func end_skill_check() -> void:
 func fail_skill_check() -> void:
 	input_on_cooldown = true
 
-	const animation_time : float = SKILL_CHECK_TRY_COOLDOWN * 0.4
+	const shake_time : float = SKILL_CHECK_TRY_COOLDOWN * 0.4
+	const shake_step : float = shake_time / 5.0
 
-	# Faz uma animação pra mostrar que errou
+	# Animação quando erra:
+	# - Aumenta a área;
+	# - Tremida + mudança de cor.
 	var tween : Tween = create_tween()
 
-	# Muda a cor
-	tween\
-		.tween_property(bar, 'modulate', Color("#ffb7b5"), animation_time/2)\
-		.set_trans(Tween.TRANS_EXPO)\
-		.set_ease(Tween.EASE_IN)
+	# Aumenta a área (para facilitar pro jogador)
+	increment_area_size(tween)
 
-	# Muda a posição (no Control, para mudar a posição da borda também)
+	# Faz uma tremida curta e uma mudança de cor para mostrar que errou.
 	tween\
-		.tween_property(control, 'offset_transform_position', Vector2(-40, -19), animation_time/2)\
-		.set_trans(Tween.TRANS_EXPO)\
+		.tween_property(bar, 'modulate', Color("#ffb7b5"), shake_step)\
+		.set_trans(Tween.TRANS_SINE)\
+		.set_ease(Tween.EASE_OUT)
+
+	var dir1 : int = -1 if randi() % 2 else 1
+	var dir2 : int = -1 if randi() % 2 else 1
+	
+	tween.parallel().tween_property(control, 'offset_transform_position', Vector2(-8 * dir1, 3 * dir2), shake_step)
+	tween.tween_property(control, 'offset_transform_position', Vector2(8 * dir1, -3 * dir2), shake_step)
+
+	tween.tween_property(control, 'offset_transform_position', Vector2(-5 * dir2, 4 * dir1), shake_step)
+	tween.tween_property(control, 'offset_transform_position', Vector2(5 * dir2, -4 * dir1), shake_step)
+
+	tween.tween_property(control, 'offset_transform_position', Vector2(0, 0), shake_step)
+	tween.parallel().tween_property(bar, 'modulate', Color.WHITE, shake_step)\
+		.set_trans(Tween.TRANS_SINE)\
 		.set_ease(Tween.EASE_IN)
 
 	await tween.finished
 
-	var tween2 : Tween = create_tween()
-
-	# Coloca a cor normal de volta
-	tween2.tween_property(bar, 'modulate', Color("#ffffff"), animation_time/2)\
-		.set_trans(Tween.TRANS_ELASTIC)\
-		.set_ease(Tween.EASE_IN)
-
-	# Coloca a posição normal de volta
-	tween2\
-		.tween_property(control, 'offset_transform_position', Vector2(0, 0), animation_time/2)\
-		.set_trans(Tween.TRANS_ELASTIC)\
-		.set_ease(Tween.EASE_IN)
-
-	await tween2.finished
-
 	input_on_cooldown = false
+
+# Aumenta a área, tentando incrementar igualmente em cada lado (partindo o tamanho). 
+# Se não conseguir aumentar em um dos dois lados, passa o que não conseguiu pro outro.
+# Faz isso com animação ou não (se o tween for oferecido)
+func increment_area_size(tween : Tween = null) -> void:
+	var curr_size : float = curr_area_end - curr_area_start
+
+	var max_size : float = minf(MAX_AREA_SIZE, bar_max_x - bar_min_x)
+
+	# Tamanho que vai aumentar
+	var dsize : float = randf_range(curr_size / 2.67, curr_size / 3.67)
+	var new_size : float = minf(curr_size + dsize, max_size)
+
+	# O quanto vai aumentar
+	var size_increase : float = new_size - curr_size
+
+	# Aumenta para os dois lados, mantendo o centro sempre que houver espaço
+	var new_start : float = clampf(
+		curr_area_start - size_increase/2,
+		bar_min_x,
+		bar_max_x - new_size
+	)
+	var new_end : float = new_start + new_size
+
+	curr_area_start = new_start
+	curr_area_end = new_end
+
+	if tween:
+		tween.parallel().tween_property(area_rect, "position:x", new_start, 0.2)
+		tween.parallel().tween_property(area_rect, "size:x", new_size, 0.2)
+	else:
+		area_rect.position.x = new_start
+		area_rect.size.x = new_size
+
 
 # Retorna uma posição aleatória na barra, de forma que ela 
 # esteja verticalmente centralizada.
