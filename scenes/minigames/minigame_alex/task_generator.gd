@@ -21,10 +21,11 @@ const TASK_ANIMATION_TIME : float = 0.5
 var tasks_completed : int = 0
 
 # Tempo até a próxima tarefa ser gerada
-var next_task_time : float = -1
+var next_task_time : float = 99
 
 func _ready() -> void:
-	pass # Replace with function body.
+	next_task_time = randf_range(MIN_TIME_BETWEEN_TASKS, MAX_TIME_BETWEEN_TASKS)
+
 
 func _process(delta: float) -> void:
 	next_task_time -= delta
@@ -71,6 +72,7 @@ func get_random_position_on_monitor() -> Vector2:
 # Quando uma task for clicada, essa função será chamada
 func on_task_clicked(task_button : TextureButton) -> void:
 	tasks_completed += 1
+	task_button.disabled = true
 
 	var tween : Tween = task_button.create_tween()
 	tween\

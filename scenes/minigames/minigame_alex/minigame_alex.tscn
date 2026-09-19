@@ -45,25 +45,33 @@ script = ExtResource("4_6dts0")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D/SkillCheck" unique_id=52577233]
 
-[node name="Bar" type="TextureRect" parent="Camera2D/SkillCheck/CanvasLayer" unique_id=1883645602]
+[node name="Control" type="Control" parent="Camera2D/SkillCheck/CanvasLayer" unique_id=51217341]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+offset_transform_enabled = true
+
+[node name="Bar" type="TextureRect" parent="Camera2D/SkillCheck/CanvasLayer/Control" unique_id=1883645602]
 clip_children = 2
 custom_maximum_size = Vector2(1000, 100)
 clip_contents = true
+layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -255.0
-offset_top = -131.0
-offset_right = 255.0
-offset_bottom = -71.0
+offset_left = 365.0
+offset_top = 549.0
+offset_right = 875.0
+offset_bottom = 609.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("5_q57vx")
 stretch_mode = 5
 
-[node name="Area" type="ColorRect" parent="Camera2D/SkillCheck/CanvasLayer/Bar" unique_id=944365473]
+[node name="Area" type="ColorRect" parent="Camera2D/SkillCheck/CanvasLayer/Control/Bar" unique_id=944365473]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 9.0
@@ -71,25 +79,26 @@ offset_right = 80.0
 offset_bottom = 51.0
 color = Color(0, 1, 0, 0.39607844)
 
-[node name="Pointer" type="ColorRect" parent="Camera2D/SkillCheck/CanvasLayer/Bar" unique_id=778236036]
+[node name="Pointer" type="ColorRect" parent="Camera2D/SkillCheck/CanvasLayer/Control/Bar" unique_id=778236036]
 layout_mode = 0
-offset_left = 9.0
+offset_left = 90.0
 offset_top = 9.0
-offset_right = 19.0
+offset_right = 95.0
 offset_bottom = 51.0
 color = Color(1, 0, 0, 1)
 
-[node name="BarBorder" type="TextureRect" parent="Camera2D/SkillCheck/CanvasLayer" unique_id=426584609]
+[node name="BarBorder" type="TextureRect" parent="Camera2D/SkillCheck/CanvasLayer/Control" unique_id=426584609]
 custom_maximum_size = Vector2(1000, 100)
+layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -255.0
-offset_top = -131.0
-offset_right = 255.0
-offset_bottom = -71.0
+offset_left = 365.0
+offset_top = 549.0
+offset_right = 875.0
+offset_bottom = 609.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("5_n2v2g")

@@ -4,40 +4,179 @@ extends Node2D
 # Tempo mínimo/máximo entre skill checks (em segundos)
 # NOTA: se já houver uma skill check rolando, o código vai esperar
 #	    a atual acabar para, em seguida, lançar a próxima
-const MIN_TIME_BETWEEN_CHECKS : float = 1
+const MIN_TIME_BETWEEN_CHECKS : float = 2
 const MAX_TIME_BETWEEN_CHECKS : float = 4
 
-# A barra da skill check
-@onready var bar : TextureRect = $CanvasLayer/Bar
-@onready var bar_border : TextureRect = $CanvasLayer/CanvasLayer/BarBorder
-# Área de acerto
-@onready var area_rect: ColorRect = $CanvasLayer/Bar/Area
-# Ponteiro
-@onready var pointer_rect: ColorRect = $CanvasLayer/Bar/CanvasLayer/Bar/Pointer
+# Tamanho mínimo e máximo da área de acerto (em pixels)
+const MIN_AREA_SIZE : float = 80
+const MAX_AREA_SIZE : float = 490 # um pouquinho menor que a barra toda
+const MAX_STARTER_SIZE : float = MAX_AREA_SIZE / 4 # maior tamanho q a área pode começar com
 
-# Ponto mínimo e máximo da barra
-@onready var bar_min_x : float = 0
-@onready var bar_max_x : float = bar.size.x
+# Velocidade do ponteiro (em pixels/segundo)
+const POINTER_SPEED : float = 240
+
+# Tempo mínimo entre tentativas (em segundos)
+const SKILL_CHECK_TRY_COOLDOWN : float = 0.7
+
+# Canvas Layer com a interface do skill check
+@onready var canvas_layer : CanvasLayer = $CanvasLayer
+# Ponto de Controle (pai de toda a interface)
+@onready var control : Control = $CanvasLayer/Control
+# Barra (em que ficarão a área de acerto e o ponteiro)
+@onready var bar : TextureRect = $CanvasLayer/Control/Bar
+# Área de acerto
+@onready var area_rect: ColorRect = $CanvasLayer/Control/Bar/Area
+# Ponteiro
+@onready var pointer_rect: ColorRect = $CanvasLayer/Control/Bar/Pointer
+
+# Ponto horizontal mínimo e máximo da barra (retirando a borda)
+@onready var bar_min_x : float = 10
+@onready var bar_max_x : float = $CanvasLayer/Control/Bar.size.x - 20 + 1
 
 # Tempo até a próxima skill check
-var next_check_time : float = -1
+var next_check_time : float = 99
 
 # Se há uma skill check atualmente
 var skill_check_enabled : bool = false
 
-func _ready() -> void:
-	area_rect.visible = false
-	pointer_rect.visible = false
+# Se a entrada está em cooldown ()
+var input_on_cooldown : bool = true
 
+# Informações da área da skill check atual
+var curr_area_start : float = -1 # ponto de início da área
+var curr_area_end : float = -1 # ponto de fim da área
+
+# A direção do ponteiro (1 = direita; -1 = esquerda)
+var pointer_dir : int = 1
+
+func _ready() -> void:
+	canvas_layer.visible = false
+	input_on_cooldown = false
+	next_check_time = randf_range(MIN_TIME_BETWEEN_CHECKS, MAX_TIME_BETWEEN_CHECKS)
 
 func _process(delta: float) -> void:
-	next_check_time -= delta
+	if not skill_check_enabled:
+		next_check_time -= delta
 
-	if next_check_time < 0 and not skill_check_enabled:
+	# Se chegou o momento de criar uma skill check,
+	# obtém um novo tempo e gera a skill check
+	if next_check_time < 0:
 		next_check_time = randf_range(MIN_TIME_BETWEEN_CHECKS, MAX_TIME_BETWEEN_CHECKS)
+
 		skill_check()
+		return
+	
+	# Se não houver uma skill check atualmente, retorna
+	if not skill_check_enabled: return
 
+	# Se chegou até aqui, não criou uma nova skill check 
+	# e há uma skill check atualmente. Então, atualiza-a
+	tick_skill_check(delta)
 
+func _input(event: InputEvent) -> void:
+	if input_on_cooldown: return
 
+	if event.is_action_pressed('interact'):
+		check_pointer_on_area()
+
+# Função que faz uma skill check aparecer
 func skill_check() -> void:
-	pass
+	skill_check_enabled = true
+
+	# Coloca o ponteiro em uma posição aleatória com uma direção aleatória
+	var pointer_pos: Vector2 = get_random_position_on_bar()
+	pointer_rect.position = pointer_pos
+	pointer_dir = -1 if randf() > 0.5 else 1
+
+	# Obtém a largura da área
+	var width : float = randf_range(MIN_AREA_SIZE, MAX_STARTER_SIZE)
+
+	# Obtém a posição da origem da área
+	var p1 : Vector2 = get_random_position_on_bar(0, width)
+	curr_area_start = p1.x
+	curr_area_end = p1.x + width
+	
+	# Coloca a área com as bordas em p1 e p2
+	area_rect.position = p1
+	area_rect.size = Vector2(width, area_rect.size.y) # obs: mantém a posição y
+	
+	# Faz os trem aparecer
+	canvas_layer.visible = true
+
+# Atualiza a skill check atual
+func tick_skill_check(delta: float) -> void:
+	# Movimenta o ponteiro
+	var dx : float = delta * POINTER_SPEED * pointer_dir # Obtém a distância movimentada pelo ponteiro
+	pointer_rect.position.x = clampf(pointer_rect.position.x + dx, bar_min_x, bar_max_x)
+	if pointer_rect.position.x == bar_max_x:
+		pointer_dir = -1
+	elif pointer_rect.position.x == bar_min_x:
+		pointer_dir = 1
+
+# Verifica se o ponteiro está dentro da área
+func check_pointer_on_area() -> void:
+	var pos_x : float = pointer_rect.position.x
+
+	# Verifica se o ponteiro está na área (considerando toda a largura do ponteiro)
+	# NOTA: poderia ter usado clampf() tbm pra verificar (se o resultado 
+	# 		do clampf(pos_x, curr_area_start - pointer_rect.size.x, curr_area_end + pointer_rect.size.x) == pos_x), mas 
+	# 		assim é mais bonitinho. (tava pensando sobre minha hootie fruit favorita e veio essa forma de verificar)
+	if (curr_area_start - pointer_rect.size.x) <= pos_x and pos_x <= (curr_area_end + pointer_rect.size.x):
+		end_skill_check()
+	else:
+		fail_skill_check()
+
+# Função chamada quando o jogador acerta o skill check
+func end_skill_check() -> void:
+	skill_check_enabled = false
+	input_on_cooldown = false
+	canvas_layer.visible = false
+
+# Função chamada quando o jogador erra o skill check
+func fail_skill_check() -> void:
+	input_on_cooldown = true
+
+	const animation_time : float = SKILL_CHECK_TRY_COOLDOWN * 0.4
+
+	# Faz uma animação pra mostrar que errou
+	var tween : Tween = create_tween()
+
+	# Muda a cor
+	tween\
+		.tween_property(bar, 'modulate', Color("#ffb7b5"), animation_time/2)\
+		.set_trans(Tween.TRANS_EXPO)\
+		.set_ease(Tween.EASE_IN)
+
+	# Muda a posição (no Control, para mudar a posição da borda também)
+	tween\
+		.tween_property(control, 'offset_transform_position', Vector2(-40, -19), animation_time/2)\
+		.set_trans(Tween.TRANS_EXPO)\
+		.set_ease(Tween.EASE_IN)
+
+	await tween.finished
+
+	var tween2 : Tween = create_tween()
+
+	# Coloca a cor normal de volta
+	tween2.tween_property(bar, 'modulate', Color("#ffffff"), animation_time/2)\
+		.set_trans(Tween.TRANS_ELASTIC)\
+		.set_ease(Tween.EASE_IN)
+
+	# Coloca a posição normal de volta
+	tween2\
+		.tween_property(control, 'offset_transform_position', Vector2(0, 0), animation_time/2)\
+		.set_trans(Tween.TRANS_ELASTIC)\
+		.set_ease(Tween.EASE_IN)
+
+	await tween2.finished
+
+	input_on_cooldown = false
+
+# Retorna uma posição aleatória na barra, de forma que ela 
+# esteja verticalmente centralizada.
+# Caso deseje alterar o intervalo, altere `offset`.
+func get_random_position_on_bar(min_offset: float = 0, max_offset: float = 0) -> Vector2:
+	return Vector2(
+		randf_range(bar_min_x + min_offset, bar_max_x - max_offset),
+		9 # centralizado
+	)
