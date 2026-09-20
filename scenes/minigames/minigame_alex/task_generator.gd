@@ -8,6 +8,9 @@ const MAX_TIME_BETWEEN_TASKS : float = 2
 # Tempo que da animação da tarefa aparecer/desaparecer
 const TASK_ANIMATION_TIME : float = 0.5
 
+# Quantas tarefas o usuário precisa fazer para terminar o minigame
+const NUMBER_OF_TASKS : int = 30
+
 # Cantos seguros do monitor (que serão usados para colocar as tarefas)
 @onready var safe_monitor_upper_left : Vector2 = $UpperLeftCorner.get_global_transform_with_canvas().origin
 @onready var safe_monitor_lower_right : Vector2 = $LowerRightCorner.get_global_transform_with_canvas().origin
@@ -16,7 +19,11 @@ const TASK_ANIMATION_TIME : float = 0.5
 @onready var letter_example : TextureButton = $LetterExample
 # Lugar onde vai colocar as tarefas
 @onready var tasks_node : CanvasLayer = $Tasks
+# Texto que mostra o progresso do minigame
+@onready var progress_label : Label = $Tasks/HBoxContainer/ProgressLabel
 
+# Quantidade de tasks que foram criadas
+var tasks_generated : int = 0
 # Quantidade de tasks que foram completadas
 var tasks_completed : int = 0
 
@@ -25,13 +32,14 @@ var next_task_time : float = 99
 
 func _ready() -> void:
 	next_task_time = randf_range(MIN_TIME_BETWEEN_TASKS, MAX_TIME_BETWEEN_TASKS)
+	progress_label.text = "0/%d" % NUMBER_OF_TASKS
 
 
 func _process(delta: float) -> void:
 	next_task_time -= delta
 
 	# Se já deu tempo de gerar outra tarefa, gera ela
-	if next_task_time < 0:
+	if next_task_time < 0 and tasks_generated < NUMBER_OF_TASKS:
 		# Obtém um novo tempo para a próxima tarefa 
 		next_task_time = randf_range(MIN_TIME_BETWEEN_TASKS, MAX_TIME_BETWEEN_TASKS)
 		# Gera a carta
@@ -58,10 +66,12 @@ func generate_letter() -> void:
 	# Coloca o clone no tasks_node
 	tasks_node.add_child(clone)
 
+	tasks_generated += 1
+
 # Obtém uma posição aleatória na área segura do monitor.
 # NOTA: idealmente, essa função deveria retornar uma posição que não
-#       está sendo usada por nada (não tem uma tarefa tocando aquela posição).
-#       No entanto, isso é realmente necessário? 😭
+#       está sendo usada por nada (não tem uma tarefa tocando aquela posição)
+#       para evitar sobreposições. No entanto, isso é realmente necessário? 😭
 func get_random_position_on_monitor() -> Vector2:
 	return Vector2(
 		randf_range(safe_monitor_upper_left.x, safe_monitor_lower_right.x),
@@ -74,6 +84,9 @@ func on_task_clicked(task_button : TextureButton) -> void:
 	tasks_completed += 1
 	task_button.disabled = true
 
+	# Atualiza o label do progresso
+	progress_label.text = "%d/%d" % [tasks_completed, NUMBER_OF_TASKS]
+
 	var tween : Tween = task_button.create_tween()
 	tween\
 		.tween_property(task_button, "scale", Vector2(0, 0), TASK_ANIMATION_TIME)\
@@ -82,3 +95,10 @@ func on_task_clicked(task_button : TextureButton) -> void:
 
 	# Quando terminar o tween, dá queue_free
 	tween.tween_callback(task_button.queue_free)
+	tween.tween_callback(check_if_finished_minigame)
+
+# Verifica se o minigame já acabou (ou seja, se o jogador já
+# fez uma quantidade específica de tarefas)
+func check_if_finished_minigame() -> void:
+	if tasks_completed >= NUMBER_OF_TASKS:
+		GameManager.load_map()

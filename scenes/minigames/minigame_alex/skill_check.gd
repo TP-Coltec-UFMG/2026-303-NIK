@@ -4,12 +4,12 @@ extends Node2D
 # Tempo mínimo/máximo entre skill checks (em segundos)
 # NOTA: se já houver uma skill check rolando, o código vai esperar
 #	    a atual acabar para, em seguida, lançar a próxima
-const MIN_TIME_BETWEEN_CHECKS : float = 2
-const MAX_TIME_BETWEEN_CHECKS : float = 4
+const MIN_TIME_BETWEEN_CHECKS : float = 4
+const MAX_TIME_BETWEEN_CHECKS : float = 7
 
 # Tamanho mínimo e máximo da área de acerto (em pixels)
 const MIN_AREA_SIZE : float = 80
-const MAX_AREA_SIZE : float = 490 # um pouquinho menor que a barra toda
+const MAX_AREA_SIZE : float = 500 # um pouquinho menor que a barra toda
 const MAX_STARTER_SIZE : float = MAX_AREA_SIZE / 4 # maior tamanho q a área pode começar com
 
 # Velocidade do ponteiro (em pixels/segundo)
@@ -18,20 +18,35 @@ const POINTER_SPEED : float = 240
 # Tempo mínimo entre tentativas (em segundos)
 const SKILL_CHECK_TRY_COOLDOWN : float = 0.7
 
+# Configurações do gradiente da tela amaldiçoada
+const CURSE_GRADIENT_POINT : int = 1
+const CURSE_GRADIENT_START : float = 0.9 #0.32743362
+const CURSE_GRADIENT_END : float = 0.3
+const CURSE_TWEEN_DURATION : float = 4.0
+
 # Canvas Layer com a interface do skill check
 @onready var canvas_layer : CanvasLayer = $CanvasLayer
 # Ponto de Controle (pai de toda a interface)
 @onready var control : Control = $CanvasLayer/Control
+# Ponto de Controle da tela amaldiçoada
+@onready var wicked_control : Control = $CanvasLayer/Control
 # Barra (em que ficarão a área de acerto e o ponteiro)
 @onready var bar : TextureRect = $CanvasLayer/Control/Bar
 # Área de acerto
 @onready var area_rect: ColorRect = $CanvasLayer/Control/Bar/Area
 # Ponteiro
 @onready var pointer_rect: ColorRect = $CanvasLayer/Control/Bar/Pointer
+# Gradiente da tela amaldiçoada
+@onready var gradient: TextureRect = $CanvasLayer/Wicked/Gradient
+@onready var gradient_texture: GradientTexture2D = gradient.texture as GradientTexture2D
 
 # Ponto horizontal mínimo e máximo da barra (retirando a borda)
 @onready var bar_min_x : float = 10 - 1
-@onready var bar_max_x : float = $CanvasLayer/Control/Bar.size.x - 10 + 1
+@onready var bar_max_x : float = $CanvasLayer/Control/Bar.size.x - 10
+
+@onready var bad_chars : Array[TextureRect] = [
+	
+]
 
 # Tempo até a próxima skill check
 var next_check_time : float = 99
@@ -49,8 +64,12 @@ var curr_area_end : float = -1 # ponto de fim da área
 # A direção do ponteiro (1 = direita; -1 = esquerda)
 var pointer_dir : int = 1
 
+var curse_tween : Tween = null
+
 func _ready() -> void:
 	canvas_layer.visible = false
+	control.visible = false
+	wicked_control.visible = false
 	input_on_cooldown = false
 	next_check_time = randf_range(MIN_TIME_BETWEEN_CHECKS, MAX_TIME_BETWEEN_CHECKS)
 
@@ -62,7 +81,8 @@ func _process(delta: float) -> void:
 	# obtém um novo tempo e gera a skill check
 	if next_check_time < 0:
 		next_check_time = randf_range(MIN_TIME_BETWEEN_CHECKS, MAX_TIME_BETWEEN_CHECKS)
-
+		curse_screen()
+		await get_tree().create_timer(1).timeout
 		skill_check()
 		return
 	
@@ -74,13 +94,15 @@ func _process(delta: float) -> void:
 	tick_skill_check(delta)
 
 func _input(event: InputEvent) -> void:
-	if input_on_cooldown: return
+	if input_on_cooldown or not skill_check_enabled: return
 
 	if event.is_action_pressed('interact'):
 		check_pointer_on_area()
 
 # Função que faz uma skill check aparecer
 func skill_check() -> void:
+	if skill_check_enabled: return
+
 	skill_check_enabled = true
 
 	# Coloca o ponteiro em uma posição aleatória com uma direção aleatória
@@ -101,10 +123,12 @@ func skill_check() -> void:
 	area_rect.size = Vector2(width, area_rect.size.y) # obs: mantém a posição y
 	
 	# Faz os trem aparecer
-	canvas_layer.visible = true
+	control.visible = true
 
 # Atualiza a skill check atual
 func tick_skill_check(delta: float) -> void:
+	if not skill_check_enabled: return
+
 	# Movimenta o ponteiro
 	var dx : float = delta * POINTER_SPEED * pointer_dir # Obtém a distância movimentada pelo ponteiro
 	pointer_rect.position.x = clampf(pointer_rect.position.x + dx, bar_min_x, bar_max_x)
@@ -130,6 +154,9 @@ func check_pointer_on_area() -> void:
 func end_skill_check() -> void:
 	skill_check_enabled = false
 	input_on_cooldown = false
+	control.visible = false
+	await uncurse_screen()
+	wicked_control.visible = false
 	canvas_layer.visible = false
 
 # Função chamada quando o jogador erra o skill check
@@ -143,9 +170,6 @@ func fail_skill_check() -> void:
 	# - Aumenta a área;
 	# - Tremida + mudança de cor.
 	var tween : Tween = create_tween()
-
-	# Aumenta a área (para facilitar pro jogador)
-	increment_area_size(tween)
 
 	# Faz uma tremida curta e uma mudança de cor para mostrar que errou.
 	tween\
@@ -166,6 +190,9 @@ func fail_skill_check() -> void:
 	tween.parallel().tween_property(bar, 'modulate', Color.WHITE, shake_step)\
 		.set_trans(Tween.TRANS_SINE)\
 		.set_ease(Tween.EASE_IN)
+
+	# Aumenta a área (para facilitar pro jogador)
+	increment_area_size(tween)
 
 	await tween.finished
 
@@ -203,6 +230,60 @@ func increment_area_size(tween : Tween = null) -> void:
 	else:
 		area_rect.position.x = new_start
 		area_rect.size.x = new_size
+
+# Amaldiçoa a tela
+func curse_screen() -> void:
+	if curse_tween and curse_tween.is_valid():
+		curse_tween.kill()
+
+	canvas_layer.visible = true
+
+	# Define os pontos iniciais
+	gradient_texture.gradient.set_offset(CURSE_GRADIENT_POINT, CURSE_GRADIENT_START)
+	gradient.modulate.a = 0
+
+	curse_tween = create_tween()
+
+	curse_tween.parallel().tween_property(
+		gradient, 
+		'modulate:a',
+		1,
+		CURSE_TWEEN_DURATION / 4
+	)
+	curse_tween.parallel().tween_method(
+		Callable(self, "set_curse_gradient_offset"),
+		gradient_texture.gradient.get_offset(CURSE_GRADIENT_POINT),
+		CURSE_GRADIENT_END,
+		CURSE_TWEEN_DURATION
+	)
+
+# Define o offset do gradiente
+func set_curse_gradient_offset(offset: float) -> void:
+	gradient_texture.gradient.set_offset(CURSE_GRADIENT_POINT, offset)
+
+# Retira a tela amaldiçoada
+func uncurse_screen() -> void:
+	if curse_tween and curse_tween.is_valid():
+		curse_tween.kill()
+
+	curse_tween = create_tween()
+
+	curse_tween.parallel().tween_property(
+		gradient, 
+		'modulate:a',
+		0,
+		CURSE_TWEEN_DURATION / 6
+	)
+
+	curse_tween.parallel().tween_method(
+		Callable(self, "set_curse_gradient_offset"),
+		gradient_texture.gradient.get_offset(CURSE_GRADIENT_POINT),
+		CURSE_GRADIENT_START,
+		CURSE_TWEEN_DURATION / 6
+	)
+
+	await curse_tween.finished
+
 
 
 # Retorna uma posição aleatória na barra, de forma que ela 
