@@ -9,6 +9,7 @@ font_color = Color(0, 0, 0, 1)
 
 [node name="DialogueController" type="CanvasLayer" unique_id=2074955925]
 process_mode = 3
+layer = 4
 script = ExtResource("1_86us4")
 
 [node name="DialogueBox" type="TextureRect" parent="." unique_id=1943485536]
