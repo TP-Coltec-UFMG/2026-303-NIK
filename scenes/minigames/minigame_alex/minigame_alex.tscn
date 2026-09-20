@@ -90,35 +90,17 @@ position = Vector2(262.5, 107.55005)
 [node name="SkillCheck" type="Node2D" parent="Camera2D" unique_id=345064300]
 script = ExtResource("4_6dts0")
 
-[node name="BadChar1" type="TextureRect" parent="Camera2D/SkillCheck" unique_id=1686470266]
-offset_left = -531.49994
-offset_top = -449.44995
-offset_right = -382.49994
-offset_bottom = -371.44995
-scale = Vector2(0.6, 0.6)
-texture = ExtResource("6_t2n66")
-stretch_mode = 5
-
-[node name="BadChar2" type="TextureRect" parent="Camera2D/SkillCheck" unique_id=312940864]
-offset_left = -440.5
-offset_top = -446.44995
-offset_right = -291.5
-offset_bottom = -368.44995
-scale = Vector2(0.6, 0.6)
-texture = ExtResource("5_ekmet")
-stretch_mode = 5
-
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D/SkillCheck" unique_id=52577233]
 layer = 2
 
-[node name="Wicked" type="Control" parent="Camera2D/SkillCheck/CanvasLayer" unique_id=689341512]
+[node name="Cursed" type="Control" parent="Camera2D/SkillCheck/CanvasLayer" unique_id=689341512]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="Gradient" type="TextureRect" parent="Camera2D/SkillCheck/CanvasLayer/Wicked" unique_id=1559292799]
+[node name="Gradient" type="TextureRect" parent="Camera2D/SkillCheck/CanvasLayer/Cursed" unique_id=1559292799]
 layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
@@ -126,7 +108,7 @@ mouse_filter = 2
 texture = SubResource("GradientTexture2D_esmnr")
 stretch_mode = 5
 
-[node name="Control" type="Control" parent="Camera2D/SkillCheck/CanvasLayer/Wicked" unique_id=421781582]
+[node name="BadChars" type="Control" parent="Camera2D/SkillCheck/CanvasLayer/Cursed" unique_id=421781582]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -189,4 +171,24 @@ offset_bottom = 609.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("5_n2v2g")
+stretch_mode = 5
+
+[node name="BadChars" type="Node" parent="Camera2D/SkillCheck" unique_id=25599476]
+
+[node name="BadChar1" type="TextureRect" parent="Camera2D/SkillCheck/BadChars" unique_id=1686470266]
+offset_left = 108.00006
+offset_top = -90.0
+offset_right = 257.00006
+offset_bottom = -12.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("6_t2n66")
+stretch_mode = 5
+
+[node name="BadChar2" type="TextureRect" parent="Camera2D/SkillCheck/BadChars" unique_id=312940864]
+offset_left = 199.0
+offset_top = -87.0
+offset_right = 348.0
+offset_bottom = -9.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("5_ekmet")
 stretch_mode = 5
