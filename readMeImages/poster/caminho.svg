@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 12594 7456" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,1411.637395,-3120.452126)">
+        <g transform="matrix(0.990911,0,0,0.995989,55.965558,30.79077)">
+            <g id="caminho" transform="matrix(6.838544,0,0,6.803676,1997.158721,6614.39378)">
+                <g transform="matrix(0.147571,0,0,0.147571,-300.303354,-976.723196)">
+                    <path d="M-1113.679,3645.947C1319.178,3163.921 3782.534,3439.625 4703.355,4550.794C5485.246,5494.315 5554.541,10356.837 3450.31,10277.464C2498.541,10241.562 917.138,10180.747 -483.631,10239.316M10883.756,6331.491C10047.493,6679.934 5548.323,7450.732 5056.733,5428.993" style="fill:none;stroke:rgb(55,49,78);stroke-width:595.92px;"/>
+                </g>
+                <g transform="matrix(0.147571,0,0,0.147571,-300.303354,-976.723196)">
+                    <path d="M-1113.679,3645.947C1319.178,3163.921 3782.534,3439.625 4703.355,4550.794C5485.246,5494.315 5554.541,10356.837 3450.31,10277.464C2498.541,10241.562 917.138,10180.747 -483.631,10239.316M10883.756,6331.491C10047.493,6679.934 5548.323,7450.732 5056.733,5428.993" style="fill:none;stroke:rgb(225,206,147);stroke-width:500px;"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
