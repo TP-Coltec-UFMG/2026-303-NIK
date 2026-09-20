@@ -17,6 +17,7 @@ func _ready() -> void:
 
 func create_thought() -> void:
 	while(true):
+		points = int(label_points.text.replace("/30", ""))
 		if generate:
 			if points < flag:
 				var angle = atan2(randfn(0.0, 0.2), randfn(0.0, 1.0))
@@ -32,8 +33,8 @@ func create_thought() -> void:
 				thought.position = Vector2(cos(angle) * radius, sin(angle) * radius)
 				thought.move()
 				thought.reset_physics_interpolation()
-				if thought.damage: thought.destroyed.connect(count_destroyed)
 				thoughts.append(thought)
+				thought.arrived.connect(arrivedPoints.bind(thought))
 				thought.tree_exited.connect(func(): thoughts.erase(thought))
 				
 				await get_tree().create_timer(1).timeout
@@ -57,6 +58,7 @@ func create_thought() -> void:
 			else:
 				await get_tree().process_frame
 
-func count_destroyed() -> void:
-	points += 1
+func arrivedPoints(thought : Thought) -> void:
+	if thought.damage and points > 0: points -= 1
+	elif !thought.damage: points += 1
 	label_points.text = str(points) + "/30"

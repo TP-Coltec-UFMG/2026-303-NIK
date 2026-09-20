@@ -3,6 +3,26 @@
 [ext_resource type="Texture2D" uid="uid://c6cnqrnppfpu2" path="res://sprites/minigames/minigame_alex/background.png" id="1_i2a8w"]
 [ext_resource type="Script" uid="uid://do2dfv8t4ja1k" path="res://scenes/minigames/minigame_alex/task_generator.gd" id="2_6i0g0"]
 [ext_resource type="Texture2D" uid="uid://bcqolfqc52j3l" path="res://sprites/minigames/minigame_alex/letter.png" id="3_ewbu0"]
+[ext_resource type="Script" uid="uid://bp0aidx1n1pbv" path="res://scenes/minigames/minigame_alex/skill_check.gd" id="4_6dts0"]
+[ext_resource type="Texture2D" uid="uid://br3agkc616ekb" path="res://sprites/minigames/minigame_alex/bad_2.png" id="5_ekmet"]
+[ext_resource type="Texture2D" uid="uid://duupd47daodrt" path="res://sprites/minigames/minigame_alex/skill_check_bar_border.png" id="5_n2v2g"]
+[ext_resource type="Texture2D" uid="uid://wxyjfm7h6yq" path="res://sprites/minigames/minigame_alex/skill_check_bar_background.png" id="5_q57vx"]
+[ext_resource type="Texture2D" uid="uid://ciuisgugpb1ni" path="res://sprites/minigames/minigame_alex/bad_1.png" id="6_t2n66"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ekmet"]
+font_size = 30
+
+[sub_resource type="Gradient" id="Gradient_r2og5"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.67256635, 1)
+colors = PackedColorArray(0.15648, 0.1296, 0.18, 0.3372549, 0.15648, 0.1296, 0.18, 0.5058824, 0.15738, 0.12780002, 0.18, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_esmnr"]
+gradient = SubResource("Gradient_r2og5")
+width = 320
+height = 180
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="MinigameAlex" type="Node2D" unique_id=812858914]
 
@@ -31,8 +51,147 @@ stretch_mode = 5
 
 [node name="Tasks" type="CanvasLayer" parent="Camera2D/TaskGenerator" unique_id=1742699553]
 
+[node name="HBoxContainer" type="HBoxContainer" parent="Camera2D/TaskGenerator/Tasks" unique_id=141540764]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 241.0
+offset_top = 511.0
+offset_right = 406.0
+offset_bottom = 551.0
+grow_horizontal = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+offset_transform_enabled = true
+
+[node name="LetterIcon" type="TextureButton" parent="Camera2D/TaskGenerator/Tasks/HBoxContainer" unique_id=21391051]
+custom_minimum_size = Vector2(40, 0)
+custom_maximum_size = Vector2(97.333, 30)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 8)
+texture_normal = ExtResource("3_ewbu0")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="ProgressLabel" type="Label" parent="Camera2D/TaskGenerator/Tasks/HBoxContainer" unique_id=1257490754]
+layout_mode = 2
+text = "0/30"
+label_settings = SubResource("LabelSettings_ekmet")
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [node name="UpperLeftCorner" type="Marker2D" parent="Camera2D/TaskGenerator" unique_id=1248671742]
 position = Vector2(-355.5, -195.44995)
 
 [node name="LowerRightCorner" type="Marker2D" parent="Camera2D/TaskGenerator" unique_id=1594371789]
 position = Vector2(262.5, 107.55005)
+
+[node name="SkillCheck" type="Node2D" parent="Camera2D" unique_id=345064300]
+script = ExtResource("4_6dts0")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D/SkillCheck" unique_id=52577233]
+layer = 2
+
+[node name="Cursed" type="Control" parent="Camera2D/SkillCheck/CanvasLayer" unique_id=689341512]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Gradient" type="TextureRect" parent="Camera2D/SkillCheck/CanvasLayer/Cursed" unique_id=1559292799]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_esmnr")
+stretch_mode = 5
+
+[node name="BadChars" type="Control" parent="Camera2D/SkillCheck/CanvasLayer/Cursed" unique_id=421781582]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="Camera2D/SkillCheck/CanvasLayer" unique_id=51217341]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+offset_transform_enabled = true
+
+[node name="Bar" type="TextureRect" parent="Camera2D/SkillCheck/CanvasLayer/Control" unique_id=1883645602]
+clip_children = 2
+custom_maximum_size = Vector2(1000, 100)
+clip_contents = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 365.0
+offset_top = 549.0
+offset_right = 875.0
+offset_bottom = 609.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("5_q57vx")
+stretch_mode = 5
+
+[node name="Area" type="ColorRect" parent="Camera2D/SkillCheck/CanvasLayer/Control/Bar" unique_id=944365473]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 9.0
+offset_right = 80.0
+offset_bottom = 51.0
+color = Color(0, 1, 0, 0.39607844)
+
+[node name="Pointer" type="ColorRect" parent="Camera2D/SkillCheck/CanvasLayer/Control/Bar" unique_id=778236036]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 9.0
+offset_right = 95.0
+offset_bottom = 51.0
+color = Color(1, 0, 0, 1)
+
+[node name="BarBorder" type="TextureRect" parent="Camera2D/SkillCheck/CanvasLayer/Control" unique_id=426584609]
+custom_maximum_size = Vector2(1000, 100)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 365.0
+offset_top = 549.0
+offset_right = 875.0
+offset_bottom = 609.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("5_n2v2g")
+stretch_mode = 5
+
+[node name="BadChars" type="Node" parent="Camera2D/SkillCheck" unique_id=25599476]
+
+[node name="BadChar1" type="TextureRect" parent="Camera2D/SkillCheck/BadChars" unique_id=1686470266]
+anchors_preset = -1
+offset_left = 108.00006
+offset_top = -90.0
+offset_right = 257.00006
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("6_t2n66")
+stretch_mode = 5
+
+[node name="BadChar2" type="TextureRect" parent="Camera2D/SkillCheck/BadChars" unique_id=312940864]
+offset_left = 199.0
+offset_top = -87.0
+offset_right = 348.0
+offset_bottom = -9.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("5_ekmet")
+stretch_mode = 5

@@ -4,14 +4,15 @@ class_name Thought extends Area2D
 @export var damage : bool = randf_range(0, 1) < 0.5
 @onready var sprite = $Sprite2D
 var tween : Tween
-signal destroyed
+signal blocked
+signal arrived
 
 func _ready() -> void:
 	if textura:
 		sprite.texture = textura;
 
-func destroy() -> void:
-	emit_signal("destroyed");
+func block() -> void:
+	emit_signal("blocked");
 	queue_free()
 
 func move() -> void:
@@ -27,5 +28,5 @@ func move() -> void:
 	tween.finished.connect(_on_tween_finished)
 
 func _on_tween_finished() -> void:
-	emit_signal("destroyed");
+	emit_signal("arrived");
 	queue_free()
