@@ -176,10 +176,13 @@ stretch_mode = 5
 [node name="BadChars" type="Node" parent="Camera2D/SkillCheck" unique_id=25599476]
 
 [node name="BadChar1" type="TextureRect" parent="Camera2D/SkillCheck/BadChars" unique_id=1686470266]
+anchors_preset = -1
 offset_left = 108.00006
 offset_top = -90.0
 offset_right = 257.00006
 offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("6_t2n66")
 stretch_mode = 5

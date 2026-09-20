@@ -29,8 +29,8 @@ const BAD_CHAR_SPAWN_INTERVAL : float = 0.14
 const BAD_CHAR_AMOUNT_INCREASE_TIME : float = 0.3
 const BAD_CHAR_MAX_AMOUNT : int = 60
 const BAD_CHAR_LIFETIME : float = 0.6
-const BAD_CHAR_SHAKE_DISTANCE : float = 2.0
-const BAD_CHAR_SHAKE_STEP : float = 0.06
+const BAD_CHAR_SHAKE_DISTANCE : float = 6.0
+const BAD_CHAR_SHAKE_STEP : float = 0.09
 
 # Canvas Layer com a interface do skill check
 @onready var canvas_layer : CanvasLayer = $CanvasLayer
@@ -258,7 +258,8 @@ func curse_screen() -> void:
 
 	is_screen_cursed = true
 	bad_chars_cycle_id += 1
-	start_bad_chars(bad_chars_cycle_id)
+	if can_have_bad_chars():
+		start_bad_chars(bad_chars_cycle_id)
 
 	canvas_layer.visible = true
 	wicked_control.visible = true
@@ -290,7 +291,6 @@ func set_curse_gradient_offset(offset: float) -> void:
 func uncurse_screen() -> void:
 	is_screen_cursed = false
 	bad_chars_cycle_id += 1
-	clear_bad_chars()
 
 	if curse_tween and curse_tween.is_valid():
 		curse_tween.kill()
@@ -312,17 +312,20 @@ func uncurse_screen() -> void:
 	)
 
 	await curse_tween.finished
+	clear_bad_chars()
+
 
 
 func start_bad_chars(cycle_id: int) -> void:
-	spawn_bad_char()
-	_run_bad_char_spawner(cycle_id)
+	if can_have_bad_chars():
+		spawn_bad_char()
+		_run_bad_char_spawner(cycle_id)
 
 
 func _run_bad_char_spawner(cycle_id: int) -> void:
 	var elapsed_time := 0.0
 
-	while is_screen_cursed and cycle_id == bad_chars_cycle_id:
+	while is_screen_cursed and cycle_id == bad_chars_cycle_id and can_have_bad_chars():
 		var target_amount := mini(
 			1 + int(elapsed_time / BAD_CHAR_AMOUNT_INCREASE_TIME),
 			BAD_CHAR_MAX_AMOUNT
@@ -336,6 +339,8 @@ func _run_bad_char_spawner(cycle_id: int) -> void:
 
 
 func spawn_bad_char() -> void:
+	if not can_have_bad_chars(): return
+
 	if bad_chars.is_empty() or active_bad_chars.size() >= BAD_CHAR_MAX_AMOUNT:
 		return
 
@@ -414,3 +419,9 @@ func get_random_position_on_bar(min_offset: float = 0, max_offset: float = 0) ->
 		randf_range(bar_min_x + min_offset, bar_max_x - max_offset),
 		9 # centralizado
 	)
+
+# Retorna se pode ter caracteres da tela amaldiçoada na tela
+func can_have_bad_chars() -> bool:
+	return\
+		(not GameManager.settings.has("flashing_elements"))\
+		or (GameManager.settings.has("flashing_elements") and GameManager.settings['flashing_elements'])
