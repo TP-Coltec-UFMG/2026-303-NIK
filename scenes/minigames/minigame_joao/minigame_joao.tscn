@@ -43,9 +43,10 @@ texture = ExtResource("2_brdkm")
 offset = Vector2(0, -80)
 metadata/_edit_group_ = true
 
-[node name="Nikole" type="Area2D" parent="." unique_id=661086269 node_paths=PackedStringArray("joao")]
+[node name="Nikole" type="Area2D" parent="." unique_id=661086269 node_paths=PackedStringArray("label_points", "joao")]
 position = Vector2(639.5, 220)
 script = ExtResource("1_gx4cg")
+label_points = NodePath("../CanvasLayer/Label")
 joao = NodePath("../Joao")
 metadata/_edit_group_ = true
 
