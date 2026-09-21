@@ -22,6 +22,8 @@ const NUMBER_OF_TASKS : int = 30
 # Texto que mostra o progresso do minigame
 @onready var progress_label : Label = $Tasks/HBoxContainer/ProgressLabel
 
+# Se o minigame está rodando (se consegue gerar mais tarefas ou gerar o skill check)
+var is_minigame_running : bool = true
 # Quantidade de tasks que foram criadas
 var tasks_generated : int = 0
 # Quantidade de tasks que foram completadas
@@ -39,7 +41,7 @@ func _process(delta: float) -> void:
 	next_task_time -= delta
 
 	# Se já deu tempo de gerar outra tarefa, gera ela
-	if next_task_time < 0 and tasks_generated < NUMBER_OF_TASKS:
+	if next_task_time < 0 and tasks_generated < NUMBER_OF_TASKS and is_minigame_running:
 		# Obtém um novo tempo para a próxima tarefa 
 		next_task_time = randf_range(MIN_TIME_BETWEEN_TASKS, MAX_TIME_BETWEEN_TASKS)
 		# Gera a carta
@@ -95,10 +97,24 @@ func on_task_clicked(task_button : TextureButton) -> void:
 
 	# Quando terminar o tween, dá queue_free
 	tween.tween_callback(task_button.queue_free)
-	tween.tween_callback(check_if_finished_minigame)
+	tween.tween_callback(handle_task_completion)
 
-# Verifica se o minigame já acabou (ou seja, se o jogador já
-# fez uma quantidade específica de tarefas)
-func check_if_finished_minigame() -> void:
+# Lida com ações quando uma tarefa é completada (como se é 
+# pra mostrar um diálogo ou acabar o minigame)
+func handle_task_completion() -> void:
+	# Se chegou na meta de tarefas
 	if tasks_completed >= NUMBER_OF_TASKS:
 		GameManager.load_map()
+
+	# Lida com os diálogos	
+	if tasks_completed == 10: # se 10 tarefas foram completadas
+		is_minigame_running = false
+		DialogueController.start_dialogue("joao_minigame_dialogue_1")
+		await DialogueController.dialogue_finished
+		is_minigame_running = true
+		
+	elif tasks_completed == 20: # se 20 tarefas foram completadas
+		is_minigame_running = false
+		DialogueController.start_dialogue("joao_minigame_dialogue_2")
+		await DialogueController.dialogue_finished
+		is_minigame_running = true

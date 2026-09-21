@@ -27,8 +27,8 @@ const CURSE_TWEEN_DURATION : float = 4.0
 # Configurações dos bad chars durante a maldição
 const BAD_CHAR_SPAWN_INTERVAL : float = 0.14
 const BAD_CHAR_AMOUNT_INCREASE_TIME : float = 0.3
-const BAD_CHAR_MAX_AMOUNT : int = 60
-const BAD_CHAR_LIFETIME : float = 0.6
+const BAD_CHAR_MAX_AMOUNT : int = 20
+const BAD_CHAR_LIFETIME : float = 0.4
 const BAD_CHAR_SHAKE_DISTANCE : float = 6.0
 const BAD_CHAR_SHAKE_STEP : float = 0.09
 
@@ -93,7 +93,12 @@ func _ready() -> void:
 			c.visible = false
 			c.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
+
 func _process(delta: float) -> void:
+	# Faz nada se o minigame estiver parado
+	if not $"../TaskGenerator".is_minigame_running: 
+		return
+
 	if not skill_check_enabled:
 		next_check_time -= delta
 
