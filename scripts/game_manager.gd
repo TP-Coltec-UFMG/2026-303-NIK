@@ -226,6 +226,7 @@ func create_blank_save():
 	set_game_data("luzia_minigame_completed", false)
 	set_game_data("joao_minigame_completed", false)
 	set_game_data("caio_minigame_completed", false)
+	set_game_data("alex_minigame_completed", false)
 
 # Carrega as músicas, para evitar que elas só sejam
 # carregadas no momento que forem usadas

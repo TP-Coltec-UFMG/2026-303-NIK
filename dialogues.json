@@ -582,7 +582,6 @@
 
 	{
 		"id": "leonardo_minigame_dialogue_1",
-		"condition": {},
 		"lines": [
 			{
 				"name": "Leonardo",
@@ -593,7 +592,6 @@
 
 	{
 		"id": "leonardo_minigame_dialogue_2",
-		"condition": {},
 		"lines": [
 			{
 				"name": "Leonardo",
@@ -604,7 +602,6 @@
 
 	{
 		"id": "leonardo_minigame_dialogue_3",
-		"condition": {},
 		"lines": [
 			{
 				"name": "Leonardo",
@@ -615,7 +612,6 @@
 
 	{
 		"id": "leonardo_minigame_dialogue_4",
-		"condition": {},
 		"lines": [
 			{
 				"name": "Leonardo",
@@ -626,7 +622,6 @@
 
 	{
 		"id": "leonardo_minigame_dialogue_5",
-		"condition": {},
 		"lines": [
 			{
 				"name": "Leonardo",
@@ -637,7 +632,6 @@
 
 	{
 		"id": "leonardo_minigame_dialogue_6",
-		"condition": {},
 		"lines": [
 			{
 				"name": "Leonardo",
@@ -648,7 +642,6 @@
 
 	{
 		"id": "leonardo_minigame_dialogue_7",
-		"condition": {},
 		"lines": [
 			{
 				"name": "Leonardo",
@@ -703,6 +696,168 @@
 			{
 				"name": "Leonardo",
 				"text": "Zzzzzzzz..."
+			}
+		],
+		"redirect": "map"
+	},
+
+
+	{
+		"id": "alex_pre_minigame",
+		"condition": {
+			"data": "alex_minigame_completed",
+			"value": "false",
+			"else": "alex_completed"
+		},
+		"lines": [
+			{
+				"name": "Nikole",
+				"text": "Bom dia! Você é a nova vizinha, né? Seja bem-vinda a nossa vilazinha!"
+			},
+			{
+				"name": "Alex",
+				"text": "Bom dia! Muito obrigada. Acabei de terminar a minha mudança. Esse lugar é adorável!"
+			},
+			{
+				"name": "Nikole",
+				"text": "Você tem razão… Nunca me canso de olhar para a paisagem. Espera só até você conhecer o laguinho que tem aqui perto!"
+			},
+			{
+				"name": "Nikole",
+				"text": "Eu me chamo Nikole, mas todo mundo me chama de Nik. Prazer em te conhecer!"
+			},
+			{
+				"name": "Alex",
+				"text": "Igualmente, Nik! Meu nome é Alex."
+			},
+			{
+				"name": "Nikole",
+				"text": "Mas me conta, Alex, o que te trouxe para a nossa aconchegante vila?"
+			},
+			{
+				"name": "Alex",
+				"text": "Eu estava buscando um recomeço, sabe? E acho que encontrei ele bem aqui, pertinho da natureza."
+			},
+			{
+				"name": "Nikole",
+				"text": "Entendo… Mas o que te levou a mudar de vida? Se não for problema perguntar."
+			},
+			{
+				"name": "Alex",
+				"text": "Claro que não, Nik! A verdade é que eu não me sentia confortável no trabalho que tinha."
+			},
+			{
+				"name": "Alex",
+				"text": "E como isso era a única coisa que me segurava no lugar onde morava, decidi me mudar."
+			},
+			{
+				"name": "Nikole",
+				"text": "Espaços assim não fazem bem para a gente mesmo."
+			},
+			{
+				"name": "Alex",
+				"text": "Não mesmo."
+			}
+		],
+		"redirect": "minigame_leonardo"
+	},
+
+	{
+		"id": "alex_minigame_dialogue_1",
+		"condition": {},
+		"lines": [
+			{
+				"name": "Alex",
+				"text": "Eu tinha a impressão que não era bem-vinda lá."
+			},
+			{
+				"name": "Alex",
+				"text": "Por mais que eu me esforçasse e entregasse um trabalho bem feito, eu nunca recebia o reconhecimento que merecia."
+			},
+			{
+				"name": "Alex",
+				"text": "Enquanto isso, os meus colegas homens eram todos parabenizados por qualquer coisinha que fizessem."
+			}
+		]
+	},
+
+	{
+		"id": "alex_minigame_dialogue_2",
+		"condition": {},
+		"lines": [
+			{
+				"name": "Alex",
+				"text": "Eles se consideravam melhores que eu em tudo lá."
+			},
+			{
+				"name": "Alex",
+				"text": "Sem falar nos comentários horríveis que eu tinha que ficar aturando."
+			},
+			{
+				"name": "Alex",
+				"text": "Eu tinha que trabalhar e me acalmar ao mesmo tempo."
+			}
+		]
+	},
+	
+	{
+		"id": "alex_post_minigame",
+		"condition": {
+			"data": "alex_minigame_completed",
+			"value": "true",
+			"else": "alex_pre_minigame"
+		},
+		"lines": [
+			{
+				"name": "Alex",
+				"text": "Era ruim viu..."
+			},
+			{
+				"name": "Nikole",
+				"text": "Eu sinto muito, Alex. Fico feliz que você tenha se livrado disso."
+			},
+			{
+				"name": "Alex",
+				"text": "Agradeço pelo apoio e por ter me escutado, Nik. Poucas pessoas entenderam minha decisão, já que era um trabalho que até pagava bem."
+			},
+			{
+				"name": "Alex",
+				"text": "Mas tem coisas que o dinheiro não paga, né?"
+			},
+			{
+				"name": "Nikole",
+				"text": "Pois saiba que estou aqui e que te entendo, Alex!"
+			},
+			{
+				"name": "Nikole",
+				"text": "Nós como mulheres não sermos reconhecidas nesse mundo é algo tão… Nem palavras para descrever eu tenho."
+			},
+			{
+				"name": "Nikole",
+				"text": "É um absurdo que isso ainda se mantém!"
+			},
+			{
+				"name": "Alex",
+				"text": "Obrigada, Nikole. Passa aí depois para tomar um café, viu?"
+			},
+			{
+				"name": "Nikole",
+				"text": "Eu vou sim! Espero que você goste da nossa vila! Até mais!"
+			}
+		],
+		"redirect": "map"
+	},
+
+	{
+		"id": "alex_completed",
+		"lines": [
+			{
+				"name": "Alex",
+				"text": "Oi de novo! Ainda estou arrumando as coisas aqui em casa."
+			},
+			{
+				"name": "Alex",
+				"text": "Assim que terminar, te chamo para um café!"
 			}
 		],
 		"redirect": "map"

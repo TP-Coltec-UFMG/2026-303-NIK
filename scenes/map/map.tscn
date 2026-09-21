@@ -180,6 +180,8 @@ path_left = NodePath("../../Paths/Path6")
 path_right = NodePath("../../Paths/Path5")
 node_left = NodePath("../MapNode7")
 node_right = NodePath("../MapNode5")
+dialogue_id = "alex_pre_minigame"
+can_interact = true
 
 [node name="MapNode7" type="Node2D" parent="Path/Nodes" unique_id=1030177186 node_paths=PackedStringArray("path_up", "path_left", "path_right", "node_up", "node_left", "node_right")]
 position = Vector2(9614, 3474)

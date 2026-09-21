@@ -105,16 +105,18 @@ func handle_task_completion() -> void:
 	# Se chegou na meta de tarefas
 	if tasks_completed >= NUMBER_OF_TASKS:
 		GameManager.load_map()
+		GameManager.set_game_data("alex_minigame_completed", true)
+		DialogueController.start_dialogue("alex_post_minigame")
 
 	# Lida com os diálogos	
 	if tasks_completed == 10: # se 10 tarefas foram completadas
 		is_minigame_running = false
-		DialogueController.start_dialogue("joao_minigame_dialogue_1")
+		DialogueController.start_dialogue("alex_minigame_dialogue_1")
 		await DialogueController.dialogue_finished
 		is_minigame_running = true
 		
 	elif tasks_completed == 20: # se 20 tarefas foram completadas
 		is_minigame_running = false
-		DialogueController.start_dialogue("joao_minigame_dialogue_2")
+		DialogueController.start_dialogue("alex_minigame_dialogue_2")
 		await DialogueController.dialogue_finished
 		is_minigame_running = true
