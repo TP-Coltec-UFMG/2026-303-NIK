@@ -1,5 +1,10 @@
 extends Control
 
+# Duração da transição de músicas (em segundos)
+const MUSIC_TRANSITION_DURATION : float = 2.0
+# Volume normal do Music Player (em dB)
+const MUSIC_VOLUME : float = 0 # 0db = volume padrão do arquivo
+
 @onready var animation_player = $UI/AnimationPlayer
 @onready var black_background = $UI/Black
 @onready var music_player = $UI/MusicPlayer
@@ -7,16 +12,20 @@ extends Control
 @onready var menu = $UI/Menu
 @export var cenas : Dictionary[String, PackedScene] = {}
 var current_scene
+var current_music : String
 
 var path_config = "user://config.json"
 var path_save = "user://save.json"
 
 var settings : Dictionary = {}
 var game_data : Dictionary = {}
+var musics : Dictionary = {}
 
 func _ready():
 	load_settings()
 	load_save()
+	load_musics()
+	play_music("neighborhood")
 	# load_scene("Principal")
 
 func load_scene(cena: String) -> void:
@@ -36,14 +45,17 @@ func load_scene(cena: String) -> void:
 	black_background.visible = false
 
 func load_map(idx_node : int = game_data["map_position"]) -> void:
+	play_music("neighborhood")
 	load_scene("map")
+
 	# (get_tree().get_root().get_child(0) as MapController).go_to_node(idx_node)
 
 func apply_settings(config : Dictionary = settings):
 	if menu == null: return
 	settings = config
 
-	if settings.has("volume_music"): music_player.volume_linear = (settings["volume_music"] / 100.0) * (settings["volume_master"] / 100.0)
+	if settings.has("volume_music") and settings.has("volume_master"):
+		music_player.volume_linear = (settings["volume_music"] / 100.0) * (settings["volume_master"] / 100.0)
 	
 	if settings.has("colorblindness_mode"): 
 		match settings["colorblindness_mode"]:
@@ -214,3 +226,77 @@ func create_blank_save():
 	set_game_data("luzia_minigame_completed", false)
 	set_game_data("joao_minigame_completed", false)
 	set_game_data("caio_minigame_completed", false)
+
+# Carrega as músicas, para evitar que elas só sejam
+# carregadas no momento que forem usadas
+func load_musics():
+	const musics_folder_path : String = "res://audio/musics"
+	# Abre a pasta das músicas
+	var dir : DirAccess = DirAccess.open(musics_folder_path) # fopen pros íntimos
+	if not dir: 
+		print("Nao foi possivel carregar as musicas!")
+		return
+
+	# Se chegou até aqui, conseguiu abrir a pasta das músicas
+	dir.list_dir_begin()
+
+	# Obtém o próximo arquivo até acabar os arquivos
+	var file_name : String = dir.get_next()
+	while file_name != "":
+		if not file_name.begins_with(".") and not file_name.ends_with(".import"):
+			# Se for um arquivo (não for uma pasta), adiciona ao dicionário de músicas
+			if not dir.current_is_dir():
+				var formatted_file_name = file_name.get_slice(".", 0)
+				musics[formatted_file_name] = load(musics_folder_path.path_join(file_name))
+				
+		file_name = dir.get_next()
+	dir.list_dir_end() # fclose() pros íntimos
+
+var _music_transition_id : int = 0 # transição
+var _current_music_tween : Tween # tween do fade in / fade out
+# Toca a música com o nome dado, fazendo uma transição suave
+# entre a música que está tocando e a música dada
+func play_music(song_name : String):
+	# Se for a mesma música, não recomeça
+	if current_music == song_name: return
+
+	_music_transition_id += 1
+	var transition_id := _music_transition_id
+	var target_volume_db := MUSIC_VOLUME
+	if settings.has("volume_music") and settings.has("volume_master"):
+		var target_volume_linear = (settings["volume_music"] / 100.0) * (settings["volume_master"] / 100.0)
+		target_volume_db = linear_to_db(maxf(target_volume_linear, 0.0001))
+
+	# Se já tiver transição, para ela
+	if _current_music_tween and _current_music_tween.is_valid():
+		_current_music_tween.kill()
+
+	# Para a música atual linearmente (se houver)
+	if current_music and music_player.playing:
+		_current_music_tween = create_tween()
+		_current_music_tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+		_current_music_tween.tween_property(music_player, 'volume_db', -80, MUSIC_TRANSITION_DURATION / 2)
+		await _current_music_tween.finished
+		if transition_id != _music_transition_id: return
+	
+	var next_music = musics.get(song_name)
+	if next_music == null:
+		push_error("Musica nao encontrada: " + song_name)
+		song_name = "neighborhood"
+		next_music = musics.get(song_name)
+
+	current_music = song_name
+
+	# Para e troca a música
+	music_player.stop()
+	music_player.stream = next_music
+
+	# Inicia a música e toca um fade in
+	music_player.volume_db = -80
+	music_player.play()
+	_current_music_tween = create_tween()
+	_current_music_tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	_current_music_tween.tween_property(music_player, 'volume_db', target_volume_db, MUSIC_TRANSITION_DURATION / 2)
+	await _current_music_tween.finished
+	if transition_id == _music_transition_id:
+		_current_music_tween = null

@@ -31,6 +31,7 @@ var pos_flavia : Vector2i
 @onready var tutorial_button : Button = $UI/Background/Play
 
 func _ready() -> void:
+	GameManager.play_music('head_is_a_maze')
 	tutorial_button.connect("pressed", start_game)
 	get_tree().paused = true
 
