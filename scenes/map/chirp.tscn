@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://d0f14b5iw03qu"]
+
+[ext_resource type="Texture2D" uid="uid://cs1yufex6f7t" path="res://sprites/map/npcs/birds/chirp.png" id="1_pdn3r"]
+[ext_resource type="Script" uid="uid://cg1ddoc4pnrg1" path="res://scenes/map/chirp.gd" id="2_klqpv"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_30ska"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_30ska"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.13962264, 0.28679246, 0.4264151, 0.56226414, 0.71320754, 0.8566038)
+colors = PackedColorArray(1, 0.41000003, 0.41000003, 1, 1, 0.70500004, 0.41000003, 1, 0.99016666, 1, 0.41000003, 1, 0.52528, 0.98, 0.41160002, 1, 0.415, 0.83, 0.78158337, 1, 0.41000003, 0.53783333, 1, 1, 0.60576004, 0.4752, 0.72, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3xi6f"]
+gradient = SubResource("Gradient_30ska")
+
+[sub_resource type="Curve" id="Curve_tmgcv"]
+_limits = [-1.9999998, 2.0, 0.0, 1.0]
+_data = [Vector2(0, -1.9999998), 0.0, 0.0, 0, 0, Vector2(0.17182131, 2), 0.0, 0.0, 0, 0, Vector2(0.3848797, -1.890909), 0.0, 0.0, 0, 0, Vector2(0.60137457, 2), 0.0, 0.0, 0, 0, Vector2(0.862543, -1.9272726), 0.0, 0.0, 0, 0, Vector2(1, 2), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="CurveTexture" id="CurveTexture_tmgcv"]
+curve = SubResource("Curve_tmgcv")
+
+[sub_resource type="Curve" id="Curve_omedl"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0.0034364313, 0), 0.0, 0.0, 0, 0, Vector2(0.2371134, 1.5636363), 0.0, 0.0, 0, 0, Vector2(0.3402062, 0.9999999), -0.10724899, -0.10724899, 0, 0, Vector2(1, 0), -2.2805643, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_omedl"]
+curve = SubResource("Curve_omedl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uclq6"]
+lifetime_randomness = 0.1
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(50, 0, 0)
+angle_min = 1.0728835e-05
+angle_max = 1.0728835e-05
+direction = Vector3(1, -1, 0)
+spread = 10.0
+initial_velocity_max = 500.0
+orbit_velocity_min = 0.1
+orbit_velocity_max = 0.1
+orbit_velocity_curve = SubResource("CurveTexture_tmgcv")
+gravity = Vector3(0, -500, 0)
+scale_curve = SubResource("CurveTexture_omedl")
+color_initial_ramp = SubResource("GradientTexture1D_3xi6f")
+anim_offset_max = 1.0
+
+[node name="Chirp" type="GPUParticles2D" unique_id=2061887969]
+material = SubResource("CanvasItemMaterial_30ska")
+emitting = false
+amount = 1
+texture = ExtResource("1_pdn3r")
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_uclq6")
+script = ExtResource("2_klqpv")

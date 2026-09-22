@@ -161,9 +161,9 @@ func roll_pos_kids() -> void:
 	nikole.targets[1] = $Luis.position 
 	nikole.targets[2] = $Flavia.position
 
-func wait_a_lil_time_and_start_dialogue(dialogua_name : String) -> void:
+func wait_a_lil_time_and_start_dialogue(dialogue_name : String) -> void:
 	await get_tree().create_timer(0.5).timeout
-	DialogueController.start_dialogue(dialogua_name)
+	DialogueController.start_dialogue(dialogue_name)
 
 
 # Grid do pathfinding (que usa A*)
@@ -245,7 +245,11 @@ func _pathfind(from : Vector2i, to : Vector2i, show_first_point : bool = true, p
 		var sprite = Sprite2D.new()
 		sprite.texture = load("res://sprites/minigames/minigame_luzia/path_point.png")
 		sprite.position = real_pos;
-		sprite.modulate = point_color;
+		sprite.self_modulate = point_color;
+
+		var spriteOutline = Sprite2D.new()
+		spriteOutline.texture = load("res://sprites/minigames/minigame_luzia/path_point_outline.png")
+		sprite.add_child(spriteOutline)
 
 		$PathfinderPoints.add_child(sprite)
 
