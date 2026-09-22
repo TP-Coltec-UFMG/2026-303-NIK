@@ -23,7 +23,7 @@ const NUMBER_OF_TASKS : int = 30
 @onready var progress_label : Label = $Tasks/HBoxContainer/ProgressLabel
 
 # Se o minigame está rodando (se consegue gerar mais tarefas ou gerar o skill check)
-var is_minigame_running : bool = true
+var is_minigame_running : bool = false
 # Quantidade de tasks que foram criadas
 var tasks_generated : int = 0
 # Quantidade de tasks que foram completadas
@@ -35,6 +35,9 @@ var next_task_time : float = 99
 func _ready() -> void:
 	next_task_time = randf_range(MIN_TIME_BETWEEN_TASKS, MAX_TIME_BETWEEN_TASKS)
 	progress_label.text = "0/%d" % NUMBER_OF_TASKS
+	is_minigame_running = false
+	tasks_generated = 0
+	tasks_completed = 0
 
 
 func _process(delta: float) -> void:
@@ -120,3 +123,10 @@ func handle_task_completion() -> void:
 		DialogueController.start_dialogue("alex_minigame_dialogue_2")
 		await DialogueController.dialogue_finished
 		is_minigame_running = true
+
+# Quando o botão de play for pressionado
+func _on_play_pressed() -> void:
+	$Tutorial.visible = false
+	# Dá um tempo entre o play e o jogo realmente começar
+	await get_tree().create_timer(1).timeout
+	is_minigame_running = true
