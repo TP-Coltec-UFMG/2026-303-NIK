@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjwegk5kvitxi"
-path="res://.godot/imported/wrong.png-e566b8909b402d656d40ac446ff5d3a8.ctex"
+uid="uid://cs1yufex6f7t"
+path="res://.godot/imported/chirp.png-dcedd59c2657391d8f0f26bfd0e4c4f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/minigames/minigame_alex/wrong.png"
-dest_files=["res://.godot/imported/wrong.png-e566b8909b402d656d40ac446ff5d3a8.ctex"]
+source_file="res://sprites/map/npcs/birds/chirp.png"
+dest_files=["res://.godot/imported/chirp.png-dcedd59c2657391d8f0f26bfd0e4c4f4.ctex"]
 
 [params]
 

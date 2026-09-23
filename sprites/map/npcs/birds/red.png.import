@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjwegk5kvitxi"
-path="res://.godot/imported/wrong.png-e566b8909b402d656d40ac446ff5d3a8.ctex"
+uid="uid://bycl2dvn3hoc"
+path="res://.godot/imported/red.png-9f9dd8b2e9afe9a4165ca1c544eba6cb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/minigames/minigame_alex/wrong.png"
-dest_files=["res://.godot/imported/wrong.png-e566b8909b402d656d40ac446ff5d3a8.ctex"]
+source_file="res://sprites/map/npcs/birds/red.png"
+dest_files=["res://.godot/imported/red.png-9f9dd8b2e9afe9a4165ca1c544eba6cb.ctex"]
 
 [params]
 

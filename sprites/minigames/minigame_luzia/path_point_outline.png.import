@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjwegk5kvitxi"
-path="res://.godot/imported/wrong.png-e566b8909b402d656d40ac446ff5d3a8.ctex"
+uid="uid://db8ufl8en5kbv"
+path="res://.godot/imported/path_point_outline.png-a1640b4e67b3d6dec7ab2adab7cec2b2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/minigames/minigame_alex/wrong.png"
-dest_files=["res://.godot/imported/wrong.png-e566b8909b402d656d40ac446ff5d3a8.ctex"]
+source_file="res://sprites/minigames/minigame_luzia/path_point_outline.png"
+dest_files=["res://.godot/imported/path_point_outline.png-a1640b4e67b3d6dec7ab2adab7cec2b2.ctex"]
 
 [params]
 

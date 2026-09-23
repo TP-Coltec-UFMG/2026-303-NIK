@@ -12,12 +12,22 @@
 [ext_resource type="Texture2D" uid="uid://2100rt7r3r5q" path="res://sprites/map/map6.png" id="10_rqo2c"]
 [ext_resource type="Script" uid="uid://db0j0gq3i6832" path="res://scenes/map/nikole.gd" id="11_3xi6f"]
 [ext_resource type="Texture2D" uid="uid://dfeyjo2mnrmlv" path="res://sprites/map/npcs/nikole.png" id="13_78kcs"]
+[ext_resource type="Script" uid="uid://badcjjys1xjxk" path="res://scenes/map/animated_prop.gd" id="13_nykyp"]
 [ext_resource type="Texture2D" uid="uid://dyewfnukfbxss" path="res://sprites/map/npcs/dona_luzia.png" id="14_2kc6l"]
 [ext_resource type="Texture2D" uid="uid://t0o7yeajbqa" path="res://sprites/map/npcs/leonardo.png" id="14_e07uo"]
 [ext_resource type="Texture2D" uid="uid://b56qyswhmu100" path="res://sprites/map/npcs/caio.png" id="14_rqo2c"]
 [ext_resource type="Texture2D" uid="uid://cqa1l7sin5v5s" path="res://sprites/map/npcs/francisco.png" id="15_58ndj"]
 [ext_resource type="Texture2D" uid="uid://wc38btkrp2b" path="res://sprites/map/npcs/alex.png" id="15_e07uo"]
 [ext_resource type="Texture2D" uid="uid://bnqq8uipelgtr" path="res://sprites/map/npcs/joao.png" id="15_rqo2c"]
+[ext_resource type="Texture2D" uid="uid://cymo0pwdrymxq" path="res://sprites/map/npcs/gabriel.png" id="17_78kcs"]
+[ext_resource type="Texture2D" uid="uid://b2f673bduwoft" path="res://sprites/map/npcs/andré.png" id="18_2kc6l"]
+[ext_resource type="Texture2D" uid="uid://c7l5dnmquxjyb" path="res://sprites/map/npcs/fred.png" id="19_eix18"]
+[ext_resource type="Texture2D" uid="uid://dr4t2k3327bfj" path="res://sprites/map/npcs/birds/brown.png" id="20_30ska"]
+[ext_resource type="Texture2D" uid="uid://bycl2dvn3hoc" path="res://sprites/map/npcs/birds/red.png" id="20_uclq6"]
+[ext_resource type="Texture2D" uid="uid://dvchgi71sj6dw" path="res://sprites/map/npcs/birds/white.png" id="23_omedl"]
+[ext_resource type="Texture2D" uid="uid://mnoyny55aveu" path="res://sprites/map/npcs/birds/black.png" id="24_3xi6f"]
+[ext_resource type="Texture2D" uid="uid://btip70gunrohd" path="res://sprites/map/npcs/birds/yellow.png" id="24_78kcs"]
+[ext_resource type="Texture2D" uid="uid://babiso5qvo2h0" path="res://sprites/map/npcs/birds/green.png" id="25_xks3a"]
 
 [sub_resource type="Curve2D" id="Curve2D_crek2"]
 _data = {
@@ -60,6 +70,46 @@ _data = {
 "points": PackedVector2Array(1557.7024, 823.93536, -1557.7024, -823.93536, 9614, 3474, -971.1613, 833.12726, 971.1613, -833.12726, 10363, 345)
 }
 point_count = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhunq"]
+atlas = ExtResource("20_uclq6")
+region = Rect2(0, 0, 95, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmgcv"]
+atlas = ExtResource("20_30ska")
+region = Rect2(95, 0, 110, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xi6f"]
+atlas = ExtResource("23_omedl")
+region = Rect2(205, 0, 110, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omedl"]
+atlas = ExtResource("24_78kcs")
+region = Rect2(205, 0, 110, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xks3a"]
+atlas = ExtResource("24_3xi6f")
+region = Rect2(205, 0, 110, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78kcs"]
+atlas = ExtResource("25_xks3a")
+region = Rect2(0, 0, 95, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2kc6l"]
+atlas = ExtResource("20_30ska")
+region = Rect2(0, 0, 95, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eix18"]
+atlas = ExtResource("24_78kcs")
+region = Rect2(0, 0, 95, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25aov"]
+atlas = ExtResource("25_xks3a")
+region = Rect2(95, 0, 110, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etaqi"]
+atlas = ExtResource("24_3xi6f")
+region = Rect2(95, 0, 110, 0)
 
 [node name="Map" type="Node2D" unique_id=239375301]
 y_sort_enabled = true
@@ -265,106 +315,267 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.60784316, 0.81960785, 0.41568628, 1)
 
-[node name="npc" type="Node2D" parent="." unique_id=93395397]
+[node name="AnimatedProps" type="Node2D" parent="." unique_id=93395397]
 
-[node name="Caio" type="Node2D" parent="npc" unique_id=2012274107]
+[node name="Caio" type="Node2D" parent="AnimatedProps" unique_id=2012274107]
 position = Vector2(10609, 105)
+rotation = 0.06854935
+scale = Vector2(1, 1.0049828)
+script = ExtResource("13_nykyp")
 
-[node name="Shadow" type="Sprite2D" parent="npc/Caio" unique_id=1914284326]
+[node name="Shadow" type="Sprite2D" parent="AnimatedProps/Caio" unique_id=1914284326]
 modulate = Color(0, 0, 0, 0.30588236)
 z_index = 1
 position = Vector2(67, 160)
 scale = Vector2(3.5554767, 1.2380953)
 offset = Vector2(-20, -125)
 
-[node name="Sprite2D" type="Sprite2D" parent="npc/Caio" unique_id=180133658]
+[node name="Sprite2D" type="Sprite2D" parent="AnimatedProps/Caio" unique_id=180133658]
 z_index = 50
 scale = Vector2(-1, 1)
 texture = ExtResource("14_rqo2c")
 offset = Vector2(-5, -110)
 
-[node name="Leonardo" type="Node2D" parent="npc" unique_id=405018188]
+[node name="Leonardo" type="Node2D" parent="AnimatedProps" unique_id=405018188]
 position = Vector2(17407, 1623)
 rotation = 3.1415927
 scale = Vector2(1, -1)
+script = ExtResource("13_nykyp")
 
-[node name="Shadow" type="Sprite2D" parent="npc/Leonardo" unique_id=1263899258]
+[node name="Shadow" type="Sprite2D" parent="AnimatedProps/Leonardo" unique_id=1263899258]
 modulate = Color(0, 0, 0, 0.30588236)
 z_index = 1
 position = Vector2(67, 160)
 scale = Vector2(3.5554767, 1.2380953)
 offset = Vector2(-20, -125)
 
-[node name="Sprite2D" type="Sprite2D" parent="npc/Leonardo" unique_id=492001391]
+[node name="Sprite2D" type="Sprite2D" parent="AnimatedProps/Leonardo" unique_id=492001391]
 z_index = 50
 scale = Vector2(-1, 1)
 texture = ExtResource("14_e07uo")
 offset = Vector2(-5, -110)
 
-[node name="Francisco" type="Node2D" parent="npc" unique_id=1940497751]
+[node name="Francisco" type="Node2D" parent="AnimatedProps" unique_id=1940497751]
 position = Vector2(10087, 3239)
+script = ExtResource("13_nykyp")
 
-[node name="Shadow" type="Sprite2D" parent="npc/Francisco" unique_id=768097861]
+[node name="Shadow" type="Sprite2D" parent="AnimatedProps/Francisco" unique_id=768097861]
 modulate = Color(0, 0, 0, 0.30588236)
 z_index = 1
 position = Vector2(67, 160)
 scale = Vector2(3.5554767, 1.2380953)
 offset = Vector2(-20, -125)
 
-[node name="Sprite2D" type="Sprite2D" parent="npc/Francisco" unique_id=2050251298]
+[node name="Sprite2D" type="Sprite2D" parent="AnimatedProps/Francisco" unique_id=2050251298]
 z_index = 50
 scale = Vector2(-1, 1)
 texture = ExtResource("15_58ndj")
 offset = Vector2(-5, -110)
 
-[node name="Alex" type="Node2D" parent="npc" unique_id=742610899]
-position = Vector2(13565, 3998)
+[node name="Gabriel" type="Node2D" parent="AnimatedProps" unique_id=1034708122]
+position = Vector2(15222, 1786)
+script = ExtResource("13_nykyp")
+type = 2
+radius = Vector2(400, 150)
+duration = 3.25
 
-[node name="Shadow" type="Sprite2D" parent="npc/Alex" unique_id=895346016]
+[node name="Shadow" type="Sprite2D" parent="AnimatedProps/Gabriel" unique_id=871217651]
 modulate = Color(0, 0, 0, 0.30588236)
 z_index = 1
 position = Vector2(67, 160)
 scale = Vector2(3.5554767, 1.2380953)
 offset = Vector2(-20, -125)
 
-[node name="Sprite2D" type="Sprite2D" parent="npc/Alex" unique_id=1096906891]
+[node name="Sprite2D" type="Sprite2D" parent="AnimatedProps/Gabriel" unique_id=424112608]
+z_index = 50
+scale = Vector2(-1, 1)
+texture = ExtResource("17_78kcs")
+offset = Vector2(-5, -110)
+
+[node name="Andre" type="Node2D" parent="AnimatedProps" unique_id=800911318]
+position = Vector2(15222, 1786)
+script = ExtResource("13_nykyp")
+type = 2
+radius = Vector2(400, 150)
+duration = 3.25
+running_progress = 2.245
+
+[node name="Shadow" type="Sprite2D" parent="AnimatedProps/Andre" unique_id=1534500121]
+modulate = Color(0, 0, 0, 0.30588236)
+z_index = 1
+position = Vector2(67, 160)
+scale = Vector2(3.5554767, 1.2380953)
+offset = Vector2(-20, -125)
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatedProps/Andre" unique_id=842594947]
+z_index = 50
+scale = Vector2(-1, 1)
+texture = ExtResource("18_2kc6l")
+offset = Vector2(-5, -110)
+
+[node name="Fred" type="Node2D" parent="AnimatedProps" unique_id=1618091661]
+position = Vector2(15222, 1786)
+script = ExtResource("13_nykyp")
+type = 2
+radius = Vector2(400, 150)
+duration = 3.25
+running_progress = 4.15
+
+[node name="Shadow" type="Sprite2D" parent="AnimatedProps/Fred" unique_id=559409293]
+modulate = Color(0, 0, 0, 0.30588236)
+z_index = 1
+position = Vector2(67, 160)
+scale = Vector2(3.5554767, 1.2380953)
+offset = Vector2(-20, -125)
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatedProps/Fred" unique_id=707508277]
+z_index = 50
+scale = Vector2(-1, 1)
+texture = ExtResource("19_eix18")
+offset = Vector2(-5, -110)
+
+[node name="Alex" type="Node2D" parent="AnimatedProps" unique_id=742610899]
+position = Vector2(13565, 3998)
+script = ExtResource("13_nykyp")
+
+[node name="Shadow" type="Sprite2D" parent="AnimatedProps/Alex" unique_id=895346016]
+modulate = Color(0, 0, 0, 0.30588236)
+z_index = 1
+position = Vector2(67, 160)
+scale = Vector2(3.5554767, 1.2380953)
+offset = Vector2(-20, -125)
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatedProps/Alex" unique_id=1096906891]
 z_index = 50
 scale = Vector2(-1, 1)
 texture = ExtResource("15_e07uo")
 offset = Vector2(-5, -110)
 
-[node name="Joao" type="Node2D" parent="npc" unique_id=583138275]
+[node name="Joao" type="Node2D" parent="AnimatedProps" unique_id=583138275]
 position = Vector2(14654, -558)
 rotation = 3.1415927
 scale = Vector2(1, -1)
+script = ExtResource("13_nykyp")
 
-[node name="Shadow" type="Sprite2D" parent="npc/Joao" unique_id=1748447363]
+[node name="Shadow" type="Sprite2D" parent="AnimatedProps/Joao" unique_id=1748447363]
 modulate = Color(0, 0, 0, 0.30588236)
 z_index = 1
 position = Vector2(67, 160)
 scale = Vector2(3.5554767, 1.2380953)
 offset = Vector2(-20, -125)
 
-[node name="Sprite2D" type="Sprite2D" parent="npc/Joao" unique_id=1955650647]
+[node name="Sprite2D" type="Sprite2D" parent="AnimatedProps/Joao" unique_id=1955650647]
 z_index = 50
 scale = Vector2(-1, 1)
 texture = ExtResource("15_rqo2c")
 offset = Vector2(-5, -110)
 
-[node name="DonaLuzia" type="Node2D" parent="npc" unique_id=2125736831]
+[node name="DonaLuzia" type="Node2D" parent="AnimatedProps" unique_id=2125736831]
 position = Vector2(5907, -1214)
 rotation = 3.1415927
 scale = Vector2(1, -1)
+script = ExtResource("13_nykyp")
 
-[node name="Shadow" type="Sprite2D" parent="npc/DonaLuzia" unique_id=11705547]
+[node name="Shadow" type="Sprite2D" parent="AnimatedProps/DonaLuzia" unique_id=11705547]
 modulate = Color(0, 0, 0, 0.30588236)
 z_index = 1
 position = Vector2(67, 160)
 scale = Vector2(3.5554767, 1.2380953)
 offset = Vector2(-20, -125)
 
-[node name="Sprite2D" type="Sprite2D" parent="npc/DonaLuzia" unique_id=603875863]
+[node name="Sprite2D" type="Sprite2D" parent="AnimatedProps/DonaLuzia" unique_id=603875863]
 z_index = 50
 scale = Vector2(-1, 1)
 texture = ExtResource("14_2kc6l")
 offset = Vector2(-5, -110)
+
+[node name="Bird1" type="Sprite2D" parent="AnimatedProps" unique_id=1387908871]
+position = Vector2(-733, -1085.0001)
+scale = Vector2(1, 0.9750908)
+texture = SubResource("AtlasTexture_bhunq")
+flip_h = true
+script = ExtResource("13_nykyp")
+type = 1
+
+[node name="Bird2" type="Sprite2D" parent="AnimatedProps" unique_id=1870010706]
+position = Vector2(-222, -30)
+scale = Vector2(1, 1.0090398)
+texture = SubResource("AtlasTexture_tmgcv")
+flip_h = true
+script = ExtResource("13_nykyp")
+type = 1
+
+[node name="Bird3" type="Sprite2D" parent="AnimatedProps" unique_id=437197987]
+position = Vector2(2114, -2047)
+scale = Vector2(1, 1.022805)
+texture = SubResource("AtlasTexture_3xi6f")
+flip_h = true
+script = ExtResource("13_nykyp")
+type = 1
+
+[node name="Bird4" type="Sprite2D" parent="AnimatedProps" unique_id=1866295418]
+position = Vector2(5902, -2295.9998)
+scale = Vector2(1, 1.0242085)
+texture = SubResource("AtlasTexture_omedl")
+flip_h = true
+script = ExtResource("13_nykyp")
+type = 1
+
+[node name="Bird5" type="Sprite2D" parent="AnimatedProps" unique_id=1919159629]
+position = Vector2(7436, -2586.0002)
+scale = Vector2(1, 1.0230097)
+texture = SubResource("AtlasTexture_xks3a")
+flip_h = true
+script = ExtResource("13_nykyp")
+type = 1
+
+[node name="Bird6" type="Sprite2D" parent="AnimatedProps" unique_id=594439396]
+position = Vector2(3504, 168.00003)
+scale = Vector2(1, 0.97648925)
+texture = SubResource("AtlasTexture_78kcs")
+flip_h = true
+script = ExtResource("13_nykyp")
+type = 1
+
+[node name="Bird7" type="Sprite2D" parent="AnimatedProps" unique_id=1866859140]
+position = Vector2(645, 103.00006)
+scale = Vector2(1, 1.0180417)
+texture = SubResource("AtlasTexture_2kc6l")
+flip_h = true
+script = ExtResource("13_nykyp")
+type = 1
+
+[node name="Bird8" type="Sprite2D" parent="AnimatedProps" unique_id=2068346081]
+position = Vector2(9712, 3811)
+scale = Vector2(1, 0.98786664)
+texture = SubResource("AtlasTexture_eix18")
+flip_h = true
+script = ExtResource("13_nykyp")
+type = 1
+
+[node name="Bird9" type="Sprite2D" parent="AnimatedProps" unique_id=814911526]
+position = Vector2(14988, -1421.9999)
+rotation = 0.04682662
+scale = Vector2(1, 1.019407)
+texture = SubResource("AtlasTexture_25aov")
+flip_h = true
+script = ExtResource("13_nykyp")
+type = 1
+
+[node name="Bird10" type="Sprite2D" parent="AnimatedProps" unique_id=375772764]
+position = Vector2(12766, -1069.0001)
+rotation = 0.04682662
+scale = Vector2(1, 1.019407)
+texture = SubResource("AtlasTexture_etaqi")
+flip_h = true
+script = ExtResource("13_nykyp")
+type = 1
+
+[node name="Bird11" type="Sprite2D" parent="AnimatedProps" unique_id=1988690424]
+position = Vector2(12428, -1280)
+rotation = 0.04682662
+scale = Vector2(1, 1.019407)
+texture = SubResource("AtlasTexture_bhunq")
+flip_h = true
+script = ExtResource("13_nykyp")
+type = 1
