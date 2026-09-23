@@ -212,6 +212,7 @@ func _input(event: InputEvent) -> void:
 			open_screen("Main")
 	# A opção atual aumenta (positivo) quando aperta para baixo e
 	# diminui (negativo) quando aperta para cima
+	# h0ot13 fRu1t
 	if visible == true and (event.is_action_pressed("ui_down") or event.is_action_pressed("ui_up")):
 		current_idx += int(event.is_action_pressed("ui_down")) - int(event.is_action_pressed("ui_up"));
 		current_idx = (current_idx + menus[active_menu].buttons.size()) % menus[active_menu].buttons.size()

@@ -25,12 +25,10 @@ const CURSE_GRADIENT_END : float = 0.3
 const CURSE_TWEEN_DURATION : float = 4.0
 
 # Configurações dos bad chars durante a maldição
-const BAD_CHAR_SPAWN_INTERVAL : float = 0.14
+const BAD_CHAR_INITIAL_AMOUNT : int = 5
+const BAD_CHAR_SPAWN_INTERVAL : float = 0.18
 const BAD_CHAR_AMOUNT_INCREASE_TIME : float = 0.3
-const BAD_CHAR_MAX_AMOUNT : int = 30
-const BAD_CHAR_LIFETIME : float = 0.2
-const BAD_CHAR_SHAKE_DISTANCE : float = 6.0
-const BAD_CHAR_SHAKE_STEP : float = 0.09
+const BAD_CHAR_SPEED_SCALE_INCREASE : float = 0.02
 
 # Canvas Layer com a interface do skill check
 @onready var canvas_layer : CanvasLayer = $CanvasLayer
@@ -48,15 +46,13 @@ const BAD_CHAR_SHAKE_STEP : float = 0.09
 @onready var gradient: TextureRect = $CanvasLayer/Cursed/Gradient
 @onready var gradient_texture: GradientTexture2D = gradient.texture as GradientTexture2D
 # Lugar onde os caracteres serão criados
-@onready var bad_chars_parent: Control = $CanvasLayer/Cursed/BadChars
+@onready var bad_char_particles: GPUParticles2D = $BadCharsParticles
 
 # Ponto horizontal mínimo e máximo da barra (retirando a borda)
 @onready var bar_min_x : float = 10 - 1
 @onready var bar_max_x : float = $CanvasLayer/Control/Bar.size.x - 10
 
 var bad_chars : Array[TextureRect] = []
-var active_bad_chars : Array[TextureRect] = []
-var bad_chars_cycle_id : int = 0
 
 # Velocidade do ponteiro (em pixels/segundo)
 var pointer_speed : float = INITIAL_POINTER_SPEED
@@ -69,6 +65,10 @@ var skill_check_enabled : bool = false
 
 # Se a tela está amaldiçoada
 var is_screen_cursed : bool = false
+
+# Identificador do ciclo dos caracteres amaldiçoados (pra evitar 
+# ter mais de um ciclo na ativa ao mesmo tempo)
+var bad_chars_cycle_id : int = 0
 
 # Se a entrada está em cooldown ()
 var input_on_cooldown : bool = true
@@ -353,6 +353,7 @@ func uncurse_screen() -> void:
 	if curse_tween and curse_tween.is_valid():
 		curse_tween.kill()
 
+	# Retira o gradiente de fundo
 	curse_tween = create_tween()
 
 	curse_tween.parallel().tween_property(
@@ -369,103 +370,49 @@ func uncurse_screen() -> void:
 		CURSE_TWEEN_DURATION / 6
 	)
 
+	stop_bad_chars()
 	await curse_tween.finished
-	clear_bad_chars()
 
 # Inicia o processo que cria os caracteres da tela amaldiçoada
 func start_bad_chars(cycle_id: int) -> void:
 	if can_have_bad_chars():
-		spawn_bad_char()
-		_run_bad_char_spawner(cycle_id)
+		# não acho que há necessidade de reiniciar
+		# bad_char_particles.restart()
+		bad_char_particles.emitting = true
+		bad_char_particles.speed_scale = 1.15
+		
+		# não vejo necessidade de deixar visível/invisível
+		# bad_char_particles.visible = true
 
-# Loop que adiciona mais caracteres ao longo do tempo
-func _run_bad_char_spawner(cycle_id: int) -> void:
+		# também não vejo necessidade de parar o processamento do nó
+		# bad_char_particles.process_mode = PROCESS_MODE_DISABLED
+		_run_bad_char_handler(cycle_id)
+		
+		
+
+# Loop que lida com os caracteres amaldiçoados (que, por exemplo,
+# aumentam ao longo do tempo)
+func _run_bad_char_handler(cycle_id: int) -> void:
 	var elapsed_time := 0.0
 
 	while is_screen_cursed and cycle_id == bad_chars_cycle_id and can_have_bad_chars():
 		var target_amount := mini(
-			1 + int(elapsed_time / BAD_CHAR_AMOUNT_INCREASE_TIME),
-			BAD_CHAR_MAX_AMOUNT
+			BAD_CHAR_INITIAL_AMOUNT + int(elapsed_time / BAD_CHAR_AMOUNT_INCREASE_TIME),
+			bad_char_particles.amount
 		)
 
-		while active_bad_chars.size() < target_amount:
-			spawn_bad_char()
+		bad_char_particles.amount_ratio = float(target_amount) / bad_char_particles.amount
+		bad_char_particles.speed_scale += BAD_CHAR_SPEED_SCALE_INCREASE
 
 		await get_tree().create_timer(BAD_CHAR_SPAWN_INTERVAL).timeout
 		elapsed_time += BAD_CHAR_SPAWN_INTERVAL
 
-# Cria um caractere na tela
-func spawn_bad_char() -> void:
-	if not can_have_bad_chars(): return
-
-	if bad_chars.is_empty() or active_bad_chars.size() >= BAD_CHAR_MAX_AMOUNT:
-		return
-
-	var template: TextureRect = bad_chars.pick_random()
-	var bad_char: TextureRect = template.duplicate()
-	bad_chars_parent.add_child(bad_char)
-	active_bad_chars.append(bad_char)
-
-	bad_char.rotation = randf_range(-0.2, 0.2)
-	bad_char.scale = Vector2(0.4, 0.4)
-	bad_char.position = get_random_bad_char_position(bad_char)
-	bad_char.modulate = Color(1, 1, 1, 0)
-	bad_char.visible = true
-	bad_char.mouse_filter = Control.MOUSE_FILTER_IGNORE
-
-	var tween := create_tween()
-	tween.tween_property(bad_char, "modulate:a", 1.0, 0.2)
-	tween.parallel().tween_property(bad_char, "scale", template.scale, 0.13)
-	tween.tween_interval(0.1)
-	add_bad_char_shake(tween, bad_char)
-	tween.tween_interval(maxf(0.0, BAD_CHAR_LIFETIME - 1.2))
-	tween.tween_property(bad_char, "modulate:a", 0.0, 0.3)
-	tween.tween_callback(remove_bad_char.bind(bad_char.get_instance_id()))
-
-# Faz o caractere dado se tremer 
-func add_bad_char_shake(tween: Tween, bad_char: TextureRect) -> void:
-	var original_position := bad_char.position
-	var shake_directions := [
-		Vector2(-1, -1),
-		Vector2(1, 1),
-		Vector2(-1, 1),
-		Vector2(1, -1),
-		Vector2.ZERO
-	]
-
-	for direction in shake_directions:
-		tween.parallel().tween_property(
-			bad_char,
-			"position",
-			original_position + direction * BAD_CHAR_SHAKE_DISTANCE,
-			BAD_CHAR_SHAKE_STEP
-		)
-
-# Apaga um caractere (idealmente, seria bom salvar num bucket)
-func remove_bad_char(bad_char_id: int) -> void:
-	var bad_char := instance_from_id(bad_char_id) as TextureRect
-	if not is_instance_valid(bad_char):
-		return
-
-	active_bad_chars.erase(bad_char)
-	bad_char.queue_free()
-
-# Limpa todos os caracteres da tela
-func clear_bad_chars() -> void:
-	for bad_char in active_bad_chars:
-		if is_instance_valid(bad_char):
-			bad_char.queue_free()
-	active_bad_chars.clear()
-
-# Obtém uma posição aleatória para posicionar um caractere
-func get_random_bad_char_position(bad_char: TextureRect) -> Vector2:
-	var screen_size := get_viewport_rect().size
-	var char_size := bad_char.size * bad_char.scale
-
-	return Vector2(
-		randf_range(0.0, maxf(0.0, screen_size.x - char_size.x)),
-		randf_range(0.0, maxf(0.0, screen_size.y - char_size.y))
-	)
+# Para de gerar os caracteres amaldiçoados
+func stop_bad_chars() -> void:
+	bad_char_particles.emitting = false
+	# obs: para deixar invisível, teria q haver um await aqui (pras
+	#	   partículas não sumirem do nada)
+	#bad_char_particles.visible = false
 
 # Retorna uma posição aleatória na barra, de forma que ela 
 # esteja verticalmente centralizada.

@@ -9,7 +9,7 @@ const MAX_TIME_BETWEEN_TASKS : float = 2
 const TASK_ANIMATION_TIME : float = 0.5
 
 # Quantas tarefas o usuário precisa fazer até começar o burnout
-const NUMBER_OF_TASKS_TO_BURNOUT = 2
+const NUMBER_OF_TASKS_TO_BURNOUT = 20
 
 # Quantas tarefas o usuário precisa fazer para terminar o minigame
 const NUMBER_OF_TASKS : int = 45

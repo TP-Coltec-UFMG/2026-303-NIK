@@ -24,6 +24,25 @@ outline_color = Color(0.6039216, 0.39215687, 0.34117648, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_pd2vk"]
 font_size = 32
 
+[sub_resource type="Gradient" id="Gradient_5ibai"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_b0kdt"]
+gradient = SubResource("Gradient_5ibai")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7e655"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(640, 360, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = -102.899994
+angle_max = 230.10002
+flatness = 1.0
+radial_velocity_min = -2.0000224
+radial_velocity_max = 1.9999776
+color_ramp = SubResource("GradientTexture1D_b0kdt")
+
 [sub_resource type="Gradient" id="Gradient_r2og5"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.67256635, 1)
@@ -368,6 +387,13 @@ stretch_mode = 5
 [node name="SkillCheck" type="Node2D" parent="Camera2D" unique_id=345064300]
 script = ExtResource("4_6dts0")
 
+[node name="BadCharsParticles" type="GPUParticles2D" parent="Camera2D/SkillCheck" unique_id=1741523400]
+emitting = false
+texture = ExtResource("6_t2n66")
+lifetime = 0.5
+speed_scale = 1.15
+process_material = SubResource("ParticleProcessMaterial_7e655")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D/SkillCheck" unique_id=52577233]
 layer = 2
 
@@ -385,12 +411,6 @@ offset_bottom = 720.0
 mouse_filter = 2
 texture = SubResource("GradientTexture2D_esmnr")
 stretch_mode = 5
-
-[node name="BadChars" type="Control" parent="Camera2D/SkillCheck/CanvasLayer/Cursed" unique_id=421781582]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
 
 [node name="Control" type="Control" parent="Camera2D/SkillCheck/CanvasLayer" unique_id=51217341]
 layout_mode = 3
