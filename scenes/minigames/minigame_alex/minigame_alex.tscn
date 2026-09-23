@@ -3,13 +3,14 @@
 [ext_resource type="Texture2D" uid="uid://c6cnqrnppfpu2" path="res://sprites/minigames/minigame_alex/background.png" id="1_i2a8w"]
 [ext_resource type="Script" uid="uid://do2dfv8t4ja1k" path="res://scenes/minigames/minigame_alex/task_generator.gd" id="2_6i0g0"]
 [ext_resource type="Texture2D" uid="uid://bcqolfqc52j3l" path="res://sprites/minigames/minigame_alex/letter.png" id="3_ewbu0"]
+[ext_resource type="Texture2D" uid="uid://dj1s2apfb5d5c" path="res://sprites/minigames/minigame_alex/correct.png" id="4_5ibai"]
 [ext_resource type="Script" uid="uid://bp0aidx1n1pbv" path="res://scenes/minigames/minigame_alex/skill_check.gd" id="4_6dts0"]
-[ext_resource type="Texture2D" uid="uid://b7dqf6n8klrlo" path="res://sprites/minigames/minigame_alex/right.png" id="4_r2og5"]
 [ext_resource type="Texture2D" uid="uid://br3agkc616ekb" path="res://sprites/minigames/minigame_alex/bad_2.png" id="5_ekmet"]
 [ext_resource type="Texture2D" uid="uid://duupd47daodrt" path="res://sprites/minigames/minigame_alex/skill_check_bar_border.png" id="5_n2v2g"]
 [ext_resource type="Texture2D" uid="uid://wxyjfm7h6yq" path="res://sprites/minigames/minigame_alex/skill_check_bar_background.png" id="5_q57vx"]
 [ext_resource type="Texture2D" uid="uid://ciuisgugpb1ni" path="res://sprites/minigames/minigame_alex/bad_1.png" id="6_t2n66"]
-[ext_resource type="Texture2D" uid="uid://dsa2nbra8pb8j" path="res://sprites/minigames/minigame_alex/wrong.png" id="7_5ibai"]
+[ext_resource type="Texture2D" uid="uid://cjwegk5kvitxi" path="res://sprites/minigames/minigame_alex/wrong.png" id="7_5ibai"]
+[ext_resource type="Texture2D" uid="uid://7ls7rmc47hnu" path="res://sprites/minigames/minigame_alex/bad_3.png" id="11_5ibai"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ekmet"]
 font_size = 30
@@ -236,7 +237,7 @@ offset_bottom = 432.667
 scale = Vector2(0.6, 0.6)
 pivot_offset = Vector2(48.667, 30.334)
 offset_transform_enabled = true
-texture_normal = ExtResource("4_r2og5")
+texture_normal = ExtResource("4_5ibai")
 stretch_mode = 5
 
 [node name="Bar" type="TextureRect" parent="Camera2D/TaskGenerator/Tutorial/Background/SkillCheck" unique_id=2025046003]
@@ -306,7 +307,7 @@ offset_left = 923.0
 offset_top = 372.0
 offset_right = 1020.333
 offset_bottom = 432.667
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.6, 0.6)
 pivot_offset = Vector2(48.667, 30.334)
 offset_transform_enabled = true
 texture_normal = ExtResource("7_5ibai")
@@ -471,6 +472,15 @@ offset_right = 348.0
 offset_bottom = -9.0
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("5_ekmet")
+stretch_mode = 5
+
+[node name="BadChar3" type="TextureRect" parent="Camera2D/SkillCheck/BadChars" unique_id=2073513477]
+offset_left = 301.0
+offset_top = -87.0
+offset_right = 450.0
+offset_bottom = -9.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("11_5ibai")
 stretch_mode = 5
 
 [connection signal="pressed" from="Camera2D/TaskGenerator/Tutorial/Background/Play" to="Camera2D/TaskGenerator" method="_on_play_pressed"]
