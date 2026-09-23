@@ -32,11 +32,12 @@ func _process(delta: float) -> void:
 	reset_physics_interpolation()
 
 func chirp():
+	await get_tree().create_timer(randf_range(0.5, 3.0)).timeout
+	
 	var particle = (load("res://scenes/map/chirp.tscn") as PackedScene).instantiate() as GPUParticles2D
+
 	add_child(particle)
 	particle.global_position = global_position
-	print("chirp")
-
-	await get_tree().create_timer(randf_range(0.5, 3.0)).timeout
+	#print("chirp")
 
 	chirp()
