@@ -287,7 +287,6 @@ func save_settings() -> void:
 
 # Atualiza a lista dos controles com as respectivas teclas
 func update_controls_tip(action_name : String, key : Key) -> void:
-
 	# Nó que vai guardar o texto com a tecla.
 	# É definido logo abaixo.
 	var key_node : RichTextLabel = null
