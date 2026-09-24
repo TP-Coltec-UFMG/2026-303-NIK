@@ -83,6 +83,6 @@ func animate(delta : float):
 	
 	sprite.rotation = (sin(animation_progress) * 0.1) * walking_animation_weight + (sin(animation_progress / 4) * 0.01)
 	sprite.scale.y = 1 - (sin(animation_progress * 2) * .01) * walking_animation_weight + -((1 + sin(animation_progress * .5)) * .01)
-	sprite.position.y = 0 + (-(1 + sin(animation_progress * 2 - PI / 2)) * 10.25) * walking_animation_weight
+	sprite.position.y = 0 + (-(1 + sin(animation_progress * 2 - PI / 2)) * 20.25) * walking_animation_weight
 
 	sprite.reset_physics_interpolation()

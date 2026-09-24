@@ -80,6 +80,7 @@ process_mode = 3
 zoom = Vector2(0.55, 0.55)
 
 [node name="Shadow" type="Sprite2D" parent="Nikole" unique_id=303687812]
+visible = false
 modulate = Color(0, 0, 0, 0.30588236)
 z_index = -5
 position = Vector2(70, 160)
@@ -103,6 +104,7 @@ follow_offset = Vector2(-120, -60)
 animated = true
 
 [node name="Shadow" type="Sprite2D" parent="Francisco" unique_id=816836837]
+visible = false
 modulate = Color(0, 0, 0, 0.30588236)
 z_index = -5
 position = Vector2(70, 160)
@@ -121,6 +123,7 @@ follow_offset = Vector2(-200, 30)
 animated = true
 
 [node name="Shadow" type="Sprite2D" parent="Luis" unique_id=1828766873]
+visible = false
 modulate = Color(0, 0, 0, 0.30588236)
 z_index = -5
 position = Vector2(70, 160)
@@ -139,6 +142,7 @@ follow_offset = Vector2(-240, -40)
 animated = true
 
 [node name="Shadow" type="Sprite2D" parent="Flavia" unique_id=1511757869]
+visible = false
 modulate = Color(0, 0, 0, 0.30588236)
 z_index = -5
 position = Vector2(70, 160)

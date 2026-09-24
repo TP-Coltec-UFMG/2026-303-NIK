@@ -12,11 +12,11 @@ const MIN_AREA_SIZE : float = 80
 const MAX_AREA_SIZE : float = 500 # um pouquinho menor que a barra toda
 const MAX_STARTER_SIZE : float = MAX_AREA_SIZE / 4 # maior tamanho q a área pode começar com
 
-# Velocidade do ponteiro (em pixels/segundo)
-const POINTER_SPEED : float = 240
-
 # Tempo mínimo entre tentativas (em segundos)
 const SKILL_CHECK_TRY_COOLDOWN : float = 0.7
+
+# Velocidade inicial do ponteiro (em pixels/segundo)
+const INITIAL_POINTER_SPEED : float = 240
 
 # Configurações do gradiente da tela amaldiçoada
 const CURSE_GRADIENT_POINT : int = 1
@@ -25,12 +25,11 @@ const CURSE_GRADIENT_END : float = 0.3
 const CURSE_TWEEN_DURATION : float = 4.0
 
 # Configurações dos bad chars durante a maldição
-const BAD_CHAR_SPAWN_INTERVAL : float = 0.14
+const BAD_CHAR_INITIAL_AMOUNT : int = 5
+const BAD_CHAR_SPAWN_INTERVAL : float = 0.18
 const BAD_CHAR_AMOUNT_INCREASE_TIME : float = 0.3
-const BAD_CHAR_MAX_AMOUNT : int = 20
-const BAD_CHAR_LIFETIME : float = 0.4
-const BAD_CHAR_SHAKE_DISTANCE : float = 6.0
-const BAD_CHAR_SHAKE_STEP : float = 0.09
+const BAD_CHAR_SPEED_SCALE_INCREASE : float = 0.01
+const BAD_CHAR_MAX_SPEED_SCALE : float = 2
 
 # Canvas Layer com a interface do skill check
 @onready var canvas_layer : CanvasLayer = $CanvasLayer
@@ -48,15 +47,16 @@ const BAD_CHAR_SHAKE_STEP : float = 0.09
 @onready var gradient: TextureRect = $CanvasLayer/Cursed/Gradient
 @onready var gradient_texture: GradientTexture2D = gradient.texture as GradientTexture2D
 # Lugar onde os caracteres serão criados
-@onready var bad_chars_parent: Control = $CanvasLayer/Cursed/BadChars
+@onready var bad_char_particles: GPUParticles2D = $BadCharsParticles
 
 # Ponto horizontal mínimo e máximo da barra (retirando a borda)
 @onready var bar_min_x : float = 10 - 1
 @onready var bar_max_x : float = $CanvasLayer/Control/Bar.size.x - 10
 
 var bad_chars : Array[TextureRect] = []
-var active_bad_chars : Array[TextureRect] = []
-var bad_chars_cycle_id : int = 0
+
+# Velocidade do ponteiro (em pixels/segundo)
+var pointer_speed : float = INITIAL_POINTER_SPEED
 
 # Tempo até a próxima skill check
 var next_check_time : float = 99
@@ -66,6 +66,10 @@ var skill_check_enabled : bool = false
 
 # Se a tela está amaldiçoada
 var is_screen_cursed : bool = false
+
+# Identificador do ciclo dos caracteres amaldiçoados (pra evitar 
+# ter mais de um ciclo na ativa ao mesmo tempo)
+var bad_chars_cycle_id : int = 0
 
 # Se a entrada está em cooldown ()
 var input_on_cooldown : bool = true
@@ -77,13 +81,26 @@ var curr_area_end : float = -1 # ponto de fim da área
 # A direção do ponteiro (1 = direita; -1 = esquerda)
 var pointer_dir : int = 1
 
+# Se o burnout começou
+var burnout_started : bool = false
+# Se está em burnout (ou seja, não consegue completar o skillcheck)
+var is_on_burnout : bool = false
+# O tempo que o jogador está em burnout
+var time_on_burnout : float = 0
+
 var curse_tween : Tween = null
 
 func _ready() -> void:
 	canvas_layer.visible = false
 	control.visible = false
 	wicked_control.visible = false
+
+	skill_check_enabled = false
 	input_on_cooldown = false
+	is_on_burnout = false
+	burnout_started = false
+	time_on_burnout = 0
+	pointer_speed = INITIAL_POINTER_SPEED
 	next_check_time = randf_range(MIN_TIME_BETWEEN_CHECKS, MAX_TIME_BETWEEN_CHECKS)
 
 	# Coloca os caracteres no vetor
@@ -99,20 +116,43 @@ func _process(delta: float) -> void:
 	if not $"../TaskGenerator".is_minigame_running: 
 		return
 
-	if not skill_check_enabled:
-		next_check_time -= delta
-
-	# Se chegou o momento de criar uma skill check,
-	# obtém um novo tempo e gera a skill check
-	if next_check_time < 0:
-		next_check_time = randf_range(MIN_TIME_BETWEEN_CHECKS, MAX_TIME_BETWEEN_CHECKS)
+	if is_on_burnout and not burnout_started:
+		burnout_started = true
 		curse_screen()
-		await get_tree().create_timer(1).timeout # tempo até aparecer o skill check
-		skill_check()
+		skill_check(true)
 		return
+	elif not is_on_burnout:
+		if not skill_check_enabled:
+			next_check_time -= delta
+
+		# Se chegou o momento de criar uma skill check,
+		# obtém um novo tempo e gera a skill check
+		if next_check_time < 0:
+			next_check_time = randf_range(MIN_TIME_BETWEEN_CHECKS, MAX_TIME_BETWEEN_CHECKS)
+			curse_screen()
+			await get_tree().create_timer(1.3).timeout # tempo até aparecer o skill check
+			skill_check()
+			return
 	
 	# Se não houver uma skill check atualmente, retorna
 	if not skill_check_enabled: return
+
+	# Se estiver no burnout, dá umas enlouquecidas:
+	if is_on_burnout:
+		# Aumenta a velocidade
+		pointer_speed += randf_range(10, 30) * delta
+		# Se o jogador já está bastante tempo no burnout, enlouquece mais
+		if time_on_burnout > 6:
+			# O ponteiro troca de sentido aleatoriamente
+			if randf() > 0.99:
+				pointer_dir = -1 if randi() % 2 else 1
+
+		# Se o jogador está a mais tempo (e se o `time_on_burnout` acabou de trocar de segundo)
+		if time_on_burnout > 8 and (time_on_burnout - floor(time_on_burnout)) < 0.01:	
+			# A área troca aleatoriamente de posição
+			randomize_area_position()
+
+		time_on_burnout += delta
 
 	# Se chegou até aqui, não criou uma nova skill check 
 	# e há uma skill check atualmente. Então, atualiza-a
@@ -125,8 +165,8 @@ func _input(event: InputEvent) -> void:
 		check_pointer_on_area()
 
 # Função que faz uma skill check aparecer
-func skill_check() -> void:
-	if skill_check_enabled: return
+func skill_check(force : bool = false) -> void:
+	if (not force) and skill_check_enabled: return
 
 	skill_check_enabled = true
 
@@ -135,17 +175,8 @@ func skill_check() -> void:
 	pointer_rect.position = pointer_pos
 	pointer_dir = -1 if randi() % 2 else 1
 
-	# Obtém a largura da área
-	var width : float = randf_range(MIN_AREA_SIZE, MAX_STARTER_SIZE)
-
-	# Obtém a posição da origem da área
-	var p1 : Vector2 = get_random_position_on_bar(0, width)
-	curr_area_start = p1.x
-	curr_area_end = p1.x + width
-	
-	# Coloca a área com as bordas em p1 e p2
-	area_rect.position = p1
-	area_rect.size = Vector2(width, area_rect.size.y) # obs: mantém a posição y
+	# Altera a posição da área
+	randomize_area_position()
 	
 	# Faz os trem aparecer
 	control.visible = true
@@ -155,7 +186,7 @@ func tick_skill_check(delta: float) -> void:
 	if not skill_check_enabled: return
 
 	# Movimenta o ponteiro
-	var dx : float = delta * POINTER_SPEED * pointer_dir # Obtém a distância movimentada pelo ponteiro
+	var dx : float = delta * pointer_speed * pointer_dir # Obtém a distância movimentada pelo ponteiro
 	pointer_rect.position.x = clampf(pointer_rect.position.x + dx, bar_min_x, bar_max_x)
 	if pointer_rect.position.x == bar_max_x:
 		pointer_dir = -1
@@ -164,16 +195,23 @@ func tick_skill_check(delta: float) -> void:
 
 # Verifica se o ponteiro está dentro da área
 func check_pointer_on_area() -> void:
-	var pos_x : float = pointer_rect.position.x
+	# Verifica se o ponteiro está na área (considerando toda a largura do ponteiro)
+	if is_pointer_touching_area():
+		if not is_on_burnout:
+			end_skill_check()
+		else:
+			randomize_area_position()
+	else:
+		fail_skill_check()
 
+# Verifica se o ponteiro está tocando a área
+func is_pointer_touching_area() -> bool:
+	var pos_x : float = pointer_rect.position.x
 	# Verifica se o ponteiro está na área (considerando toda a largura do ponteiro)
 	# NOTA: poderia ter usado clampf() tbm pra verificar (se o resultado 
 	# 		do clampf(pos_x, curr_area_start - pointer_rect.size.x, curr_area_end) == pos_x), mas 
 	# 		assim é mais bonitinho. (tava pensando sobre minha hootie fruit favorita e veio essa forma de verificar)
-	if (curr_area_start - pointer_rect.size.x) <= pos_x and pos_x <= (curr_area_end):
-		end_skill_check()
-	else:
-		fail_skill_check()
+	return (curr_area_start - pointer_rect.size.x) <= pos_x and pos_x <= (curr_area_end);
 
 # Função chamada quando o jogador acerta o skill check
 func end_skill_check() -> void:
@@ -217,7 +255,9 @@ func fail_skill_check() -> void:
 		.set_ease(Tween.EASE_IN)
 
 	# Aumenta a área (para facilitar pro jogador)
-	increment_area_size(tween)
+	# NOTA: se estiver no burnout, não faz isso!
+	if not is_on_burnout:
+		increment_area_size(tween)
 
 	await tween.finished
 
@@ -255,6 +295,20 @@ func increment_area_size(tween : Tween = null) -> void:
 	else:
 		area_rect.position.x = new_start
 		area_rect.size.x = new_size
+
+# Coloca a área do skill check em uma posição aleatória.
+func randomize_area_position() -> void:
+	# Obtém a largura da área
+	var width : float = randf_range(MIN_AREA_SIZE, MAX_STARTER_SIZE)
+
+	# Obtém a posição da origem da área
+	var p1 : Vector2 = get_random_position_on_bar(0, width)
+	curr_area_start = p1.x
+	curr_area_end = p1.x + width
+	
+	# Coloca a área com as bordas em p1 e p2
+	area_rect.position = p1
+	area_rect.size = Vector2(width, area_rect.size.y) # obs: mantém a posição y
 
 # Amaldiçoa a tela
 func curse_screen() -> void:
@@ -300,6 +354,7 @@ func uncurse_screen() -> void:
 	if curse_tween and curse_tween.is_valid():
 		curse_tween.kill()
 
+	# Retira o gradiente de fundo
 	curse_tween = create_tween()
 
 	curse_tween.parallel().tween_property(
@@ -316,105 +371,54 @@ func uncurse_screen() -> void:
 		CURSE_TWEEN_DURATION / 6
 	)
 
+	stop_bad_chars()
 	await curse_tween.finished
-	clear_bad_chars()
 
-
-
+# Inicia o processo que cria os caracteres da tela amaldiçoada
 func start_bad_chars(cycle_id: int) -> void:
 	if can_have_bad_chars():
-		spawn_bad_char()
-		_run_bad_char_spawner(cycle_id)
+		# não acho que há necessidade de reiniciar
+		# bad_char_particles.restart()
+		bad_char_particles.emitting = true
+		bad_char_particles.speed_scale = 1.05
+		
+		# não vejo necessidade de deixar visível/invisível
+		# bad_char_particles.visible = true
 
+		# também não vejo necessidade de parar o processamento do nó
+		# bad_char_particles.process_mode = PROCESS_MODE_DISABLED
+		_run_bad_char_handler(cycle_id)
+		
+		
 
-func _run_bad_char_spawner(cycle_id: int) -> void:
+# Loop que lida com os caracteres amaldiçoados (que, por exemplo,
+# aumentam ao longo do tempo)
+func _run_bad_char_handler(cycle_id: int) -> void:
 	var elapsed_time := 0.0
 
 	while is_screen_cursed and cycle_id == bad_chars_cycle_id and can_have_bad_chars():
 		var target_amount := mini(
-			1 + int(elapsed_time / BAD_CHAR_AMOUNT_INCREASE_TIME),
-			BAD_CHAR_MAX_AMOUNT
+			BAD_CHAR_INITIAL_AMOUNT + int(elapsed_time / BAD_CHAR_AMOUNT_INCREASE_TIME),
+			bad_char_particles.amount
 		)
 
-		while active_bad_chars.size() < target_amount:
-			spawn_bad_char()
+		# Aumenta a quantidade de partícula para o "target amount"
+		bad_char_particles.amount_ratio = float(target_amount) / bad_char_particles.amount
+
+		# Aumenta a velocidade da animação das partículas
+		bad_char_particles.speed_scale += BAD_CHAR_SPEED_SCALE_INCREASE
+		bad_char_particles.speed_scale = min(bad_char_particles.speed_scale, BAD_CHAR_MAX_SPEED_SCALE)
 
 		await get_tree().create_timer(BAD_CHAR_SPAWN_INTERVAL).timeout
+		
 		elapsed_time += BAD_CHAR_SPAWN_INTERVAL
 
-
-func spawn_bad_char() -> void:
-	if not can_have_bad_chars(): return
-
-	if bad_chars.is_empty() or active_bad_chars.size() >= BAD_CHAR_MAX_AMOUNT:
-		return
-
-	var template: TextureRect = bad_chars.pick_random()
-	var bad_char: TextureRect = template.duplicate()
-	bad_chars_parent.add_child(bad_char)
-	active_bad_chars.append(bad_char)
-
-	bad_char.rotation = randf_range(-0.2, 0.2)
-	bad_char.scale = Vector2(0.4, 0.4)
-	bad_char.position = get_random_bad_char_position(bad_char)
-	bad_char.modulate = Color(1, 1, 1, 0)
-	bad_char.visible = true
-	bad_char.mouse_filter = Control.MOUSE_FILTER_IGNORE
-
-	var tween := create_tween()
-	tween.tween_property(bad_char, "modulate:a", 1.0, 0.2)
-	tween.parallel().tween_property(bad_char, "scale", template.scale, 0.13)
-	tween.tween_interval(0.1)
-	add_bad_char_shake(tween, bad_char)
-	tween.tween_interval(maxf(0.0, BAD_CHAR_LIFETIME - 1.2))
-	tween.tween_property(bad_char, "modulate:a", 0.0, 0.3)
-	tween.tween_callback(remove_bad_char.bind(bad_char.get_instance_id()))
-
-
-func add_bad_char_shake(tween: Tween, bad_char: TextureRect) -> void:
-	var original_position := bad_char.position
-	var shake_directions := [
-		Vector2(-1, -1),
-		Vector2(1, 1),
-		Vector2(-1, 1),
-		Vector2(1, -1),
-		Vector2.ZERO
-	]
-
-	for direction in shake_directions:
-		tween.parallel().tween_property(
-			bad_char,
-			"position",
-			original_position + direction * BAD_CHAR_SHAKE_DISTANCE,
-			BAD_CHAR_SHAKE_STEP
-		)
-
-
-func remove_bad_char(bad_char_id: int) -> void:
-	var bad_char := instance_from_id(bad_char_id) as TextureRect
-	if not is_instance_valid(bad_char):
-		return
-
-	active_bad_chars.erase(bad_char)
-	bad_char.queue_free()
-
-
-func clear_bad_chars() -> void:
-	for bad_char in active_bad_chars:
-		if is_instance_valid(bad_char):
-			bad_char.queue_free()
-	active_bad_chars.clear()
-
-
-
-func get_random_bad_char_position(bad_char: TextureRect) -> Vector2:
-	var screen_size := get_viewport_rect().size
-	var char_size := bad_char.size * bad_char.scale
-
-	return Vector2(
-		randf_range(0.0, maxf(0.0, screen_size.x - char_size.x)),
-		randf_range(0.0, maxf(0.0, screen_size.y - char_size.y))
-	)
+# Para de gerar os caracteres amaldiçoados
+func stop_bad_chars() -> void:
+	bad_char_particles.emitting = false
+	# obs: para deixar invisível, teria q haver um await aqui (pras
+	#	   partículas não sumirem do nada)
+	#bad_char_particles.visible = false
 
 # Retorna uma posição aleatória na barra, de forma que ela 
 # esteja verticalmente centralizada.
