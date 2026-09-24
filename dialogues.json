@@ -54,7 +54,7 @@
 				"name": "Dona Luzia",
 				"text": "Francisco… sabia que foi eu mesma que escolhi o nome dele?"
 			}
-		],
+		]
 	},
 
 	{
@@ -68,7 +68,7 @@
 				"name": "Dona Luzia",
 				"text": "Ahh, você já foi em uma das partidas de futebol dele? Ele é muito bom!"
 			}
-		],
+		]
 	},
 	
 	{
@@ -82,7 +82,7 @@
 				"name": "Dona Luzia",
 				"text": "Claro que sei! Eu que faço o cabelo dela todos os dias."
 			}
-		],
+		]
 	},
 
 	{
@@ -133,7 +133,7 @@
 				"name": "Nikole",
 				"text": "Tchau, Francisco!"
 			}
-		],
+		]
 	},
 
 	{
@@ -147,7 +147,7 @@
 				"name": "Francisco",
 				"text": "Ela está ali agora vendo televisão. Pode deixar que não vamos deixar ela sair sozinha de novo. Falou!"
 			}
-		],
+		]
 	},
 
 
@@ -321,7 +321,7 @@
 				"name": "Nikole",
 				"text": "Uma última coisa, nunca se esqueça que não tem nada de errado se é o que te faz feliz. Falou!"
 			}
-		],
+		]
 	},
 
 	{
@@ -331,7 +331,7 @@
 				"name": "João",
 				"text": "E aí, Nikole. Obrigado mais uma vez. De verdade."
 			}
-		],
+		]
 	},
 
 
@@ -476,7 +476,7 @@
 				"name": "Nikole",
 				"text": "Adeus, Caio!"
 			}
-		],
+		]
 	},
 
 	{
@@ -490,7 +490,7 @@
 				"name": "Caio",
 				"text": "Parece que a sua ajuda trouxe um tchã a mais, tá ligado?"
 			}
-		],
+		]
 	},
 
 
@@ -676,7 +676,7 @@
 				"name": "Leonardo",
 				"text": "Tchau, Nikole!"
 			}
-		],
+		]
 	},
 
 	{
@@ -690,7 +690,7 @@
 				"name": "Leonardo",
 				"text": "Zzzzzzzz..."
 			}
-		],
+		]
 	},
 
 
@@ -787,11 +787,22 @@
 			},
 			{
 				"name": "Alex",
-				"text": "Eu tinha que trabalhar e me acalmar ao mesmo tempo."
+				"text": "Essas agressões iam me corroendo pouco a pouco."
 			}
 		]
 	},
-	
+
+	{
+		"id": "alex_minigame_dialogue_3",
+		"condition": {},
+		"lines": [
+			{
+				"name": "Alex",
+				"text": "Teve um momento que eu não aguentava mais..."
+			}
+		]
+	},
+
 	{
 		"id": "alex_post_minigame",
 		"condition": {
@@ -800,6 +811,10 @@
 			"else": "alex_pre_minigame"
 		},
 		"lines": [
+			{
+				"name": "Alex",
+				"text": "Aí eu pedi demissão."
+			},
 			{
 				"name": "Alex",
 				"text": "Era ruim viu..."
@@ -830,13 +845,17 @@
 			},
 			{
 				"name": "Alex",
-				"text": "Obrigada, Nikole. Passa aí depois para tomar um café, viu?"
+				"text": "Obrigada, Nikole. Desculpa pelo desabafo repentino... Passa aí depois para tomar um café, viu?"
 			},
 			{
 				"name": "Nikole",
-				"text": "Eu vou sim! Espero que você goste da nossa vila! Até mais!"
+				"text": "Tudo bem, Alex. Só me chamar se precisar conversar de novo. E pode acreditar que eu vou querer esse cafezinho sim!"
+			},
+			{
+				"name": "Nikole",
+				"text": "Espero que você goste da nossa vila! Até mais!"
 			}
-		],
+		]
 	},
 
 	{
@@ -850,6 +869,6 @@
 				"name": "Alex",
 				"text": "Assim que terminar, te chamo para um café!"
 			}
-		],
+		]
 	},
 ]

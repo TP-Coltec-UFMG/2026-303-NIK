@@ -9,7 +9,7 @@ const MAX_TIME_BETWEEN_TASKS : float = 2
 const TASK_ANIMATION_TIME : float = 0.5
 
 # Quantas tarefas o usuário precisa fazer até começar o burnout
-const NUMBER_OF_TASKS_TO_BURNOUT = 20
+const NUMBER_OF_TASKS_TO_BURNOUT = 35
 
 # Quantas tarefas o usuário precisa fazer para terminar o minigame
 const NUMBER_OF_TASKS : int = 45
@@ -127,6 +127,8 @@ func handle_task_completion(task_number : int) -> void:
 		# Começa o burnout
 		skill_check.is_on_burnout = true
 
+		DialogueController.start_dialogue("alex_minigame_dialogue_3")
+		
 		# Espera um tempo (pro jogador perceber)
 		await get_tree().create_timer(12).timeout
 		
@@ -136,13 +138,13 @@ func handle_task_completion(task_number : int) -> void:
 		DialogueController.start_dialogue("alex_post_minigame")
 	
 	# Lida com os diálogos	
-	elif task_number == 10: # se 10 tarefas foram completadas
+	elif task_number == 15: # se 10 tarefas foram completadas
 		is_minigame_running = false
 		DialogueController.start_dialogue("alex_minigame_dialogue_1")
 		await DialogueController.dialogue_finished
 		is_minigame_running = true
 		
-	elif task_number == 20: # se 20 tarefas foram completadas
+	elif task_number == 30: # se 20 tarefas foram completadas
 		is_minigame_running = false
 		DialogueController.start_dialogue("alex_minigame_dialogue_2")
 		await DialogueController.dialogue_finished
