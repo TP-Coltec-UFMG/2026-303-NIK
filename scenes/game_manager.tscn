@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://v4a1wtjtcbkn" path="res://scripts/settings_buttons/setting_int.gd" id="13_kvitc"]
 [ext_resource type="Script" uid="uid://csl2o2drb1mft" path="res://scripts/settings_buttons/setting_keybind.gd" id="14_hqtnj"]
 [ext_resource type="Theme" uid="uid://gmvr2lib4uc3" path="res://themes/default.tres" id="15_5xtl8"]
+[ext_resource type="Texture2D" uid="uid://c2fe0k122wggp" path="res://sprites/ui/key.png" id="18_pc0jn"]
 
 [sub_resource type="Animation" id="Animation_rerct"]
 length = 0.001
@@ -163,17 +164,12 @@ fill = 1
 fill_from = Vector2(0, 1)
 fill_to = Vector2(0.765812, 0.2863248)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cjvif"]
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 4
-anti_aliasing_size = 0.01
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ry0e6"]
+texture = ExtResource("18_pc0jn")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
 
 [node name="GameManager" type="Control" unique_id=644995863]
 layout_mode = 3
@@ -2753,14 +2749,15 @@ size_flags_horizontal = 0
 theme_override_constants/separation = 8
 
 [node name="Panel" type="PanelContainer" parent="UI/Menu/ControlsTip/List/interact" unique_id=214169617]
-custom_minimum_size = Vector2(28, 0)
+custom_minimum_size = Vector2(30, 30)
 propagate_maximum_size = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("15_5xtl8")
-theme_override_styles/panel = SubResource("StyleBoxFlat_cjvif")
+theme_override_styles/panel = SubResource("StyleBoxTexture_ry0e6")
 
 [node name="Botao" type="RichTextLabel" parent="UI/Menu/ControlsTip/List/interact/Panel" unique_id=895515145]
+custom_minimum_size = Vector2(23, 0)
 layout_mode = 2
 theme = ExtResource("15_5xtl8")
 theme_override_font_sizes/normal_font_size = 18
@@ -2793,9 +2790,10 @@ propagate_maximum_size = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("15_5xtl8")
-theme_override_styles/panel = SubResource("StyleBoxFlat_cjvif")
+theme_override_styles/panel = SubResource("StyleBoxTexture_ry0e6")
 
 [node name="Botao" type="RichTextLabel" parent="UI/Menu/ControlsTip/List/Continuar (nao achei o mapa de entrada pra esse)/Panel" unique_id=1889331959]
+custom_minimum_size = Vector2(23, 0)
 layout_mode = 2
 theme = ExtResource("15_5xtl8")
 theme_override_font_sizes/normal_font_size = 18
@@ -2828,9 +2826,10 @@ propagate_maximum_size = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("15_5xtl8")
-theme_override_styles/panel = SubResource("StyleBoxFlat_cjvif")
+theme_override_styles/panel = SubResource("StyleBoxTexture_ry0e6")
 
 [node name="Botao" type="RichTextLabel" parent="UI/Menu/ControlsTip/List/move/up" unique_id=1785637003]
+custom_minimum_size = Vector2(23, 0)
 layout_mode = 2
 theme = ExtResource("15_5xtl8")
 theme_override_font_sizes/normal_font_size = 18
@@ -2848,9 +2847,10 @@ propagate_maximum_size = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("15_5xtl8")
-theme_override_styles/panel = SubResource("StyleBoxFlat_cjvif")
+theme_override_styles/panel = SubResource("StyleBoxTexture_ry0e6")
 
 [node name="Botao" type="RichTextLabel" parent="UI/Menu/ControlsTip/List/move/left" unique_id=67717696]
+custom_minimum_size = Vector2(23, 0)
 layout_mode = 2
 theme = ExtResource("15_5xtl8")
 theme_override_font_sizes/normal_font_size = 18
@@ -2868,9 +2868,10 @@ propagate_maximum_size = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("15_5xtl8")
-theme_override_styles/panel = SubResource("StyleBoxFlat_cjvif")
+theme_override_styles/panel = SubResource("StyleBoxTexture_ry0e6")
 
 [node name="Botao" type="RichTextLabel" parent="UI/Menu/ControlsTip/List/move/down" unique_id=1470158413]
+custom_minimum_size = Vector2(23, 0)
 layout_mode = 2
 theme = ExtResource("15_5xtl8")
 theme_override_font_sizes/normal_font_size = 18
@@ -2888,9 +2889,10 @@ propagate_maximum_size = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("15_5xtl8")
-theme_override_styles/panel = SubResource("StyleBoxFlat_cjvif")
+theme_override_styles/panel = SubResource("StyleBoxTexture_ry0e6")
 
 [node name="Botao" type="RichTextLabel" parent="UI/Menu/ControlsTip/List/move/right" unique_id=531678889]
+custom_minimum_size = Vector2(23, 0)
 layout_mode = 2
 theme = ExtResource("15_5xtl8")
 theme_override_font_sizes/normal_font_size = 18

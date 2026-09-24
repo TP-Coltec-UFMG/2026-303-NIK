@@ -25,9 +25,9 @@ const CURSE_GRADIENT_END : float = 0.3
 const CURSE_TWEEN_DURATION : float = 4.0
 
 # Configurações dos bad chars durante a maldição
-const BAD_CHAR_INITIAL_AMOUNT : int = 5
+const BAD_CHAR_INITIAL_AMOUNT : int = 25
 const BAD_CHAR_SPAWN_INTERVAL : float = 0.18
-const BAD_CHAR_AMOUNT_INCREASE_TIME : float = 0.3
+const BAD_CHAR_AMOUNT_INCREASE_TIME : float = 30.3
 const BAD_CHAR_SPEED_SCALE_INCREASE : float = 0.01
 const BAD_CHAR_MAX_SPEED_SCALE : float = 2
 
@@ -41,8 +41,10 @@ const BAD_CHAR_MAX_SPEED_SCALE : float = 2
 @onready var bar : TextureRect = $CanvasLayer/Control/Bar
 # Área de acerto
 @onready var area_rect: ColorRect = $CanvasLayer/Control/Bar/Area
+@onready var area_rect_l: TextureRect = $CanvasLayer/Control/Bar/AreaLeft
+@onready var area_rect_r: TextureRect = $CanvasLayer/Control/Bar/AreaRight
 # Ponteiro
-@onready var pointer_rect: ColorRect = $CanvasLayer/Control/Bar/Pointer
+@onready var pointer_rect: TextureRect = $CanvasLayer/Control/Bar/Pointer
 # Gradiente da tela amaldiçoada
 @onready var gradient: TextureRect = $CanvasLayer/Cursed/Gradient
 @onready var gradient_texture: GradientTexture2D = gradient.texture as GradientTexture2D
@@ -163,6 +165,8 @@ func _input(event: InputEvent) -> void:
 
 	if event.is_action_pressed('interact'):
 		check_pointer_on_area()
+	else:
+		skill_check()
 
 # Função que faz uma skill check aparecer
 func skill_check(force : bool = false) -> void:
@@ -292,8 +296,12 @@ func increment_area_size(tween : Tween = null) -> void:
 	if tween:
 		tween.parallel().tween_property(area_rect, "position:x", new_start, 0.2)
 		tween.parallel().tween_property(area_rect, "size:x", new_size, 0.2)
+		tween.parallel().tween_property(area_rect_l, "position:x", new_start - 12.0, 0.2)
+		tween.parallel().tween_property(area_rect_r, "position:x", new_start + new_size - 12, 0.2)
 	else:
 		area_rect.position.x = new_start
+		area_rect_l.position.x = new_start - 12.0
+		area_rect_r.position.x = new_start + new_size - 12.0
 		area_rect.size.x = new_size
 
 # Coloca a área do skill check em uma posição aleatória.
@@ -302,13 +310,17 @@ func randomize_area_position() -> void:
 	var width : float = randf_range(MIN_AREA_SIZE, MAX_STARTER_SIZE)
 
 	# Obtém a posição da origem da área
-	var p1 : Vector2 = get_random_position_on_bar(0, width)
+	var p1 : Vector2 = get_random_position_on_bar(12, width - 12)
 	curr_area_start = p1.x
 	curr_area_end = p1.x + width
 	
 	# Coloca a área com as bordas em p1 e p2
 	area_rect.position = p1
 	area_rect.size = Vector2(width, area_rect.size.y) # obs: mantém a posição y
+
+	area_rect_l.position.x = p1.x - 12.0
+	area_rect_r.position.x = p1.x + width - 12.0
+	area_rect.size.x = width
 
 # Amaldiçoa a tela
 func curse_screen() -> void:
@@ -423,10 +435,10 @@ func stop_bad_chars() -> void:
 # Retorna uma posição aleatória na barra, de forma que ela 
 # esteja verticalmente centralizada.
 # Caso deseje alterar o intervalo, altere `offset`.
-func get_random_position_on_bar(min_offset: float = 0, max_offset: float = 0) -> Vector2:
+func get_random_position_on_bar(min_offset: float = 12, max_offset: float = -12) -> Vector2:
 	return Vector2(
 		randf_range(bar_min_x + min_offset, bar_max_x - max_offset),
-		9 # centralizado
+		0 # centralizado
 	)
 
 # Retorna se pode ter caracteres da tela amaldiçoada na tela

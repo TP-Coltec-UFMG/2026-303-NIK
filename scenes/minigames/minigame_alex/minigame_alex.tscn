@@ -5,12 +5,20 @@
 [ext_resource type="Texture2D" uid="uid://bcqolfqc52j3l" path="res://sprites/minigames/minigame_alex/letter.png" id="3_ewbu0"]
 [ext_resource type="Texture2D" uid="uid://dj1s2apfb5d5c" path="res://sprites/minigames/minigame_alex/correct.png" id="4_5ibai"]
 [ext_resource type="Script" uid="uid://bp0aidx1n1pbv" path="res://scenes/minigames/minigame_alex/skill_check.gd" id="4_6dts0"]
+[ext_resource type="Theme" uid="uid://gmvr2lib4uc3" path="res://themes/default.tres" id="4_icvfu"]
+[ext_resource type="Texture2D" uid="uid://c2fe0k122wggp" path="res://sprites/ui/key.png" id="5_3lmwq"]
 [ext_resource type="Texture2D" uid="uid://br3agkc616ekb" path="res://sprites/minigames/minigame_alex/bad_2.png" id="5_ekmet"]
+[ext_resource type="Texture2D" uid="uid://csa4qrf0l2w1y" path="res://sprites/minigames/minigame_alex/bar_correct.png" id="5_ije47"]
 [ext_resource type="Texture2D" uid="uid://duupd47daodrt" path="res://sprites/minigames/minigame_alex/skill_check_bar_border.png" id="5_n2v2g"]
 [ext_resource type="Texture2D" uid="uid://wxyjfm7h6yq" path="res://sprites/minigames/minigame_alex/skill_check_bar_background.png" id="5_q57vx"]
 [ext_resource type="Texture2D" uid="uid://ciuisgugpb1ni" path="res://sprites/minigames/minigame_alex/bad_1.png" id="6_t2n66"]
 [ext_resource type="Texture2D" uid="uid://cjwegk5kvitxi" path="res://sprites/minigames/minigame_alex/wrong.png" id="7_5ibai"]
+[ext_resource type="Texture2D" uid="uid://vlenax5iq205" path="res://sprites/minigames/minigame_alex/bar_wrong.png" id="7_7mvvx"]
+[ext_resource type="Texture2D" uid="uid://c8q6yjolj000t" path="res://sprites/minigames/minigame_alex/bad_spritesheet.png" id="9_6wmvc"]
+[ext_resource type="Texture2D" uid="uid://ce1mj0ba2bod0" path="res://sprites/minigames/minigame_alex/skill_check_bar_target_l.png" id="10_ygx7t"]
 [ext_resource type="Texture2D" uid="uid://7ls7rmc47hnu" path="res://sprites/minigames/minigame_alex/bad_3.png" id="11_5ibai"]
+[ext_resource type="Texture2D" uid="uid://d0lbdj3jahwbn" path="res://sprites/minigames/minigame_alex/skill_check_bar_target_r.png" id="11_hq832"]
+[ext_resource type="Texture2D" uid="uid://ckps32xuev574" path="res://sprites/minigames/minigame_alex/skill_check_cursor.png" id="12_cqui5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ekmet"]
 font_size = 30
@@ -24,6 +32,27 @@ outline_color = Color(0.6039216, 0.39215687, 0.34117648, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_pd2vk"]
 font_size = 32
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pd2vk"]
+texture = ExtResource("5_3lmwq")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_sxj77"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 4
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_6wmvc"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.13962264, 0.28679246, 0.4301887, 0.5773585, 0.73207545, 0.8679245)
+colors = PackedColorArray(1, 0.3, 0.3, 1, 1, 0.4516667, 0.3, 1, 1, 0.8483333, 0.3, 1, 0.46333337, 1, 0.3, 1, 0.3, 1, 0.8949999, 1, 0.3, 0.4866665, 1, 1, 0.65, 0.3, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7e655"]
+gradient = SubResource("Gradient_6wmvc")
+
 [sub_resource type="Gradient" id="Gradient_5ibai"]
 offsets = PackedFloat32Array(0, 0.5, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
@@ -32,16 +61,23 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 gradient = SubResource("Gradient_5ibai")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7e655"]
+lifetime_randomness = 0.23
 particle_flag_disable_z = true
-emission_shape_scale = Vector3(640, 360, 1)
+emission_shape_scale = Vector3(800, 500, 1)
 emission_shape = 3
 emission_box_extents = Vector3(1, 1, 1)
 angle_min = -102.899994
 angle_max = 230.10002
 flatness = 1.0
-radial_velocity_min = -2.0000224
-radial_velocity_max = 1.9999776
+angular_velocity_min = -120.000015
+angular_velocity_max = 119.999985
+orbit_velocity_min = -0.029999906
+orbit_velocity_max = 0.030000096
+radial_velocity_min = -50.000023
+radial_velocity_max = 49.999977
 color_ramp = SubResource("GradientTexture1D_b0kdt")
+color_initial_ramp = SubResource("GradientTexture1D_7e655")
+anim_offset_max = 1.0
 
 [sub_resource type="Gradient" id="Gradient_r2og5"]
 interpolation_mode = 2
@@ -173,6 +209,31 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
+[node name="Interact" type="PanelContainer" parent="Camera2D/TaskGenerator/Tutorial/Background" unique_id=847930244]
+custom_minimum_size = Vector2(28, 28)
+propagate_maximum_size = false
+layout_mode = 0
+offset_left = 702.0
+offset_top = 350.0
+offset_right = 741.0
+offset_bottom = 390.0
+size_flags_horizontal = 3
+theme = ExtResource("4_icvfu")
+theme_override_styles/panel = SubResource("StyleBoxTexture_pd2vk")
+
+[node name="Key" type="RichTextLabel" parent="Camera2D/TaskGenerator/Tutorial/Background/Interact" unique_id=271357834]
+custom_minimum_size = Vector2(23, 0)
+layout_mode = 2
+theme = ExtResource("4_icvfu")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "E"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Description2" type="RichTextLabel" parent="Camera2D/TaskGenerator/Tutorial/Background" unique_id=536176753]
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 1
@@ -187,7 +248,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 bbcode_enabled = true
-text = "[font_size=32]Vença os sentimentos apertando para [color=yellow]interagir [color=white]quando a [color=dd1100]barra pequena [color=white]estiver na [color=#aaffaaff]área[color=white]."
+text = "[font_size=32]Vença os sentimentos apertando para [color=#E0C764]       interagir [color=white]quando a [color=CF5454]barra pequena [color=white]estiver na [color=#88C86A]área[color=white]."
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -245,7 +306,7 @@ offset_right = 40.0
 offset_bottom = 113.0
 offset_transform_enabled = true
 
-[node name="State" type="TextureButton" parent="Camera2D/TaskGenerator/Tutorial/Background/SkillCheck" unique_id=701081446]
+[node name="State" type="TextureRect" parent="Camera2D/TaskGenerator/Tutorial/Background/SkillCheck" unique_id=759210330]
 custom_minimum_size = Vector2(3, 0)
 custom_maximum_size = Vector2(97.333, 60.667)
 layout_mode = 0
@@ -256,8 +317,8 @@ offset_bottom = 432.667
 scale = Vector2(0.6, 0.6)
 pivot_offset = Vector2(48.667, 30.334)
 offset_transform_enabled = true
-texture_normal = ExtResource("4_5ibai")
-stretch_mode = 5
+texture = ExtResource("4_5ibai")
+stretch_mode = 3
 
 [node name="Bar" type="TextureRect" parent="Camera2D/TaskGenerator/Tutorial/Background/SkillCheck" unique_id=2025046003]
 clip_children = 2
@@ -275,41 +336,8 @@ offset_right = 924.0
 offset_bottom = 391.0
 grow_horizontal = 2
 grow_vertical = 0
-texture = ExtResource("5_q57vx")
-stretch_mode = 5
-
-[node name="Area" type="ColorRect" parent="Camera2D/TaskGenerator/Tutorial/Background/SkillCheck/Bar" unique_id=385192466]
-layout_mode = 0
-offset_left = 109.0
-offset_top = 9.0
-offset_right = 239.0
-offset_bottom = 51.0
-color = Color(0, 1, 0, 0.39607844)
-
-[node name="Pointer" type="ColorRect" parent="Camera2D/TaskGenerator/Tutorial/Background/SkillCheck/Bar" unique_id=180851688]
-layout_mode = 0
-offset_left = 196.0
-offset_top = 9.0
-offset_right = 201.0
-offset_bottom = 51.0
-color = Color(1, 0, 0, 1)
-
-[node name="BarBorder" type="TextureRect" parent="Camera2D/TaskGenerator/Tutorial/Background/SkillCheck" unique_id=1879041591]
-custom_maximum_size = Vector2(1000, 100)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 316.0
-offset_top = 331.0
-offset_right = 924.0
-offset_bottom = 391.0
-grow_horizontal = 2
-grow_vertical = 0
-texture = ExtResource("5_n2v2g")
-stretch_mode = 5
+texture = ExtResource("5_ije47")
+stretch_mode = 2
 
 [node name="SkillCheck2" type="Control" parent="Camera2D/TaskGenerator/Tutorial/Background" unique_id=1002945842]
 anchors_preset = 0
@@ -318,7 +346,7 @@ offset_right = 40.0
 offset_bottom = 188.0
 offset_transform_enabled = true
 
-[node name="State" type="TextureButton" parent="Camera2D/TaskGenerator/Tutorial/Background/SkillCheck2" unique_id=1020852606]
+[node name="State" type="TextureRect" parent="Camera2D/TaskGenerator/Tutorial/Background/SkillCheck2" unique_id=1602233572]
 custom_minimum_size = Vector2(3, 0)
 custom_maximum_size = Vector2(97.333, 60.667)
 layout_mode = 0
@@ -329,8 +357,8 @@ offset_bottom = 432.667
 scale = Vector2(0.6, 0.6)
 pivot_offset = Vector2(48.667, 30.334)
 offset_transform_enabled = true
-texture_normal = ExtResource("7_5ibai")
-stretch_mode = 5
+texture = ExtResource("7_5ibai")
+stretch_mode = 3
 
 [node name="Bar" type="TextureRect" parent="Camera2D/TaskGenerator/Tutorial/Background/SkillCheck2" unique_id=1265050660]
 clip_children = 2
@@ -348,50 +376,20 @@ offset_right = 924.0
 offset_bottom = 391.0
 grow_horizontal = 2
 grow_vertical = 0
-texture = ExtResource("5_q57vx")
-stretch_mode = 5
-
-[node name="Area" type="ColorRect" parent="Camera2D/TaskGenerator/Tutorial/Background/SkillCheck2/Bar" unique_id=49438285]
-layout_mode = 0
-offset_left = 30.0
-offset_top = 9.0
-offset_right = 160.0
-offset_bottom = 51.0
-color = Color(0, 1, 0, 0.39607844)
-
-[node name="Pointer" type="ColorRect" parent="Camera2D/TaskGenerator/Tutorial/Background/SkillCheck2/Bar" unique_id=506427669]
-layout_mode = 0
-offset_left = 522.0
-offset_top = 9.0
-offset_right = 527.0
-offset_bottom = 51.0
-color = Color(1, 0, 0, 1)
-
-[node name="BarBorder" type="TextureRect" parent="Camera2D/TaskGenerator/Tutorial/Background/SkillCheck2" unique_id=1376644610]
-custom_maximum_size = Vector2(1000, 100)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 316.0
-offset_top = 331.0
-offset_right = 924.0
-offset_bottom = 391.0
-grow_horizontal = 2
-grow_vertical = 0
-texture = ExtResource("5_n2v2g")
-stretch_mode = 5
+texture = ExtResource("7_7mvvx")
+stretch_mode = 2
 
 [node name="SkillCheck" type="Node2D" parent="Camera2D" unique_id=345064300]
 script = ExtResource("4_6dts0")
 
 [node name="BadCharsParticles" type="GPUParticles2D" parent="Camera2D/SkillCheck" unique_id=1741523400]
+material = SubResource("CanvasItemMaterial_sxj77")
 emitting = false
-texture = ExtResource("6_t2n66")
-lifetime = 0.5
+amount = 64
+texture = ExtResource("9_6wmvc")
 speed_scale = 1.15
+explosiveness = 0.02
+randomness = 0.05
 process_material = SubResource("ParticleProcessMaterial_7e655")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D/SkillCheck" unique_id=52577233]
@@ -421,7 +419,6 @@ offset_transform_enabled = true
 
 [node name="Bar" type="TextureRect" parent="Camera2D/SkillCheck/CanvasLayer/Control" unique_id=1883645602]
 clip_children = 2
-custom_maximum_size = Vector2(1000, 100)
 clip_contents = true
 layout_mode = 1
 anchors_preset = 7
@@ -429,30 +426,48 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 365.0
+offset_left = 316.0
 offset_top = 549.0
-offset_right = 875.0
-offset_bottom = 609.0
+offset_right = 924.0
+offset_bottom = 608.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("5_q57vx")
-stretch_mode = 5
+stretch_mode = 2
 
 [node name="Area" type="ColorRect" parent="Camera2D/SkillCheck/CanvasLayer/Control/Bar" unique_id=944365473]
 layout_mode = 0
 offset_left = 40.0
-offset_top = 9.0
+offset_top = 4.0
 offset_right = 80.0
-offset_bottom = 51.0
-color = Color(0, 1, 0, 0.39607844)
+offset_bottom = 204.0
+color = Color(0.53333336, 0.78431374, 0.41568628, 1)
 
-[node name="Pointer" type="ColorRect" parent="Camera2D/SkillCheck/CanvasLayer/Control/Bar" unique_id=778236036]
+[node name="AreaLeft" type="TextureRect" parent="Camera2D/SkillCheck/CanvasLayer/Control/Bar" unique_id=1360476809]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 6.0
+offset_right = 52.0
+offset_bottom = 53.0
+texture = ExtResource("10_ygx7t")
+stretch_mode = 2
+
+[node name="AreaRight" type="TextureRect" parent="Camera2D/SkillCheck/CanvasLayer/Control/Bar" unique_id=1506746570]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 6.0
+offset_right = 92.0
+offset_bottom = 53.0
+texture = ExtResource("11_hq832")
+stretch_mode = 2
+
+[node name="Pointer" type="TextureRect" parent="Camera2D/SkillCheck/CanvasLayer/Control/Bar" unique_id=604978951]
 layout_mode = 0
 offset_left = 90.0
-offset_top = 9.0
-offset_right = 95.0
-offset_bottom = 51.0
-color = Color(1, 0, 0, 1)
+offset_right = 109.0
+offset_bottom = 59.0
+texture = ExtResource("12_cqui5")
+stretch_mode = 2
 
 [node name="BarBorder" type="TextureRect" parent="Camera2D/SkillCheck/CanvasLayer/Control" unique_id=426584609]
 custom_maximum_size = Vector2(1000, 100)

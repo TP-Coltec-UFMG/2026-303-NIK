@@ -167,7 +167,6 @@ func load_settings() -> void:
 
 		# print("configurações carregadas:\n" + str(config_data))
 		apply_settings(config_data)
-		print("could not open settings file!!!")
 		file.close()
 	else:
 		create_default_settings()
@@ -181,6 +180,9 @@ func change_setting(key : String, value : Variant):
 	apply_settings()
 	$UI/Menu.load_settings()
 	return
+
+func get_setting(key : String):
+	return settings[key]
 	
 func save_game() -> void:
 	var save_data = {}
@@ -208,11 +210,10 @@ func load_save() -> void:
 				game_data[save] = save_data[save]
 
 		# load_map()
-		print("could not open settings file!!!")
 		file.close()
 	else:
 		create_blank_save()
-		print("could not open settings file!!!")
+		print("could not open save file!\ncreating blank one")
 
 func get_game_data(key : String):
 	return game_data[key] if game_data[key] != null else null 
