@@ -28,7 +28,8 @@ const CURSE_TWEEN_DURATION : float = 4.0
 const BAD_CHAR_INITIAL_AMOUNT : int = 5
 const BAD_CHAR_SPAWN_INTERVAL : float = 0.18
 const BAD_CHAR_AMOUNT_INCREASE_TIME : float = 0.3
-const BAD_CHAR_SPEED_SCALE_INCREASE : float = 0.02
+const BAD_CHAR_SPEED_SCALE_INCREASE : float = 0.01
+const BAD_CHAR_MAX_SPEED_SCALE : float = 2
 
 # Canvas Layer com a interface do skill check
 @onready var canvas_layer : CanvasLayer = $CanvasLayer
@@ -379,7 +380,7 @@ func start_bad_chars(cycle_id: int) -> void:
 		# não acho que há necessidade de reiniciar
 		# bad_char_particles.restart()
 		bad_char_particles.emitting = true
-		bad_char_particles.speed_scale = 1.15
+		bad_char_particles.speed_scale = 1.05
 		
 		# não vejo necessidade de deixar visível/invisível
 		# bad_char_particles.visible = true
@@ -401,10 +402,15 @@ func _run_bad_char_handler(cycle_id: int) -> void:
 			bad_char_particles.amount
 		)
 
+		# Aumenta a quantidade de partícula para o "target amount"
 		bad_char_particles.amount_ratio = float(target_amount) / bad_char_particles.amount
+
+		# Aumenta a velocidade da animação das partículas
 		bad_char_particles.speed_scale += BAD_CHAR_SPEED_SCALE_INCREASE
+		bad_char_particles.speed_scale = min(bad_char_particles.speed_scale, BAD_CHAR_MAX_SPEED_SCALE)
 
 		await get_tree().create_timer(BAD_CHAR_SPAWN_INTERVAL).timeout
+		
 		elapsed_time += BAD_CHAR_SPAWN_INTERVAL
 
 # Para de gerar os caracteres amaldiçoados
