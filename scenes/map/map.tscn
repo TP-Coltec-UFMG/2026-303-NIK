@@ -373,7 +373,7 @@ texture = ExtResource("15_58ndj")
 offset = Vector2(-5, -110)
 
 [node name="Gabriel" type="Node2D" parent="AnimatedProps" unique_id=1034708122]
-position = Vector2(15222, 1786)
+position = Vector2(16584, 2060)
 script = ExtResource("13_nykyp")
 type = 2
 radius = Vector2(400, 150)
@@ -393,7 +393,7 @@ texture = ExtResource("17_78kcs")
 offset = Vector2(-5, -110)
 
 [node name="Andre" type="Node2D" parent="AnimatedProps" unique_id=800911318]
-position = Vector2(15222, 1786)
+position = Vector2(16584, 2060)
 script = ExtResource("13_nykyp")
 type = 2
 radius = Vector2(400, 150)
@@ -414,7 +414,7 @@ texture = ExtResource("18_2kc6l")
 offset = Vector2(-5, -110)
 
 [node name="Fred" type="Node2D" parent="AnimatedProps" unique_id=1618091661]
-position = Vector2(15222, 1786)
+position = Vector2(16584, 2060)
 script = ExtResource("13_nykyp")
 type = 2
 radius = Vector2(400, 150)
