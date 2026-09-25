@@ -17,6 +17,8 @@ const PEOPLE_SPEED : float = 30.0
 @onready var start_text : HBoxContainer = $StartText
 @onready var background : TextureRect = $Background
 
+@onready var start_key : RichTextLabel = $StartText/Interact/Key
+
 # Se o jogador está atualmente no menu. Serve para desativar/ativar
 # o tratamento de entrada (no caso, para certificar que o usuário não
 # vai interagir com algo atoa) e para parar de calcular as animações
@@ -30,6 +32,8 @@ var _animation_i : float = 0
 func _process(delta: float) -> void:
 	# Se não estiver no menu, não anima
 	if not on_menu: return
+
+	start_key.text = "[font_size=26]" + OS.get_keycode_string(GameManager.get_setting("interact"))
 
 	# Preferi colocar só a rotação do título para ser alterada
 	#title.offset_transform_position.x = sin(_animation_i - 0.1) * TEXT_ANIMATION_AMPLITUDE
@@ -48,9 +52,9 @@ func _process(delta: float) -> void:
 
 	animate_person($Background/Nik, delta)
 
-	# Para dar movimento
-	$Background/Nik.position.x += PEOPLE_SPEED * delta
-	_is_moving[$Background/Nik] = true
+	# Para dar movimento (o movimento não tá funfando ainda)
+	#$Background/Nik.position.x += PEOPLE_SPEED * delta
+	#_is_moving[$Background/Nik] = true
 
 
 func _input(event: InputEvent) -> void:
@@ -94,7 +98,7 @@ func animate_person(person : TextureRect, delta : float):
 	_animation_progress[person] += PEOPLE_SPEED * delta * .035
 	
 	person.rotation = (sin(_animation_progress[person]) * 0.1) * _walking_animation_weight[person] + (sin(_animation_progress[person] / 4) * 0.01)
-	person.scale.y = 0.14 - (sin(_animation_progress[person] * 2) * .01) * _walking_animation_weight[person] + -((0.14 + sin(_animation_progress[person] * .5)) * .01)
-	person.position.y = 0 + (-(0.14 + sin(_animation_progress[person] * 2 - PI / 2)) * 20.25) * _walking_animation_weight[person]
+	#person.scale.y = 0.14 - (sin(_animation_progress[person] * 2) * .01) * _walking_animation_weight[person] + -((0.14 + sin(_animation_progress[person] * .5)) * .01)
+	#person.position.y = 0 + (-(0.14 + sin(_animation_progress[person] * 2 - PI / 2)) * 20.25) * _walking_animation_weight[person]
 
 	person.reset_physics_interpolation()
