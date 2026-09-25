@@ -18,9 +18,10 @@ func _ready() -> void:
 	pass
 
 func _process(delta: float) -> void:
-	animation_progress += 150 * delta * .035
+	animation_progress += 100 * delta * .035 * (3.0 if type == PROP_TYPE.RUNNING else 1.0)
 	
-	rotation = (sin(animation_progress / 4) * 0.025) + (sin(animation_progress) * 0.1) if type == PROP_TYPE.RUNNING else 0.0
+	rotation = (sin(animation_progress / 4) * 0.0) + ((sin(animation_progress) * 0.1) if type == PROP_TYPE.RUNNING else 0.0)
+	# rotation = (sin(animation_progress / 4) * 0.1) + ((sin(animation_progress) * 0.1) if type == PROP_TYPE.RUNNING else 0.0)
 	scale.y = 1 - (sin(animation_progress * 2) * .025)
 
 	if type == PROP_TYPE.RUNNING:
