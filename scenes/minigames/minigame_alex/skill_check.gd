@@ -105,13 +105,6 @@ func _ready() -> void:
 	pointer_speed = INITIAL_POINTER_SPEED
 	next_check_time = randf_range(MIN_TIME_BETWEEN_CHECKS, MAX_TIME_BETWEEN_CHECKS)
 
-	# Coloca os caracteres no vetor
-	for c in $BadChars.get_children():
-		if c is TextureRect:
-			bad_chars.append(c)
-			c.visible = false
-			c.mouse_filter = Control.MOUSE_FILTER_IGNORE
-
 
 func _process(delta: float) -> void:
 	# Faz nada se o minigame estiver parado
