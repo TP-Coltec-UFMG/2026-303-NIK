@@ -7,6 +7,19 @@
 [ext_resource type="Texture2D" uid="uid://c2fe0k122wggp" path="res://sprites/ui/key.png" id="4_lhq7i"]
 [ext_resource type="Texture2D" uid="uid://hqdkg05r0yy3" path="res://sprites/map/map2.png" id="5_lhq7i"]
 
+[sub_resource type="Gradient" id="Gradient_r2og5"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.5193133, 0.82403433, 1)
+colors = PackedColorArray(0.15648, 0.1296, 0.18, 0.3372549, 0.15686275, 0.12941177, 0.18039216, 0, 0.21176471, 0.47843137, 0.36862746, 0.16078432, 0.21176471, 0.47843137, 0.36862746, 0.3764706)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yy0av"]
+gradient = SubResource("Gradient_r2og5")
+width = 480
+height = 270
+fill = 1
+fill_from = Vector2(0.5252525, 0.041900486)
+fill_to = Vector2(0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_ecwv3"]
 font = ExtResource("1_6firx")
 font_size = 82
@@ -47,12 +60,19 @@ expand_mode = 3
 
 [node name="Nik" type="TextureRect" parent="Background" unique_id=833697954]
 layout_mode = 0
-offset_left = 982.5
-offset_top = 271.0
-offset_right = 1231.5
-offset_bottom = 559.0
+offset_left = 1089.0
+offset_top = 259.5
+offset_right = 1338.0
+offset_bottom = 547.5
 scale = Vector2(0.14, 0.14)
 texture = ExtResource("3_yy0av")
+
+[node name="Gradient" type="TextureRect" parent="." unique_id=516742917]
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_yy0av")
+stretch_mode = 5
 
 [node name="Title" type="Label" parent="." unique_id=1596557204]
 anchors_preset = -1
@@ -70,35 +90,36 @@ text = "NIK"
 label_settings = SubResource("LabelSettings_ecwv3")
 horizontal_alignment = 1
 
-[node name="StartText" type="Label" parent="." unique_id=2118246308]
-anchors_preset = -1
+[node name="StartText" type="HBoxContainer" parent="." unique_id=47987803]
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -332.5
-offset_top = 247.0
-offset_right = 332.5
-offset_bottom = 310.0
+offset_left = -311.5
+offset_top = 224.0
+offset_right = 311.5
+offset_bottom = 277.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
+size_flags_horizontal = 4
 offset_transform_enabled = true
-text = "Clique ou pressione               para começar"
+
+[node name="StartText1" type="Label" parent="StartText" unique_id=2118246308]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 1
+offset_transform_enabled = true
+text = "Clique ou pressione "
 label_settings = SubResource("LabelSettings_2g1ym")
-horizontal_alignment = 1
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="Interact" type="PanelContainer" parent="StartText" unique_id=1320670055]
 custom_minimum_size = Vector2(28, 28)
 propagate_maximum_size = false
-layout_mode = 0
-offset_left = 312.5
-offset_top = 6.0
-offset_right = 433.5
-offset_bottom = 56.0
-size_flags_horizontal = 3
+layout_mode = 2
+size_flags_horizontal = 6
 theme = ExtResource("3_bp8ob")
 theme_override_styles/panel = SubResource("StyleBoxTexture_yy0av")
 
@@ -113,4 +134,14 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartText2" type="Label" parent="StartText" unique_id=1683439449]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 8
+size_flags_stretch_ratio = 12.72
+offset_transform_enabled = true
+text = " para começar"
+label_settings = SubResource("LabelSettings_2g1ym")
 vertical_alignment = 1
