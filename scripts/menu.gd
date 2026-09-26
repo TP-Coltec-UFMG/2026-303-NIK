@@ -220,6 +220,10 @@ func _input(event: InputEvent) -> void:
 		menus[active_menu].active_idx = current_idx
 		accept_event()
 
+func quit(): 
+	GameManager.save_game()
+	get_tree().quit()
+
 func setup_menus():
 	
 	# MAIN
@@ -230,7 +234,7 @@ func setup_menus():
 	$Pages/Main/ButtonSettings.connect("pressed", open_screen.bind("Settings"))
 	$Pages/Main/ButtonAccessibility.connect("pressed", open_screen.bind("Accessibility"))
 	$Pages/Main/ButtonSave.connect("pressed", GameManager.save_game)
-	$Pages/Main/ButtonQuit.connect("pressed", get_tree().quit)
+	$Pages/Main/ButtonQuit.connect("pressed", quit)
 
 	for child in $Pages/Main.get_children():
 		if child is ConfigButton:
