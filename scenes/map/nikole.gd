@@ -24,6 +24,7 @@ var all_nodes : Array[MapNode] = []
 func _ready() -> void:
 	for node in $"../Path/Nodes".get_children():
 		all_nodes.append(node as MapNode)
+	DialogueController.please_move_nikole.connect(auto_move_to_node)
 
 func move_to_node(target_node: MapNode, target_path: Path2D, instant : bool = false):
 	is_moving = true
@@ -113,7 +114,6 @@ func _unhandled_input(event):
 			print("iniciando diálogo \"" + current_node.dialogue_id + "\"")
 			DialogueController.start_dialogue(current_node.dialogue_id)
 		else:
-			auto_move_to_node(6)
 			print("não é possível interact com esse nó")
 
 	if event.is_action_pressed("move_up") and current_node.node_up:
@@ -136,7 +136,7 @@ func animate(delta : float):
 
 	animation_progress += speed * delta * .035
 	
-	# sprite.rotation = (sin(animation_progress) * 0.1) * walking_animation_weight + (sin(animation_progress / 4) * 0.0)
+	sprite.rotation = (sin(animation_progress) * 0.1) * walking_animation_weight + (sin(animation_progress / 4) * 0.0)
 	sprite.scale.y = 1 - (sin(animation_progress * 2) * .01) * walking_animation_weight + -((1 + sin(animation_progress * .5)) * .01)
 	sprite.position.y = 0 + (-(1 + sin(animation_progress * 2 - PI / 2)) * 15.25) * walking_animation_weight
 

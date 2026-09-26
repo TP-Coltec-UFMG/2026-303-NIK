@@ -11,7 +11,7 @@ const MUSIC_VOLUME : float = 0 # 0db = volume padrão do arquivo
 @onready var color_blind_filter = $UI/ColorBlindessFilter
 @onready var menu = $UI/Menu
 @export var cenas : Dictionary[String, PackedScene] = {}
-var current_scene
+var current_scene: String
 var current_music : String
 
 var path_config = "user://config.json"
@@ -35,6 +35,7 @@ func load_scene(cena: String) -> void:
 	
 	if current_scene != cena:
 		get_tree().change_scene_to_packed(cenas[cena])
+		current_scene = cena
 		print("carregando cena \"" + cena+ "\"")
 		save_game()
 
@@ -221,6 +222,10 @@ func get_game_data(key : String):
 func set_game_data(key : String, value):
 	game_data[key] = value
 
+	if key == "nodes" and current_scene == "map":
+		(get_tree().current_scene as MapController).load_nodes_data()
+	else:
+		print("key: " + key + " - " + "current_scene: " + current_scene)
 func create_blank_save():
 	set_game_data("map_position", 0)
 
@@ -228,6 +233,16 @@ func create_blank_save():
 	set_game_data("joao_minigame_completed", false)
 	set_game_data("caio_minigame_completed", false)
 	set_game_data("alex_minigame_completed", false)
+
+	set_game_data("nodes", {
+		"0" : "",
+		"1" : "luzia_pre_minigame",
+		"2" : "caio_pre_minigame",
+		"3" : "joao_pre_minigame",
+		"4" : "leonardo_pre_minigame",
+		"5" : "alex_pre_minigame",
+		"6" : ""
+	})
 
 # Carrega as músicas, para evitar que elas só sejam
 # carregadas no momento que forem usadas

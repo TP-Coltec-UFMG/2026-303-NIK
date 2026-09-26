@@ -41,6 +41,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("move_left") or event.is_action_pressed("ui_left"):
 		x_direction = -1
 		move_to_tile(current_pos.x - 1, current_pos.y)
+
+	if event.is_action_pressed("skip_minigame"):
+		maze.check_end_game(0, 0, true)
 		
 #	if event.is_action_pressed("ui_accept"):
 #		maze.check_end_game(67, 67, true)

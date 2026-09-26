@@ -85,56 +85,67 @@
 		]
 	},
 
-	{
-		"id": "luzia_post_minigame",
-		"condition": {
-			"data": "luzia_minigame_completed",
-			"value": "true",
-			"else": "luzia_pre_minigame"
-		},
-		"lines": [
-			{
-				"name": "Nikole",
-				"text": "Esses são os seus netinhos, dona Luzia."
-			},
-			{
-				"name": "Dona Luzia",
-				"text": "Chico, Luisinho e Flavinha… Onde eles estão agora? Preciso apresentá-los ao meu namorado Antônio. Ele vai amar eles!"
-			},
-			{
-				"name": "Nikole",
-				"text": "Eles devem estar na casa da senhora te procurando. Vamos voltar para casa? Eu te acompanho pelo caminho."
-			},
-			{
-				"name": "Dona Luzia",
-				"text": "Claro, minha filha. Vamos."
-			},
-			{
-				"name": "Francisco",
-				"text": "Obrigado por trazer ela de volta, Nik! Estávamos preocupados…"
-			},
-			{
-				"name": "Nikole",
-				"text": "Não precisa agradecer, foi um prazer poder acompanhá-la até em casa."
-			},
-			{
-				"name": "Francisco",
-				"text": "O Alzheimer é uma doença difícil sabe? Conviver com alguém que não se lembra de você, apesar de você a conhecer desde o seu nascimento dói, mas mesmo assim vamos continuar amando ela sempre."
-			},
-			{
-				"name": "Nikole",
-				"text": "Eu sinto muito. Desejo a vocês muita força para lidar com esse momento. Podem contar comigo para qualquer coisa!"
-			},
-			{
-				"name": "Francisco",
-				"text": "Obrigado Nik, cuidar dela constantemente está sendo difícil e saber que podemos contar com você ajuda muito! Passe aqui para visitá-la sempre que quiser! Até mais!"
-			},
-			{
-				"name": "Nikole",
-				"text": "Tchau, Francisco!"
-			}
-		]
-	},
+{
+        "id": "luzia_post_minigame",
+        "condition": {
+            "data": "luzia_minigame_completed",
+            "value": "true",
+            "else": "luzia_pre_minigame"
+        },
+        "lines": [
+            {
+                "name": "Nikole",
+                "text": "Esses são os seus netinhos, dona Luzia."
+            },
+            {
+                "name": "Dona Luzia",
+                "text": "Chico, Luisinho e Flavinha… Onde eles estão agora? Preciso apresentá-los ao meu namorado Antônio. Ele vai amar eles!"
+            },
+            {
+                "name": "Nikole",
+                "text": "Eles devem estar na casa da senhora te procurando. Vamos voltar para casa? Eu te acompanho pelo caminho."
+            },
+            {
+                "name": "Dona Luzia",
+                "text": "Claro, minha filha. Vamos."
+            }
+        ],
+        "redirect": [
+            "node:6",
+            "node_edit:6:luzia_completed",
+            "node_edit:1:",
+            "dialogue:luzia_post_minigame_part2"
+        ]
+    },
+    {
+        "id": "luzia_post_minigame_part2",
+        "lines": [
+            {
+                "name": "Francisco",
+                "text": "Obrigado por trazer ela de volta, Nik! Estávamos preocupados…"
+            },
+            {
+                "name": "Nikole",
+                "text": "Não precisa agradecer, foi um prazer poder acompanhá-la até em casa."
+            },
+            {
+                "name": "Francisco",
+                "text": "O Alzheimer é uma doença difícil sabe? Conviver com alguém que não se lembra de você, apesar de você a conhecer desde o seu nascimento dói, mas mesmo assim vamos continuar amando ela sempre."
+            },
+            {
+                "name": "Nikole",
+                "text": "Eu sinto muito. Desejo a vocês muita força para lidar com esse momento. Podem contar comigo para qualquer coisa!"
+            },
+            {
+                "name": "Francisco",
+                "text": "Obrigado Nik, cuidar dela constantemente está sendo difícil e saber que podemos contar com você ajuda muito! Passe aqui para visitá-la sempre que quiser! Até mais!"
+            },
+            {
+                "name": "Nikole",
+                "text": "Tchau, Francisco!"
+            }
+        ]
+    },
 
 	{
 		"id": "luzia_completed",
@@ -209,7 +220,7 @@
 			},
 			{
 				"name": "João",
-				"text": "Tipo, eu não deveria gostar de mulheres? Eu não deveria gostar de você??"
+				"text": "Tipo, eu não deveria gostar de mulheres? Eu não deveria gostar de você?"
 			},
 			{
 				"name": "Nikole",
