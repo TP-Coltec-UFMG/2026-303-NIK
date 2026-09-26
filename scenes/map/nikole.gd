@@ -19,6 +19,12 @@ var is_moving : bool
 
 signal changed_node(map_node)
 
+var all_nodes : Array[MapNode] = []
+
+func _ready() -> void:
+	for node in $"../Path/Nodes".get_children():
+		all_nodes.append(node as MapNode)
+
 func move_to_node(target_node: MapNode, target_path: Path2D, instant : bool = false):
 	is_moving = true
 	
@@ -51,6 +57,54 @@ func move_to_node(target_node: MapNode, target_path: Path2D, instant : bool = fa
 	current_node = target_node
 	is_moving = false
 
+func auto_move_to_node(target: int, instant: bool = false): # SÓ DEVE SER CHAMADO PELO CONTROLADOR DE DIÁLOGO!!! (eu acho né kkk)
+	var target_node = all_nodes[target]
+	var queue: Array[MapNode] = [current_node]
+	var came_from: Dictionary = { current_node: null }
+	var found_target: bool = false
+
+	while queue.size() > 0:
+		var current = queue.pop_front()
+
+		if current == target_node:
+			found_target = true
+			break
+
+		var neighbors = [
+			{"node": current.node_up, "path": current.path_up},
+			{"node": current.node_down, "path": current.path_down},
+			{"node": current.node_left, "path": current.path_left},
+			{"node": current.node_right, "path": current.path_right}
+		]
+
+		for neighbor_data in neighbors:
+			var next_node = neighbor_data["node"]
+			if next_node != null and not came_from.has(next_node):
+				queue.push_back(next_node)
+				came_from[next_node] = {
+					"previous_node": current,
+					"path_to_node": neighbor_data["path"]
+				}
+
+	if not found_target:
+		return
+
+	var path_sequence: Array = []
+	var step = target_node
+
+	while came_from[step] != null:
+		var step_data = came_from[step]
+		path_sequence.push_front({
+			"target_node": step, 
+			"path": step_data["path_to_node"]
+		})
+		step = step_data["previous_node"]
+
+	for move_step in path_sequence:
+		await move_to_node(move_step["target_node"], move_step["path"], instant)
+	
+	DialogueController.move_to_node_finished()
+
 func _unhandled_input(event):
 	if is_moving: return
 	
@@ -59,6 +113,7 @@ func _unhandled_input(event):
 			print("iniciando diálogo \"" + current_node.dialogue_id + "\"")
 			DialogueController.start_dialogue(current_node.dialogue_id)
 		else:
+			auto_move_to_node(6)
 			print("não é possível interact com esse nó")
 
 	if event.is_action_pressed("move_up") and current_node.node_up:
