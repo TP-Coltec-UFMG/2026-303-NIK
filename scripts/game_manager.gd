@@ -23,7 +23,6 @@ var musics : Dictionary = {}
 
 func _ready():
 	load_settings()
-	load_save()
 	load_musics()
 	play_music("neighborhood")
 	# load_scene("Principal")
@@ -228,6 +227,20 @@ func create_blank_save():
 	set_game_data("joao_minigame_completed", false)
 	set_game_data("caio_minigame_completed", false)
 	set_game_data("alex_minigame_completed", false)
+
+# Carrega o jogo e inicia
+func load_save_and_start() -> void:
+	# Carrega o save
+	GameManager.load_save()
+	# Carrega o mapa
+	GameManager.load_map()
+
+# Cria um novo jogo, sobrescrevendo o save antigo
+func create_new_game() -> void:
+	# Cria uma save vazia
+	GameManager.create_blank_save()
+	# Carrega o mapa
+	GameManager.load_map()
 
 # Carrega as músicas, para evitar que elas só sejam
 # carregadas no momento que forem usadas

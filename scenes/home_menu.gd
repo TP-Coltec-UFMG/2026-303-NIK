@@ -33,15 +33,10 @@ class HomeMenuButton:
 
 	var _current_tween : Tween
 
-	# Sinal que é chamado quando o botão é pressionado
-	signal pressed
-
 	func _init(label_node : Label) -> void:
 		action = label_node.name
 		label = label_node
 		button = label_node.get_node("Button")
-
-		button.pressed.connect(pressed.emit)
 
 	# Reinicia o offset visual do botão, de forma suave (smooth = true)
 	# ou não (smooth = false)
@@ -101,6 +96,9 @@ func _process(delta: float) -> void:
 	# Se não estiver no menu, não anima
 	if not on_menu: return
 
+	# Atualiza as dicas de controle
+	update_controls_tip()
+
 	#start_key.text = "[font_size=26]" + OS.get_keycode_string(GameManager.get_setting("interact"))
 
 	# Preferi colocar só a rotação do título para ser alterada
@@ -159,17 +157,29 @@ func move_pointer(dir : int):
 	
 
 func press_current_button():
-	pass
+	match current_selected_button_index:
+		0: _on_continue_game_pressed()
+		1: _on_new_game_pressed()
+		2: _on_options_pressed()
+		3: _on_exit_pressed()
+
+# Atualiza o texto das dicas de controle
+func update_controls_tip() -> void:
+	var move : HBoxContainer = tips.get_node("Move")
+	var interact : HBoxContainer = tips.get_node("Interact")
+	# Atualiza o texto
+	move.get_node("up").get_node("Botao").text = OS.get_keycode_string(GameManager.get_setting("move_up"))
+	move.get_node("down").get_node("Botao").text = OS.get_keycode_string(GameManager.get_setting("move_down"))
+	interact.get_node("interact").get_node("Botao").text = OS.get_keycode_string(GameManager.get_setting("interact"))
 
 # Abre o menu e ativa suas funções necessárias
 func open_menu():
 	on_menu = true
 	self.visible = true
 
-func start_game() -> void:
+func close_menu():
 	self.visible = false
 	on_menu = false
-	GameManager.load_map()
 
 # Dicionários que guardam informações das animações
 var _previous_x : Dictionary = {}
@@ -200,3 +210,20 @@ func animate_person(person : TextureRect, delta : float):
 	#person.position.y = 0 + (-(0.14 + sin(_animation_progress[person] * 2 - PI / 2)) * 20.25) * _walking_animation_weight[person]
 
 	person.reset_physics_interpolation()
+
+## Evento dos botões quando clicados ##
+
+func _on_continue_game_pressed() -> void:
+	close_menu()
+	GameManager.load_save_and_start()
+
+func _on_new_game_pressed() -> void:
+	close_menu()
+	GameManager.create_new_game()
+	
+func _on_options_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_exit_pressed() -> void:
+	get_tree().quit()
