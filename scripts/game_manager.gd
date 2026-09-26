@@ -23,7 +23,6 @@ var musics : Dictionary = {}
 
 func _ready():
 	load_settings()
-	load_save()
 	load_musics()
 	play_music("neighborhood")
 	# load_scene("Principal")
@@ -227,12 +226,37 @@ func set_game_data(key : String, value):
 	else:
 		print("key: " + key + " - " + "current_scene: " + current_scene)
 func create_blank_save():
+	# Se já existe um arquivo, apaga ele
+	var file = FileAccess.open(path_save, FileAccess.READ)
+	if file:
+		var erro : int = DirAccess.remove_absolute(path_save)
+		if erro != 0:
+			print("Erro %d ao deletar o arquivo de save" % erro)
+
 	set_game_data("map_position", 0)
 
 	set_game_data("luzia_minigame_completed", false)
 	set_game_data("joao_minigame_completed", false)
 	set_game_data("caio_minigame_completed", false)
 	set_game_data("alex_minigame_completed", false)
+
+# Retorna se há um arquivo de save atualmente
+func has_save() -> bool:
+	return FileAccess.file_exists(path_save)
+
+# Carrega o jogo e inicia
+func load_save_and_start() -> void:
+	# Carrega o save
+	GameManager.load_save()
+	# Carrega o mapa
+	GameManager.load_map()
+
+# Cria um novo jogo, sobrescrevendo o save antigo
+func create_new_game() -> void:
+	# Cria uma save vazia
+	GameManager.create_blank_save()
+	# Carrega o mapa
+	GameManager.load_map()
 
 	set_game_data("nodes", {
 		"0" : "",

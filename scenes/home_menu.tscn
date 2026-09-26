@@ -6,19 +6,20 @@
 [ext_resource type="Texture2D" uid="uid://dfeyjo2mnrmlv" path="res://sprites/map/npcs/nikole.png" id="3_yy0av"]
 [ext_resource type="Texture2D" uid="uid://c2fe0k122wggp" path="res://sprites/ui/key.png" id="4_lhq7i"]
 [ext_resource type="Texture2D" uid="uid://hqdkg05r0yy3" path="res://sprites/map/map2.png" id="5_lhq7i"]
+[ext_resource type="Texture2D" uid="uid://cktxh0qbsdxiq" path="res://sprites/ui/lmb_icon.png" id="7_tr4f7"]
 
 [sub_resource type="Gradient" id="Gradient_r2og5"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.5193133, 0.82403433, 1)
-colors = PackedColorArray(0.15648, 0.1296, 0.18, 0.3372549, 0.15686275, 0.12941177, 0.18039216, 0, 0.21176471, 0.47843137, 0.36862746, 0.16078432, 0.21176471, 0.47843137, 0.36862746, 0.3764706)
+offsets = PackedFloat32Array(0, 0.14592275, 0.7982833, 1)
+colors = PackedColorArray(0.15686275, 0.12941177, 0.18039216, 0, 0.15686275, 0.12941177, 0.18039216, 0, 0.21176471, 0.47843137, 0.36862746, 0.16078432, 0.21176471, 0.47843137, 0.36862746, 0.3764706)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_yy0av"]
 gradient = SubResource("Gradient_r2og5")
 width = 480
 height = 270
 fill = 1
-fill_from = Vector2(0.5252525, 0.041900486)
-fill_to = Vector2(0, 1)
+fill_from = Vector2(1, 0.5)
+fill_to = Vector2(0, 0.5)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ecwv3"]
 font = ExtResource("1_6firx")
@@ -30,8 +31,17 @@ shadow_size = 62
 shadow_color = Color(1, 1, 1, 1)
 shadow_offset = Vector2(0, 0)
 
-[sub_resource type="LabelSettings" id="LabelSettings_2g1ym"]
-font_size = 40
+[sub_resource type="LabelSettings" id="LabelSettings_bp8ob"]
+font_size = 48
+font_color = Color(1, 0.8360001, 0.18, 1)
+outline_size = 16
+outline_color = Color(0.92, 0.53313994, 0.1196, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lhq7i"]
+font_size = 48
+font_color = Color(1, 0.8352941, 0.49411765, 1)
+outline_size = 16
+outline_color = Color(1.1753994, 0.5676728, 0, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yy0av"]
 texture = ExtResource("4_lhq7i")
@@ -39,6 +49,14 @@ texture_margin_left = 8.0
 texture_margin_top = 8.0
 texture_margin_right = 8.0
 texture_margin_bottom = 8.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_tr4f7"]
+font_size = 18
+
+[sub_resource type="LabelSettings" id="LabelSettings_pitpm"]
+font_size = 18
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yy0av"]
 
 [node name="HomeMenu" type="CanvasLayer" unique_id=1345674554]
 script = ExtResource("1_ecwv3")
@@ -90,58 +108,323 @@ text = "NIK"
 label_settings = SubResource("LabelSettings_ecwv3")
 horizontal_alignment = 1
 
-[node name="StartText" type="HBoxContainer" parent="." unique_id=47987803]
-anchors_preset = 8
-anchor_left = 0.5
+[node name="Buttons" type="VBoxContainer" parent="." unique_id=1294525845]
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -311.5
-offset_top = 224.0
-offset_right = 311.5
-offset_bottom = 277.0
+offset_top = -132.0
+offset_right = 284.0
+offset_bottom = 132.0
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+offset_transform_enabled = true
+offset_transform_position = Vector2(40, 0)
+offset_transform_visual_only = false
+alignment = 1
+
+[node name="ContinueGame" type="Label" parent="Buttons" unique_id=797503513]
+layout_mode = 2
+size_flags_horizontal = 8
+offset_transform_enabled = true
+text = "Continuar Jogo"
+label_settings = SubResource("LabelSettings_bp8ob")
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Buttons/ContinueGame" unique_id=43024669]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
 offset_transform_enabled = true
+offset_transform_position = Vector2(30, 0)
+offset_transform_scale = Vector2(1.2, 1)
+offset_transform_visual_only = false
 
-[node name="StartText1" type="Label" parent="StartText" unique_id=2118246308]
+[node name="NewGame" type="Label" parent="Buttons" unique_id=47440259]
 layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 1
+size_flags_horizontal = 0
 offset_transform_enabled = true
-text = "Clique ou pressione "
-label_settings = SubResource("LabelSettings_2g1ym")
+text = "Novo Jogo"
+label_settings = SubResource("LabelSettings_bp8ob")
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Buttons/NewGame" unique_id=1074040046]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(30, 0)
+offset_transform_visual_only = false
+
+[node name="Options" type="Label" parent="Buttons" unique_id=1231834346]
+layout_mode = 2
+size_flags_horizontal = 0
+offset_transform_enabled = true
+text = "Opções"
+label_settings = SubResource("LabelSettings_bp8ob")
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Buttons/Options" unique_id=1457701037]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(30, 0)
+offset_transform_scale = Vector2(1.2, 1)
+offset_transform_visual_only = false
+
+[node name="Exit" type="Label" parent="Buttons" unique_id=1547504620]
+layout_mode = 2
+size_flags_horizontal = 0
+offset_transform_enabled = true
+text = "Sair"
+label_settings = SubResource("LabelSettings_bp8ob")
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Buttons/Exit" unique_id=1230640877]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(30, 0)
+offset_transform_scale = Vector2(1.2, 1)
+offset_transform_visual_only = false
+
+[node name="Pointer" type="Label" parent="." unique_id=199947435]
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -136.0
+offset_right = 28.0
+offset_bottom = -73.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+text = ">"
+label_settings = SubResource("LabelSettings_lhq7i")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Interact" type="PanelContainer" parent="StartText" unique_id=1320670055]
-custom_minimum_size = Vector2(28, 28)
+[node name="Tips" type="VBoxContainer" parent="." unique_id=709613528]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -84.0
+offset_right = 138.0
+grow_vertical = 0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+offset_transform_enabled = true
+offset_transform_position = Vector2(5, -5)
+
+[node name="Move" type="HBoxContainer" parent="Tips" unique_id=1780452731]
+custom_minimum_size = Vector2(80, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(5, -5)
+theme_override_constants/separation = 8
+
+[node name="up" type="PanelContainer" parent="Tips/Move" unique_id=1617286681]
+custom_minimum_size = Vector2(-1, -1)
 propagate_maximum_size = false
 layout_mode = 2
-size_flags_horizontal = 6
 theme = ExtResource("3_bp8ob")
 theme_override_styles/panel = SubResource("StyleBoxTexture_yy0av")
 
-[node name="Key" type="RichTextLabel" parent="StartText/Interact" unique_id=1245249409]
+[node name="Botao" type="Label" parent="Tips/Move/up" unique_id=1540763072]
 custom_minimum_size = Vector2(23, 0)
 layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.2, 1.2)
 theme = ExtResource("3_bp8ob")
-theme_override_font_sizes/normal_font_size = 18
-bbcode_enabled = true
-text = "[font_size=26]Espaço"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
+text = "W"
+label_settings = SubResource("LabelSettings_tr4f7")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StartText2" type="Label" parent="StartText" unique_id=1683439449]
+[node name="down" type="PanelContainer" parent="Tips/Move" unique_id=1184692100]
+custom_minimum_size = Vector2(28, 0)
+propagate_maximum_size = false
 layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 8
-size_flags_stretch_ratio = 12.72
+theme = ExtResource("3_bp8ob")
+theme_override_styles/panel = SubResource("StyleBoxTexture_yy0av")
+
+[node name="Botao" type="Label" parent="Tips/Move/down" unique_id=734256031]
+custom_minimum_size = Vector2(23, 0)
+layout_mode = 2
 offset_transform_enabled = true
-text = " para começar"
-label_settings = SubResource("LabelSettings_2g1ym")
+offset_transform_scale = Vector2(1.2, 1.2)
+theme = ExtResource("3_bp8ob")
+text = "S"
+label_settings = SubResource("LabelSettings_tr4f7")
+horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Funcao" type="Label" parent="Tips/Move" unique_id=1520967256]
+custom_minimum_size = Vector2(-1, 0)
+layout_mode = 2
+theme = ExtResource("3_bp8ob")
+text = "Mover"
+label_settings = SubResource("LabelSettings_pitpm")
+vertical_alignment = 1
+
+[node name="Interact" type="HBoxContainer" parent="Tips" unique_id=1490607098]
+custom_minimum_size = Vector2(80, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(5, -5)
+theme_override_constants/separation = 8
+
+[node name="interact" type="PanelContainer" parent="Tips/Interact" unique_id=113048310]
+custom_minimum_size = Vector2(28, 0)
+propagate_maximum_size = false
+layout_mode = 2
+theme = ExtResource("3_bp8ob")
+theme_override_styles/panel = SubResource("StyleBoxTexture_yy0av")
+
+[node name="Botao" type="Label" parent="Tips/Interact/interact" unique_id=1251142148]
+custom_minimum_size = Vector2(23, 0)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.2, 1.2)
+theme = ExtResource("3_bp8ob")
+text = "E"
+label_settings = SubResource("LabelSettings_tr4f7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Tips/Interact" unique_id=135995567]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 2)
+offset_transform_scale = Vector2(1.2, 1.2)
+texture = ExtResource("7_tr4f7")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Funcao2" type="Label" parent="Tips/Interact" unique_id=1839302275]
+custom_minimum_size = Vector2(-1, 0)
+layout_mode = 2
+theme = ExtResource("3_bp8ob")
+text = "Interagir"
+label_settings = SubResource("LabelSettings_pitpm")
+vertical_alignment = 1
+
+[node name="Tips Horizontal" type="HBoxContainer" parent="." unique_id=1549668155]
+visible = false
+custom_minimum_size = Vector2(80, 20)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 428.0
+grow_vertical = 0
+size_flags_horizontal = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(5, -5)
+theme_override_constants/separation = 8
+
+[node name="up" type="PanelContainer" parent="Tips Horizontal" unique_id=970823622]
+custom_minimum_size = Vector2(-1, -1)
+propagate_maximum_size = false
+layout_mode = 2
+theme = ExtResource("3_bp8ob")
+theme_override_styles/panel = SubResource("StyleBoxTexture_yy0av")
+
+[node name="Botao" type="Label" parent="Tips Horizontal/up" unique_id=178108985]
+custom_minimum_size = Vector2(23, 0)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.2, 1.2)
+theme = ExtResource("3_bp8ob")
+text = "W"
+label_settings = SubResource("LabelSettings_tr4f7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="down" type="PanelContainer" parent="Tips Horizontal" unique_id=1830560943]
+custom_minimum_size = Vector2(28, 0)
+propagate_maximum_size = false
+layout_mode = 2
+theme = ExtResource("3_bp8ob")
+theme_override_styles/panel = SubResource("StyleBoxTexture_yy0av")
+
+[node name="Botao" type="Label" parent="Tips Horizontal/down" unique_id=1637350323]
+custom_minimum_size = Vector2(23, 0)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.2, 1.2)
+theme = ExtResource("3_bp8ob")
+text = "S"
+label_settings = SubResource("LabelSettings_tr4f7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Funcao" type="Label" parent="Tips Horizontal" unique_id=122543784]
+custom_minimum_size = Vector2(-1, 0)
+layout_mode = 2
+theme = ExtResource("3_bp8ob")
+text = "Mover"
+label_settings = SubResource("LabelSettings_pitpm")
+vertical_alignment = 1
+
+[node name="EmptySpace" type="PanelContainer" parent="Tips Horizontal" unique_id=384344081]
+custom_minimum_size = Vector2(28, 0)
+propagate_maximum_size = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_yy0av")
+
+[node name="interact" type="PanelContainer" parent="Tips Horizontal" unique_id=1341269510]
+custom_minimum_size = Vector2(28, 0)
+propagate_maximum_size = false
+layout_mode = 2
+theme = ExtResource("3_bp8ob")
+theme_override_styles/panel = SubResource("StyleBoxTexture_yy0av")
+
+[node name="Botao" type="Label" parent="Tips Horizontal/interact" unique_id=1541490279]
+custom_minimum_size = Vector2(23, 0)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.2, 1.2)
+theme = ExtResource("3_bp8ob")
+text = "E"
+label_settings = SubResource("LabelSettings_tr4f7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Tips Horizontal" unique_id=2063249156]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 2)
+offset_transform_scale = Vector2(1.2, 1.2)
+texture = ExtResource("7_tr4f7")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Funcao2" type="Label" parent="Tips Horizontal" unique_id=1107398818]
+custom_minimum_size = Vector2(-1, 0)
+layout_mode = 2
+theme = ExtResource("3_bp8ob")
+text = "Interagir"
+label_settings = SubResource("LabelSettings_pitpm")
+vertical_alignment = 1
+
+[connection signal="pressed" from="Buttons/ContinueGame/Button" to="." method="_on_continue_game_pressed"]
+[connection signal="pressed" from="Buttons/NewGame/Button" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="Buttons/Options/Button" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Buttons/Exit/Button" to="." method="_on_exit_pressed"]
