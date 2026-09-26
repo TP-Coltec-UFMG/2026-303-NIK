@@ -81,15 +81,11 @@ var current_selected_button_index : int = 0
 # Tween do ponteiro (quando ele troca de posição)
 var _pointer_tween : Tween
 
-func get_current_selected_button() -> HomeMenuButton:
-	return buttons[current_selected_button_index]
-
 func _ready() -> void:
 	# Cria as representações dos botões
-	for btn in $Buttons.get_children():
-		buttons.append( HomeMenuButton.new(btn) )
+	update_menu_buttons()
 
-# Contador para as animações
+# Contadores para as animações
 var _animation_i : float = 0
 var _background_animation_i : float = 0
 func _process(delta: float) -> void:
@@ -129,7 +125,6 @@ func _process(delta: float) -> void:
 	#$Background/Nik.position.x += PEOPLE_SPEED * delta
 	#_is_moving[$Background/Nik] = true
 
-
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed('move_up'):
 		move_pointer(-1)
@@ -137,6 +132,10 @@ func _input(event: InputEvent) -> void:
 		move_pointer(1)
 	elif event.is_action_pressed('interact'):
 		press_current_button()
+
+# Retorna o botão atualmente selecionado
+func get_current_selected_button() -> HomeMenuButton:
+	return buttons[current_selected_button_index]
 
 # Move o ponteiro da opção para cima (dir = -1) ou para baixo (dir = 1)
 func move_pointer(dir : int):
@@ -155,7 +154,7 @@ func move_pointer(dir : int):
 	# Reinicia a animação
 	_animation_i = 0
 	
-
+# Aperta o botão atualmente selecionado pelo current_selected_button_index
 func press_current_button():
 	match current_selected_button_index:
 		0: _on_continue_game_pressed()
@@ -177,9 +176,21 @@ func open_menu():
 	on_menu = true
 	self.visible = true
 
+# Fecha o menu e desativa suas funções
 func close_menu():
 	self.visible = false
 	on_menu = false
+
+# Atualiza os botões do menu
+func update_menu_buttons() -> void:
+	buttons.clear()
+
+	for btn in $Buttons.get_children():
+		# Se não tiver save, não mostra o botão de continuar o jogo
+		if btn.name == "ContinueGame" and not GameManager.has_save():
+			btn.visible = false
+			continue # não adiciona no vetor
+		buttons.append( HomeMenuButton.new(btn) )
 
 # Dicionários que guardam informações das animações
 var _previous_x : Dictionary = {}
@@ -223,7 +234,6 @@ func _on_new_game_pressed() -> void:
 	
 func _on_options_pressed() -> void:
 	pass # Replace with function body.
-
 
 func _on_exit_pressed() -> void:
 	get_tree().quit()

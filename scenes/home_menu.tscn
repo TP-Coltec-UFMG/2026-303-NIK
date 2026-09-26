@@ -10,16 +10,16 @@
 
 [sub_resource type="Gradient" id="Gradient_r2og5"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.5193133, 0.82403433, 1)
-colors = PackedColorArray(0.15648, 0.1296, 0.18, 0.3372549, 0.15686275, 0.12941177, 0.18039216, 0, 0.21176471, 0.47843137, 0.36862746, 0.16078432, 0.21176471, 0.47843137, 0.36862746, 0.3764706)
+offsets = PackedFloat32Array(0, 0.14592275, 0.7982833, 1)
+colors = PackedColorArray(0.15686275, 0.12941177, 0.18039216, 0, 0.15686275, 0.12941177, 0.18039216, 0, 0.21176471, 0.47843137, 0.36862746, 0.16078432, 0.21176471, 0.47843137, 0.36862746, 0.3764706)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_yy0av"]
 gradient = SubResource("Gradient_r2og5")
 width = 480
 height = 270
 fill = 1
-fill_from = Vector2(0.5252525, 0.041900486)
-fill_to = Vector2(0, 1)
+fill_from = Vector2(1, 0.5)
+fill_to = Vector2(0.08, 0.5)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ecwv3"]
 font = ExtResource("1_6firx")
