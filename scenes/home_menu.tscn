@@ -2,9 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://mb7lv5gfarwo" path="res://fonts/Chewy-Regular.ttf" id="1_6firx"]
 [ext_resource type="Script" uid="uid://dd648fusdu5cs" path="res://scenes/home_menu.gd" id="1_ecwv3"]
-[ext_resource type="Theme" uid="uid://gmvr2lib4uc3" path="res://themes/default.tres" id="3_bp8ob"]
 [ext_resource type="Texture2D" uid="uid://dfeyjo2mnrmlv" path="res://sprites/map/npcs/nikole.png" id="3_yy0av"]
-[ext_resource type="Texture2D" uid="uid://c2fe0k122wggp" path="res://sprites/ui/key.png" id="4_lhq7i"]
 [ext_resource type="Texture2D" uid="uid://hqdkg05r0yy3" path="res://sprites/map/map2.png" id="5_lhq7i"]
 
 [sub_resource type="Gradient" id="Gradient_r2og5"]
@@ -30,15 +28,17 @@ shadow_size = 62
 shadow_color = Color(1, 1, 1, 1)
 shadow_offset = Vector2(0, 0)
 
-[sub_resource type="LabelSettings" id="LabelSettings_2g1ym"]
-font_size = 40
+[sub_resource type="LabelSettings" id="LabelSettings_bp8ob"]
+font_size = 48
+font_color = Color(1, 0.8360001, 0.18, 1)
+outline_size = 16
+outline_color = Color(0.92, 0.53313994, 0.1196, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yy0av"]
-texture = ExtResource("4_lhq7i")
-texture_margin_left = 8.0
-texture_margin_top = 8.0
-texture_margin_right = 8.0
-texture_margin_bottom = 8.0
+[sub_resource type="LabelSettings" id="LabelSettings_lhq7i"]
+font_size = 48
+font_color = Color(1, 0.8352941, 0.49411765, 1)
+outline_size = 16
+outline_color = Color(1.1753994, 0.5676728, 0, 1)
 
 [node name="HomeMenu" type="CanvasLayer" unique_id=1345674554]
 script = ExtResource("1_ecwv3")
@@ -90,58 +90,110 @@ text = "NIK"
 label_settings = SubResource("LabelSettings_ecwv3")
 horizontal_alignment = 1
 
-[node name="StartText" type="HBoxContainer" parent="." unique_id=47987803]
-anchors_preset = 8
-anchor_left = 0.5
+[node name="Buttons" type="VBoxContainer" parent="." unique_id=1294525845]
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -311.5
-offset_top = 224.0
-offset_right = 311.5
-offset_bottom = 277.0
+offset_top = -132.0
+offset_right = 284.0
+offset_bottom = 132.0
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+offset_transform_enabled = true
+offset_transform_position = Vector2(40, 0)
+
+[node name="ContinueGame" type="Label" parent="Buttons" unique_id=797503513]
+layout_mode = 2
+size_flags_horizontal = 8
+offset_transform_enabled = true
+text = "Continuar Jogo"
+label_settings = SubResource("LabelSettings_bp8ob")
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Buttons/ContinueGame" unique_id=43024669]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
 offset_transform_enabled = true
+offset_transform_position = Vector2(30, 0)
+offset_transform_scale = Vector2(1.2, 1)
+offset_transform_visual_only = false
 
-[node name="StartText1" type="Label" parent="StartText" unique_id=2118246308]
+[node name="NewGame" type="Label" parent="Buttons" unique_id=47440259]
 layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 1
+size_flags_horizontal = 0
 offset_transform_enabled = true
-text = "Clique ou pressione "
-label_settings = SubResource("LabelSettings_2g1ym")
+text = "Novo Jogo"
+label_settings = SubResource("LabelSettings_bp8ob")
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Buttons/NewGame" unique_id=1074040046]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(30, 0)
+offset_transform_visual_only = false
+
+[node name="Options" type="Label" parent="Buttons" unique_id=1231834346]
+layout_mode = 2
+size_flags_horizontal = 0
+offset_transform_enabled = true
+text = "Opções"
+label_settings = SubResource("LabelSettings_bp8ob")
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Buttons/Options" unique_id=1457701037]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(30, 0)
+offset_transform_scale = Vector2(1.2, 1)
+offset_transform_visual_only = false
+
+[node name="Exit" type="Label" parent="Buttons" unique_id=1547504620]
+layout_mode = 2
+size_flags_horizontal = 0
+offset_transform_enabled = true
+text = "Sair"
+label_settings = SubResource("LabelSettings_bp8ob")
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Buttons/Exit" unique_id=1230640877]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(30, 0)
+offset_transform_scale = Vector2(1.2, 1)
+offset_transform_visual_only = false
+
+[node name="Pointer" type="Label" parent="." unique_id=199947435]
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -136.0
+offset_right = 28.0
+offset_bottom = -73.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+text = ">"
+label_settings = SubResource("LabelSettings_lhq7i")
 horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Interact" type="PanelContainer" parent="StartText" unique_id=1320670055]
-custom_minimum_size = Vector2(28, 28)
-propagate_maximum_size = false
-layout_mode = 2
-size_flags_horizontal = 6
-theme = ExtResource("3_bp8ob")
-theme_override_styles/panel = SubResource("StyleBoxTexture_yy0av")
-
-[node name="Key" type="RichTextLabel" parent="StartText/Interact" unique_id=1245249409]
-custom_minimum_size = Vector2(23, 0)
-layout_mode = 2
-theme = ExtResource("3_bp8ob")
-theme_override_font_sizes/normal_font_size = 18
-bbcode_enabled = true
-text = "[font_size=26]Espaço"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="StartText2" type="Label" parent="StartText" unique_id=1683439449]
-layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 8
-size_flags_stretch_ratio = 12.72
-offset_transform_enabled = true
-text = " para começar"
-label_settings = SubResource("LabelSettings_2g1ym")
 vertical_alignment = 1

@@ -8,47 +8,119 @@ const TEXT_ANIMATION_AMPLITUDE : float = 3.0
 const TEXT_ANIMATION_SPEED : float = 1.667
 
 # Amplitude da animação do fundo
-const BACKGROUND_ANIMATION_AMPLITUDE : float = 0.1
+const BACKGROUND_ANIMATION_AMPLITUDE : float = 2
+# Velocidade da animação do fundo
+const BACKGROUND_ANIMATION_SPEED : float = 1.4
 
 # Velocidade das pessoas no fundo
 const PEOPLE_SPEED : float = 30.0
 
-@onready var title : Label = $Title
-@onready var start_text : HBoxContainer = $StartText
-@onready var background : TextureRect = $Background
+# Tempo para trocar de botão (em segundos)
+const POINTER_SPEED : float = .15
 
-@onready var start_key : RichTextLabel = $StartText/Interact/Key
+# Classe que representa um botão da tela
+class HomeMenuButton:
+	# Velocidade para resetar o Offset Transform
+	const _OFFSET_TRANSFORM_RESET_SPEED : float = 0.25
+
+	# Constantes do Offset Transform do Label
+	const _STANDARD_OFFSET_TRANSFORM_POSITION : Vector2 = Vector2(0, 0)
+	const _STANDARD_OFFSET_TRANSFORM_ROTATION : float = 0
+
+	var action : String # a ação do botão (continuar o jogo, opções etc)
+	var label : Label
+	var button : Button # botão no GUI
+
+	var _current_tween : Tween
+
+	# Sinal que é chamado quando o botão é pressionado
+	signal pressed
+
+	func _init(label_node : Label) -> void:
+		action = label_node.name
+		label = label_node
+		button = label_node.get_node("Button")
+
+		button.pressed.connect(pressed.emit)
+
+	# Reinicia o offset visual do botão, de forma suave (smooth = true)
+	# ou não (smooth = false)
+	func reset_offset_transform(smooth = true) -> void:
+		if not smooth:
+			label.offset_transform_position = Vector2(0, 0)
+			label.offset_transform_rotation = 0
+		else:
+			_current_tween = label.create_tween()
+			_current_tween.tween_property(
+				label, 
+				'offset_transform_position', 
+				_STANDARD_OFFSET_TRANSFORM_POSITION, 
+				_OFFSET_TRANSFORM_RESET_SPEED
+			).set_trans(Tween.TRANS_SPRING)
+			_current_tween.tween_property(
+				label, 
+				'offset_transform_rotation', 
+				_STANDARD_OFFSET_TRANSFORM_ROTATION, 
+				_OFFSET_TRANSFORM_RESET_SPEED
+			).set_trans(Tween.TRANS_SPRING)
+
+	# Retorna a posição y global do botão
+	func get_global_y() -> float:
+		return label.global_position.y
+
+@onready var title : Label = $Title
+@onready var background : TextureRect = $Background
+@onready var pointer : Label = $Pointer
 
 # Se o jogador está atualmente no menu. Serve para desativar/ativar
 # o tratamento de entrada (no caso, para certificar que o usuário não
 # vai interagir com algo atoa) e para parar de calcular as animações
 var on_menu : bool = true
 
+# Lista com os botões da tela
+var buttons : Array[HomeMenuButton] = []
+# Índice no vetor de botões do botão atualmente selecionado
+var current_selected_button_index : int = 0
+
+# Tween do ponteiro (quando ele troca de posição)
+var _pointer_tween : Tween
+
+func get_current_selected_button() -> HomeMenuButton:
+	return buttons[current_selected_button_index]
+
 func _ready() -> void:
-	pass
+	# Cria as representações dos botões
+	for btn in $Buttons.get_children():
+		buttons.append( HomeMenuButton.new(btn) )
 
 # Contador para as animações
 var _animation_i : float = 0
+var _background_animation_i : float = 0
 func _process(delta: float) -> void:
 	# Se não estiver no menu, não anima
 	if not on_menu: return
 
-	start_key.text = "[font_size=26]" + OS.get_keycode_string(GameManager.get_setting("interact"))
+	#start_key.text = "[font_size=26]" + OS.get_keycode_string(GameManager.get_setting("interact"))
 
 	# Preferi colocar só a rotação do título para ser alterada
 	#title.offset_transform_position.x = sin(_animation_i - 0.1) * TEXT_ANIMATION_AMPLITUDE
 	#title.offset_transform_position.x = cos(_animation_i - 0.1) * TEXT_ANIMATION_AMPLITUDE
 	title.offset_transform_rotation = sin(_animation_i - 0.1) * 0.01
 
-	# Movimenta verticalmente o texto de forma suave
-	start_text.offset_transform_position.y = sin(_animation_i) * TEXT_ANIMATION_AMPLITUDE
-	start_text.offset_transform_rotation = cos(_animation_i) * 0.01
+	# Movimenta verticalmente o texto e o ponteiro de forma suave
+	var off_y : float = sin(_animation_i) * TEXT_ANIMATION_AMPLITUDE
+	var off_rot : float = cos(_animation_i) * 0.005
+	get_current_selected_button().label.offset_transform_position.y = off_y
+	get_current_selected_button().label.offset_transform_rotation = off_rot
+	pointer.offset_transform_position.y = off_y
+	pointer.offset_transform_rotation = off_rot
 
 	# Movimenta o fundo em todas as direções de forma suave
-	background.offset_transform_position.y = sin(_animation_i + 0.267) * BACKGROUND_ANIMATION_AMPLITUDE
-	background.offset_transform_position.x = cos(_animation_i + 0.467) * BACKGROUND_ANIMATION_AMPLITUDE	
+	background.offset_transform_position.y = sin(_background_animation_i + 0.267) * BACKGROUND_ANIMATION_AMPLITUDE
+	background.offset_transform_position.x = cos(_background_animation_i + 0.467) * BACKGROUND_ANIMATION_AMPLITUDE	
 	
 	_animation_i += delta * TEXT_ANIMATION_SPEED
+	_background_animation_i += delta * BACKGROUND_ANIMATION_SPEED
 
 	animate_person($Background/Nik, delta)
 
@@ -58,10 +130,33 @@ func _process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	# Nota: "event is InputEventMouseButton" detecta quase QUALQUER 
-	# 		entrada de mouse (incluindo scroll), mas não movimento.
-	if event.is_action_pressed('interact') or event is InputEventMouseButton:
-		start_game()
+	if event.is_action_pressed('move_up'):
+		move_pointer(-1)
+	elif event.is_action_pressed('move_down'):
+		move_pointer(1)
+	elif event.is_action_pressed('interact'):
+		press_current_button()
+
+# Move o ponteiro da opção para cima (dir = -1) ou para baixo (dir = 1)
+func move_pointer(dir : int):
+	# Reinicia a posição da opção atualmente selecionada
+	get_current_selected_button().reset_offset_transform()
+
+	# Deixa o índice dentro do intervalo dos botões (inclusive ao voltar de zero)
+	current_selected_button_index = posmod(current_selected_button_index + dir, buttons.size())
+
+	# Se houver, interrompe o tween anterior
+	if _pointer_tween and _pointer_tween.is_valid(): _pointer_tween.kill()
+
+	_pointer_tween = pointer.create_tween()
+	_pointer_tween.tween_property(pointer, 'position:y', get_current_selected_button().get_global_y(), POINTER_SPEED)
+	
+	# Reinicia a animação
+	_animation_i = 0
+	
+
+func press_current_button():
+	pass
 
 # Abre o menu e ativa suas funções necessárias
 func open_menu():
