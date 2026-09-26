@@ -2,7 +2,9 @@
 
 [ext_resource type="FontFile" uid="uid://mb7lv5gfarwo" path="res://fonts/Chewy-Regular.ttf" id="1_6firx"]
 [ext_resource type="Script" uid="uid://dd648fusdu5cs" path="res://scenes/home_menu.gd" id="1_ecwv3"]
+[ext_resource type="Theme" uid="uid://gmvr2lib4uc3" path="res://themes/default.tres" id="3_bp8ob"]
 [ext_resource type="Texture2D" uid="uid://dfeyjo2mnrmlv" path="res://sprites/map/npcs/nikole.png" id="3_yy0av"]
+[ext_resource type="Texture2D" uid="uid://c2fe0k122wggp" path="res://sprites/ui/key.png" id="4_lhq7i"]
 [ext_resource type="Texture2D" uid="uid://hqdkg05r0yy3" path="res://sprites/map/map2.png" id="5_lhq7i"]
 
 [sub_resource type="Gradient" id="Gradient_r2og5"]
@@ -39,6 +41,21 @@ font_size = 48
 font_color = Color(1, 0.8352941, 0.49411765, 1)
 outline_size = 16
 outline_color = Color(1.1753994, 0.5676728, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yy0av"]
+texture = ExtResource("4_lhq7i")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_tr4f7"]
+font_size = 18
+
+[sub_resource type="LabelSettings" id="LabelSettings_pitpm"]
+font_size = 18
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yy0av"]
 
 [node name="HomeMenu" type="CanvasLayer" unique_id=1345674554]
 script = ExtResource("1_ecwv3")
@@ -196,4 +213,192 @@ offset_transform_enabled = true
 text = ">"
 label_settings = SubResource("LabelSettings_lhq7i")
 horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Tips" type="VBoxContainer" parent="." unique_id=709613528]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -84.0
+offset_right = 138.0
+grow_vertical = 0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+offset_transform_enabled = true
+offset_transform_position = Vector2(5, -5)
+
+[node name="Move" type="HBoxContainer" parent="Tips" unique_id=1780452731]
+custom_minimum_size = Vector2(80, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(5, -5)
+theme_override_constants/separation = 8
+
+[node name="up" type="PanelContainer" parent="Tips/Move" unique_id=1617286681]
+custom_minimum_size = Vector2(-1, -1)
+propagate_maximum_size = false
+layout_mode = 2
+theme = ExtResource("3_bp8ob")
+theme_override_styles/panel = SubResource("StyleBoxTexture_yy0av")
+
+[node name="Botao" type="Label" parent="Tips/Move/up" unique_id=1540763072]
+custom_minimum_size = Vector2(23, 0)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.2, 1.2)
+theme = ExtResource("3_bp8ob")
+text = "W"
+label_settings = SubResource("LabelSettings_tr4f7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="down" type="PanelContainer" parent="Tips/Move" unique_id=1184692100]
+custom_minimum_size = Vector2(28, 0)
+propagate_maximum_size = false
+layout_mode = 2
+theme = ExtResource("3_bp8ob")
+theme_override_styles/panel = SubResource("StyleBoxTexture_yy0av")
+
+[node name="Botao" type="Label" parent="Tips/Move/down" unique_id=734256031]
+custom_minimum_size = Vector2(23, 0)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.2, 1.2)
+theme = ExtResource("3_bp8ob")
+text = "S"
+label_settings = SubResource("LabelSettings_tr4f7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Funcao" type="Label" parent="Tips/Move" unique_id=1520967256]
+custom_minimum_size = Vector2(-1, 0)
+layout_mode = 2
+theme = ExtResource("3_bp8ob")
+text = "Mover"
+label_settings = SubResource("LabelSettings_pitpm")
+vertical_alignment = 1
+
+[node name="Interact" type="HBoxContainer" parent="Tips" unique_id=1490607098]
+custom_minimum_size = Vector2(80, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(5, -5)
+theme_override_constants/separation = 8
+
+[node name="interact" type="PanelContainer" parent="Tips/Interact" unique_id=113048310]
+custom_minimum_size = Vector2(28, 0)
+propagate_maximum_size = false
+layout_mode = 2
+theme = ExtResource("3_bp8ob")
+theme_override_styles/panel = SubResource("StyleBoxTexture_yy0av")
+
+[node name="Botao" type="Label" parent="Tips/Interact/interact" unique_id=1251142148]
+custom_minimum_size = Vector2(23, 0)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.2, 1.2)
+theme = ExtResource("3_bp8ob")
+text = "E"
+label_settings = SubResource("LabelSettings_tr4f7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Funcao2" type="Label" parent="Tips/Interact" unique_id=1839302275]
+custom_minimum_size = Vector2(-1, 0)
+layout_mode = 2
+theme = ExtResource("3_bp8ob")
+text = "Interagir"
+label_settings = SubResource("LabelSettings_pitpm")
+vertical_alignment = 1
+
+[node name="Tips Just Horizontal" type="HBoxContainer" parent="." unique_id=1549668155]
+visible = false
+custom_minimum_size = Vector2(80, 20)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 428.0
+grow_vertical = 0
+size_flags_horizontal = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(5, -5)
+theme_override_constants/separation = 8
+
+[node name="up" type="PanelContainer" parent="Tips Just Horizontal" unique_id=970823622]
+custom_minimum_size = Vector2(-1, -1)
+propagate_maximum_size = false
+layout_mode = 2
+theme = ExtResource("3_bp8ob")
+theme_override_styles/panel = SubResource("StyleBoxTexture_yy0av")
+
+[node name="Botao" type="Label" parent="Tips Just Horizontal/up" unique_id=178108985]
+custom_minimum_size = Vector2(23, 0)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.2, 1.2)
+theme = ExtResource("3_bp8ob")
+text = "W"
+label_settings = SubResource("LabelSettings_tr4f7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="down" type="PanelContainer" parent="Tips Just Horizontal" unique_id=1830560943]
+custom_minimum_size = Vector2(28, 0)
+propagate_maximum_size = false
+layout_mode = 2
+theme = ExtResource("3_bp8ob")
+theme_override_styles/panel = SubResource("StyleBoxTexture_yy0av")
+
+[node name="Botao" type="Label" parent="Tips Just Horizontal/down" unique_id=1637350323]
+custom_minimum_size = Vector2(23, 0)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.2, 1.2)
+theme = ExtResource("3_bp8ob")
+text = "S"
+label_settings = SubResource("LabelSettings_tr4f7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Funcao" type="Label" parent="Tips Just Horizontal" unique_id=122543784]
+custom_minimum_size = Vector2(-1, 0)
+layout_mode = 2
+theme = ExtResource("3_bp8ob")
+text = "Mover"
+label_settings = SubResource("LabelSettings_pitpm")
+vertical_alignment = 1
+
+[node name="EmptySpace" type="PanelContainer" parent="Tips Just Horizontal" unique_id=384344081]
+custom_minimum_size = Vector2(28, 0)
+propagate_maximum_size = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_yy0av")
+
+[node name="interact" type="PanelContainer" parent="Tips Just Horizontal" unique_id=1341269510]
+custom_minimum_size = Vector2(28, 0)
+propagate_maximum_size = false
+layout_mode = 2
+theme = ExtResource("3_bp8ob")
+theme_override_styles/panel = SubResource("StyleBoxTexture_yy0av")
+
+[node name="Botao" type="Label" parent="Tips Just Horizontal/interact" unique_id=1541490279]
+custom_minimum_size = Vector2(23, 0)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.2, 1.2)
+theme = ExtResource("3_bp8ob")
+text = "E"
+label_settings = SubResource("LabelSettings_tr4f7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Funcao2" type="Label" parent="Tips Just Horizontal" unique_id=1107398818]
+custom_minimum_size = Vector2(-1, 0)
+layout_mode = 2
+theme = ExtResource("3_bp8ob")
+text = "Interagir"
+label_settings = SubResource("LabelSettings_pitpm")
 vertical_alignment = 1

@@ -8,9 +8,9 @@ const TEXT_ANIMATION_AMPLITUDE : float = 3.0
 const TEXT_ANIMATION_SPEED : float = 1.667
 
 # Amplitude da animação do fundo
-const BACKGROUND_ANIMATION_AMPLITUDE : float = 2
+const BACKGROUND_ANIMATION_AMPLITUDE : float = 1
 # Velocidade da animação do fundo
-const BACKGROUND_ANIMATION_SPEED : float = 1.4
+const BACKGROUND_ANIMATION_SPEED : float = 1.1
 
 # Velocidade das pessoas no fundo
 const PEOPLE_SPEED : float = 30.0
@@ -71,6 +71,7 @@ class HomeMenuButton:
 @onready var title : Label = $Title
 @onready var background : TextureRect = $Background
 @onready var pointer : Label = $Pointer
+@onready var tips : VBoxContainer = $Tips
 
 # Se o jogador está atualmente no menu. Serve para desativar/ativar
 # o tratamento de entrada (no caso, para certificar que o usuário não
@@ -116,8 +117,10 @@ func _process(delta: float) -> void:
 	pointer.offset_transform_rotation = off_rot
 
 	# Movimenta o fundo em todas as direções de forma suave
-	background.offset_transform_position.y = sin(_background_animation_i + 0.267) * BACKGROUND_ANIMATION_AMPLITUDE
-	background.offset_transform_position.x = cos(_background_animation_i + 0.467) * BACKGROUND_ANIMATION_AMPLITUDE	
+	var a : float = sin(_background_animation_i + 0.267)
+	var b : float = cos(_background_animation_i + 0.467)
+	background.offset_transform_position.y = sin(a * BACKGROUND_ANIMATION_SPEED + b * 0.4) * BACKGROUND_ANIMATION_AMPLITUDE
+	background.offset_transform_position.x = cos(b * BACKGROUND_ANIMATION_SPEED - a) * BACKGROUND_ANIMATION_AMPLITUDE	
 	
 	_animation_i += delta * TEXT_ANIMATION_SPEED
 	_background_animation_i += delta * BACKGROUND_ANIMATION_SPEED
@@ -168,7 +171,7 @@ func start_game() -> void:
 	on_menu = false
 	GameManager.load_map()
 
-# Dicionários que guardam informações da animação
+# Dicionários que guardam informações das animações
 var _previous_x : Dictionary = {}
 var _walking_animation_weight : Dictionary = {}
 var _animation_progress : Dictionary = {}
