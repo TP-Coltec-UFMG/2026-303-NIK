@@ -40,7 +40,7 @@
 				"text": "Você sabe quem são essas pessoas? Porque essa foto está comigo afinal?"
 			}
 		],
-		"redirect": "minigame_luzia"
+		"redirect": "scene:minigame_luzia"
 	},
 
 	{
@@ -228,7 +228,7 @@
 				"text": "Olha…"
 			}
 		],
-		"redirect": "minigame_joao"
+		"redirect": "scene:minigame_joao"
 	},
 
 	{
@@ -246,7 +246,7 @@
 			{
 				"name": "João",
 				"text": "Eu… só queria essa confiança que você tem."
-			},
+			}
 		]
 	},
 
@@ -406,9 +406,9 @@
 			{
 				"name": "Caio",
 				"text": "Mãos à massa então!"
-			},
+			}
 		],
-		"redirect": "minigame_caio"
+		"redirect": "scene:minigame_caio"
 	},
 
 	{
@@ -571,7 +571,7 @@
 				"text": "Essas expressões podem não ser usadas, mas quem disse que ainda não há racismo na língua? Olha só…"
 			}
 		],
-		"redirect": "minigame_leonardo"
+		"redirect": "scene:minigame_leonardo"
 	},
 
 	{
@@ -751,7 +751,7 @@
 				"text": "Não mesmo."
 			}
 		],
-		"redirect": "minigame_alex"
+		"redirect": "scene:minigame_alex"
 	},
 
 	{
@@ -870,5 +870,5 @@
 				"text": "Assim que terminar, te chamo para um café!"
 			}
 		]
-	},
+	}
 ]
