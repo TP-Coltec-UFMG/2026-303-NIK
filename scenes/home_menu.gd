@@ -138,7 +138,7 @@ func get_current_selected_button() -> HomeMenuButton:
 	return buttons[current_selected_button_index]
 
 # Move o ponteiro da opção para cima (dir = -1) ou para baixo (dir = 1)
-func move_pointer(dir : int):
+func move_pointer(dir : int) -> void:
 	# Reinicia a posição da opção atualmente selecionada
 	get_current_selected_button().reset_offset_transform()
 
@@ -153,6 +153,13 @@ func move_pointer(dir : int):
 	
 	# Reinicia a animação
 	_animation_i = 0
+
+func reset_pointer() -> void:
+	if buttons.is_empty():
+		return
+
+	current_selected_button_index = 0
+	pointer.position.y = get_current_selected_button().get_global_y()
 	
 # Aperta o botão atualmente selecionado pelo current_selected_button_index
 func press_current_button():
@@ -173,6 +180,7 @@ func update_controls_tip() -> void:
 
 # Abre o menu e ativa suas funções necessárias
 func open_menu():
+	update_menu_buttons()
 	on_menu = true
 	self.visible = true
 
@@ -191,6 +199,10 @@ func update_menu_buttons() -> void:
 			btn.visible = false
 			continue # não adiciona no vetor
 		buttons.append( HomeMenuButton.new(btn) )
+	
+	# Chama o reset_pointer só quando o VBoxContainer já tiver
+	# sido recalculado
+	call_deferred("reset_pointer")
 
 # Dicionários que guardam informações das animações
 var _previous_x : Dictionary = {}

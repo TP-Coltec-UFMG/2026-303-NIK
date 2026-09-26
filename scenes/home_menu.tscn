@@ -19,7 +19,7 @@ width = 480
 height = 270
 fill = 1
 fill_from = Vector2(1, 0.5)
-fill_to = Vector2(0.08, 0.5)
+fill_to = Vector2(0, 0.5)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ecwv3"]
 font = ExtResource("1_6firx")
@@ -120,6 +120,8 @@ size_flags_horizontal = 6
 size_flags_vertical = 6
 offset_transform_enabled = true
 offset_transform_position = Vector2(40, 0)
+offset_transform_visual_only = false
+alignment = 1
 
 [node name="ContinueGame" type="Label" parent="Buttons" unique_id=797503513]
 layout_mode = 2
@@ -323,7 +325,7 @@ text = "Interagir"
 label_settings = SubResource("LabelSettings_pitpm")
 vertical_alignment = 1
 
-[node name="Tips Just Horizontal" type="HBoxContainer" parent="." unique_id=1549668155]
+[node name="Tips Horizontal" type="HBoxContainer" parent="." unique_id=1549668155]
 visible = false
 custom_minimum_size = Vector2(80, 20)
 anchors_preset = 2
@@ -337,14 +339,14 @@ offset_transform_enabled = true
 offset_transform_position = Vector2(5, -5)
 theme_override_constants/separation = 8
 
-[node name="up" type="PanelContainer" parent="Tips Just Horizontal" unique_id=970823622]
+[node name="up" type="PanelContainer" parent="Tips Horizontal" unique_id=970823622]
 custom_minimum_size = Vector2(-1, -1)
 propagate_maximum_size = false
 layout_mode = 2
 theme = ExtResource("3_bp8ob")
 theme_override_styles/panel = SubResource("StyleBoxTexture_yy0av")
 
-[node name="Botao" type="Label" parent="Tips Just Horizontal/up" unique_id=178108985]
+[node name="Botao" type="Label" parent="Tips Horizontal/up" unique_id=178108985]
 custom_minimum_size = Vector2(23, 0)
 layout_mode = 2
 offset_transform_enabled = true
@@ -355,14 +357,14 @@ label_settings = SubResource("LabelSettings_tr4f7")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="down" type="PanelContainer" parent="Tips Just Horizontal" unique_id=1830560943]
+[node name="down" type="PanelContainer" parent="Tips Horizontal" unique_id=1830560943]
 custom_minimum_size = Vector2(28, 0)
 propagate_maximum_size = false
 layout_mode = 2
 theme = ExtResource("3_bp8ob")
 theme_override_styles/panel = SubResource("StyleBoxTexture_yy0av")
 
-[node name="Botao" type="Label" parent="Tips Just Horizontal/down" unique_id=1637350323]
+[node name="Botao" type="Label" parent="Tips Horizontal/down" unique_id=1637350323]
 custom_minimum_size = Vector2(23, 0)
 layout_mode = 2
 offset_transform_enabled = true
@@ -373,7 +375,7 @@ label_settings = SubResource("LabelSettings_tr4f7")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Funcao" type="Label" parent="Tips Just Horizontal" unique_id=122543784]
+[node name="Funcao" type="Label" parent="Tips Horizontal" unique_id=122543784]
 custom_minimum_size = Vector2(-1, 0)
 layout_mode = 2
 theme = ExtResource("3_bp8ob")
@@ -381,20 +383,20 @@ text = "Mover"
 label_settings = SubResource("LabelSettings_pitpm")
 vertical_alignment = 1
 
-[node name="EmptySpace" type="PanelContainer" parent="Tips Just Horizontal" unique_id=384344081]
+[node name="EmptySpace" type="PanelContainer" parent="Tips Horizontal" unique_id=384344081]
 custom_minimum_size = Vector2(28, 0)
 propagate_maximum_size = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_yy0av")
 
-[node name="interact" type="PanelContainer" parent="Tips Just Horizontal" unique_id=1341269510]
+[node name="interact" type="PanelContainer" parent="Tips Horizontal" unique_id=1341269510]
 custom_minimum_size = Vector2(28, 0)
 propagate_maximum_size = false
 layout_mode = 2
 theme = ExtResource("3_bp8ob")
 theme_override_styles/panel = SubResource("StyleBoxTexture_yy0av")
 
-[node name="Botao" type="Label" parent="Tips Just Horizontal/interact" unique_id=1541490279]
+[node name="Botao" type="Label" parent="Tips Horizontal/interact" unique_id=1541490279]
 custom_minimum_size = Vector2(23, 0)
 layout_mode = 2
 offset_transform_enabled = true
@@ -405,7 +407,7 @@ label_settings = SubResource("LabelSettings_tr4f7")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="Tips Just Horizontal" unique_id=2063249156]
+[node name="TextureRect" type="TextureRect" parent="Tips Horizontal" unique_id=2063249156]
 layout_mode = 2
 offset_transform_enabled = true
 offset_transform_position = Vector2(0, 2)
@@ -414,7 +416,7 @@ texture = ExtResource("7_tr4f7")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Funcao2" type="Label" parent="Tips Just Horizontal" unique_id=1107398818]
+[node name="Funcao2" type="Label" parent="Tips Horizontal" unique_id=1107398818]
 custom_minimum_size = Vector2(-1, 0)
 layout_mode = 2
 theme = ExtResource("3_bp8ob")
