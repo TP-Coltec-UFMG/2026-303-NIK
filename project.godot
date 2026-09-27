@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="nikole"
-run/main_scene="uid://bq0hvgjehacve"
+run/main_scene="uid://61dt6fnpa7ht"
 config/features=PackedStringArray("4.7", "Forward Plus")
 
 [autoload]
