@@ -28,17 +28,17 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	$Camera2D.position_smoothing_enabled = true
-	if event.is_action_pressed("move_up") or event.is_action_pressed("ui_up"):
+	if event.is_action_pressed("move_up"):
 		move_to_tile(current_pos.x, current_pos.y - 1)
 
-	if event.is_action_pressed("move_right") or event.is_action_pressed("ui_right"):
+	if event.is_action_pressed("move_right"):
 		x_direction = 1
 		move_to_tile(current_pos.x + 1, current_pos.y)
 
-	if event.is_action_pressed("move_down") or event.is_action_pressed("ui_down"):
+	if event.is_action_pressed("move_down"):
 		move_to_tile(current_pos.x, current_pos.y + 1)
 
-	if event.is_action_pressed("move_left") or event.is_action_pressed("ui_left"):
+	if event.is_action_pressed("move_left"):
 		x_direction = -1
 		move_to_tile(current_pos.x - 1, current_pos.y)
 

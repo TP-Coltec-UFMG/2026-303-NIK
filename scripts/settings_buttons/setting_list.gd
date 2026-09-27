@@ -70,22 +70,22 @@ func _draw() -> void:
 func _gui_input(event: InputEvent) -> void:
 	if is_editing:
 		var changed = false
-		if event.is_action_pressed("ui_right"):
+		if event.is_action_pressed("move_right"):
 			_value += 1
 			changed = true
-		elif event.is_action_pressed("ui_left"):
+		elif event.is_action_pressed("move_left"):
 			_value -= 1
 			changed = true
 			
 		# nao deixa o godot passar o foco para outra configuracao
-		if changed or event.is_action_pressed("ui_up") or event.is_action_pressed("ui_down"):
+		if changed or event.is_action_pressed("move_up") or event.is_action_pressed("move_down"):
 			accept_event() 
 		
 		if changed:
 			GameManager.change_setting(id, value)
 			
 	# alterna o modo de edicao
-	if event.is_action_released("ui_accept"):
+	if event.is_action_released("interact"):
 		is_editing = !is_editing
 
 func _notification(what: int) -> void:

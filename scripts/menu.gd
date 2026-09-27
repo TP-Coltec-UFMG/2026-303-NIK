@@ -55,6 +55,10 @@ const selected_button_scale : float = 1.0
 # Ângulo inicial do menu
 const start_angle : float = PI # centralizado
 
+# Tempo mínimo entre entradas de confirmação no menu
+const INPUT_COOLDOWN_TIME : float = 0.2
+var _input_cooldown_remaining : float = 0.0
+
 func _ready() -> void:
 	close_pages()
 	setup_menus()
@@ -76,6 +80,7 @@ func _ready() -> void:
 
 # Função chamada a cada frame
 func _process(delta: float) -> void:
+	_input_cooldown_remaining = maxf(_input_cooldown_remaining - delta, 0.0)
 	# Atualiza os botões do menu principal
 	update_circular_buttons(delta)
 
@@ -160,6 +165,8 @@ func search_focus(button_list : Array) -> int:
 	return current_idx
 
 func open_screen(target : String, on_main_menu : bool = false):
+	_input_cooldown_remaining = INPUT_COOLDOWN_TIME
+	get_viewport().set_input_as_handled()
 	print("loading page \"" + target + "\"")
 	if target == "Main":
 		if on_main_menu:
@@ -228,14 +235,20 @@ func load_settings() -> void:
 
 # Função chamada quando há algum input do usuário
 func _input(event: InputEvent) -> void:
+	var focus_owner := get_viewport().gui_get_focus_owner()
+	if focus_owner is ConfigButtonKeybind and focus_owner.is_editing:
+		get_viewport().set_input_as_handled()
+		return
+	if _input_cooldown_remaining > 0.0:
+		return
 	if not get_tree().paused: 
 		if event.is_action_pressed("pause"):
 			open_screen("Main")
 	# A opção atual aumenta (positivo) quando aperta para baixo e
 	# diminui (negativo) quando aperta para cima
 	# h0ot13 fRu1t
-	if visible == true and (event.is_action_pressed("ui_down") or event.is_action_pressed("ui_up")):
-		current_idx += int(event.is_action_pressed("ui_down")) - int(event.is_action_pressed("ui_up"));
+	if visible == true and (event.is_action_pressed("move_down") or event.is_action_pressed("move_up")):
+		current_idx += int(event.is_action_pressed("move_down")) - int(event.is_action_pressed("move_up"));
 		current_idx = (current_idx + menus[active_menu].buttons.size()) % menus[active_menu].buttons.size()
 		menus[active_menu].buttons[current_idx].grab_focus()
 		menus[active_menu].active_idx = current_idx

@@ -99,7 +99,7 @@ func move_to_node_finished():
 
 func _input(event: InputEvent) -> void:
 	if active_dialogue != null:
-		if event.is_action_pressed("ui_accept"):
+		if event.is_action_pressed("interact"):
 			next_line()
 		get_viewport().set_input_as_handled() # consome todos os inputs enquanto estiver no diálogo pq ai da pra nao pausar o jogo ;)
 

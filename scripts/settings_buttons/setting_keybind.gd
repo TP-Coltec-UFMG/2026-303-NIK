@@ -8,6 +8,7 @@ class_name ConfigButtonKeybind
 	set(new_value):
 		value = new_value
 var is_editing : bool = false
+var _captured_keycode : Key = KEY_NONE
 
 
 func _ready() -> void:
@@ -53,15 +54,22 @@ func _input(event: InputEvent) -> void:
 			if event.pressed and not event.echo:
 				value = event.physical_keycode
 				is_editing = false 
+				_captured_keycode = event.physical_keycode
 
 				GameManager.change_setting(id, value)
 				# print("definindo a input como " + GameManager.char_from_key(value) + " e desligando o modo edição")
+				get_viewport().set_input_as_handled()
 				accept_event()
 				queue_redraw()
 				return
 	
 func _gui_input(event: InputEvent) -> void:
-	if event.is_action_released("ui_accept"):
+	if event is InputEventKey and event.physical_keycode == _captured_keycode:
+		if not event.pressed:
+			_captured_keycode = KEY_NONE
+		accept_event()
+		return
+	if event.is_action_released("interact"):
 		# liga o modo de edicao
 		# print("ligando o modo edição")
 		is_editing = true

@@ -2778,42 +2778,6 @@ text = "Interagir"
 fit_content = true
 vertical_alignment = 1
 
-[node name="Continuar (nao achei o mapa de entrada pra esse)" type="HBoxContainer" parent="UI/Menu/ControlsTip/List" unique_id=1010129189]
-custom_minimum_size = Vector2(80, 20)
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_constants/separation = 8
-
-[node name="Panel" type="PanelContainer" parent="UI/Menu/ControlsTip/List/Continuar (nao achei o mapa de entrada pra esse)" unique_id=48664370]
-custom_minimum_size = Vector2(28, 0)
-propagate_maximum_size = false
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("15_5xtl8")
-theme_override_styles/panel = SubResource("StyleBoxTexture_ry0e6")
-
-[node name="Botao" type="RichTextLabel" parent="UI/Menu/ControlsTip/List/Continuar (nao achei o mapa de entrada pra esse)/Panel" unique_id=1889331959]
-custom_minimum_size = Vector2(23, 0)
-layout_mode = 2
-theme = ExtResource("15_5xtl8")
-theme_override_font_sizes/normal_font_size = 18
-bbcode_enabled = true
-text = "Enter"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Funcao" type="RichTextLabel" parent="UI/Menu/ControlsTip/List/Continuar (nao achei o mapa de entrada pra esse)" unique_id=332140797]
-custom_minimum_size = Vector2(240, 0)
-layout_mode = 2
-theme = ExtResource("15_5xtl8")
-bbcode_enabled = true
-text = "Continuar"
-fit_content = true
-vertical_alignment = 1
-
 [node name="move" type="HBoxContainer" parent="UI/Menu/ControlsTip/List" unique_id=827566148]
 custom_minimum_size = Vector2(80, 20)
 layout_mode = 2
@@ -2909,6 +2873,6 @@ custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 theme = ExtResource("15_5xtl8")
 bbcode_enabled = true
-text = "Andar"
+text = "Movimentar"
 fit_content = true
 vertical_alignment = 1

@@ -105,6 +105,12 @@ func apply_settings(config : Dictionary = settings):
 			# Atualiza no menu de dicas de controles
 			menu.update_controls_tip(input, settings[input])
 
+	if settings.has("interact"):
+		InputMap.action_erase_events("ui_accept")
+		var accept_event = InputEventKey.new()
+		accept_event.physical_keycode = settings["interact"]
+		InputMap.action_add_event("ui_accept", accept_event)
+
 	menu.setup_circular_buttons()
 
 func char_from_key(key : Key) -> String:
@@ -139,16 +145,22 @@ func save_settings() -> void:
 		print("could not open settings file!!!")
 	load_settings()
 
+func get_action_key(action : String) -> int:
+	for event in InputMap.action_get_events(action):
+		if event is InputEventKey:
+			return event.physical_keycode
+	return 0
+
 func create_default_settings() -> void:
 	settings["circular_menu"] = true
 	settings["colorblindness_intensity"] = 0.0
 	settings["colorblindness_mode"] = "desligado"
 	settings["font_family"] = false
-	settings["interact"] = 69.0
-	settings["move_down"] = 83.0
-	settings["move_left"] = 65.0
-	settings["move_right"] = 68.0
-	settings["move_up"] = 87.0
+	settings["interact"] = get_action_key("interact")
+	settings["move_down"] = get_action_key("move_down")
+	settings["move_left"] = get_action_key("move_left")
+	settings["move_right"] = get_action_key("move_right")
+	settings["move_up"] = get_action_key("move_up")
 	settings["ui_scale"] = 1.0
 	settings["volume_master"] = 50.0
 	settings["volume_music"] = 50.0

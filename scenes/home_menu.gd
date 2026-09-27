@@ -164,11 +164,17 @@ func move_pointer(dir : int) -> void:
 	# Reinicia a animação
 	_animation_i = 0
 
-func reset_pointer() -> void:
+func reset_pointer(reset = true) -> void:
 	if buttons.is_empty():
 		return
 
-	current_selected_button_index = 0
+	if reset: 
+		current_selected_button_index = 0
+	else:
+		# Certifica que o índice está dentro do intervalo das configurações
+		current_selected_button_index = min(current_selected_button_index, buttons.size() - 1)
+
+	# Reposiciona
 	pointer.position.y = get_current_selected_button().get_global_y()
 	
 # Aperta o botão atualmente selecionado pelo current_selected_button_index
@@ -215,7 +221,7 @@ func update_menu_buttons() -> void:
 	
 	# Chama o reset_pointer só quando o VBoxContainer já tiver
 	# sido recalculado
-	call_deferred("reset_pointer")
+	call_deferred("reset_pointer", false)
 
 # Dicionários que guardam informações das animações
 var _previous_x : Dictionary = {}

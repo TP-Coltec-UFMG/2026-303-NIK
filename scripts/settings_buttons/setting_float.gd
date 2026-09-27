@@ -116,18 +116,18 @@ func _notification(what: int) -> void:
 func _gui_input(event: InputEvent) -> void:
 	if is_editing:
 		var changed = false
-		if event.is_action_pressed("ui_right"):
+		if event.is_action_pressed("move_right"):
 			value += step
 			changed = true
-		elif event.is_action_pressed("ui_left"):
+		elif event.is_action_pressed("move_left"):
 			value -= step
 			changed = true
 			
-		if changed or event.is_action_pressed("ui_up") or event.is_action_pressed("ui_down"):
+		if changed or event.is_action_pressed("move_up") or event.is_action_pressed("move_down"):
 			accept_event() 
 		
 		if changed:
 			GameManager.change_setting(id, value)
 			
-	if event.is_action_released("ui_accept"):
+	if event.is_action_released("interact"):
 		is_editing = !is_editing
