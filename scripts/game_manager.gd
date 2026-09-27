@@ -28,6 +28,13 @@ func _ready():
 	# load_scene("Principal")
 
 func load_scene(cena: String) -> void:
+	if not cenas.has(cena):
+		push_error("Cena não encontrada: " + cena)
+		return
+
+	if current_scene == cena and is_instance_valid(get_tree().current_scene):
+		return
+
 	black_background.visible = true
 	animation_player.play("fade")
 	await animation_player.animation_finished
@@ -49,6 +56,23 @@ func load_map(idx_node : int = game_data["map_position"]) -> void:
 	load_scene("map")
 
 	# (get_tree().get_root().get_child(0) as MapController).go_to_node(idx_node)
+
+func unload_current_map() -> void:
+	black_background.visible = true
+	animation_player.play("fade")
+	await animation_player.animation_finished
+
+	var scene := get_tree().current_scene
+	if scene != null:
+		scene.queue_free()
+		await get_tree().process_frame
+
+	current_scene = ""
+	get_tree().paused = false
+
+	animation_player.play_backwards("fade")
+	await animation_player.animation_finished
+	black_background.visible = false
 
 func apply_settings(config : Dictionary = settings):
 	if menu == null: return
