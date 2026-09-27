@@ -32,6 +32,7 @@ var current_position : int = 0
 # Dicionário com todos os menus e seus botões
 var menus : Dictionary = {}
 var active_menu : String = "Main"
+var _opened_from_home_menu : bool = false
 
 # Tamanho do raio da circunferência do Menu
 const base_menu_radius : int = 1000
@@ -158,9 +159,22 @@ func search_focus(button_list : Array) -> int:
 			return i
 	return current_idx
 
-func open_screen(target : String):
+func open_screen(target : String, on_main_menu : bool = false):
 	print("loading page \"" + target + "\"")
+	if target == "Main":
+		if on_main_menu:
+			_opened_from_home_menu = true
+		elif not _opened_from_home_menu:
+			_opened_from_home_menu = false
+
+	for item in menus['Main'].buttons:
+		if item.id == 'button_play':
+			pass
+
 	if target in menus.keys():
+		if target == "Main":
+			refresh_main_menu_buttons()
+
 		for menu in menus.keys():
 			if menu == target:
 				current_idx = menus[menu].active_idx if menus[menu].keep_idx else 0
@@ -193,6 +207,13 @@ func close_pages():
 	for menu in menus.values():
 		menu.node.visible = false
 
+	if _opened_from_home_menu:
+		_opened_from_home_menu = false
+		var current_scene = get_tree().current_scene
+		var home_menu = current_scene if current_scene.name == "HomeMenu" else current_scene.get_node_or_null("HomeMenu")
+		if home_menu:
+			home_menu.open_menu()
+
 func load_settings() -> void:
 	var settings = GameManager.settings
 	for button in setting_buttons:
@@ -224,6 +245,23 @@ func quit():
 	GameManager.save_game()
 	get_tree().quit()
 
+func refresh_main_menu_buttons() -> void:
+	var main_menu = menus["Main"]
+	main_menu.objects.clear()
+	main_menu.buttons.clear()
+
+	for child in $Pages/Main.get_children():
+		if child is ConfigButton:
+			var hidden_on_home_menu = _opened_from_home_menu and child.id in ["button_save", "button_quit"]
+			child.visible = not hidden_on_home_menu
+			if hidden_on_home_menu:
+				continue
+
+			main_menu.buttons.append(child)
+			child.size.x = 300
+
+		main_menu.objects.append(child)
+
 func setup_menus():
 	
 	# MAIN
@@ -236,11 +274,7 @@ func setup_menus():
 	$Pages/Main/ButtonSave.connect("pressed", GameManager.save_game)
 	$Pages/Main/ButtonQuit.connect("pressed", quit)
 
-	for child in $Pages/Main.get_children():
-		if child is ConfigButton:
-			menus["Main"].buttons.append(child)
-			child.size.x = 300
-		menus["Main"].objects.append(child)
+	refresh_main_menu_buttons()
 
 	# SETTINGS
 			

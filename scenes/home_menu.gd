@@ -18,6 +18,13 @@ const PEOPLE_SPEED : float = 30.0
 # Tempo para trocar de botão (em segundos)
 const POINTER_SPEED : float = .15
 
+# Posição horizontal normal dos botões
+const BUTTON_STANDARD_OFFSET_X : float = 40
+# Posição horizontal fora da tela dos botões
+const BUTTON_OFF_SCREEN_OFFSET_X : float = -320
+
+
+
 # Classe que representa um botão da tela
 class HomeMenuButton:
 	# Velocidade para resetar o Offset Transform
@@ -63,8 +70,9 @@ class HomeMenuButton:
 	func get_global_y() -> float:
 		return label.global_position.y
 
-@onready var title : Label = $Title
 @onready var background : TextureRect = $Background
+@onready var title : Label = $Title
+@onready var buttons_node : VBoxContainer = $Buttons
 @onready var pointer : Label = $Pointer
 @onready var tips : VBoxContainer = $Tips
 
@@ -72,6 +80,8 @@ class HomeMenuButton:
 # o tratamento de entrada (no caso, para certificar que o usuário não
 # vai interagir com algo atoa) e para parar de calcular as animações
 var on_menu : bool = true
+# Se os botões estiverem ligados
+var buttons_enabled : bool = true
 
 # Lista com os botões da tela
 var buttons : Array[HomeMenuButton] = []
@@ -126,10 +136,10 @@ func _process(delta: float) -> void:
 	#_is_moving[$Background/Nik] = true
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed('move_up'):
-		move_pointer(-1)
-	elif event.is_action_pressed('move_down'):
-		move_pointer(1)
+	if not buttons_enabled: return
+	var movement : int = int(event.is_action_pressed('move_down')) - int(event.is_action_pressed('move_up'))
+	if movement:
+		move_pointer(movement)
 	elif event.is_action_pressed('interact'):
 		press_current_button()
 
@@ -163,11 +173,11 @@ func reset_pointer() -> void:
 	
 # Aperta o botão atualmente selecionado pelo current_selected_button_index
 func press_current_button():
-	match current_selected_button_index:
-		0: _on_continue_game_pressed()
-		1: _on_new_game_pressed()
-		2: _on_options_pressed()
-		3: _on_exit_pressed()
+	match get_current_selected_button().action:
+		"ContinueGame": _on_continue_game_pressed()
+		"NewGame": _on_new_game_pressed()
+		"Options": _on_options_pressed()
+		"Exit": _on_exit_pressed()
 
 # Atualiza o texto das dicas de controle
 func update_controls_tip() -> void:
@@ -181,6 +191,7 @@ func update_controls_tip() -> void:
 # Abre o menu e ativa suas funções necessárias
 func open_menu():
 	update_menu_buttons()
+	set_menu_labels_enabled(true)
 	on_menu = true
 	self.visible = true
 
@@ -193,7 +204,9 @@ func close_menu():
 func update_menu_buttons() -> void:
 	buttons.clear()
 
-	for btn in $Buttons.get_children():
+	for btn in buttons_node.get_children():
+		btn.visible = true
+
 		# Se não tiver save, não mostra o botão de continuar o jogo
 		if btn.name == "ContinueGame" and not GameManager.has_save():
 			btn.visible = false
@@ -234,6 +247,13 @@ func animate_person(person : TextureRect, delta : float):
 
 	person.reset_physics_interpolation()
 
+# Determina se os botões estão visíveis e funcionais
+func set_menu_labels_enabled(buttons_visibility : bool):
+	title.visible = buttons_visibility
+	buttons_node.visible = buttons_visibility
+	pointer.visible = buttons_visibility
+	buttons_enabled = buttons_visibility
+
 ## Evento dos botões quando clicados ##
 
 func _on_continue_game_pressed() -> void:
@@ -245,7 +265,9 @@ func _on_new_game_pressed() -> void:
 	GameManager.create_new_game()
 	
 func _on_options_pressed() -> void:
-	pass # Replace with function body.
+	#close_menu()
+	set_menu_labels_enabled(false)
+	GameManager.menu.open_screen("Main", true)
 
 func _on_exit_pressed() -> void:
 	get_tree().quit()

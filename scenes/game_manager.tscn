@@ -365,7 +365,7 @@ shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("9_jrl6a")
 id = "button_play"
-label = "Jogar"
+label = "Fechar Menu"
 metadata/_custom_type_script = "uid://dxcpaqjaydfjj"
 
 [node name="ButtonSettings" type="BaseButton" parent="UI/Menu/Pages/Main" unique_id=231753211]
