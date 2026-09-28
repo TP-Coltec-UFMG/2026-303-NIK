@@ -1,13 +1,17 @@
 extends CanvasLayer
 
-# Tempo entre letras do texto do diálogo (quanto menor, mais rápido)
+# Tempo entre letras do texto do diálogo
 const TEXT_CHARACTER_INTERVAL = 0.03
 # Tempo entre pontuação (, . ! ? : ;), para dar uma pausa na fala
 const PUNCTUATION_INTERVAL = 0.2
 const PUNCTUATION_CHARS = [",", ".", "!", "?", ":", ";"]
 
-# Tempo da animação da caixa de diálogo
+# Tempo da animação da caixa de diálogo subindo/descendo
 const DIALOGUE_BOX_ANIMATION_TIME = 1.2
+
+# Amplitude da animação de bobbing da caixa
+const DIALOGUE_BOX_BOBBING_AMPLITUDE = 1.0
+const DIALOGUE_BOX_BOBBING_BASE_SPEED = 1.4
 
 const dialogue_files = "res://dialogues.json"
 
@@ -72,7 +76,7 @@ func next_line(idx : int = -1):
 func end_dialogue():
 	var current_redirects = active_dialogue.redirects
 	active_dialogue = null
-	
+
 	await animate_dialogue_box(-1)
 	dialogue_box.hide()
 
@@ -84,19 +88,27 @@ func end_dialogue():
 		execute_redirects(current_redirects)
 	GameManager.save_game()
 
-var _char_animation_time = 0.0 # tempo desde a aparição do último caractere
+var _char_animation_time : float = 0.0 # tempo desde a aparição do último caractere
+var _box_animation_i : float = 0 # contador de animação da caixa de diálogo
 func _process(delta: float) -> void:
 	_char_animation_time -= delta
-	var parsed_text = dialogue_text.get_parsed_text() # retira as tags
+	_box_animation_i += delta
 
 	# Se deu a hora, faz o próximo caractere aparecer
-	if active_dialogue \
-	and dialogue_text.visible_characters < parsed_text.length() \
-	and _char_animation_time < 0:
-		dialogue_text.visible_characters += 1
-		_char_animation_time = PUNCTUATION_INTERVAL \
-							   if parsed_text[dialogue_text.visible_characters - 1] in PUNCTUATION_CHARS \
-							   else TEXT_CHARACTER_INTERVAL
+	if active_dialogue:
+		
+		# Animação de bobbing (balançando)
+		var x : float = sin(_box_animation_i * DIALOGUE_BOX_BOBBING_BASE_SPEED - 0.67) * DIALOGUE_BOX_BOBBING_AMPLITUDE
+		var y : float = cos(_box_animation_i * (DIALOGUE_BOX_BOBBING_BASE_SPEED + 0.6) + 0.3) * DIALOGUE_BOX_BOBBING_AMPLITUDE
+		dialogue_box.offset_transform_position = Vector2(x, y)
+
+		# Animação de digitar
+		var parsed_text = dialogue_text.get_parsed_text() # retira as tags
+		if dialogue_text.visible_characters < parsed_text.length() and _char_animation_time < 0:
+			dialogue_text.visible_characters += 1
+			_char_animation_time = PUNCTUATION_INTERVAL \
+								if parsed_text[dialogue_text.visible_characters - 1] in PUNCTUATION_CHARS \
+								else TEXT_CHARACTER_INTERVAL
 
 # Anima a caixa de diálogo aparecendo ou sumindo (dir = 1 para aparecer, dir = -1 para sumir)
 func animate_dialogue_box(dir : int): 
