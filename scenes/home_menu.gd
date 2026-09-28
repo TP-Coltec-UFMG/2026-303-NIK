@@ -94,6 +94,8 @@ var _pointer_tween : Tween
 func _ready() -> void:
 	# Cria as representações dos botões
 	update_menu_buttons()
+	# Deixa todos os npcs invisíveis
+	update_menu_characters()
 
 # Contadores para as animações
 var _animation_i : float = 0
@@ -104,6 +106,8 @@ func _process(delta: float) -> void:
 
 	# Atualiza as dicas de controle
 	update_controls_tip()
+	# Atualiza os persoagens
+	set_menu_characters_enabled()
 
 	#start_key.text = "[font_size=26]" + OS.get_keycode_string(GameManager.get_setting("interact"))
 
@@ -198,6 +202,7 @@ func update_controls_tip() -> void:
 func open_menu():
 	update_menu_buttons()
 	set_menu_labels_enabled(true)
+	set_menu_characters_enabled()
 	on_menu = true
 	self.visible = true
 
@@ -222,6 +227,11 @@ func update_menu_buttons() -> void:
 	# Chama o reset_pointer só quando o VBoxContainer já tiver
 	# sido recalculado
 	call_deferred("reset_pointer", false)
+
+# Deixa todos os npcs invisíveis
+func update_menu_characters() -> void:
+	for character in background.get_children():
+		character.visible = false
 
 # Dicionários que guardam informações das animações
 var _previous_x : Dictionary = {}
@@ -259,6 +269,24 @@ func set_menu_labels_enabled(buttons_visibility : bool):
 	buttons_node.visible = buttons_visibility
 	pointer.visible = buttons_visibility
 	buttons_enabled = buttons_visibility
+
+func set_menu_characters_enabled() -> void:
+	if GameManager.has_save():
+		background.get_node("Nik").visible = true
+		background.get_node("VovoMaria").visible = true
+	if GameManager.get_game_data("caio_minigame_completed"):
+		background.get_node("Caio").visible = true
+	if GameManager.get_game_data("joao_minigame_completed"):
+		background.get_node("Joao").visible = true
+	if GameManager.get_game_data("alex_minigame_completed"):
+		background.get_node("Alex").visible = true
+	if GameManager.get_game_data("luzia_minigame_completed"):
+		background.get_node("DonaLuzia").visible = true
+		background.get_node("Luis").visible = true
+		background.get_node("Flavia").visible = true
+		background.get_node("Francisco").visible = true
+	if GameManager.get_game_data("leonardo_minigame_completed"):
+		background.get_node("Leonardo").visible = true
 
 ## Evento dos botões quando clicados ##
 
