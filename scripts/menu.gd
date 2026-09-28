@@ -56,7 +56,7 @@ const selected_button_scale : float = 1.0
 const start_angle : float = PI # centralizado
 
 # Tempo mínimo entre entradas de confirmação no menu
-const INPUT_COOLDOWN_TIME : float = 0.2
+const INPUT_COOLDOWN_TIME : float = 0.1
 var _input_cooldown_remaining : float = 0.0
 
 func _ready() -> void:

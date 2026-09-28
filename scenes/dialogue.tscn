@@ -37,7 +37,7 @@ grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
 text = "[font_size=32][color=#60bbff]Nikole
-[font_size=24][color=white]Oi luzia sei la oque bla bla bla
+[font_size=24][color=black]Oi luzia sei la oque bla bla bla
 "
 
 [node name="NextDialogueLabel" type="Label" parent="DialogueBox" unique_id=1033394434]

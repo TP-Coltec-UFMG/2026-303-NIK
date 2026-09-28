@@ -1,5 +1,8 @@
 extends CanvasLayer
 
+# Tempo entre letras do texto do diálogo (quanto menor, mais rápido)
+const TEXT_CHARACTER_INTERVAL = 0.05
+
 const dialogue_files = "res://dialogues.json"
 
 @onready var dialogue_box = $DialogueBox
@@ -46,15 +49,21 @@ func next_line(idx : int = -1):
 		current_line = idx
 	else:
 		current_line += 1
+
 		
 	if current_line >= active_dialogue.lines.size():
 		end_dialogue()
 		return
+	
+	# Deixa apenas o nome visível
+	dialogue_text.visible_characters = active_dialogue.lines[current_line].name.length()
 
 	dialogue_text.text = "[font_size=36][color=#60bbff]" + active_dialogue.lines[current_line].name + "\n[font_size=28][color=black]" + active_dialogue.lines[current_line].text
 
 func end_dialogue():
 	dialogue_box.hide()
+
+	dialogue_text.visible_characters = 0
 	
 	var current_redirects = active_dialogue.redirects
 	active_dialogue = null
@@ -64,6 +73,14 @@ func end_dialogue():
 	if current_redirects.size() > 0:
 		execute_redirects(current_redirects)
 	GameManager.save_game()
+
+var _text_animation_time = 0.0
+func _process(delta: float) -> void:
+	_text_animation_time -= delta
+
+	if active_dialogue and _text_animation_time < 0:
+		dialogue_text.visible_characters += 1
+		_text_animation_time = TEXT_CHARACTER_INTERVAL
 
 func execute_redirects(redirects_queue: Array[DialogueRedirect]):
 	if redirects_queue.is_empty():
