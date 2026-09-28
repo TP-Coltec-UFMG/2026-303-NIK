@@ -21,6 +21,8 @@ offset_left = 160.0
 offset_top = -98.0
 offset_right = -111.0
 offset_bottom = -26.0
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, 1.2)
 texture = ExtResource("2_xoyff")
 stretch_mode = 3
 
@@ -42,11 +44,11 @@ text = "[font_size=32][color=#60bbff]Nikole
 
 [node name="NextDialogueLabel" type="Label" parent="DialogueBox" unique_id=1033394434]
 layout_mode = 0
-offset_left = 824.0
+offset_left = 788.0
 offset_top = 243.0
-offset_right = 970.0
-offset_bottom = 264.0
-text = "Clique para continuar..."
+offset_right = 981.0
+offset_bottom = 266.0
+text = "Interaja para continuar..."
 label_settings = SubResource("LabelSettings_xoyff")
 horizontal_alignment = 2
 vertical_alignment = 2

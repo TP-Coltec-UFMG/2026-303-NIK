@@ -2,9 +2,12 @@ extends CanvasLayer
 
 # Tempo entre letras do texto do diálogo (quanto menor, mais rápido)
 const TEXT_CHARACTER_INTERVAL = 0.03
-# Tempo entre pontuação (, . ! ?), para dar uma pausa na fala
+# Tempo entre pontuação (, . ! ? : ;), para dar uma pausa na fala
 const PUNCTUATION_INTERVAL = 0.2
-const PUNCTUATION_CHARS = [",", ".", "!", "?"]
+const PUNCTUATION_CHARS = [",", ".", "!", "?", ":", ";"]
+
+# Tempo da animação da caixa de diálogo
+const DIALOGUE_BOX_ANIMATION_TIME = 1.2
 
 const dialogue_files = "res://dialogues.json"
 
@@ -29,6 +32,8 @@ func _ready() -> void:
 	
 	if active_dialogue != null:
 		end_dialogue()
+
+	dialogue_box.offset_transform_position_ratio.y = 1.4 # deixa a caixa de diálogo fora da tela no começo
 	
 	await get_tree().process_frame
 	get_parent().move_child(self, -1) # mexe ele pra baixo, aí ele pega input antes do GameManager (impede de pausar o jogo enquanto está em dialogo)
@@ -46,6 +51,7 @@ func start_dialogue(dialogue_id : String):
 		
 	current_line = 0
 	next_line(0)
+	animate_dialogue_box(1)
 
 func next_line(idx : int = -1):
 	if idx != -1:
@@ -64,12 +70,13 @@ func next_line(idx : int = -1):
 	dialogue_text.text = "[font_size=36][color=#60bbff]" + active_dialogue.lines[current_line].name + "\n[font_size=28][color=black]" + active_dialogue.lines[current_line].text
 
 func end_dialogue():
+	var current_redirects = active_dialogue.redirects
+	active_dialogue = null
+	
+	await animate_dialogue_box(-1)
 	dialogue_box.hide()
 
 	dialogue_text.visible_characters = 0
-	
-	var current_redirects = active_dialogue.redirects
-	active_dialogue = null
 	
 	emit_signal("dialogue_finished")
 	
@@ -90,6 +97,20 @@ func _process(delta: float) -> void:
 		_char_animation_time = PUNCTUATION_INTERVAL \
 							   if parsed_text[dialogue_text.visible_characters - 1] in PUNCTUATION_CHARS \
 							   else TEXT_CHARACTER_INTERVAL
+
+# Anima a caixa de diálogo aparecendo ou sumindo (dir = 1 para aparecer, dir = -1 para sumir)
+func animate_dialogue_box(dir : int): 
+	var tween : Tween = create_tween()
+	var pos_ratio_y : float = 0.0 if dir == 1 else 1.4
+	var tween_ease : Tween.EaseType = Tween.EASE_OUT
+
+	tween \
+		.tween_property(dialogue_box, "offset_transform_position_ratio:y", pos_ratio_y, DIALOGUE_BOX_ANIMATION_TIME) \
+		.set_trans(Tween.TRANS_ELASTIC) \
+		.set_ease(tween_ease)
+
+	# Espera o tween acabar
+	await tween.finished
 
 func execute_redirects(redirects_queue: Array[DialogueRedirect]):
 	if redirects_queue.is_empty():
