@@ -75,7 +75,7 @@ func next_line(idx : int = -1):
 	dialogue_text.visible_characters = active_dialogue.lines[current_line].name.length()
 
 	dialogue_text.text = "[font_size=36][color=" + characters[character] + "]" + character + "\n[font_size=28][color=black]" + line
-	dialogue_head.texture = load("res://sprites/map/npcs/heads/" + character + ".png")
+	if character != '': dialogue_head.texture = load("res://sprites/map/npcs/heads/" + character + ".png")
 
 func end_dialogue():
 	var current_redirects = active_dialogue.redirects
@@ -120,7 +120,7 @@ func animate_dialogue_box(dir : int):
 	var pos_ratio_y : float = 0.0 if dir == 1 else 1.5
 	var time : float = DIALOGUE_BOX_ANIMATION_TIME if dir == 1 else DIALOGUE_BOX_ANIMATION_TIME * 0.4
 	var trans : Tween.TransitionType = Tween.TRANS_ELASTIC if dir == 1 else Tween.TRANS_EXPO
-	var tween_ease : Tween.EaseType = Tween.EASE_OUT if dir == 1 else Tween.EASE_OUT
+	var tween_ease : Tween.EaseType = Tween.EASE_OUT
 
 	tween \
 		.tween_property(dialogue_box, "offset_transform_position_ratio:y", pos_ratio_y, time) \
