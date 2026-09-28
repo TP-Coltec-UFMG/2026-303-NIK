@@ -4,7 +4,9 @@ const dialogue_files = "res://dialogues.json"
 
 @onready var dialogue_box = $DialogueBox
 @onready var dialogue_text = $DialogueBox/DialogueText
+@onready var dialogue_head : TextureRect = $DialogueBox/Head
 var dialogues = {}
+var characters = {}
 
 var active_dialogue : DialogueString = null
 var current_line = 0;
@@ -50,8 +52,10 @@ func next_line(idx : int = -1):
 	if current_line >= active_dialogue.lines.size():
 		end_dialogue()
 		return
-
-	dialogue_text.text = "[font_size=36][color=#60bbff]" + active_dialogue.lines[current_line].name + "\n[font_size=28][color=black]" + active_dialogue.lines[current_line].text
+	var character = active_dialogue.lines[current_line].name
+	var line = active_dialogue.lines[current_line].text
+	dialogue_text.text = "[font_size=36][color=" + characters[character] + "]" + character + "\n[font_size=28][color=black]" + line
+	dialogue_head.texture = load("res://sprites/map/npcs/heads/" + character + ".png")
 
 func end_dialogue():
 	dialogue_box.hide()
@@ -116,7 +120,7 @@ func read_dialogue_file():
 
 		if data != null:
 			dialogues = {}
-			for dialogue in data:
+			for dialogue in data.dialogues:
 				var condition = DialogueCondition.new(dialogue.condition.data, dialogue.condition.value == "true", dialogue.condition.else) if dialogue.get("condition") else null
 				var lines : Array[DialogueLine] = []
 				for line in dialogue.lines:
@@ -132,7 +136,8 @@ func read_dialogue_file():
 						redirects.append(DialogueRedirect.new(redirect_data))
 
 				dialogues[dialogue.id] = DialogueString.new(dialogue.id, condition, lines, redirects)
-
+			for character in data.character_colors.keys():
+				characters[character] = data.character_colors[character]
 		print("diálogos carregados!\n")
 		file.close()
 	else:

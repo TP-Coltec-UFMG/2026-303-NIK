@@ -2,18 +2,19 @@
 class_name Dig extends Node2D
 
 # Sprites do background para o efeito de descida
-@export var surface : Sprite2D
-@export var earth1 : Sprite2D
-@export var earth2 : Sprite2D
-@export var hole1 : Sprite2D
-@export var hole2 : Sprite2D
-@export var root : Sprite2D
-@export var panel : PanelContainer
+@onready var surface : Sprite2D = $Background/Surface
+@onready var earth : Sprite2D = $Background/Earth
+@onready var hole : Sprite2D = $Background/Hole
+@onready var hole_bottom : Sprite2D = $Background/HoleBottom
+@onready var root : Sprite2D = $Background/Root
+@onready var qte_rect : TextureProgressBar = $CanvasLayer/QTE
+@onready var nikole : Area2D = $Nikole
 
 # Constantes
 const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"  # Alfabeto para o sorteio da letra.
-const TIME_TO_QTE : float = 2  # Tempo entre os QTE em segundos.
-const DIG_DISTANCE : float = 200.0  # Distância da descida em unidades.
+const TIME_TO_QTE : float = .125  # Tempo entre os QTE em segundos.
+const QTE_DURATION : float = 2  # Tempo entre os QTE em segundos.
+const DIG_DISTANCE : float = 270.0  # Distância da descida em unidades.
 
 # Variáveis de controle
 var time_to_qte : float  # Variável de modificação para a contagem do tempo.
@@ -24,51 +25,27 @@ var active_qte : bool = false  # Impede que outro qte seja sorteado.
 var active_game : bool = true  # Determina o fim do jogo.
 var label : Label  # Label do Painel que mostra a tecla do qte.
 
+signal qte_finished # Sinal pra quando o QTE acaba, com sucesso ou derrota
+
 func _ready() -> void:
 	# Inicialização de algumas variáveis.
 	time_to_qte = TIME_TO_QTE
-	panel.scale = Vector2(0, 0)
-	panel.visible = false
-	label = panel.get_node("Label")
+	qte_rect.scale = Vector2(0, 0)
+	qte_rect.visible = false
+	label = qte_rect.get_node("Label")
 	
 	# Garante a posição correta de alguns dos fundos.
 	surface.position.x = 0
-	earth1.position.x = 0
-	earth2.position.x = 0
+	earth.position.x = -640
 
 func _process(delta: float) -> void:	
 	# Diminui o tempo para o próximo qte.
-	if DialogueController.active_dialogue == null:
+	if DialogueController.active_dialogue == null and not active_qte:
 		time_to_qte -= delta
-	
-	if !reach_final_course:
-		# Repete o fundo conforme ele sai da tela.
-		# OBS: substituir os valores abaixo conforme o indicado:
-		# -2000 -> posição da câmera - tamanho vertical do sprite.
-		# 2872 -> tamanho vertical do sprite.
-		if earth1.position.y <= -2000:
-			earth1.position.y = earth2.position.y + 2872
-			second_background = 1
-		if earth2.position.y <= -2000:
-			earth2.position.y = earth1.position.y + 2872
-			second_background = 2
-	else:
-		root.position.x = 0
-		if second_background == 1: root.position.y = earth1.position.y + 3236
-		elif second_background == 2: root.position.y = earth2.position.y + 3236
-	
-	# Repete o fundo do buraco conforme ele sai da tela.
-	# OBS: substituir os valores abaixo conforme o indicado:
-	# -1000 -> posição da câmera - tamanho vertical do sprite.
-	# 932.4 -> tamanho vertical do sprite.
-	if hole1.position.y <= -1000:
-		hole1.position.y = hole2.position.y + 932.4
-	if hole2.position.y <= -1000:
-		hole2.position.y = hole1.position.y + 932.4
 	
 	# Sorteia um outro qte quando o tempo acabar e se já não tiver um ativo.
 	if time_to_qte <= 0 and active_game and !active_qte:
-		time_to_qte = TIME_TO_QTE
+		time_to_qte = TIME_TO_QTE + QTE_DURATION
 		roll_qte()
 	
 	if root.position.y <= 631.0:
@@ -86,58 +63,86 @@ func roll_qte() -> void:
 	var rand_i = randi() % LETTERS.length()
 	var rand_letter = LETTERS[rand_i]
 	label.text = rand_letter
+	qte_rect.value = 100
+	qte_rect.offset_transform_position = Vector2(0, 0)
 	
 	# Tween para a aparição do comando na tela.
-	var tween : Tween = panel.create_tween()
+	var tween : Tween = qte_rect.create_tween()
 	tween\
-		.tween_property(panel, "scale", Vector2(1, 1), 0.8)\
+		.tween_property(qte_rect, "scale", Vector2(1, 1), 0.4)\
 		.set_trans(Tween.TRANS_ELASTIC)\
 		.set_ease(Tween.EASE_OUT)
-	
+	tween.parallel().tween_property(qte_rect, 'offset_transform_position', Vector2(-qte_rect.size.x/2, qte_rect.size.x/2), 0.4)
+
+	var tween_progress : Tween = qte_rect.create_tween()
+	tween_progress\
+		.tween_property(qte_rect, 'value', 0, QTE_DURATION)\
+		.set_trans(Tween.TRANS_LINEAR)\
+		.set_ease(Tween.EASE_OUT)
+		
 	# Alteração das variáveis de controle.
 	active_qte = true
-	panel.visible = true
+	qte_rect.visible = true
+
+	var qte_status = { "running" : true}
+
+	var clear_binds = func():
+		if qte_status.running:
+			qte_status.running = false
+			if tween_progress.is_valid():
+				tween_progress.kill()
+
+	qte_finished.connect(clear_binds, CONNECT_ONE_SHOT)
+	tween_progress.finished.connect(clear_binds, CONNECT_ONE_SHOT)
+
+	while qte_status.running:
+		await get_tree().process_frame
+	
+	if active_qte:
+		qte_failure()
+		active_qte = false
 
 func _unhandled_input(event: InputEvent) -> void:
 	if active_qte and event is InputEventKey and event.pressed and not event.echo:
-		active_qte = false
 		# Compara a tecla pressionada com a sorteada.
 		var pressed_key = event.as_text_keycode().to_upper()
 		if pressed_key not in LETTERS:
 			print("ta chapando ze que botao é esse q c aperto")
 			return
+
+		active_qte = false
+
 		if pressed_key == label.text: await qte_success()  # Sucesso.
 		else: await qte_failure()  # Falha.
 		
 		# Alteração das variáveis de controle.
-		panel.visible = false
+		qte_rect.visible = false
 		label.text = ""
 
 func qte_success() -> void:
+	qte_finished.emit()
 	# Contagem.
 	qte_passed += 1
 
 	# Tween para fazer o comando piscar verde.
-	var tween : Tween = panel.create_tween()
+	var tween : Tween = qte_rect.create_tween()
 	tween\
 		.set_trans(Tween.TRANS_SINE)\
 		.set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(panel, "modulate", Color.LIME_GREEN, 0.15)
-	tween.tween_property(panel, "modulate", Color.WHITE, 0.15)
+	tween.tween_property(qte_rect, "modulate", Color.LIME_GREEN, 0.15)
+	tween.tween_property(qte_rect, "modulate", Color.WHITE, 0.15)
 	await tween.finished
 	
 	# Movimentação.
-	surface.position.y -= DIG_DISTANCE
-	earth1.position.y -= DIG_DISTANCE
-	earth2.position.y -= DIG_DISTANCE
-	hole1.position.y -= DIG_DISTANCE
-	hole2.position.y -= DIG_DISTANCE
+	hole.region_rect.size.y += DIG_DISTANCE
+	hole_bottom.position.y += DIG_DISTANCE
+	nikole.position.y += DIG_DISTANCE
 		
 	# Tween de desaparecimento do comando.
 	tween.kill()
-	tween = panel.create_tween()
+	tween = qte_rect.create_tween()
 	tween\
-		.tween_property(panel, "scale", Vector2(0, 0), 0.2)\
+		.tween_property(qte_rect, "scale", Vector2(0, 0), 0.2)\
 		.set_ease(Tween.EASE_OUT)
 	await tween.finished
 	
@@ -157,11 +162,20 @@ func qte_success() -> void:
 		reach_final_course = true
 	
 func qte_failure() -> void:
+	qte_finished.emit()
 	# Tween para fazer o comando piscar vermelho.
-	var tween : Tween = panel.create_tween()
+	var tween : Tween = qte_rect.create_tween()
 	tween\
 		.set_trans(Tween.TRANS_SINE)\
 		.set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(panel, "modulate", Color.RED, 0.15)
-	tween.tween_property(panel, "modulate", Color.WHITE, 0.15)
+	tween.tween_property(qte_rect, "modulate", Color.RED, 0.15)
+	tween.tween_property(qte_rect, "modulate", Color.WHITE, 0.15)
+	await tween.finished
+		
+	# Tween de desaparecimento do comando.
+	tween.kill()
+	tween = qte_rect.create_tween()
+	tween\
+		.tween_property(qte_rect, "scale", Vector2(0, 0), 0.2)\
+		.set_ease(Tween.EASE_OUT)
 	await tween.finished
