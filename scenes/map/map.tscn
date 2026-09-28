@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://dyewfnukfbxss" path="res://sprites/map/npcs/dona_luzia.png" id="14_2kc6l"]
 [ext_resource type="Texture2D" uid="uid://t0o7yeajbqa" path="res://sprites/map/npcs/leonardo.png" id="14_e07uo"]
 [ext_resource type="Texture2D" uid="uid://b56qyswhmu100" path="res://sprites/map/npcs/caio.png" id="14_rqo2c"]
+[ext_resource type="Texture2D" uid="uid://cav8bgxy4awsf" path="res://sprites/map/npcs/vovo_maria.png" id="15_25aov"]
 [ext_resource type="Texture2D" uid="uid://cqa1l7sin5v5s" path="res://sprites/map/npcs/francisco.png" id="15_58ndj"]
 [ext_resource type="Texture2D" uid="uid://wc38btkrp2b" path="res://sprites/map/npcs/alex.png" id="15_e07uo"]
 [ext_resource type="Texture2D" uid="uid://bnqq8uipelgtr" path="res://sprites/map/npcs/joao.png" id="15_rqo2c"]
@@ -174,6 +175,8 @@ position = Vector2(750, -97)
 script = ExtResource("10_omedl")
 path_right = NodePath("../../Paths/Path1")
 node_right = NodePath("../MapNode2")
+dialogue_id = "maria_dialogue"
+can_interact = true
 
 [node name="MapNode2" type="Node2D" parent="Path/Nodes" unique_id=1279879671 node_paths=PackedStringArray("path_left", "path_right", "node_left", "node_right")]
 position = Vector2(6228, -1014)
@@ -334,6 +337,26 @@ offset = Vector2(-20, -125)
 z_index = 50
 scale = Vector2(-1, 1)
 texture = ExtResource("14_rqo2c")
+offset = Vector2(-5, -110)
+
+[node name="VovoMaria" type="Node2D" parent="AnimatedProps" unique_id=629809300]
+position = Vector2(1763.9998, -499.99994)
+rotation = 0.0034906585
+scale = Vector2(1.0000235, 1.0099669)
+skew = -0.00067937374
+script = ExtResource("13_nykyp")
+
+[node name="Shadow" type="Sprite2D" parent="AnimatedProps/VovoMaria" unique_id=559907486]
+modulate = Color(0, 0, 0, 0.30588236)
+z_index = 1
+position = Vector2(67, 160)
+scale = Vector2(3.5554767, 1.2380953)
+offset = Vector2(-20, -125)
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatedProps/VovoMaria" unique_id=102113378]
+z_index = 50
+scale = Vector2(-1, 1)
+texture = ExtResource("15_25aov")
 offset = Vector2(-5, -110)
 
 [node name="Leonardo" type="Node2D" parent="AnimatedProps" unique_id=405018188]

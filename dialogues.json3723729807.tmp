@@ -9,8 +9,7 @@
 		"Alex": "#5BAB3C",
 		"Francisco": "#E85353",
 		"Luís": "#E8C853",
-		"Flávia": "#A053E8",
-		"": "#000000"
+		"Flávia": "#A053E8"
 	},
 	"dialogues": [
 		{
@@ -173,7 +172,7 @@
 			"condition": {
 				"data": "game_completed",
 				"value": "true",
-				"else": ""
+				"else":
 			},
 			"lines": [
 				{

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cav8bgxy4awsf"
-path="res://.godot/imported/maria.png-0c6639539e5d63adfadab57cf3dc70dc.ctex"
+path="res://.godot/imported/vovo_maria.png-8a9276c3aa64e8c65e314ff3cf57d1da.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/map/npcs/maria.png"
-dest_files=["res://.godot/imported/maria.png-0c6639539e5d63adfadab57cf3dc70dc.ctex"]
+source_file="res://sprites/map/npcs/vovo_maria.png"
+dest_files=["res://.godot/imported/vovo_maria.png-8a9276c3aa64e8c65e314ff3cf57d1da.ctex"]
 
 [params]
 

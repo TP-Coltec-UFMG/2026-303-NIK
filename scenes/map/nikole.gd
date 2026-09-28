@@ -22,6 +22,7 @@ signal changed_node(map_node)
 var all_nodes : Array[MapNode] = []
 
 func _ready() -> void:
+	$Path2D/PathFollow2D/Sprite2D.scale = Vector2(1, 1)
 	for node in $"../Path/Nodes".get_children():
 		all_nodes.append(node as MapNode)
 	DialogueController.please_move_nikole.connect(auto_move_to_node)

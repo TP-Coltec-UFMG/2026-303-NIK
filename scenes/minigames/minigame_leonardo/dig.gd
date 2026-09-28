@@ -147,17 +147,14 @@ func qte_success() -> void:
 	await tween.finished
 	
 	# Verificação dos qte para os diálogos.
-	if qte_passed == 5:
+	if qte_passed == 7:
 		DialogueController.start_dialogue("leonardo_minigame_dialogue_1")
 		await DialogueController.dialogue_finished
-	if qte_passed == 10:
+	if qte_passed == 14:
 		DialogueController.start_dialogue("leonardo_minigame_dialogue_2")
 		await DialogueController.dialogue_finished
-	if qte_passed == 15:
+	if qte_passed == 21:
 		DialogueController.start_dialogue("leonardo_minigame_dialogue_3")
-		await DialogueController.dialogue_finished
-	if qte_passed == 20:
-		DialogueController.start_dialogue("leonardo_minigame_dialogue_4")
 		await DialogueController.dialogue_finished
 		reach_final_course = true
 	

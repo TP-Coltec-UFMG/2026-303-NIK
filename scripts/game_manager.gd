@@ -21,6 +21,8 @@ var settings : Dictionary = {}
 var game_data : Dictionary = {}
 var musics : Dictionary = {}
 
+var is_first_dialogue : bool = false
+
 func _ready():
 	load_settings()
 	load_musics()
@@ -57,6 +59,9 @@ func load_scene(cena: String) -> void:
 func load_map(idx_node : int = game_data["map_position"]) -> void:
 	play_music("neighborhood")
 	load_scene("map")
+	if get_game_data("luzia_minigame_completed") and get_game_data("joao_minigame_completed") and get_game_data("leonardo_minigame_completed") and get_game_data("alex_minigame_completed"):
+		set_game_data("game_completed", true)
+		DialogueController.start_dialogue("ending_pointer_dialogue")
 
 	# (get_tree().get_root().get_child(0) as MapController).go_to_node(idx_node)
 
@@ -264,6 +269,7 @@ func set_game_data(key : String, value):
 		(get_tree().current_scene as MapController).load_nodes_data()
 	else:
 		print("key: " + key + " - " + "current_scene: " + current_scene)
+
 func create_blank_save():
 	# Se já existe um arquivo, apaga ele
 	var file = FileAccess.open(path_save, FileAccess.READ)
@@ -279,6 +285,7 @@ func create_blank_save():
 	set_game_data("caio_minigame_completed", false)
 	set_game_data("leonardo_minigame_completed", false)
 	set_game_data("alex_minigame_completed", false)
+	set_game_data("game_completed", false)
 
 # Retorna se há um arquivo de save atualmente
 func has_save() -> bool:
@@ -293,13 +300,14 @@ func load_save_and_start() -> void:
 
 # Cria um novo jogo, sobrescrevendo o save antigo
 func create_new_game() -> void:
+	is_first_dialogue = true
 	# Cria uma save vazia
 	GameManager.create_blank_save()
 	# Carrega o mapa
 	GameManager.load_map()
 
 	set_game_data("nodes", {
-		"0" : "",
+		"0" : "maria_dialogue",
 		"1" : "luzia_pre_minigame",
 		"2" : "caio_pre_minigame",
 		"3" : "joao_pre_minigame",
@@ -307,6 +315,19 @@ func create_new_game() -> void:
 		"5" : "alex_pre_minigame",
 		"6" : ""
 	})
+	
+	# Chama o diálogo inicial.
+	DialogueController.start_dialogue("initial_dialogue")
+	await DialogueController.dialogue_finished
+	
+	is_first_dialogue = false
+	
+	var map_scene = get_tree().current_scene as MapController
+	if map_scene:
+		map_scene.nikole.position = Vector2(0, 0)
+		map_scene.nikole.visible = true
+		map_scene.get_node("AnimatedProps/VovoMaria").visible = true
+		map_scene.go_to_node(get_game_data("map_position"))
 
 # Carrega as músicas, para evitar que elas só sejam
 # carregadas no momento que forem usadas

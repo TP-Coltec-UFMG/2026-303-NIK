@@ -10,7 +10,11 @@ func _ready() -> void:
 
 	nikole.changed_node.connect(update_node_position)
 	
-	go_to_node(GameManager.get_game_data("map_position"))
+	if GameManager.is_first_dialogue:
+		nikole.position = Vector2(1318.0, -598.0)
+		nikole.visible = false
+		$AnimatedProps/VovoMaria.visible = false
+	else: go_to_node(GameManager.get_game_data("map_position"))
 
 func update_node_position(map_node : MapNode):
 	GameManager.set_game_data("map_position", map_nodes.find(map_node))

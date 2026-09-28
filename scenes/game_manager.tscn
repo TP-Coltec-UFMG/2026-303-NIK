@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://08c71k7x2pq0" path="res://scenes/minigames/minigame_joao/minigame_joao.tscn" id="5_cjvif"]
 [ext_resource type="Shader" uid="uid://covi4n54bkdkf" path="res://shaders/filtro_daltonismo.gdshader" id="6_c7a3q"]
 [ext_resource type="PackedScene" uid="uid://ktqabv1ahjhk" path="res://scenes/minigames/minigame_alex/minigame_alex.tscn" id="6_ry0e6"]
-[ext_resource type="PackedScene" uid="uid://61dt6fnpa7ht" path="res://scenes/home_menu.tscn" id="16_home"]
 [ext_resource type="Script" uid="uid://bm4rvfyvlss3y" path="res://scripts/menu.gd" id="7_4vth2"]
 [ext_resource type="PackedScene" uid="uid://d0u8yomj03fde" path="res://scenes/minigames/minigame_leonardo/minigame_leonardo.tscn" id="7_c7a3q"]
 [ext_resource type="FontFile" uid="uid://mb7lv5gfarwo" path="res://fonts/Chewy-Regular.ttf" id="8_yxe1x"]
@@ -19,6 +18,7 @@
 [ext_resource type="Script" uid="uid://v4a1wtjtcbkn" path="res://scripts/settings_buttons/setting_int.gd" id="13_kvitc"]
 [ext_resource type="Script" uid="uid://csl2o2drb1mft" path="res://scripts/settings_buttons/setting_keybind.gd" id="14_hqtnj"]
 [ext_resource type="Theme" uid="uid://gmvr2lib4uc3" path="res://themes/default.tres" id="15_5xtl8"]
+[ext_resource type="PackedScene" uid="uid://61dt6fnpa7ht" path="res://scenes/home_menu.tscn" id="16_home"]
 [ext_resource type="Texture2D" uid="uid://c2fe0k122wggp" path="res://sprites/ui/key.png" id="18_pc0jn"]
 
 [sub_resource type="Animation" id="Animation_rerct"]
@@ -178,13 +178,13 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_0rse5")
 cenas = Dictionary[String, PackedScene]({
+"home_menu": ExtResource("16_home"),
 "map": ExtResource("2_aonbx"),
 "minigame_alex": ExtResource("6_ry0e6"),
 "minigame_joao": ExtResource("5_cjvif"),
 "minigame_leonardo": ExtResource("7_c7a3q"),
 "minigame_luzia": ExtResource("4_30v7y"),
-"minigame_tester": ExtResource("3_cjvif"),
-"home_menu": ExtResource("16_home")
+"minigame_tester": ExtResource("3_cjvif")
 })
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1861454202]
