@@ -216,10 +216,13 @@ func close_pages():
 
 	if _opened_from_home_menu:
 		_opened_from_home_menu = false
-		var current_scene = get_tree().current_scene
-		var home_menu = current_scene if current_scene.name == "HomeMenu" else current_scene.get_node_or_null("HomeMenu")
-		if home_menu:
-			home_menu.open_menu()
+		open_home_menu()
+
+func open_home_menu():
+	var current_scene = get_tree().current_scene
+	var home_menu = current_scene if current_scene.name == "HomeMenu" else current_scene.get_node_or_null("HomeMenu")
+	if home_menu:
+		home_menu.open_menu()
 
 func load_settings() -> void:
 	var settings = GameManager.settings
@@ -256,7 +259,10 @@ func _input(event: InputEvent) -> void:
 
 func quit(): 
 	GameManager.save_game()
-	get_tree().quit()
+	close_pages()
+	get_tree().paused = false
+	GameManager.load_scene("home_menu")
+	#get_tree().quit()
 
 func refresh_main_menu_buttons() -> void:
 	var main_menu = menus["Main"]
@@ -265,7 +271,7 @@ func refresh_main_menu_buttons() -> void:
 
 	for child in $Pages/Main.get_children():
 		if child is ConfigButton:
-			var hidden_on_home_menu = _opened_from_home_menu and child.id in ["button_save", "button_quit"]
+			var hidden_on_home_menu = _opened_from_home_menu and child.id in ["button_quit"]
 			child.visible = not hidden_on_home_menu
 			if hidden_on_home_menu:
 				continue
@@ -284,7 +290,7 @@ func setup_menus():
 	$Pages/Main/ButtonPlay.connect("pressed", close_pages)
 	$Pages/Main/ButtonSettings.connect("pressed", open_screen.bind("Settings"))
 	$Pages/Main/ButtonAccessibility.connect("pressed", open_screen.bind("Accessibility"))
-	$Pages/Main/ButtonSave.connect("pressed", GameManager.save_game)
+	#$Pages/Main/ButtonSave.connect("pressed", GameManager.save_game)
 	$Pages/Main/ButtonQuit.connect("pressed", quit)
 
 	refresh_main_menu_buttons()
