@@ -56,7 +56,7 @@ const selected_button_scale : float = 1.0
 const start_angle : float = PI # centralizado
 
 # Tempo mínimo entre entradas de confirmação no menu
-const INPUT_COOLDOWN_TIME : float = 0.2
+const INPUT_COOLDOWN_TIME : float = 0.1
 var _input_cooldown_remaining : float = 0.0
 
 func _ready() -> void:
@@ -270,6 +270,7 @@ func refresh_main_menu_buttons() -> void:
 	main_menu.buttons.clear()
 
 	for child in $Pages/Main.get_children():
+		if child.id == "button_save": continue
 		if child is ConfigButton:
 			var hidden_on_home_menu = _opened_from_home_menu and child.id in ["button_quit"]
 			child.visible = not hidden_on_home_menu
