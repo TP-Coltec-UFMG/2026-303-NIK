@@ -35,7 +35,6 @@ func load_scene(cena: String) -> void:
 	if current_scene == cena and is_instance_valid(get_tree().current_scene):
 		return
 
-	get_viewport().gui_disable_input = true
 	black_background.visible = true
 	animation_player.play("fade")
 	await animation_player.animation_finished
@@ -47,8 +46,6 @@ func load_scene(cena: String) -> void:
 		save_game()
 
 	await get_tree().process_frame 
-
-	get_viewport().gui_disable_input = false
 	
 	animation_player.play_backwards("fade")
 	await animation_player.animation_finished
@@ -255,7 +252,7 @@ func load_save() -> void:
 		print("could not open save file!\ncreating blank one")
 
 func get_game_data(key : String):
-	return game_data[key] if game_data.has(key) else null 
+	return game_data[key] if game_data[key] != null else null 
 
 func set_game_data(key : String, value):
 	game_data[key] = value

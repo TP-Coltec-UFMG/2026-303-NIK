@@ -96,6 +96,7 @@ shape = SubResource("RectangleShape2D_2bqh4")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1753694820]
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer" unique_id=740248027]
+process_mode = 3
 custom_minimum_size = Vector2(60, 60)
 offset_left = 609.5
 offset_top = 149.0

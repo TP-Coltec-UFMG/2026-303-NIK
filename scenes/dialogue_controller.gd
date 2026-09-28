@@ -41,8 +41,12 @@ func start_dialogue(dialogue_id : String):
 	current_line = 0
 	next_line(0)
 
-func next_line(idx : int = current_line + 1):
-	current_line = idx
+func next_line(idx : int = -1):
+	if idx != -1:
+		current_line = idx
+	else:
+		current_line += 1
+		
 	if current_line >= active_dialogue.lines.size():
 		end_dialogue()
 		return
@@ -57,7 +61,8 @@ func end_dialogue():
 	
 	emit_signal("dialogue_finished")
 	
-	execute_redirects(current_redirects)
+	if current_redirects.size() > 0:
+		execute_redirects(current_redirects)
 	GameManager.save_game()
 
 func execute_redirects(redirects_queue: Array[DialogueRedirect]):

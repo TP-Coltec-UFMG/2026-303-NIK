@@ -1,3 +1,122 @@
 [gd_scene format=3 uid="uid://bd0j2ax5acbmj"]
 
-[node name="ReceitaDaVovó" type="Node2D" unique_id=422842137]
+[ext_resource type="Script" uid="uid://by2ea3rw1mwco" path="res://scenes/minigames/minigame_caio/veggie.gd" id="1_baq18"]
+[ext_resource type="Texture2D" uid="uid://coxtauinic4qi" path="res://sprites/minigames/minigame_caio/potato.png" id="1_eou83"]
+[ext_resource type="Script" uid="uid://bqf5wpes3ves6" path="res://scenes/minigames/minigame_caio/veggie_generator.gd" id="1_mqj3w"]
+[ext_resource type="Texture2D" uid="uid://cgvxtrp1en7ha" path="res://sprites/minigames/minigame_caio/potato_a.png" id="2_2ocu5"]
+[ext_resource type="Texture2D" uid="uid://bh5nfj3n2m4bh" path="res://sprites/minigames/minigame_caio/potato_b.png" id="3_x5mrr"]
+[ext_resource type="Texture2D" uid="uid://bkfmly301p0aa" path="res://sprites/minigames/minigame_caio/carrot.png" id="6_baq18"]
+[ext_resource type="Texture2D" uid="uid://fdkw2tqo8spc" path="res://sprites/minigames/minigame_caio/carrot_a.png" id="7_cbnwe"]
+[ext_resource type="Texture2D" uid="uid://cl7vd4avopnw0" path="res://sprites/minigames/minigame_caio/carrot_b.png" id="8_sl7od"]
+
+[sub_resource type="Curve" id="Curve_cbnwe"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xdqvc"]
+curve = SubResource("Curve_cbnwe")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x5mrr"]
+particle_flag_disable_z = true
+angle_curve = SubResource("CurveTexture_xdqvc")
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 750.0
+initial_velocity_max = 1500.0
+angular_velocity_min = -175.00002
+angular_velocity_max = 174.99998
+gravity = Vector3(0, 1250, 0)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x5mrr"]
+radius = 83.55
+height = 242.24
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cbnwe"]
+radius = 66.79077
+height = 306.15063
+
+[node name="SpecialRecipe" type="Node2D" unique_id=422842137]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=936061291]
+position = Vector2(640, 360)
+zoom = Vector2(0.5, 0.5)
+
+[node name="VeggieGenerator" type="Node2D" parent="." unique_id=955645792]
+position = Vector2(640, 360)
+script = ExtResource("1_mqj3w")
+
+[node name="Potato" type="Area2D" parent="VeggieGenerator" unique_id=670194292]
+process_mode = 4
+position = Vector2(-1936, -42)
+script = ExtResource("1_baq18")
+template = true
+
+[node name="Sprite" type="Sprite2D" parent="VeggieGenerator/Potato" unique_id=714177921]
+texture = ExtResource("1_eou83")
+
+[node name="A" type="GPUParticles2D" parent="VeggieGenerator/Potato" unique_id=1471722157]
+emitting = false
+amount = 1
+texture = ExtResource("2_2ocu5")
+lifetime = 15.0
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_x5mrr")
+
+[node name="B" type="GPUParticles2D" parent="VeggieGenerator/Potato" unique_id=2122584118]
+emitting = false
+amount = 1
+texture = ExtResource("3_x5mrr")
+lifetime = 15.0
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_x5mrr")
+
+[node name="Collision" type="CollisionShape2D" parent="VeggieGenerator/Potato" unique_id=1958110040]
+position = Vector2(5, -3.999999)
+rotation = -1.2426745
+shape = SubResource("CapsuleShape2D_x5mrr")
+
+[node name="Carrot" type="Area2D" parent="VeggieGenerator" unique_id=1415428906]
+process_mode = 4
+position = Vector2(-1936, -42)
+script = ExtResource("1_baq18")
+template = true
+
+[node name="Sprite" type="Sprite2D" parent="VeggieGenerator/Carrot" unique_id=116937539]
+texture = ExtResource("6_baq18")
+
+[node name="A" type="GPUParticles2D" parent="VeggieGenerator/Carrot" unique_id=1683246047]
+emitting = false
+amount = 1
+texture = ExtResource("7_cbnwe")
+lifetime = 15.0
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_x5mrr")
+
+[node name="B" type="GPUParticles2D" parent="VeggieGenerator/Carrot" unique_id=1486978258]
+emitting = false
+amount = 1
+texture = ExtResource("8_sl7od")
+lifetime = 15.0
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_x5mrr")
+
+[node name="Collision" type="CollisionShape2D" parent="VeggieGenerator/Carrot" unique_id=1226184522]
+position = Vector2(-3, 5.000001)
+rotation = -2.3917282
+shape = SubResource("CapsuleShape2D_cbnwe")
+
+[node name="BG" type="CanvasLayer" parent="." unique_id=203260506]
+process_mode = 4
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="BG" unique_id=1070220757]
+process_mode = 4
+z_index = -4096
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.7372549, 0.8627451, 0.90588236, 1)

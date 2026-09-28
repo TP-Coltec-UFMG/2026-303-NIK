@@ -36,24 +36,10 @@ func _ready() -> void:
 	earth1.position.x = 0
 	earth2.position.x = 0
 
-func _process(delta: float) -> void:
-	# Verificação dos qte para os diálogos.
-	if qte_passed == 5:
-		DialogueController.start_dialogue("leonardo_minigame_dialogue_1")
-		await DialogueController.dialogue_finished
-	if qte_passed == 10:
-		DialogueController.start_dialogue("leonardo_minigame_dialogue_2")
-		await DialogueController.dialogue_finished
-	if qte_passed == 15:
-		DialogueController.start_dialogue("leonardo_minigame_dialogue_3")
-		await DialogueController.dialogue_finished
-	if qte_passed == 20:
-		DialogueController.start_dialogue("leonardo_minigame_dialogue_4")
-		await DialogueController.dialogue_finished
-		reach_final_course = true
-	
+func _process(delta: float) -> void:	
 	# Diminui o tempo para o próximo qte.
-	time_to_qte -= delta
+	if DialogueController.active_dialogue == null:
+		time_to_qte -= delta
 	
 	if !reach_final_course:
 		# Repete o fundo conforme ele sai da tela.
@@ -85,7 +71,7 @@ func _process(delta: float) -> void:
 		time_to_qte = TIME_TO_QTE
 		roll_qte()
 	
-	if root.position.y == 631.0:
+	if root.position.y <= 631.0:
 		# Para o jogo.
 		active_game = false
 		# Timer legal.
@@ -113,25 +99,24 @@ func roll_qte() -> void:
 	panel.visible = true
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and not event.echo:
+	if active_qte and event is InputEventKey and event.pressed and not event.echo:
+		active_qte = false
 		# Compara a tecla pressionada com a sorteada.
 		var pressed_key = event.as_text_keycode().to_upper()
+		if pressed_key not in LETTERS:
+			print("ta chapando ze que botao é esse q c aperto")
+			return
 		if pressed_key == label.text: await qte_success()  # Sucesso.
 		else: await qte_failure()  # Falha.
 		
-		# Tween de desaparecimento do comando.
-		var tween : Tween = panel.create_tween()
-		tween\
-			.tween_property(panel, "scale", Vector2(0, 0), 0.2)\
-			.set_ease(Tween.EASE_OUT)
-		await tween.finished
-		
 		# Alteração das variáveis de controle.
-		active_qte = false
 		panel.visible = false
 		label.text = ""
 
 func qte_success() -> void:
+	# Contagem.
+	qte_passed += 1
+
 	# Tween para fazer o comando piscar verde.
 	var tween : Tween = panel.create_tween()
 	tween\
@@ -147,8 +132,29 @@ func qte_success() -> void:
 	earth2.position.y -= DIG_DISTANCE
 	hole1.position.y -= DIG_DISTANCE
 	hole2.position.y -= DIG_DISTANCE
-	# Contagem.
-	qte_passed += 1
+		
+	# Tween de desaparecimento do comando.
+	tween.kill()
+	tween = panel.create_tween()
+	tween\
+		.tween_property(panel, "scale", Vector2(0, 0), 0.2)\
+		.set_ease(Tween.EASE_OUT)
+	await tween.finished
+	
+	# Verificação dos qte para os diálogos.
+	if qte_passed == 5:
+		DialogueController.start_dialogue("leonardo_minigame_dialogue_1")
+		await DialogueController.dialogue_finished
+	if qte_passed == 10:
+		DialogueController.start_dialogue("leonardo_minigame_dialogue_2")
+		await DialogueController.dialogue_finished
+	if qte_passed == 15:
+		DialogueController.start_dialogue("leonardo_minigame_dialogue_3")
+		await DialogueController.dialogue_finished
+	if qte_passed == 20:
+		DialogueController.start_dialogue("leonardo_minigame_dialogue_4")
+		await DialogueController.dialogue_finished
+		reach_final_course = true
 	
 func qte_failure() -> void:
 	# Tween para fazer o comando piscar vermelho.

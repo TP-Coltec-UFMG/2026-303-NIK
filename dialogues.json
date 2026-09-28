@@ -587,6 +587,7 @@
 
 	{
 		"id": "leonardo_minigame_dialogue_1",
+		"condition": {},
 		"lines": [
 			{
 				"name": "Leonardo",
@@ -597,6 +598,7 @@
 
 	{
 		"id": "leonardo_minigame_dialogue_2",
+		"condition": {},
 		"lines": [
 			{
 				"name": "Leonardo",
@@ -615,6 +617,7 @@
 
 	{
 		"id": "leonardo_minigame_dialogue_3",
+		"condition": {},
 		"lines": [
 			{
 				"name": "Leonardo",
@@ -625,6 +628,7 @@
 
 	{
 		"id": "leonardo_minigame_dialogue_4",
+		"condition": {},
 		"lines": [
 			{
 				"name": "Leonardo",
@@ -635,6 +639,7 @@
 
 	{
 		"id": "leonardo_minigame_dialogue_7",
+		"condition": {},
 		"lines": [
 			{
 				"name": "Leonardo",
