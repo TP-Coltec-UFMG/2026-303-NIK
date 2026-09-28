@@ -39,7 +39,7 @@ func _ready() -> void:
 	if active_dialogue != null:
 		end_dialogue()
 
-	dialogue_box.offset_transform_position_ratio.y = 1.4 # deixa a caixa de diálogo fora da tela no começo
+	dialogue_box.offset_transform_position_ratio.y = 1.5 # deixa a caixa de diálogo fora da tela no começo
 	
 	await get_tree().process_frame
 	get_parent().move_child(self, -1) # mexe ele pra baixo, aí ele pega input antes do GameManager (impede de pausar o jogo enquanto está em dialogo)
@@ -117,12 +117,14 @@ func _process(delta: float) -> void:
 # Anima a caixa de diálogo aparecendo ou sumindo (dir = 1 para aparecer, dir = -1 para sumir)
 func animate_dialogue_box(dir : int): 
 	var tween : Tween = create_tween()
-	var pos_ratio_y : float = 0.0 if dir == 1 else 1.4
-	var tween_ease : Tween.EaseType = Tween.EASE_OUT
+	var pos_ratio_y : float = 0.0 if dir == 1 else 1.5
+	var time : float = DIALOGUE_BOX_ANIMATION_TIME if dir == 1 else DIALOGUE_BOX_ANIMATION_TIME * 0.4
+	var trans : Tween.TransitionType = Tween.TRANS_ELASTIC if dir == 1 else Tween.TRANS_EXPO
+	var tween_ease : Tween.EaseType = Tween.EASE_OUT if dir == 1 else Tween.EASE_OUT
 
 	tween \
-		.tween_property(dialogue_box, "offset_transform_position_ratio:y", pos_ratio_y, DIALOGUE_BOX_ANIMATION_TIME) \
-		.set_trans(Tween.TRANS_ELASTIC) \
+		.tween_property(dialogue_box, "offset_transform_position_ratio:y", pos_ratio_y, time) \
+		.set_trans(trans) \
 		.set_ease(tween_ease)
 
 	# Espera o tween acabar
