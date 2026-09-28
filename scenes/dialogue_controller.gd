@@ -1,7 +1,10 @@
 extends CanvasLayer
 
 # Tempo entre letras do texto do diálogo (quanto menor, mais rápido)
-const TEXT_CHARACTER_INTERVAL = 0.05
+const TEXT_CHARACTER_INTERVAL = 0.03
+# Tempo entre pontuação (, . ! ?), para dar uma pausa na fala
+const PUNCTUATION_INTERVAL = 0.2
+const PUNCTUATION_CHARS = [",", ".", "!", "?"]
 
 const dialogue_files = "res://dialogues.json"
 
@@ -74,13 +77,19 @@ func end_dialogue():
 		execute_redirects(current_redirects)
 	GameManager.save_game()
 
-var _text_animation_time = 0.0
+var _char_animation_time = 0.0 # tempo desde a aparição do último caractere
 func _process(delta: float) -> void:
-	_text_animation_time -= delta
+	_char_animation_time -= delta
+	var parsed_text = dialogue_text.get_parsed_text() # retira as tags
 
-	if active_dialogue and _text_animation_time < 0:
+	# Se deu a hora, faz o próximo caractere aparecer
+	if active_dialogue \
+	and dialogue_text.visible_characters < parsed_text.length() \
+	and _char_animation_time < 0:
 		dialogue_text.visible_characters += 1
-		_text_animation_time = TEXT_CHARACTER_INTERVAL
+		_char_animation_time = PUNCTUATION_INTERVAL \
+							   if parsed_text[dialogue_text.visible_characters - 1] in PUNCTUATION_CHARS \
+							   else TEXT_CHARACTER_INTERVAL
 
 func execute_redirects(redirects_queue: Array[DialogueRedirect]):
 	if redirects_queue.is_empty():
