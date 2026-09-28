@@ -601,6 +601,14 @@
 			{
 				"name": "Leonardo",
 				"text": "O racismo “na” língua é representado pelas expressões diretas de caráter racista."
+			},
+			{
+				"name": "Leonardo",
+				"text": "O racismo “pela” língua é caracterizado pelo uso de metáforas como forma de ataque."
+			},
+			{
+				"name": "Leonardo",
+				"text": "E por fim, o racismo “através” da língua é aquele que invalida o falar negro se comparado ao branco."
 			}
 		]
 	},
@@ -610,33 +618,13 @@
 		"lines": [
 			{
 				"name": "Leonardo",
-				"text": "O racismo “pela” língua é caracterizado pelo uso de metáforas como forma de ataque."
-			}
-		]
-	},
-
-	{
-		"id": "leonardo_minigame_dialogue_4",
-		"lines": [
-			{
-				"name": "Leonardo",
-				"text": "E por fim, o racismo “através” da língua é aquele que invalida o falar negro se comparado ao branco."
-			}
-		]
-	},
-
-	{
-		"id": "leonardo_minigame_dialogue_5",
-		"lines": [
-			{
-				"name": "Leonardo",
 				"text": "Esse último é o mais profundo e sério dos problemas, pois é ele que mantém a presença do racismo na língua."
 			}
 		]
 	},
 
 	{
-		"id": "leonardo_minigame_dialogue_6",
+		"id": "leonardo_minigame_dialogue_4",
 		"lines": [
 			{
 				"name": "Leonardo",

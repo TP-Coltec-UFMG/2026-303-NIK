@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://d0u8yomj03fde"]
+
+[ext_resource type="Texture2D" uid="uid://bl3fbwflo64ca" path="res://sprites/minigames/minigame_leonardo/surface.png" id="1_2bqh4"]
+[ext_resource type="Script" uid="uid://bin4w7yjaf25i" path="res://scenes/minigames/minigame_leonardo/dig.gd" id="1_4nms8"]
+[ext_resource type="Texture2D" uid="uid://dfeyjo2mnrmlv" path="res://sprites/map/npcs/nikole.png" id="1_e7sp0"]
+[ext_resource type="Texture2D" uid="uid://cufgt1somq623" path="res://sprites/minigames/minigame_leonardo/earth.png" id="2_17u2l"]
+[ext_resource type="Texture2D" uid="uid://1l8hm441bx2i" path="res://sprites/minigames/minigame_leonardo/hole.png" id="5_3hvv2"]
+[ext_resource type="Texture2D" uid="uid://c8yb5eyq26kwe" path="res://sprites/minigames/minigame_leonardo/hole_base.png" id="5_xenae"]
+[ext_resource type="Texture2D" uid="uid://cr1t78irp3syu" path="res://sprites/minigames/minigame_leonardo/treasure.png" id="6_5mg4s"]
+[ext_resource type="Theme" uid="uid://gmvr2lib4uc3" path="res://themes/default.tres" id="7_xenae"]
+[ext_resource type="Texture2D" uid="uid://c2fe0k122wggp" path="res://sprites/ui/key.png" id="8_qcqho"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2bqh4"]
+size = Vector2(253.095, 300.785)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qcqho"]
+texture = ExtResource("8_qcqho")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_5mg4s"]
+font_size = 36
+
+[node name="Dig" type="Node2D" unique_id=1342708563 node_paths=PackedStringArray("surface", "earth1", "earth2", "hole1", "hole2", "root", "panel")]
+script = ExtResource("1_4nms8")
+surface = NodePath("Camera2D/backgrounds/surface")
+earth1 = NodePath("Camera2D/backgrounds/earth1")
+earth2 = NodePath("Camera2D/backgrounds/earth2")
+hole1 = NodePath("Camera2D/backgrounds/hole1")
+hole2 = NodePath("Camera2D/backgrounds/hole2")
+root = NodePath("Camera2D/backgrounds/root")
+panel = NodePath("CanvasLayer/PanelContainer")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1471581314]
+position = Vector2(639.5, 359.44995)
+zoom = Vector2(0.72, 0.72)
+position_smoothing_enabled = true
+
+[node name="backgrounds" type="Node2D" parent="Camera2D" unique_id=566857887]
+
+[node name="surface" type="Sprite2D" parent="Camera2D/backgrounds" unique_id=211926182]
+scale = Vector2(3, 3)
+texture = ExtResource("1_2bqh4")
+
+[node name="earth1" type="Sprite2D" parent="Camera2D/backgrounds" unique_id=1981990733]
+z_index = -3
+position = Vector2(0, 1223.55)
+scale = Vector2(4, 4)
+texture = ExtResource("2_17u2l")
+
+[node name="earth2" type="Sprite2D" parent="Camera2D/backgrounds" unique_id=1616168980]
+z_index = -3
+position = Vector2(0, 2659.55)
+scale = Vector2(4, 4)
+texture = ExtResource("2_17u2l")
+
+[node name="hole1" type="Sprite2D" parent="Camera2D/backgrounds" unique_id=1786927078]
+z_index = -2
+position = Vector2(-323.5, -57.44995)
+scale = Vector2(0.83, 1.26)
+texture = ExtResource("5_3hvv2")
+
+[node name="hole2" type="Sprite2D" parent="Camera2D/backgrounds" unique_id=1303447862]
+z_index = -2
+position = Vector2(-323.5, 874.55)
+scale = Vector2(0.83, 1.26)
+texture = ExtResource("5_3hvv2")
+
+[node name="hole_base" type="Sprite2D" parent="Camera2D/backgrounds" unique_id=642053062]
+z_index = -1
+position = Vector2(-327.5, 532.55005)
+scale = Vector2(0.66, 0.45)
+texture = ExtResource("5_xenae")
+
+[node name="root" type="Sprite2D" parent="Camera2D/backgrounds" unique_id=1219285965]
+position = Vector2(3305.5, 1330.55)
+scale = Vector2(-4, 4)
+texture = ExtResource("6_5mg4s")
+
+[node name="Nikole" type="Area2D" parent="." unique_id=991965568]
+position = Vector2(327, 631)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Nikole" unique_id=621563]
+z_index = 4
+texture = ExtResource("1_e7sp0")
+offset = Vector2(-13.5, -15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Nikole" unique_id=1736511901]
+visible = false
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_2bqh4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1753694820]
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer" unique_id=740248027]
+custom_minimum_size = Vector2(60, 60)
+offset_left = 609.5
+offset_top = 149.0
+offset_right = 669.5
+offset_bottom = 209.0
+pivot_offset = Vector2(30, 30)
+theme = ExtResource("7_xenae")
+theme_override_styles/panel = SubResource("StyleBoxTexture_qcqho")
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer" unique_id=190121712]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_5mg4s")
+horizontal_alignment = 1
+vertical_alignment = 1

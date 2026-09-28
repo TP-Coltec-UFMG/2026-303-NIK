@@ -15,6 +15,9 @@ var generate : bool = true
 func _ready() -> void:
 	create_thought()
 
+func _process(delta: float) -> void:
+	pass
+
 func create_thought() -> void:
 	while(true):
 		points = int(label_points.text.replace("/30", ""))
