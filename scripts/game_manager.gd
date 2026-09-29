@@ -23,6 +23,8 @@ var musics : Dictionary = {}
 
 var is_first_dialogue : bool = false
 
+var can_start_dialogue = true
+
 func _ready():
 	load_settings()
 	load_musics()
@@ -30,6 +32,7 @@ func _ready():
 	# load_scene("Principal")
 
 func load_scene(cena: String) -> void:
+	can_start_dialogue = false
 	if not cenas.has(cena):
 		push_error("Cena não encontrada: " + cena)
 		return
@@ -55,10 +58,11 @@ func load_scene(cena: String) -> void:
 	animation_player.play_backwards("fade")
 	await animation_player.animation_finished
 	black_background.visible = false
+	can_start_dialogue = true
 
 func load_map(idx_node : int = game_data["map_position"]) -> void:
 	play_music("neighborhood")
-	load_scene("map")
+	await load_scene("map")
 	if get_game_data("luzia_minigame_completed") and get_game_data("joao_minigame_completed") and get_game_data("leonardo_minigame_completed") and get_game_data("alex_minigame_completed"):
 		set_game_data("game_completed", true)
 		DialogueController.start_dialogue("ending_pointer_dialogue")
@@ -231,7 +235,10 @@ func get_setting(key : String):
 func save_game() -> void:
 	var save_data = {}
 	for save in game_data.keys():
-		save_data[save] = game_data[save]
+		if game_data[save] is Vector2:
+			save_data[save] = { "x" : game_data[save].x, "y" : game_data[save].y }
+		else:
+			save_data[save] = game_data[save]
 
 	var json = JSON.stringify(save_data, "\t")
 	var file = FileAccess.open(path_save, FileAccess.WRITE)
@@ -287,6 +294,22 @@ func create_blank_save():
 	set_game_data("alex_minigame_completed", false)
 	set_game_data("game_completed", false)
 
+	set_game_data("nodes", {
+		"0" : "maria_dialogue",
+		"1" : "luzia_pre_minigame",
+		"2" : "caio_pre_minigame",
+		"3" : "joao_pre_minigame",
+		"4" : "leonardo_pre_minigame",
+		"5" : "alex_pre_minigame",
+		"6" : ""
+	})
+
+	set_game_data("props", {
+		"DonaLuzia" : { 
+				"position": Vector2(5907.0, -1214.0) 
+			}
+	})
+
 # Retorna se há um arquivo de save atualmente
 func has_save() -> bool:
 	return FileAccess.file_exists(path_save)
@@ -304,36 +327,29 @@ func create_new_game() -> void:
 	# Cria uma save vazia
 	GameManager.create_blank_save()
 	# Carrega o mapa
-	GameManager.load_map()
+	await GameManager.load_map()
 
-	set_game_data("nodes", {
-		"0" : "maria_dialogue",
-		"1" : "luzia_pre_minigame",
-		"2" : "caio_pre_minigame",
-		"3" : "joao_pre_minigame",
-		"4" : "leonardo_pre_minigame",
-		"5" : "alex_pre_minigame",
-		"6" : ""
-	})
+	var map = get_tree().current_scene as MapController
 
-	set_game_data("props", {
-		"DonaLuzia" : { 
-				"position": Vector2(5907.0, -1214.0) 
-			}
-	})
+	map.go_to_node(get_game_data("map_position"))
+
+	map.nikole.move_sprite(Vector2(1318.0, -598.0), true)
+	map.nikole.can_move = false
 	
 	# Chama o diálogo inicial.
+	await get_tree().create_timer(1).timeout
 	DialogueController.start_dialogue("initial_dialogue")
 	await DialogueController.dialogue_finished
+
+	map.nikole.visible = true
+	map.nikole.is_moving = true
+	await map.nikole.move_sprite(Vector2.ZERO)
+	map.nikole.is_moving = false
+	map.nikole.can_move = true
 	
 	is_first_dialogue = false
 	
-	var map_scene = get_tree().current_scene as MapController
-	if map_scene:
-		map_scene.nikole.position = Vector2(0, 0)
-		map_scene.nikole.visible = true
-		map_scene.get_node("AnimatedProps/VovoMaria").visible = true
-		map_scene.go_to_node(get_game_data("map_position"))
+	map.get_node("AnimatedProps/VovoMaria").visible = true
 
 # Carrega as músicas, para evitar que elas só sejam
 # carregadas no momento que forem usadas

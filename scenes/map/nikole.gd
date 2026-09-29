@@ -12,6 +12,7 @@ var walking_animation_weight : float = 0
 
 @onready var previous_x: float = 0.0
 
+var can_move : bool = false
 var is_moving : bool
 @export var current_node : MapNode:
 	set(value):
@@ -64,6 +65,8 @@ func _ready() -> void:
 	DialogueController.please_move_nikole.connect(auto_move_to_node)
 
 func move_to_node(target_node: MapNode, target_path: Path2D, instant : bool = false):
+	if not can_move: return
+
 	is_moving = true
 	
 	path.curve = target_path.curve
@@ -207,3 +210,16 @@ func animate(delta : float):
 
 func call_prop_move(target_node : Node2D):
 	target_node.move_to(follower_target)
+
+func move_sprite(target_position : Vector2, instant : bool = false):
+	if instant:
+		sprite.position = target_position
+		return
+
+	var tween = create_tween()
+	tween\
+		.set_trans(Tween.TRANS_LINEAR)\
+		.set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(self, "position", target_position, 0.75)
+
+	await tween.finished

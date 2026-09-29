@@ -45,6 +45,8 @@ func _ready() -> void:
 	get_parent().move_child(self, -1) # mexe ele pra baixo, aí ele pega input antes do GameManager (impede de pausar o jogo enquanto está em dialogo)
 
 func start_dialogue(dialogue_id : String):
+	if not GameManager.can_start_dialogue: return
+
 	# get_tree().paused = true
 	dialogue_box.show()
 	if dialogues[dialogue_id].condition:
@@ -98,6 +100,10 @@ func end_dialogue():
 	if current_redirects.size() > 0:
 		execute_redirects(current_redirects)
 	GameManager.save_game()
+
+	GameManager.can_start_dialogue = false
+	await get_tree().create_timer(0.5).timeout
+	GameManager.can_start_dialogue = true
 
 var _char_animation_time : float = 0.0 # tempo desde a aparição do último caractere
 var _box_animation_i : float = 0 # contador de animação da caixa de diálogo
