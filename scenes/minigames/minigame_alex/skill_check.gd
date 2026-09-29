@@ -119,6 +119,8 @@ func _process(delta: float) -> void:
 	elif not is_on_burnout:
 		if not skill_check_enabled:
 			next_check_time -= delta
+		if $"../TaskGenerator".tasks_completed > ($"../TaskGenerator".NUMBER_OF_TASKS_TO_BURNOUT - 5):
+			return
 
 		# Se chegou o momento de criar uma skill check,
 		# obtém um novo tempo e gera a skill check
