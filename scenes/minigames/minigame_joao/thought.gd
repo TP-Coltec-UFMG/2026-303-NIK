@@ -13,6 +13,15 @@ func _ready() -> void:
 
 func block() -> void:
 	emit_signal("blocked");
+	
+	tween.kill()
+		
+	tween = create_tween()
+	tween.set_trans(Tween.TRANS_CUBIC)
+	
+	tween.tween_property(self, "scale", Vector2.ZERO, .1)
+	await tween.finished
+
 	queue_free()
 
 func move() -> void:
@@ -28,5 +37,14 @@ func move() -> void:
 	tween.finished.connect(_on_tween_finished)
 
 func _on_tween_finished() -> void:
-	emit_signal("arrived");
+	tween.kill()
+		
+	tween = create_tween()
+	tween.set_trans(Tween.TRANS_CUBIC)
+	
+	tween.tween_property(self, "scale", Vector2.ZERO, .1)
+	await tween.finished
+
+	arrived.emit()
+
 	queue_free()

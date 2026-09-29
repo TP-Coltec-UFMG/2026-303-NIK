@@ -13,14 +13,13 @@ var thoughts : Array[Thought] = []
 var generate : bool = true
 
 func _ready() -> void:
-	create_thought()
+	points = int(label_points.text.replace("/30", ""))
 
 func _process(delta: float) -> void:
 	pass
 
 func create_thought() -> void:
 	while(true):
-		points = int(label_points.text.replace("/30", ""))
 		if generate:
 			if points < flag:
 				var angle = atan2(randfn(0.0, 0.2), randfn(0.0, 1.0))
@@ -37,6 +36,7 @@ func create_thought() -> void:
 				thought.move()
 				thought.reset_physics_interpolation()
 				thoughts.append(thought)
+				thought.blocked.connect(blockedPoints.bind(thought))
 				thought.arrived.connect(arrivedPoints.bind(thought))
 				thought.tree_exited.connect(func(): thoughts.erase(thought))
 				
@@ -62,6 +62,19 @@ func create_thought() -> void:
 				await get_tree().process_frame
 
 func arrivedPoints(thought : Thought) -> void:
-	if thought.damage and points > 0: points -= 1
-	elif !thought.damage: points += 1
-	label_points.text = str(points) + "/30"
+	if !thought.damage: points += 1
+	updateLabel()
+
+func blockedPoints(thought : Thought) -> void:
+	if thought.damage: points += 1
+	updateLabel()
+
+func updateLabel():
+	label_points.text = min(30, str(points)) + "/30"
+
+func _on_play_pressed() -> void:
+	print("iniciar jogo joão")
+	$"../../Tutorial".visible = false
+	# Dá um tempo entre o play e o jogo realmente começar
+	await get_tree().create_timer(1).timeout
+	create_thought()

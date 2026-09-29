@@ -18,6 +18,15 @@ size = Vector2(120, 20)
 [sub_resource type="LabelSettings" id="LabelSettings_8iq46"]
 font_size = 30
 
+[sub_resource type="LabelSettings" id="LabelSettings_y24fe"]
+font_size = 48
+font_color = Color(0.76, 1, 0.928, 1)
+outline_size = 24
+outline_color = Color(0.33600003, 0.33600003, 0.6, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_43sjh"]
+font_size = 32
+
 [node name="Protector" type="Node2D" unique_id=1650022209]
 script = ExtResource("1_k5nnu")
 
@@ -71,4 +80,108 @@ offset_bottom = 69.0
 text = "0/30"
 label_settings = SubResource("LabelSettings_8iq46")
 
+[node name="Tutorial" type="CanvasLayer" parent="." unique_id=561411037]
+process_mode = 1
+layer = 2
+
+[node name="Background" type="ColorRect" parent="Tutorial" unique_id=1951447134]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1665, 0.23433338, 0.37, 0.7490196)
+
+[node name="Title" type="Label" parent="Tutorial/Background" unique_id=816040492]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 30.0
+offset_bottom = 93.0
+grow_horizontal = 2
+text = "Pensamentos Ruins"
+label_settings = SubResource("LabelSettings_y24fe")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Tutorial/Background" unique_id=323720091]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 80.0
+offset_bottom = 143.0
+grow_horizontal = 2
+text = "Proteja João de sua autodepreciação!"
+label_settings = SubResource("LabelSettings_43sjh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="Tutorial/Background" unique_id=992725637]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.5
+anchor_right = 0.85
+anchor_bottom = 0.5
+offset_top = -139.0
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+text = "Bloqueie os pensamentos ruins                   enquanto deixa os pensametos positivos                   chegarem até o João."
+label_settings = SubResource("LabelSettings_43sjh")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Description2" type="RichTextLabel" parent="Tutorial/Background" unique_id=666100478]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.5
+anchor_right = 0.85
+anchor_bottom = 0.5
+offset_top = -13.0
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+bbcode_enabled = true
+text = "[font_size=32]Aponte seu mouse para controlar o escudo."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Play" type="Button" parent="Tutorial/Background" unique_id=1608697325]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.85
+anchor_right = 0.7
+anchor_bottom = 1.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Jogar"
+
+[node name="GoodThought" type="TextureRect" parent="Tutorial/Background" unique_id=2040457468]
+layout_mode = 0
+offset_left = 576.0
+offset_top = 264.0
+offset_right = 742.0
+offset_bottom = 341.0
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("6_y24fe")
+
+[node name="BadThought" type="TextureRect" parent="Tutorial/Background" unique_id=1259680281]
+layout_mode = 0
+offset_left = 650.0
+offset_top = 210.0
+offset_right = 818.0
+offset_bottom = 287.0
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("8_43sjh")
+
 [connection signal="area_entered" from="Nikole" to="Nikole" method="_on_area_entered"]
+[connection signal="pressed" from="Tutorial/Background/Play" to="Camera2D/ThoughtGenerator" method="_on_play_pressed"]

@@ -8,8 +8,9 @@ var walking_animation_weight : float = 0
 @onready var sprite : Sprite2D = $Path2D/PathFollow2D/Sprite2D
 @onready var path_follow : PathFollow2D = $Path2D/PathFollow2D
 @onready var path : Path2D = $Path2D
+@onready var animated_props = $"../AnimatedProps"
 
-@onready var previous_x = sprite.global_position.x;
+@onready var previous_x: float = 0.0
 
 var is_moving : bool
 @export var current_node : MapNode:
@@ -21,10 +22,45 @@ signal changed_node(map_node)
 
 var all_nodes : Array[MapNode] = []
 
+var follower : String = "":
+	set(value):
+		var props = animated_props if animated_props else get_node_or_null("../AnimatedProps")
+		var target_parent = path_follow if path_follow else get_node_or_null("Path2D/PathFollow2D")
+		
+		if not is_inside_tree() or props == null or target_parent == null:
+			follower = value
+			return
+
+		if not follower.is_empty():
+			var old_node = target_parent.get_node_or_null(follower)
+			if old_node:
+				old_node.reparent(props)
+				old_node.animate = true
+				call_prop_move(old_node)
+
+		follower = value
+
+		if not follower.is_empty():
+			var new_node = props.get_node_or_null(follower)
+			if new_node:
+				new_node.reparent(target_parent)
+				new_node.animate = false
+				follower_node = new_node
+		else:
+			follower_node = null
+var follower_node : Node2D = null
+var follower_target : Vector2 = Vector2(0, 0)
+
 func _ready() -> void:
-	$Path2D/PathFollow2D/Sprite2D.scale = Vector2(1, 1)
-	for node in $"../Path/Nodes".get_children():
-		all_nodes.append(node as MapNode)
+	previous_x = sprite.global_position.x
+	sprite.scale = Vector2(1, 1)
+	
+	var nodes_container = get_node_or_null("../Path/Nodes")
+	if nodes_container:
+		for node in nodes_container.get_children():
+			if node is MapNode:
+				all_nodes.append(node)
+				
 	DialogueController.please_move_nikole.connect(auto_move_to_node)
 
 func move_to_node(target_node: MapNode, target_path: Path2D, instant : bool = false):
@@ -33,20 +69,18 @@ func move_to_node(target_node: MapNode, target_path: Path2D, instant : bool = fa
 	path.curve = target_path.curve
 	
 	var is_reversed = false 
-	#if path.curve.get_point_position(0).distance_to(current_node.position) > 6.7: # se estiver longe do primeiro ponto, é pq ta vindo do fim
-	#	is_reversed = true
-
 	if path.curve.get_point_position(0).distance_to(target_node.position) < 6.7:
 		is_reversed = true
 		
 	var start = 1.0 if is_reversed else 0.0
 	var end = 0.0 if is_reversed else 1.0
 
+	var camera = $Path2D/PathFollow2D/Camera2D
 	if instant:
-		$Path2D/PathFollow2D/Camera2D.position_smoothing_enabled = false
+		camera.position_smoothing_enabled = false
 		path_follow.progress_ratio = end
 	else:
-		$Path2D/PathFollow2D/Camera2D.position_smoothing_enabled = true
+		camera.position_smoothing_enabled = true
 		path_follow.progress_ratio = start
 		
 		var distance = target_path.curve.get_baked_length()
@@ -59,11 +93,16 @@ func move_to_node(target_node: MapNode, target_path: Path2D, instant : bool = fa
 	current_node = target_node
 	is_moving = false
 
-func auto_move_to_node(target: int, instant: bool = false): # SÓ DEVE SER CHAMADO PELO CONTROLADOR DE DIÁLOGO!!! (eu acho né kkk)
+func auto_move_to_node(target: int, _follower: String = "", _follower_target : Vector2 = Vector2.ZERO, instant: bool = false):
+	if target < 0 or target >= all_nodes.size():
+		return
+		
 	var target_node = all_nodes[target]
 	var queue: Array[MapNode] = [current_node]
 	var came_from: Dictionary = { current_node: null }
 	var found_target: bool = false
+	follower = _follower
+	follower_target = _follower_target
 
 	while queue.size() > 0:
 		var current = queue.pop_front()
@@ -105,12 +144,15 @@ func auto_move_to_node(target: int, instant: bool = false): # SÓ DEVE SER CHAMA
 	for move_step in path_sequence:
 		await move_to_node(move_step["target_node"], move_step["path"], instant)
 	
+	follower = ""
+	
 	DialogueController.move_to_node_finished()
 
-func _unhandled_input(event):
-	if is_moving: return
+func _unhandled_input(event: InputEvent) -> void:
+	if is_moving or current_node == null: 
+		return
 	
-	if event.is_action_pressed("interact") :
+	if event.is_action_pressed("interact"):
 		if current_node.can_interact:
 			print("iniciando diálogo \"" + current_node.dialogue_id + "\"")
 			DialogueController.start_dialogue(current_node.dialogue_id)
@@ -126,19 +168,42 @@ func _unhandled_input(event):
 	if event.is_action_pressed("move_left") and current_node.node_left:
 		move_to_node(current_node.node_left, current_node.path_left)
 
-func _process(delta: float) -> void:		
+func _process(delta: float) -> void:        
 	animate(delta)
 
 func animate(delta : float):
-	sprite.scale.x = -1.0 if (sprite.global_position.x < previous_x) else 1.0 if (sprite.global_position.x > previous_x) else sprite.scale.x
+	if sprite.global_position.x < previous_x:
+		sprite.scale.x = -1.0
+	elif sprite.global_position.x > previous_x:
+		sprite.scale.x = 1.0
+		
 	previous_x = sprite.global_position.x
 
-	walking_animation_weight = lerpf(walking_animation_weight, 1 if is_moving else 0, delta / .075)
+	walking_animation_weight = lerpf(walking_animation_weight, 1.0 if is_moving else 0.0, delta / .075)
 
 	animation_progress += speed * delta * .035
+
 	
-	sprite.rotation = (sin(animation_progress) * 0.1) * walking_animation_weight + (sin(animation_progress / 4) * 0.0)
-	sprite.scale.y = 1 - (sin(animation_progress * 2) * .01) * walking_animation_weight + -((1 + sin(animation_progress * .5)) * .01)
-	sprite.position.y = 0 + (-(1 + sin(animation_progress * 2 - PI / 2)) * 15.25) * walking_animation_weight
+	sprite.rotation = (sin(animation_progress) * 0.1) * walking_animation_weight
+	sprite.scale.y = 1.0 - (sin(animation_progress * 2) * .01) * walking_animation_weight - ((1 + sin(animation_progress * .5)) * .01)
 
 	sprite.reset_physics_interpolation()
+
+	var sprite_offset = Vector2(60, 30)
+	if follower_node:
+		follower_node.rotation = (sin(animation_progress) * 0.1) * walking_animation_weight
+		follower_node.scale.y = 1.0 - (sin(animation_progress * 2) * .01) * walking_animation_weight - ((1 + sin(animation_progress * .5)) * .01)
+		follower_node.position.y = -sprite_offset.y + (-(1 + sin(animation_progress * 2 - PI / 2)) * 15.25) * walking_animation_weight
+		follower_node.position.x = -sprite_offset.x
+
+		follower_node.reset_physics_interpolation()
+		sprite.position.y = sprite_offset.y + (-(1 + sin(animation_progress * 2 - PI / 2)) * 15.25) * walking_animation_weight
+		sprite.position.x = sprite_offset.x
+
+		follower_node.scale.x = -sprite.scale.x
+	else:
+		sprite.position.y = (-(1 + sin(animation_progress * 2 - PI / 2)) * 15.25) * walking_animation_weight
+		sprite.position.x = 0
+
+func call_prop_move(target_node : Node2D):
+	target_node.move_to(follower_target)

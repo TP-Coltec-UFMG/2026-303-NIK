@@ -69,10 +69,10 @@ texture = ExtResource("3_ahwvu")
 [node name="Head" type="TextureRect" parent="DialogueBox" unique_id=878776202]
 layout_mode = 1
 anchors_preset = -1
-offset_left = -117.0
-offset_top = -97.0
-offset_right = 132.0
-offset_bottom = 143.0
+offset_left = -212.0
+offset_top = -203.0
+offset_right = 288.0
+offset_bottom = 297.0
 scale = Vector2(0.667, 0.667)
 texture = ExtResource("4_fyky8")
-stretch_mode = 2
+stretch_mode = 3

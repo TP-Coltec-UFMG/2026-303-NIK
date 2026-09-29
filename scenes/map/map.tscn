@@ -278,6 +278,7 @@ z_index = 50
 curve = SubResource("Curve2D_e07uo")
 
 [node name="Nikole" type="Node2D" parent="." unique_id=309553364 node_paths=PackedStringArray("current_node")]
+z_index = 1
 script = ExtResource("11_3xi6f")
 speed = 300.0
 current_node = NodePath("../Path/Nodes/MapNode1")
@@ -319,8 +320,10 @@ grow_vertical = 2
 color = Color(0.60784316, 0.81960785, 0.41568628, 1)
 
 [node name="AnimatedProps" type="Node2D" parent="." unique_id=93395397]
+z_index = 1
 
 [node name="Caio" type="Node2D" parent="AnimatedProps" unique_id=2012274107]
+z_index = -1
 position = Vector2(10609, 105)
 rotation = 0.06854935
 scale = Vector2(1, 1.0049828)
@@ -340,6 +343,7 @@ texture = ExtResource("14_rqo2c")
 offset = Vector2(-5, -110)
 
 [node name="VovoMaria" type="Node2D" parent="AnimatedProps" unique_id=629809300]
+z_index = -1
 position = Vector2(1763.9998, -499.99994)
 rotation = 0.0034906585
 scale = Vector2(1.0000235, 1.0099669)
@@ -360,6 +364,7 @@ texture = ExtResource("15_25aov")
 offset = Vector2(-5, -110)
 
 [node name="Leonardo" type="Node2D" parent="AnimatedProps" unique_id=405018188]
+z_index = -1
 position = Vector2(17407, 1623)
 rotation = 3.1415927
 scale = Vector2(1, -1)
@@ -379,6 +384,7 @@ texture = ExtResource("14_e07uo")
 offset = Vector2(-5, -110)
 
 [node name="Francisco" type="Node2D" parent="AnimatedProps" unique_id=1940497751]
+z_index = -1
 position = Vector2(10087, 3239)
 script = ExtResource("13_nykyp")
 
@@ -396,6 +402,7 @@ texture = ExtResource("15_58ndj")
 offset = Vector2(-5, -110)
 
 [node name="Gabriel" type="Node2D" parent="AnimatedProps" unique_id=1034708122]
+z_index = -1
 position = Vector2(16584, 2060)
 script = ExtResource("13_nykyp")
 type = 2
@@ -416,6 +423,7 @@ texture = ExtResource("17_78kcs")
 offset = Vector2(-5, -110)
 
 [node name="Andre" type="Node2D" parent="AnimatedProps" unique_id=800911318]
+z_index = -1
 position = Vector2(16584, 2060)
 script = ExtResource("13_nykyp")
 type = 2
@@ -437,6 +445,7 @@ texture = ExtResource("18_2kc6l")
 offset = Vector2(-5, -110)
 
 [node name="Fred" type="Node2D" parent="AnimatedProps" unique_id=1618091661]
+z_index = -1
 position = Vector2(16584, 2060)
 script = ExtResource("13_nykyp")
 type = 2
@@ -458,6 +467,7 @@ texture = ExtResource("19_eix18")
 offset = Vector2(-5, -110)
 
 [node name="Alex" type="Node2D" parent="AnimatedProps" unique_id=742610899]
+z_index = -1
 position = Vector2(13565, 3998)
 script = ExtResource("13_nykyp")
 
@@ -475,6 +485,7 @@ texture = ExtResource("15_e07uo")
 offset = Vector2(-5, -110)
 
 [node name="Joao" type="Node2D" parent="AnimatedProps" unique_id=583138275]
+z_index = -1
 position = Vector2(14654, -558)
 rotation = 3.1415927
 scale = Vector2(1, -1)
@@ -494,6 +505,7 @@ texture = ExtResource("15_rqo2c")
 offset = Vector2(-5, -110)
 
 [node name="DonaLuzia" type="Node2D" parent="AnimatedProps" unique_id=2125736831]
+z_index = -1
 position = Vector2(5907, -1214)
 rotation = 3.1415927
 scale = Vector2(1, -1)
@@ -513,6 +525,7 @@ texture = ExtResource("14_2kc6l")
 offset = Vector2(-5, -110)
 
 [node name="Bird1" type="Sprite2D" parent="AnimatedProps" unique_id=1387908871]
+z_index = -1
 position = Vector2(-733, -1085.0001)
 scale = Vector2(1, 0.9750908)
 texture = SubResource("AtlasTexture_bhunq")
@@ -521,6 +534,7 @@ script = ExtResource("13_nykyp")
 type = 1
 
 [node name="Bird2" type="Sprite2D" parent="AnimatedProps" unique_id=1870010706]
+z_index = -1
 position = Vector2(-222, -30)
 scale = Vector2(1, 1.0090398)
 texture = SubResource("AtlasTexture_tmgcv")
@@ -529,6 +543,7 @@ script = ExtResource("13_nykyp")
 type = 1
 
 [node name="Bird3" type="Sprite2D" parent="AnimatedProps" unique_id=437197987]
+z_index = -1
 position = Vector2(2114, -2047)
 scale = Vector2(1, 1.022805)
 texture = SubResource("AtlasTexture_3xi6f")
@@ -537,6 +552,7 @@ script = ExtResource("13_nykyp")
 type = 1
 
 [node name="Bird4" type="Sprite2D" parent="AnimatedProps" unique_id=1866295418]
+z_index = -1
 position = Vector2(5902, -2295.9998)
 scale = Vector2(1, 1.0242085)
 texture = SubResource("AtlasTexture_omedl")
@@ -545,6 +561,7 @@ script = ExtResource("13_nykyp")
 type = 1
 
 [node name="Bird5" type="Sprite2D" parent="AnimatedProps" unique_id=1919159629]
+z_index = -1
 position = Vector2(7436, -2586.0002)
 scale = Vector2(1, 1.0230097)
 texture = SubResource("AtlasTexture_xks3a")
@@ -553,6 +570,7 @@ script = ExtResource("13_nykyp")
 type = 1
 
 [node name="Bird6" type="Sprite2D" parent="AnimatedProps" unique_id=594439396]
+z_index = -1
 position = Vector2(3504, 168.00003)
 scale = Vector2(1, 0.97648925)
 texture = SubResource("AtlasTexture_78kcs")
@@ -561,6 +579,7 @@ script = ExtResource("13_nykyp")
 type = 1
 
 [node name="Bird7" type="Sprite2D" parent="AnimatedProps" unique_id=1866859140]
+z_index = -1
 position = Vector2(645, 103.00006)
 scale = Vector2(1, 1.0180417)
 texture = SubResource("AtlasTexture_2kc6l")
@@ -569,6 +588,7 @@ script = ExtResource("13_nykyp")
 type = 1
 
 [node name="Bird8" type="Sprite2D" parent="AnimatedProps" unique_id=2068346081]
+z_index = -1
 position = Vector2(9712, 3811)
 scale = Vector2(1, 0.98786664)
 texture = SubResource("AtlasTexture_eix18")
@@ -577,6 +597,7 @@ script = ExtResource("13_nykyp")
 type = 1
 
 [node name="Bird9" type="Sprite2D" parent="AnimatedProps" unique_id=814911526]
+z_index = -1
 position = Vector2(14988, -1421.9999)
 rotation = 0.04682662
 scale = Vector2(1, 1.019407)
@@ -586,6 +607,7 @@ script = ExtResource("13_nykyp")
 type = 1
 
 [node name="Bird10" type="Sprite2D" parent="AnimatedProps" unique_id=375772764]
+z_index = -1
 position = Vector2(12766, -1069.0001)
 rotation = 0.04682662
 scale = Vector2(1, 1.019407)
@@ -595,6 +617,7 @@ script = ExtResource("13_nykyp")
 type = 1
 
 [node name="Bird11" type="Sprite2D" parent="AnimatedProps" unique_id=1988690424]
+z_index = -1
 position = Vector2(12428, -1280)
 rotation = 0.04682662
 scale = Vector2(1, 1.019407)

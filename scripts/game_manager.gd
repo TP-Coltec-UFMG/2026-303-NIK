@@ -315,6 +315,12 @@ func create_new_game() -> void:
 		"5" : "alex_pre_minigame",
 		"6" : ""
 	})
+
+	set_game_data("props", {
+		"DonaLuzia" : { 
+				"position": Vector2(5907.0, -1214.0) 
+			}
+	})
 	
 	# Chama o diálogo inicial.
 	DialogueController.start_dialogue("initial_dialogue")

@@ -7,6 +7,7 @@ func _ready() -> void:
 	for node in $Path/Nodes.get_children():
 		map_nodes.append(node as MapNode)
 	load_nodes_data()
+	load_props_data()
 
 	nikole.changed_node.connect(update_node_position)
 	
@@ -42,3 +43,14 @@ func load_nodes_data():
 		i += 1
 
 	print("loaded all nodes data")
+
+func load_props_data():
+	var data : Dictionary = GameManager.get_game_data("props")
+	for prop in data.keys():
+		var prop_node = $AnimatedProps.get_node_or_null(prop)
+		if prop_node:
+			print(data)
+			prop_node.position.x = data[prop].position.x
+			prop_node.position.y = data[prop].position.y
+
+	print("loaded all props data")

@@ -21,6 +21,15 @@ font_size = 86
 outline_size = 48
 outline_color = Color(0.21568628, 0.19215687, 0.30588236, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_k28x2"]
+font_size = 48
+font_color = Color(1, 0.82, 0.76, 1)
+outline_size = 24
+outline_color = Color(0.6, 0.40200004, 0.33600003, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rvutv"]
+font_size = 32
+
 [node name="Dig" type="Node2D" unique_id=1342708563]
 script = ExtResource("1_4nms8")
 
@@ -55,12 +64,11 @@ texture = ExtResource("5_5mg4s")
 centered = false
 
 [node name="Root" type="Sprite2D" parent="Background" unique_id=1219285965]
-position = Vector2(3305.5, 1330.55)
-scale = Vector2(-4, 4)
+position = Vector2(260.5, 5446.55)
 texture = ExtResource("6_5mg4s")
 
 [node name="Nikole" type="Area2D" parent="." unique_id=991965568]
-position = Vector2(327, 415)
+position = Vector2(327, 5815)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Nikole" unique_id=621563]
@@ -74,7 +82,7 @@ position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_2bqh4")
 
 [node name="Camera2D" type="Camera2D" parent="Nikole" unique_id=1471581314]
-position = Vector2(312.5, -136.55005)
+position = Vector2(312.5, -50)
 position_smoothing_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1753694820]
@@ -107,3 +115,72 @@ text = "W"
 label_settings = SubResource("LabelSettings_5mg4s")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Tutorial" type="CanvasLayer" parent="." unique_id=772412754]
+process_mode = 1
+layer = 2
+
+[node name="Background" type="ColorRect" parent="Tutorial" unique_id=1196800173]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1665, 0.23433338, 0.37, 0.7490196)
+
+[node name="Title" type="Label" parent="Tutorial/Background" unique_id=452751140]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 30.0
+offset_bottom = 93.0
+grow_horizontal = 2
+text = "Racismo Linguístico"
+label_settings = SubResource("LabelSettings_k28x2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Tutorial/Background" unique_id=1822610635]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 80.0
+offset_bottom = 143.0
+grow_horizontal = 2
+text = "Corte o mau pela raíz!"
+label_settings = SubResource("LabelSettings_rvutv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="Tutorial/Background" unique_id=726440117]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.5
+anchor_right = 0.85
+anchor_bottom = 0.5
+offset_top = -40.0
+offset_bottom = 53.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+text = "Aperte as teclas no momento certo para cavar a terra e chegar à raíz do problema."
+label_settings = SubResource("LabelSettings_rvutv")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Play" type="Button" parent="Tutorial/Background" unique_id=1231934103]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.85
+anchor_right = 0.7
+anchor_bottom = 1.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Jogar"
+
+[connection signal="pressed" from="Tutorial/Background/Play" to="." method="_on_play_pressed"]

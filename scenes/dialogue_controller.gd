@@ -26,7 +26,7 @@ var current_line = 0;
 
 signal dialogue_finished
 
-signal please_move_nikole(node_idx: String)
+signal please_move_nikole(node_idx: String, follower: String, target_position: Vector2)
 signal nikole_moved
 
 enum RedirectType { NONE, DIALOGUE, NODE, SCENE, NODE_EDIT }
@@ -39,7 +39,7 @@ func _ready() -> void:
 	if active_dialogue != null:
 		end_dialogue()
 
-	dialogue_box.offset_transform_position_ratio.y = 1.5 # deixa a caixa de diálogo fora da tela no começo
+	dialogue_box.offset_transform_position_ratio.y = 1.4 # deixa a caixa de diálogo fora da tela no começo
 	
 	await get_tree().process_frame
 	get_parent().move_child(self, -1) # mexe ele pra baixo, aí ele pega input antes do GameManager (impede de pausar o jogo enquanto está em dialogo)
@@ -69,13 +69,20 @@ func next_line(idx : int = -1):
 	if current_line >= active_dialogue.lines.size():
 		end_dialogue()
 		return
+
 	var character = active_dialogue.lines[current_line].name
 	var line = active_dialogue.lines[current_line].text	
+
 	# Deixa apenas o nome visível
 	dialogue_text.visible_characters = active_dialogue.lines[current_line].name.length()
 
-	dialogue_text.text = "[font_size=36][color=" + characters[character] + "]" + character + "\n[font_size=28][color=black]" + line
-	if character != '': dialogue_head.texture = load("res://sprites/map/npcs/heads/" + character + ".png")
+	if not character.is_empty():
+		dialogue_text.text = "[font_size=36][color=" + characters[character] + "]" + character + "\n[font_size=28][color=black]" + line
+		dialogue_head.texture = load("res://sprites/map/npcs/heads/" + character + ".png")
+	else:
+		dialogue_head.texture = null
+		dialogue_text.text = "[font_size=36] \n[font_size=28][color=black]" + line
+		
 
 func end_dialogue():
 	var current_redirects = active_dialogue.redirects
@@ -117,14 +124,12 @@ func _process(delta: float) -> void:
 # Anima a caixa de diálogo aparecendo ou sumindo (dir = 1 para aparecer, dir = -1 para sumir)
 func animate_dialogue_box(dir : int): 
 	var tween : Tween = create_tween()
-	var pos_ratio_y : float = 0.0 if dir == 1 else 1.5
-	var time : float = DIALOGUE_BOX_ANIMATION_TIME if dir == 1 else DIALOGUE_BOX_ANIMATION_TIME * 0.4
-	var trans : Tween.TransitionType = Tween.TRANS_ELASTIC if dir == 1 else Tween.TRANS_EXPO
+	var pos_ratio_y : float = 0.0 if dir == 1 else 1.4
 	var tween_ease : Tween.EaseType = Tween.EASE_OUT
 
 	tween \
-		.tween_property(dialogue_box, "offset_transform_position_ratio:y", pos_ratio_y, time) \
-		.set_trans(trans) \
+		.tween_property(dialogue_box, "offset_transform_position_ratio:y", pos_ratio_y, DIALOGUE_BOX_ANIMATION_TIME if dir == 1 else DIALOGUE_BOX_ANIMATION_TIME / 3.0) \
+		.set_trans(Tween.TRANS_ELASTIC if dir == 1 else Tween.TRANS_EXPO) \
 		.set_ease(tween_ease)
 
 	# Espera o tween acabar
@@ -150,7 +155,7 @@ func execute_redirects(redirects_queue: Array[DialogueRedirect]):
 				
 			RedirectType.NODE:
 				get_tree().paused = false
-				emit_signal("please_move_nikole", int(action.target))
+				emit_signal("please_move_nikole", int(action.target), action.follower, action.follower_target)
 				print("moving to node \"" + action.target + "\"")
 				await self.nikole_moved # espera a nikole andar
 				
@@ -208,6 +213,8 @@ class DialogueRedirect:
 	var type : RedirectType = RedirectType.NONE
 	var target : String = ""
 	var data : String = ""
+	var follower : String = ""
+	var follower_target : Vector2 = Vector2()
 
 	func _init(redirect_string: String): # parsing do comando de redirect
 		if ":" in redirect_string:
@@ -216,7 +223,13 @@ class DialogueRedirect:
 			
 			match parts[0]:
 				"dialogue": type = RedirectType.DIALOGUE
-				"node": type = RedirectType.NODE
+				"node": 
+					type = RedirectType.NODE
+					if parts.size() > 2:
+						follower = parts[2]
+						if not follower.is_empty():
+							follower_target.x = float(parts[3])
+							follower_target.y = float(parts[4])
 				"scene": type = RedirectType.SCENE
 				"node_edit": 
 					type = RedirectType.NODE_EDIT

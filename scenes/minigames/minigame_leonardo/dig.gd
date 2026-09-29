@@ -22,7 +22,7 @@ var qte_passed : int = 0  # Quantidade de qte passados.
 var reach_final_course : bool = false  # Determina quando o fundo com a raíz deve aparecer.
 var second_background : int = 0 # Determina o fundo de terra q está depois para colocar as raízes abaixo.
 var active_qte : bool = false  # Impede que outro qte seja sorteado.
-var active_game : bool = true  # Determina o fim do jogo.
+var active_game : bool = false  # Determina o fim do jogo.
 var label : Label  # Label do Painel que mostra a tecla do qte.
 
 signal qte_finished # Sinal pra quando o QTE acaba, com sucesso ou derrota
@@ -40,7 +40,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:	
 	# Diminui o tempo para o próximo qte.
-	if DialogueController.active_dialogue == null and not active_qte:
+	if DialogueController.active_dialogue == null and not active_qte and active_game:
 		time_to_qte -= delta
 	
 	# Sorteia um outro qte quando o tempo acabar e se já não tiver um ativo.
@@ -147,13 +147,13 @@ func qte_success() -> void:
 	await tween.finished
 	
 	# Verificação dos qte para os diálogos.
-	if qte_passed == 7:
+	if qte_passed == 5:
 		DialogueController.start_dialogue("leonardo_minigame_dialogue_1")
 		await DialogueController.dialogue_finished
-	if qte_passed == 14:
+	if qte_passed == 10:
 		DialogueController.start_dialogue("leonardo_minigame_dialogue_2")
 		await DialogueController.dialogue_finished
-	if qte_passed == 21:
+	if qte_passed == 15:
 		DialogueController.start_dialogue("leonardo_minigame_dialogue_3")
 		await DialogueController.dialogue_finished
 		reach_final_course = true
@@ -176,3 +176,10 @@ func qte_failure() -> void:
 		.tween_property(qte_rect, "scale", Vector2(0, 0), 0.2)\
 		.set_ease(Tween.EASE_OUT)
 	await tween.finished
+
+func _on_play_pressed():
+	$Tutorial.visible = false
+
+	# Dá um tempo entre o play e o jogo realmente começar
+	await get_tree().create_timer(1).timeout
+	active_game = true

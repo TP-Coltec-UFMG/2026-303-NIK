@@ -10,6 +10,9 @@ enum PROP_TYPE { PERSON, BIRD, RUNNING }
 @export var duration : float = 5.0
 @export_range(0.0, PI * 2) var running_progress : float = 0.0
 
+var animate = true
+
+
 @onready var start_position = position
 
 func _ready() -> void:
@@ -18,6 +21,8 @@ func _ready() -> void:
 	pass
 
 func _process(delta: float) -> void:
+	if not animate: return
+	
 	animation_progress += 100 * delta * .035 * (3.0 if type == PROP_TYPE.RUNNING else 1.0)
 	
 	rotation = (sin(animation_progress / 4) * 0.0) + ((sin(animation_progress) * 0.1) if type == PROP_TYPE.RUNNING else 0.0)
@@ -31,6 +36,23 @@ func _process(delta: float) -> void:
 		scale.x = 1.0 if position.y > start_position.y else -1.0
 
 	reset_physics_interpolation()
+
+var tween : Tween
+func move_to(target_position : Vector2):
+	tween = create_tween()
+	tween\
+		.set_trans(Tween.TRANS_LINEAR)\
+		.set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(self, "position", target_position, 0.15)
+	
+	await tween.finished
+
+	var data = GameManager.get_game_data("props")
+	data[name]["position"] = {
+		"x": target_position.x,
+		"y": target_position.y
+	}
+	GameManager.set_game_data("props", data)
 
 func chirp():
 	await get_tree().create_timer(randf_range(0.5, 3.0)).timeout

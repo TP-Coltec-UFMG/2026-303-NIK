@@ -300,7 +300,7 @@
 				}
 			],
 			"redirect": [
-				"node:6:DonaLuzia",
+				"node:6:DonaLuzia:9618.0:3147.0",
 				"node_edit:6:luzia_completed",
 				"node_edit:1:",
 				"dialogue:luzia_post_minigame_part2"
