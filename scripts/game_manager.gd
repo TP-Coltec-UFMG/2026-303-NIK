@@ -411,7 +411,7 @@ func create_new_game() -> void:
 # 		file_name = dir.get_next()
 # 	dir.list_dir_end() # fclose() pros íntimos
 
-var _music_transition_id : int = 0 # transição
+var _music_transition_id : int = 0 # id da transição
 var _current_music_tween : Tween # tween do fade in / fade out
 # Toca a música com o nome dado, fazendo uma transição suave
 # entre a música que está tocando e a música dada
