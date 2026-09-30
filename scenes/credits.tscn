@@ -41,11 +41,14 @@ anchors_preset = -1
 anchor_left = 0.2
 anchor_right = 0.8
 anchor_bottom = 1.0
+offset_left = -306.0
+offset_right = -306.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_bhunq")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2128671297]
+[node name="VBoxContainer" type="VBoxContainer" parent="BG2" unique_id=2128671297]
+layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
@@ -56,26 +59,23 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Desenvolvedores" type="Label" parent="VBoxContainer" unique_id=89725889]
+[node name="Desenvolvedores" type="Label" parent="BG2/VBoxContainer" unique_id=89725889]
 layout_mode = 2
 text = "Daltonismo"
 label_settings = SubResource("LabelSettings_2ckv8")
-horizontal_alignment = 1
 
-[node name="LabelDev" type="Label" parent="VBoxContainer" unique_id=1580764463]
+[node name="LabelDev" type="Label" parent="BG2/VBoxContainer" unique_id=1580764463]
 layout_mode = 2
 text = "Gabriel Della Gaspera
 André Dias de Paula
 Frederico Santos Gonçalves"
-horizontal_alignment = 1
 
-[node name="AgradecimentosEspeciais" type="Label" parent="VBoxContainer" unique_id=807642467]
+[node name="AgradecimentosEspeciais" type="Label" parent="BG2/VBoxContainer" unique_id=807642467]
 layout_mode = 2
 text = "Agradecimentos Especiais"
 label_settings = SubResource("LabelSettings_2ckv8")
-horizontal_alignment = 1
 
-[node name="LabelAgradecimentos" type="Label" parent="VBoxContainer" unique_id=167759124]
+[node name="LabelAgradecimentos" type="Label" parent="BG2/VBoxContainer" unique_id=167759124]
 layout_mode = 2
 text = "Alexandre Camargos Gonçalves
 Flávia Thaís Santos
@@ -87,7 +87,6 @@ Gabriel Nascimento dos Santos ✅
 Codama✅ 
 Hiago ✅ 
 Amiga do Dedé "
-horizontal_alignment = 1
 
 [node name="Back" type="Button" parent="." unique_id=1545528574]
 offset_left = 16.0
@@ -97,7 +96,7 @@ offset_bottom = 47.0
 text = "Voltar"
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1854903985]
-position = Vector2(1033, 560)
+position = Vector2(861, 505)
 scale = Vector2(0.5, 0.5)
 
 [node name="Gabriel" type="Node2D" parent="Node2D" unique_id=687923498]

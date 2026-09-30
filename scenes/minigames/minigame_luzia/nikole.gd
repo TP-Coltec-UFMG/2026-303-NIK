@@ -20,6 +20,8 @@ var targets : Array[Vector2] = [Vector2(), Vector2(), Vector2()]
 var arrow_orbit_radius : float = 300
 var arrow_orbit_offset : Vector2 = Vector2(0, -80)
 
+var move_timer : float = 0.0
+
 func _ready() -> void:
 	current_pos = Vector2i(1, 1)
 	$Camera2D.position_smoothing_enabled = false
@@ -28,20 +30,6 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	$Camera2D.position_smoothing_enabled = true
-	if event.is_action_pressed("move_up"):
-		move_to_tile(current_pos.x, current_pos.y - 1)
-
-	if event.is_action_pressed("move_right"):
-		x_direction = 1
-		move_to_tile(current_pos.x + 1, current_pos.y)
-
-	if event.is_action_pressed("move_down"):
-		move_to_tile(current_pos.x, current_pos.y + 1)
-
-	if event.is_action_pressed("move_left"):
-		x_direction = -1
-		move_to_tile(current_pos.x - 1, current_pos.y)
-
 	if event.is_action_pressed("skip_minigame"):
 		maze.check_end_game(0, 0, true)
 		
@@ -89,6 +77,31 @@ func move_to_tile(x : int, y : int, instant : bool = false):
 			walking_animation_weight = 1
 
 func _process(delta: float) -> void:
+	move_timer -= delta
+	if move_timer <= 0.0:
+		var moved = false
+		if Input.is_action_pressed("move_up"):
+			$Camera2D.position_smoothing_enabled = true
+			move_to_tile(current_pos.x, current_pos.y - 1)
+			moved = true
+		elif Input.is_action_pressed("move_right"):
+			$Camera2D.position_smoothing_enabled = true
+			x_direction = 1
+			move_to_tile(current_pos.x + 1, current_pos.y)
+			moved = true
+		elif Input.is_action_pressed("move_down"):
+			$Camera2D.position_smoothing_enabled = true
+			move_to_tile(current_pos.x, current_pos.y + 1)
+			moved = true
+		elif Input.is_action_pressed("move_left"):
+			$Camera2D.position_smoothing_enabled = true
+			x_direction = -1
+			move_to_tile(current_pos.x - 1, current_pos.y)
+			moved = true
+			
+		if moved:
+			move_timer = 0.2
+
 	# funny()	
 	if is_moving and position.distance_to(target_pos) < 5:
 		is_moving = false

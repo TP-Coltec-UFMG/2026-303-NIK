@@ -36,6 +36,7 @@ var follower : String = "":
 			var old_node = target_parent.get_node_or_null(follower)
 			if old_node:
 				old_node.reparent(props)
+				old_node.rotation = 0.0
 				old_node.animate = true
 				call_prop_move(old_node)
 
