@@ -136,11 +136,11 @@ func _process(delta: float) -> void:
 		var parsed_text = dialogue_text.get_parsed_text() # retira as tags
 		if (not has_character_animation_finished()) and _char_animation_time < 0: # se a animação ainda não terminou e já pode colocar o próximo caractere
 			dialogue_text.visible_characters += 1 # deixa mais um caractere visível
-			var char : String = parsed_text[dialogue_text.visible_characters - 1]
+			var text_char : String = parsed_text[dialogue_text.visible_characters - 1]
 			# Define o tempo até o próximo caractere em função do tipo (se for
-			# pontuação, vai demorar um tempo diferente)
+			# pontuação, vai demorar um tempo diferente do normal)
 			_char_animation_time = PUNCTUATION_INTERVAL \
-								if char and (char in PUNCTUATION_CHARS) \
+								if text_char and (text_char in PUNCTUATION_CHARS) \
 								else TEXT_CHARACTER_INTERVAL
 
 # Anima a caixa de diálogo aparecendo ou sumindo (dir = 1 para aparecer, dir = -1 para sumir)
