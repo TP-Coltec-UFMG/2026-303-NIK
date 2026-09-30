@@ -15,6 +15,8 @@ const DIALOGUE_BOX_BOBBING_BASE_SPEED = 1.4
 
 const dialogue_files = "res://dialogues.json"
 
+@export var character_heads : Dictionary[String, Texture2D]
+
 @onready var dialogue_box = $DialogueBox
 @onready var dialogue_text = $DialogueBox/DialogueText
 @onready var dialogue_head : TextureRect = $DialogueBox/Head
@@ -80,7 +82,7 @@ func next_line(idx : int = -1):
 
 	if not character.is_empty():
 		dialogue_text.text = "[font_size=36][color=" + characters[character] + "]" + character + "\n[font_size=28][color=black]" + line
-		dialogue_head.texture = load("res://sprites/map/npcs/heads/" + character + ".png")
+		dialogue_head.texture = character_heads[character]
 	else:
 		dialogue_head.texture = null
 		dialogue_text.text = "[font_size=36] \n[font_size=28][color=black]" + line

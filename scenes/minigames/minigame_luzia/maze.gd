@@ -28,6 +28,9 @@ var pos_flavia : Vector2i
 @export var estrela_ligada_luis : Texture
 @export var estrela_ligada_flavia : Texture
 
+@export var path_dot : Texture
+@export var path_dot_outline : Texture
+
 @onready var tutorial_button : Button = $UI/Background/Play
 
 func _ready() -> void:
@@ -243,12 +246,12 @@ func _pathfind(from : Vector2i, to : Vector2i, show_first_point : bool = true, p
 		
 		# Cria o sprite e coloca na posição
 		var sprite = Sprite2D.new()
-		sprite.texture = load("res://sprites/minigames/minigame_luzia/path_point.png")
+		sprite.texture = path_dot
 		sprite.position = real_pos;
 		sprite.self_modulate = point_color;
 
 		var spriteOutline = Sprite2D.new()
-		spriteOutline.texture = load("res://sprites/minigames/minigame_luzia/path_point_outline.png")
+		spriteOutline.texture = path_dot_outline
 		sprite.add_child(spriteOutline)
 
 		$PathfinderPoints.add_child(sprite)

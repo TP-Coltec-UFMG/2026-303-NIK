@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dx6a2h5dkgb4h"
-path="res://.godot/imported/dona_luzia.png-e7257728e37b937eba9ffbe80d1731f5.ctex"
+uid="uid://foma04wsfgyg"
+path="res://.godot/imported/icon2.png-2294dfe885793d4711fc20bee13a3760.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/dialogo/pessoas/dona_luzia.png"
-dest_files=["res://.godot/imported/dona_luzia.png-e7257728e37b937eba9ffbe80d1731f5.ctex"]
+source_file="res://icon2.png"
+dest_files=["res://.godot/imported/icon2.png-2294dfe885793d4711fc20bee13a3760.ctex"]
 
 [params]
 

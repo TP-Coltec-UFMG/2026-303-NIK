@@ -26,3 +26,8 @@ func end_game() -> void:
 	GameManager.load_map()
 	GameManager.set_game_data("joao_minigame_completed", true)
 	DialogueController.start_dialogue("joao_post_minigame")
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("skip_minigame"):
+		end_game()

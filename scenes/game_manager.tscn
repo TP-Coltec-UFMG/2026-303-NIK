@@ -15,10 +15,14 @@
 [ext_resource type="PackedScene" uid="uid://bd0j2ax5acbmj" path="res://scenes/minigames/minigame_caio/minigame_caio.tscn" id="9_yxe1x"]
 [ext_resource type="Script" uid="uid://dbttx0ech4g7u" path="res://scripts/settings_buttons/setting_list.gd" id="10_wcunu"]
 [ext_resource type="Script" uid="uid://blskgvcg8gal" path="res://scripts/settings_buttons/setting_float.gd" id="11_2j6ol"]
+[ext_resource type="AudioStream" uid="uid://dk0ncl65k7lom" path="res://audio/musics/head_is_a_maze.mp3" id="11_wcunu"]
 [ext_resource type="Script" uid="uid://dws6dbyhxolq1" path="res://scripts/settings_buttons/setting_bool.gd" id="12_8ldib"]
+[ext_resource type="PackedScene" uid="uid://d0f14b5iw03qu" path="res://scenes/map/chirp.tscn" id="12_kvitc"]
+[ext_resource type="PackedScene" uid="uid://c57iuo6cknc4j" path="res://scenes/map/sleep.tscn" id="13_hqtnj"]
 [ext_resource type="Script" uid="uid://v4a1wtjtcbkn" path="res://scripts/settings_buttons/setting_int.gd" id="13_kvitc"]
 [ext_resource type="Script" uid="uid://csl2o2drb1mft" path="res://scripts/settings_buttons/setting_keybind.gd" id="14_hqtnj"]
 [ext_resource type="Theme" uid="uid://gmvr2lib4uc3" path="res://themes/default.tres" id="15_5xtl8"]
+[ext_resource type="Theme" uid="uid://0uymsrkb4nyn" path="res://themes/easy_read.tres" id="15_kvitc"]
 [ext_resource type="PackedScene" uid="uid://61dt6fnpa7ht" path="res://scenes/home_menu.tscn" id="16_home"]
 [ext_resource type="Texture2D" uid="uid://c2fe0k122wggp" path="res://sprites/ui/key.png" id="18_pc0jn"]
 [ext_resource type="Texture2D" uid="uid://doyml4kubctxa" path="res://sprites/ui/mouse_l.png" id="22_jrl6a"]
@@ -179,7 +183,7 @@ texture_margin_bottom = 8.0
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_0rse5")
-cenas = Dictionary[String, PackedScene]({
+scenes = Dictionary[String, PackedScene]({
 "home_menu": ExtResource("16_home"),
 "map": ExtResource("2_aonbx"),
 "minigame_alex": ExtResource("6_ry0e6"),
@@ -189,6 +193,14 @@ cenas = Dictionary[String, PackedScene]({
 "minigame_luzia": ExtResource("4_30v7y"),
 "minigame_tester": ExtResource("3_cjvif")
 })
+musics = Dictionary[String, AudioStreamMP3]({
+"head_is_a_maze": ExtResource("11_wcunu"),
+"neighborhood": ExtResource("5_30v7y")
+})
+chirp_particle = ExtResource("12_kvitc")
+sleep_particle = ExtResource("13_hqtnj")
+default_theme = ExtResource("15_5xtl8")
+easy_read_theme = ExtResource("15_kvitc")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1861454202]
 process_mode = 3

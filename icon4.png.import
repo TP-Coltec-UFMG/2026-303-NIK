@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dx6a2h5dkgb4h"
-path="res://.godot/imported/luzia.png-dcd423e94069e1ced70f567e8a2ac4dd.ctex"
+uid="uid://cfemvg15bcjxv"
+path="res://.godot/imported/icon4.png-58174286a6bda1542d86fe67f6a9a7fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/dialogue/npcs/luzia.png"
-dest_files=["res://.godot/imported/luzia.png-dcd423e94069e1ced70f567e8a2ac4dd.ctex"]
+source_file="res://icon4.png"
+dest_files=["res://.godot/imported/icon4.png-58174286a6bda1542d86fe67f6a9a7fa.ctex"]
 
 [params]
 

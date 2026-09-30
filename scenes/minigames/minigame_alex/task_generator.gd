@@ -142,9 +142,7 @@ func handle_task_completion(task_number : int) -> void:
 		await get_tree().create_timer(12).timeout
 		
 		# Volta pro mundo normal
-		GameManager.load_map()
-		GameManager.set_game_data("alex_minigame_completed", true)
-		GameManager.load_map_with_dialogue("alex_post_minigame")
+		end_game()
 	
 	# Lida com os diálogos	
 	elif task_number == 15: # se 10 tarefas foram completadas
@@ -169,3 +167,8 @@ func _on_play_pressed() -> void:
 	# Dá um tempo entre o play e o jogo realmente começar
 	await get_tree().create_timer(1).timeout
 	is_minigame_running = true
+
+func end_game():
+	GameManager.load_map()
+	GameManager.set_game_data("alex_minigame_completed", true)
+	GameManager.load_map_with_dialogue("alex_post_minigame")

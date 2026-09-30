@@ -155,13 +155,16 @@ func _process(delta: float) -> void:
 	# e há uma skill check atualmente. Então, atualiza-a
 	tick_skill_check(delta)
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if input_on_cooldown or not skill_check_enabled: return
 
 	if event.is_action_pressed('interact'):
 		check_pointer_on_area()
 	else:
 		skill_check()
+
+	if event.is_action_pressed("skip_minigame"):
+		$"../TaskGenerator".end_game()
 
 # Função que faz uma skill check aparecer
 func skill_check(force : bool = false) -> void:

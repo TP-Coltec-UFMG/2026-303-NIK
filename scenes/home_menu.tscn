@@ -105,20 +105,20 @@ stretch_mode = 3
 
 [node name="Caio" type="TextureRect" parent="Background" unique_id=1827807879]
 layout_mode = 0
-offset_left = 751.0
-offset_top = 378.0
-offset_right = 1000.0
-offset_bottom = 666.0
+offset_left = 849.0
+offset_top = 363.0
+offset_right = 1098.0
+offset_bottom = 651.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_nibv0")
 stretch_mode = 3
 
 [node name="Joao" type="TextureRect" parent="Background" unique_id=2068201016]
 layout_mode = 0
-offset_left = 998.0
-offset_top = 382.0
-offset_right = 1247.0
-offset_bottom = 670.0
+offset_left = 1096.0
+offset_top = 367.0
+offset_right = 1345.0
+offset_bottom = 655.0
 scale = Vector2(-0.5, 0.5)
 texture = ExtResource("6_hvx0t")
 stretch_mode = 3
@@ -135,40 +135,40 @@ stretch_mode = 3
 
 [node name="DonaLuzia" type="TextureRect" parent="Background" unique_id=756640230]
 layout_mode = 0
-offset_left = 596.0
-offset_top = 486.0
-offset_right = 844.99994
-offset_bottom = 774.0
+offset_left = 659.0
+offset_top = 433.0
+offset_right = 907.99994
+offset_bottom = 721.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("8_e8hk2")
 stretch_mode = 3
 
 [node name="Luis" type="TextureRect" parent="Background" unique_id=887300591]
 layout_mode = 0
-offset_left = 461.0
-offset_top = 475.0
-offset_right = 709.9998
-offset_bottom = 763.0001
+offset_left = 524.0
+offset_top = 422.0
+offset_right = 772.9998
+offset_bottom = 710.0001
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_u2ahj")
 stretch_mode = 3
 
 [node name="Flavia" type="TextureRect" parent="Background" unique_id=484918939]
 layout_mode = 0
-offset_left = 508.0
-offset_top = 533.0
-offset_right = 778.0
-offset_bottom = 821.0
+offset_left = 571.0
+offset_top = 480.0
+offset_right = 841.0
+offset_bottom = 768.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_yc4qc")
 stretch_mode = 3
 
 [node name="Francisco" type="TextureRect" parent="Background" unique_id=261065061]
 layout_mode = 0
-offset_left = 816.0
-offset_top = 533.0
-offset_right = 1065.0
-offset_bottom = 821.0
+offset_left = 879.0
+offset_top = 480.0
+offset_right = 1128.0
+offset_bottom = 768.0
 scale = Vector2(-0.5, 0.5)
 texture = ExtResource("11_nwib3")
 stretch_mode = 3
@@ -184,6 +184,7 @@ texture = ExtResource("12_ogu25")
 stretch_mode = 3
 
 [node name="Gradient" type="TextureRect" parent="." unique_id=516742917]
+visible = false
 offset_right = 1280.0
 offset_bottom = 720.0
 mouse_filter = 2

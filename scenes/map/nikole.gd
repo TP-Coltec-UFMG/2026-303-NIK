@@ -157,6 +157,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("interact"):
 		if current_node.can_interact:
+			sprite.scale.x = 1 if current_node.point_right else -1
 			print("iniciando diálogo \"" + current_node.dialogue_id + "\"")
 			DialogueController.start_dialogue(current_node.dialogue_id)
 		else:
