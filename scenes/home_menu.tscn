@@ -357,20 +357,56 @@ label_settings = SubResource("LabelSettings_tr4f7")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="down" type="PanelContainer" parent="Tips/Move" unique_id=1184692100]
+[node name="left" type="PanelContainer" parent="Tips/Move" unique_id=1184692100]
 custom_minimum_size = Vector2(28, 0)
 propagate_maximum_size = false
 layout_mode = 2
 theme = ExtResource("3_bp8ob")
 theme_override_styles/panel = SubResource("StyleBoxTexture_yy0av")
 
-[node name="Botao" type="Label" parent="Tips/Move/down" unique_id=734256031]
+[node name="Botao" type="Label" parent="Tips/Move/left" unique_id=734256031]
+custom_minimum_size = Vector2(23, 0)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.2, 1.2)
+theme = ExtResource("3_bp8ob")
+text = "A"
+label_settings = SubResource("LabelSettings_tr4f7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="down" type="PanelContainer" parent="Tips/Move" unique_id=1457036123]
+custom_minimum_size = Vector2(-1, -1)
+propagate_maximum_size = false
+layout_mode = 2
+theme = ExtResource("3_bp8ob")
+theme_override_styles/panel = SubResource("StyleBoxTexture_yy0av")
+
+[node name="Botao" type="Label" parent="Tips/Move/down" unique_id=1975187097]
 custom_minimum_size = Vector2(23, 0)
 layout_mode = 2
 offset_transform_enabled = true
 offset_transform_scale = Vector2(1.2, 1.2)
 theme = ExtResource("3_bp8ob")
 text = "S"
+label_settings = SubResource("LabelSettings_tr4f7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="right" type="PanelContainer" parent="Tips/Move" unique_id=782701587]
+custom_minimum_size = Vector2(-1, -1)
+propagate_maximum_size = false
+layout_mode = 2
+theme = ExtResource("3_bp8ob")
+theme_override_styles/panel = SubResource("StyleBoxTexture_yy0av")
+
+[node name="Botao" type="Label" parent="Tips/Move/right" unique_id=1343707349]
+custom_minimum_size = Vector2(23, 0)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.2, 1.2)
+theme = ExtResource("3_bp8ob")
+text = "D"
 label_settings = SubResource("LabelSettings_tr4f7")
 horizontal_alignment = 1
 vertical_alignment = 1

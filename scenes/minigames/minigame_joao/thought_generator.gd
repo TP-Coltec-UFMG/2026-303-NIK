@@ -70,7 +70,7 @@ func blockedPoints(thought : Thought) -> void:
 	updateLabel()
 
 func updateLabel():
-	label_points.text = min(30, str(points)) + "/30"
+	label_points.text = str(min(30, points)) + "/30"
 
 func _on_play_pressed() -> void:
 	print("iniciar jogo joão")

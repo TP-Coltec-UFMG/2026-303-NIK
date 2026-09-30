@@ -1,4 +1,4 @@
-class_name Menu extends Control
+class_name menu extends Control
 
 class MenuData:
 	var node : Control
