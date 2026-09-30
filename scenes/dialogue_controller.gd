@@ -113,13 +113,18 @@ func end_dialogue():
 		await get_tree().create_timer(0.5).timeout
 		GameManager.can_start_dialogue = true
 
-var _char_animation_time : float = 0.0 # tempo desde a aparição do último caractere
+# Retorna se a animação de caracteres já terminou
+func has_character_animation_finished() -> bool:
+	var parsed_text = dialogue_text.get_parsed_text() # retira as tags
+	return dialogue_text.visible_characters >= parsed_text.length()
+
+var _char_animation_time : float = 0.0 # tempo até a aparição do próximo caractere
 var _box_animation_i : float = 0 # contador de animação da caixa de diálogo
 func _process(delta: float) -> void:
 	_char_animation_time -= delta
 	_box_animation_i += delta
 
-	# Se deu a hora, faz o próximo caractere aparecer
+	# Se há diálogo
 	if active_dialogue:
 		
 		# Animação de bobbing (balançando)
@@ -129,10 +134,13 @@ func _process(delta: float) -> void:
 
 		# Animação de digitar
 		var parsed_text = dialogue_text.get_parsed_text() # retira as tags
-		if dialogue_text.visible_characters < parsed_text.length() and _char_animation_time < 0:
-			dialogue_text.visible_characters += 1
+		if (not has_character_animation_finished()) and _char_animation_time < 0: # se a animação ainda não terminou e já pode colocar o próximo caractere
+			dialogue_text.visible_characters += 1 # deixa mais um caractere visível
+			var text_char : String = parsed_text[dialogue_text.visible_characters - 1]
+			# Define o tempo até o próximo caractere em função do tipo (se for
+			# pontuação, vai demorar um tempo diferente do normal)
 			_char_animation_time = PUNCTUATION_INTERVAL \
-								if parsed_text[dialogue_text.visible_characters - 1] in PUNCTUATION_CHARS \
+								if text_char and (text_char in PUNCTUATION_CHARS) \
 								else TEXT_CHARACTER_INTERVAL
 
 # Anima a caixa de diálogo aparecendo ou sumindo (dir = 1 para aparecer, dir = -1 para sumir)
@@ -189,7 +197,10 @@ func move_to_node_finished():
 func _input(event: InputEvent) -> void:
 	if active_dialogue != null:
 		if event.is_action_pressed("interact"):
-			next_line()
+			if has_character_animation_finished(): # Se a animação já terminou, pula pra próxima fala
+				next_line()
+			else: # Se a animação não terminou, mostra a fala inteira
+				dialogue_text.visible_characters = dialogue_text.get_parsed_text().length()
 		get_viewport().set_input_as_handled() # consome todos os inputs enquanto estiver no diálogo pq ai da pra nao pausar o jogo ;)
 
 func read_dialogue_file():
