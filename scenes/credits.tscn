@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://1brwi5ogjjop"]
+
+[ext_resource type="Script" uid="uid://bj1ng2q0wmyk7" path="res://scenes/credits.gd" id="1_0bpdh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2ckv8"]
+font_size = 48
+font_color = Color(1, 0.8360001, 0.18, 1)
+outline_size = 16
+outline_color = Color(0.92, 0.53313994, 0.1196, 1)
+
+[node name="Credits" type="CanvasLayer" unique_id=318697145]
+script = ExtResource("1_0bpdh")
+
+[node name="BG" type="ColorRect" parent="." unique_id=1676205430]
+z_index = -4096
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.60784316, 0.81960785, 0.41568628, 1)
+
+[node name="Desenvolvedores" type="Label" parent="." unique_id=89725889]
+offset_right = 267.0
+offset_bottom = 67.0
+text = "Daltonismo"
+label_settings = SubResource("LabelSettings_2ckv8")
+
+[node name="Label" type="Label" parent="." unique_id=1580764463]
+offset_right = 281.0
+offset_bottom = 104.0
+text = "Gabriel Della Gaspera
+André Dias de Paula
+Frederico Santos Gonçalves"

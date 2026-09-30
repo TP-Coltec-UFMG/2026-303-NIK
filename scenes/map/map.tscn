@@ -90,6 +90,12 @@ condition = "leonardo_minigame_completed"
 false_type = 3
 metadata/_custom_type_script = "uid://dhvhueq3g1dmm"
 
+[sub_resource type="Resource" id="Resource_k4o2j"]
+script = ExtResource("23_ah1fr")
+condition = "luzia_minigame_completed"
+true_type = 2
+metadata/_custom_type_script = "uid://dhvhueq3g1dmm"
+
 [sub_resource type="Gradient" id="Gradient_30ska"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0, 0.13962264, 0.28679246, 0.4264151, 0.56226414, 0.71320754, 0.8566038)
@@ -593,6 +599,7 @@ z_index = -1
 position = Vector2(5852, -1265)
 scale = Vector2(-1, 1)
 script = ExtResource("13_nykyp")
+conditions = Array[Resource]([SubResource("Resource_k4o2j")])
 radius = Vector2(200, 50)
 duration = 10.0
 

@@ -169,6 +169,5 @@ func _on_play_pressed() -> void:
 	is_minigame_running = true
 
 func end_game():
-	GameManager.load_map()
 	GameManager.set_game_data("alex_minigame_completed", true)
 	GameManager.load_map_with_dialogue("alex_post_minigame")

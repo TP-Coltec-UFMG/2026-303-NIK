@@ -249,7 +249,7 @@ func _input(event: InputEvent) -> void:
 			open_screen("Main")
 	# A opção atual aumenta (positivo) quando aperta para baixo e
 	# diminui (negativo) quando aperta para cima
-	# h0ot13 fRu1t
+	# eu quando acho que sou muito sneaky
 	if visible == true and (event.is_action_pressed("move_down") or event.is_action_pressed("move_up")):
 		current_idx += int(event.is_action_pressed("move_down")) - int(event.is_action_pressed("move_up"));
 		current_idx = (current_idx + menus[active_menu].buttons.size()) % menus[active_menu].buttons.size()
@@ -261,7 +261,9 @@ func quit():
 	GameManager.save_game()
 	close_pages()
 	get_tree().paused = false
-	GameManager.load_scene("home_menu")
+	
+	if GameManager.current_scene == "map":GameManager.load_scene("home_menu")
+	else: GameManager.load_map()
 	#get_tree().quit()
 
 func refresh_main_menu_buttons() -> void:
@@ -276,6 +278,9 @@ func refresh_main_menu_buttons() -> void:
 			child.visible = not hidden_on_home_menu
 			if hidden_on_home_menu:
 				continue
+			
+			if child.id == "button_quit":
+				child.label = "Voltar Ao Menu Principal" if GameManager.current_scene == "map" else "Voltar Ao Mapa"
 
 			main_menu.buttons.append(child)
 			child.size.x = 300
