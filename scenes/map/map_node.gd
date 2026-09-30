@@ -15,3 +15,4 @@ class_name MapNode extends Node2D
 @export_group("Interaction")
 @export var dialogue_id : String
 @export var can_interact : bool = false
+@export var point_right : bool = false

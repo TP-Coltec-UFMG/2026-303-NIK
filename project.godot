@@ -10,9 +10,11 @@ config_version=5
 
 [application]
 
-config/name="nikole"
+config/name="NIK"
+config/version="1.0.0"
 run/main_scene="uid://61dt6fnpa7ht"
 config/features=PackedStringArray("4.7", "Forward Plus")
+config/icon="uid://2jdrp8x4fdxb"
 
 [autoload]
 
@@ -25,7 +27,7 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/size/initial_position_type=3
 window/size/resizable=false
-window/size/borderless=true
+window/size/maximize_disabled=true
 window/vsync/vsync_mode=0
 mouse_cursor/custom_image="uid://bwaqfo7335omk"
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bequumbm5oe36"
-path="res://.godot/imported/joao.png-b1e143cb0466daea96d67b8e839c3f11.ctex"
+uid="uid://c4g6nbo5okxu"
+path="res://.godot/imported/nix.png-051f61d28d04429ce007c0419ca19928.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/dialogue/npcs/joao.png"
-dest_files=["res://.godot/imported/joao.png-b1e143cb0466daea96d67b8e839c3f11.ctex"]
+source_file="res://sprites/map/npcs/nix.png"
+dest_files=["res://.godot/imported/nix.png-051f61d28d04429ce007c0419ca19928.ctex"]
 
 [params]
 

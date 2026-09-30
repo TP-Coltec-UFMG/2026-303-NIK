@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcou5lg1traep"
-path="res://.godot/imported/luis.png-3a3d2082a36b3f4145b6b6db7cf26c88.ctex"
+uid="uid://2jdrp8x4fdxb"
+path="res://.godot/imported/icon7.png-cb1be795d7cbbdb8a3d092a42397c20c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/dialogue/npcs/luis.png"
-dest_files=["res://.godot/imported/luis.png-3a3d2082a36b3f4145b6b6db7cf26c88.ctex"]
+source_file="res://icon7.png"
+dest_files=["res://.godot/imported/icon7.png-cb1be795d7cbbdb8a3d092a42397c20c.ctex"]
 
 [params]
 

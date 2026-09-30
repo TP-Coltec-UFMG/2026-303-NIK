@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cb3doqeold37s"
-path="res://.godot/imported/flavia.png-89380071c1df469026e2d51a104a43ee.ctex"
+uid="uid://d22ru8phpab01"
+path="res://.godot/imported/icon6.png-a8db9987f81c4d4f1f9f92686c280d2a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/dialogue/npcs/flavia.png"
-dest_files=["res://.godot/imported/flavia.png-89380071c1df469026e2d51a104a43ee.ctex"]
+source_file="res://icon6.png"
+dest_files=["res://.godot/imported/icon6.png-a8db9987f81c4d4f1f9f92686c280d2a.ctex"]
 
 [params]
 

@@ -50,10 +50,11 @@ func veggie_sliced():
 		interval_multiplier *= 0.05
 
 		await tween.finished
-		GameManager.load_map()
-		GameManager.set_game_data("caio_minigame_completed", true)
-		GameManager.load_map_with_dialogue("caio_post_minigame")
+		end_game()
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("skip_minigame"):
+		end_game()
 
 func _on_play_pressed():
 	$Tutorial.visible = false
@@ -61,3 +62,8 @@ func _on_play_pressed():
 	# Dá um tempo entre o play e o jogo realmente começar
 	await get_tree().create_timer(1).timeout
 	active_game = true
+
+func end_game():
+	GameManager.load_map()
+	GameManager.set_game_data("caio_minigame_completed", true)
+	GameManager.load_map_with_dialogue("caio_post_minigame")

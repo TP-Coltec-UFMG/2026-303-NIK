@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cspei0kqkbfp4"
-path="res://.godot/imported/francisco.png-372ef949763948fe15325f3b089d32a0.ctex"
+uid="uid://bnmbtslnwgvdl"
+path="res://.godot/imported/nix_sleeping.png-009930dec141384f955f6784a6171d82.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/dialogue/npcs/francisco.png"
-dest_files=["res://.godot/imported/francisco.png-372ef949763948fe15325f3b089d32a0.ctex"]
+source_file="res://sprites/map/npcs/nix_sleeping.png"
+dest_files=["res://.godot/imported/nix_sleeping.png-009930dec141384f955f6784a6171d82.ctex"]
 
 [params]
 

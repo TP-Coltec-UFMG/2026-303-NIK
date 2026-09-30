@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://bi2uc6lknxeu1" path="res://sprites/minigames/minigame_luzia/maze2.png" id="4_o3sm5"]
 [ext_resource type="Texture2D" uid="uid://c8h5eienq2pl6" path="res://sprites/minigames/minigame_luzia/maze3.png" id="5_os8al"]
 [ext_resource type="Texture2D" uid="uid://cqbjtfatjyrcl" path="res://sprites/minigames/minigame_luzia/maze4.png" id="6_et2jy"]
+[ext_resource type="Texture2D" uid="uid://2e5g3ogpfcjb" path="res://sprites/minigames/minigame_luzia/path_point.png" id="6_qxcfd"]
+[ext_resource type="Texture2D" uid="uid://db8ufl8en5kbv" path="res://sprites/minigames/minigame_luzia/path_point_outline.png" id="7_681ny"]
 [ext_resource type="Script" uid="uid://bprss5c4da8iu" path="res://scenes/minigames/minigame_luzia/nikole.gd" id="7_o3sm5"]
 [ext_resource type="Texture2D" uid="uid://cqa1l7sin5v5s" path="res://sprites/map/npcs/francisco.png" id="10_sahm2"]
 [ext_resource type="Script" uid="uid://cx0n7fjrh07hx" path="res://scenes/minigames/minigame_luzia/item.gd" id="11_jckl1"]
@@ -40,6 +42,8 @@ estrela_ligada_nikole = ExtResource("14_u45vi")
 estrela_ligada_francisco = ExtResource("2_frkay")
 estrela_ligada_luis = ExtResource("3_aey8s")
 estrela_ligada_flavia = ExtResource("4_efptu")
+path_dot = ExtResource("6_qxcfd")
+path_dot_outline = ExtResource("7_681ny")
 
 [node name="MazeBitmap" type="Sprite2D" parent="." unique_id=1992365898]
 visible = false

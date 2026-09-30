@@ -93,6 +93,9 @@ func roll_qte() -> void:
 		active_qte = false
 
 func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("skip_minigame"):
+		end_game()
+		return
 	if active_qte and event is InputEventKey and event.pressed and not event.echo:
 		# Compara a tecla pressionada com a sorteada.
 		var pressed_key = event.as_text_keycode().to_upper()
@@ -158,8 +161,7 @@ func qte_success() -> void:
 		# Tempinho pra ver a raíz.
 		await get_tree().create_timer(3).timeout
 		# Volta pro mundo normal
-		GameManager.set_game_data("leonardo_minigame_completed", true)
-		await GameManager.load_map_with_dialogue("leonardo_post_minigame")
+		end_game()
 	
 func qte_failure() -> void:
 	qte_finished.emit()
@@ -186,3 +188,8 @@ func _on_play_pressed():
 	# Dá um tempo entre o play e o jogo realmente começar
 	await get_tree().create_timer(1).timeout
 	active_game = true
+
+func end_game():
+	GameManager.load_map()
+	GameManager.set_game_data("leonardo_minigame_completed", true)
+	GameManager.load_map_with_dialogue("leonardo_post_minigame")

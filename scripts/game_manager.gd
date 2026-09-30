@@ -10,7 +10,8 @@ const MUSIC_VOLUME : float = 0 # 0db = volume padrão do arquivo
 @onready var music_player = $UI/MusicPlayer
 @onready var color_blind_filter = $UI/ColorBlindessFilter
 @onready var menu = $UI/Menu
-@export var cenas : Dictionary[String, PackedScene] = {}
+@export var scenes : Dictionary[String, PackedScene] = {}
+@export var musics : Dictionary[String, AudioStreamMP3] = {}
 var current_scene: String
 var current_music : String
 
@@ -19,21 +20,26 @@ var path_save = "user://save.json"
 
 var settings : Dictionary = {}
 var game_data : Dictionary = {}
-var musics : Dictionary = {}
 
 var is_first_dialogue : bool = false
 
 var can_start_dialogue = true
 
+@export var chirp_particle : PackedScene
+@export var sleep_particle : PackedScene
+
+@export var default_theme : Theme
+@export var easy_read_theme : Theme
+
 func _ready():
 	load_settings()
-	load_musics()
+	# load_musics()
 	play_music("neighborhood")
 	# load_scene("Principal")
 
 func load_scene(cena: String) -> void:
 	can_start_dialogue = false
-	if not cenas.has(cena):
+	if not scenes.has(cena):
 		push_error("Cena não encontrada: " + cena)
 		return
 
@@ -46,7 +52,7 @@ func load_scene(cena: String) -> void:
 	await animation_player.animation_finished
 	
 	if current_scene != cena:
-		get_tree().change_scene_to_packed(cenas[cena])
+		get_tree().change_scene_to_packed(scenes[cena])
 		current_scene = cena
 		print("carregando cena \"" + cena+ "\"")
 		save_game()
@@ -132,11 +138,11 @@ func apply_settings(config : Dictionary = settings):
 		(color_blind_filter.material as ShaderMaterial).set_shader_parameter("intensity", settings["colorblindness_intensity"])
 
 	if settings.has("font_family"): if settings["font_family"]:
-		menu.theme = preload("res://themes/easy_read.tres")
-		DialogueController.dialogue_box.theme = preload("res://themes/easy_read.tres")
+		menu.theme = easy_read_theme
+		DialogueController.dialogue_box.theme = easy_read_theme
 	else:
-		menu.theme = preload("res://themes/default.tres")
-		DialogueController.dialogue_box.theme = preload("res://themes/default.tres")
+		menu.theme = default_theme
+		DialogueController.dialogue_box.theme = default_theme
 
 	if settings.has("ui_scale"): get_tree().root.content_scale_factor = settings["ui_scale"]
 
@@ -382,28 +388,28 @@ func create_new_game() -> void:
 
 # Carrega as músicas, para evitar que elas só sejam
 # carregadas no momento que forem usadas
-func load_musics():
-	const musics_folder_path : String = "res://audio/musics"
-	# Abre a pasta das músicas
-	var dir : DirAccess = DirAccess.open(musics_folder_path) # fopen pros íntimos
-	if not dir: 
-		print("Nao foi possivel carregar as musicas!")
-		return
+# func load_musics():
+# 	const musics_folder_path : String = "res://audio/musics"
+# 	# Abre a pasta das músicas
+# 	var dir : DirAccess = DirAccess.open(musics_folder_path) # fopen pros íntimos
+# 	if not dir: 
+# 		print("Nao foi possivel carregar as musicas!")
+# 		return
 
-	# Se chegou até aqui, conseguiu abrir a pasta das músicas
-	dir.list_dir_begin()
+# 	# Se chegou até aqui, conseguiu abrir a pasta das músicas
+# 	dir.list_dir_begin()
 
-	# Obtém o próximo arquivo até acabar os arquivos
-	var file_name : String = dir.get_next()
-	while file_name != "":
-		if not file_name.begins_with(".") and not file_name.ends_with(".import"):
-			# Se for um arquivo (não for uma pasta), adiciona ao dicionário de músicas
-			if not dir.current_is_dir():
-				var formatted_file_name = file_name.get_slice(".", 0)
-				musics[formatted_file_name] = load(musics_folder_path.path_join(file_name))
+# 	# Obtém o próximo arquivo até acabar os arquivos
+# 	var file_name : String = dir.get_next()
+# 	while file_name != "":
+# 		if not file_name.begins_with(".") and not file_name.ends_with(".import"):
+# 			# Se for um arquivo (não for uma pasta), adiciona ao dicionário de músicas
+# 			if not dir.current_is_dir():
+# 				var formatted_file_name = file_name.get_slice(".", 0)
+# 				musics[formatted_file_name] = load(musics_folder_path.path_join(file_name))
 				
-		file_name = dir.get_next()
-	dir.list_dir_end() # fclose() pros íntimos
+# 		file_name = dir.get_next()
+# 	dir.list_dir_end() # fclose() pros íntimos
 
 var _music_transition_id : int = 0 # transição
 var _current_music_tween : Tween # tween do fade in / fade out

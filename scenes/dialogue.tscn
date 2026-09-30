@@ -3,7 +3,16 @@
 [ext_resource type="Script" uid="uid://bmauyiegxyk5s" path="res://scenes/dialogue_controller.gd" id="1_86us4"]
 [ext_resource type="Texture2D" uid="uid://qmekdtr2jk66" path="res://sprites/dialogue/speech_bubble.png" id="2_xoyff"]
 [ext_resource type="Texture2D" uid="uid://7qxm7hcjop4g" path="res://sprites/dialogue/background.png" id="3_ahwvu"]
+[ext_resource type="Texture2D" uid="uid://bmq58n4vwpvwm" path="res://sprites/map/npcs/heads/Leonardo.png" id="3_vogiq"]
 [ext_resource type="Texture2D" uid="uid://bvrgjfdqnjj2b" path="res://sprites/map/npcs/heads/Nikole.png" id="4_fyky8"]
+[ext_resource type="Texture2D" uid="uid://daxmknaj6nyai" path="res://sprites/map/npcs/heads/Luís.png" id="4_x1cjp"]
+[ext_resource type="Texture2D" uid="uid://dhxragtbtjqav" path="res://sprites/map/npcs/heads/Francisco.png" id="5_03vpb"]
+[ext_resource type="Texture2D" uid="uid://bi6cnxpmxb3rt" path="res://sprites/map/npcs/heads/Flávia.png" id="6_ccu7b"]
+[ext_resource type="Texture2D" uid="uid://cvwoisjlrw8vh" path="res://sprites/map/npcs/heads/Alex.png" id="7_6xhvj"]
+[ext_resource type="Texture2D" uid="uid://di7nd804136l0" path="res://sprites/map/npcs/heads/João.png" id="8_ocawk"]
+[ext_resource type="Texture2D" uid="uid://br5w0f5w45ihd" path="res://sprites/map/npcs/heads/Caio.png" id="9_5ih08"]
+[ext_resource type="Texture2D" uid="uid://b4o3dxod4p8w8" path="res://sprites/map/npcs/heads/Dona Luzia.png" id="10_noxhw"]
+[ext_resource type="Texture2D" uid="uid://d1bebc6qgyk1m" path="res://sprites/map/npcs/heads/Vovó Maria.png" id="11_d2kxg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xoyff"]
 font_color = Color(0, 0, 0, 1)
@@ -12,6 +21,18 @@ font_color = Color(0, 0, 0, 1)
 process_mode = 3
 layer = 4
 script = ExtResource("1_86us4")
+character_heads = Dictionary[String, Texture2D]({
+"Alex": ExtResource("7_6xhvj"),
+"Caio": ExtResource("9_5ih08"),
+"Dona Luzia": ExtResource("10_noxhw"),
+"Flávia": ExtResource("6_ccu7b"),
+"Francisco": ExtResource("5_03vpb"),
+"João": ExtResource("8_ocawk"),
+"Leonardo": ExtResource("3_vogiq"),
+"Luís": ExtResource("4_x1cjp"),
+"Nikole": ExtResource("4_fyky8"),
+"Vovó Maria": ExtResource("11_d2kxg")
+})
 
 [node name="DialogueBox" type="TextureRect" parent="." unique_id=1943485536]
 anchors_preset = -1
