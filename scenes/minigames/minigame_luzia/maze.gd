@@ -128,13 +128,13 @@ func check_end_game(column: int, row: int, force : bool = false) -> void:
 	if force:
 		GameManager.load_map()
 		GameManager.set_game_data("luzia_minigame_completed", true);
-		DialogueController.start_dialogue("luzia_post_minigame")
+		GameManager.load_map_with_dialogue("luzia_post_minigame")
 	if $Francisco.placed and $Luis.placed and $Flavia.placed:
 		$Stars/NikoleS.texture = estrela_ligada_nikole
 		if maze[column][row] == 13:
 			GameManager.load_map()
 			GameManager.set_game_data("luzia_minigame_completed", true);
-			DialogueController.start_dialogue("luzia_post_minigame")
+			GameManager.load_map_with_dialogue("luzia_post_minigame")
 
 func roll_pos_kids() -> void:
 	while true:

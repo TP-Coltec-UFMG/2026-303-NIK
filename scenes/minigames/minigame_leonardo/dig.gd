@@ -159,7 +159,7 @@ func qte_success() -> void:
 		# Volta pro mundo normal
 		await GameManager.load_map()
 		GameManager.set_game_data("leonardo_minigame_completed", true)
-		DialogueController.start_dialogue("leonardo_post_minigame")
+		GameManager.load_map_with_dialogue("leonardo_post_minigame")
 	
 func qte_failure() -> void:
 	qte_finished.emit()

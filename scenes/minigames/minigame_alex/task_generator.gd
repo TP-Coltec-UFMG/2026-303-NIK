@@ -142,7 +142,7 @@ func handle_task_completion(task_number : int) -> void:
 		# Volta pro mundo normal
 		GameManager.load_map()
 		GameManager.set_game_data("alex_minigame_completed", true)
-		DialogueController.start_dialogue("alex_post_minigame")
+		GameManager.load_map_with_dialogue("alex_post_minigame")
 	
 	# Lida com os diálogos	
 	elif task_number == 15: # se 10 tarefas foram completadas

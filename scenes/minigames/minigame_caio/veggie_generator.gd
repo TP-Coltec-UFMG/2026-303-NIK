@@ -49,6 +49,6 @@ func veggie_sliced():
 		await tween.finished
 		GameManager.load_map()
 		GameManager.set_game_data("caio_minigame_completed", true)
-		DialogueController.start_dialogue("caio_post_minigame")
+		GameManager.load_map_with_dialogue("caio_post_minigame")
 
 		await get_tree().create_timer(3).timeout

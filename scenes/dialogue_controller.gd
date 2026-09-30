@@ -44,8 +44,8 @@ func _ready() -> void:
 	await get_tree().process_frame
 	get_parent().move_child(self, -1) # mexe ele pra baixo, aí ele pega input antes do GameManager (impede de pausar o jogo enquanto está em dialogo)
 
-func start_dialogue(dialogue_id : String):
-	if not GameManager.can_start_dialogue: return
+func start_dialogue(dialogue_id : String, force : bool= false):
+	if not GameManager.can_start_dialogue and not force: return
 
 	# get_tree().paused = true
 	dialogue_box.show()
@@ -85,7 +85,6 @@ func next_line(idx : int = -1):
 		dialogue_head.texture = null
 		dialogue_text.text = "[font_size=36] \n[font_size=28][color=black]" + line
 		
-
 func end_dialogue():
 	GameManager.can_start_dialogue = false
 
@@ -171,7 +170,7 @@ func execute_redirects(redirects_queue: Array[DialogueRedirect]):
 				return # carrega a cena e finaliza (carregar a cena tem que ser o último sempre)
 				
 			RedirectType.DIALOGUE:
-				start_dialogue(action.target)
+				start_dialogue(action.target, true)
 				print("starting dialogue " + action.target + "\"")
 				await self.dialogue_finished # espera o diálogo acabar
 				

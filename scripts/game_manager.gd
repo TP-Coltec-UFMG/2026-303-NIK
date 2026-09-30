@@ -71,6 +71,11 @@ func load_map(idx_node : int = -1) -> void:
 
 	# (get_tree().get_root().get_child(0) as MapController).go_to_node(idx_node)
 
+func load_map_with_dialogue(dialogue_id: String) -> void:
+	await load_map()
+	await get_tree().create_timer(1.0).timeout
+	DialogueController.start_dialogue(dialogue_id, true)
+	
 func unload_current_map() -> void:
 	black_background.visible = true
 	animation_player.play("fade")
