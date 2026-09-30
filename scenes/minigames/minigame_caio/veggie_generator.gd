@@ -13,6 +13,7 @@ var game_ended : bool = false
 
 func _ready() -> void:
 	next_veggie_time = 1.0
+	GameManager.play_music('kitchen')
 
 func _process(delta: float) -> void:
 	if not DialogueController.active_dialogue and active_game:

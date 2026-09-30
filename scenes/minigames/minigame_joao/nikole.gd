@@ -14,6 +14,7 @@ var current_angle = 0
 var target_angle
 
 func _ready() -> void:
+	GameManager.play_music('yupii')
 	position = Vector2(joao.position.x, joao.position.y - radius)
 
 func _process(delta: float) -> void:

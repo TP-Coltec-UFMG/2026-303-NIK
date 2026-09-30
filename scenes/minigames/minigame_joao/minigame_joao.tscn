@@ -131,7 +131,7 @@ offset_bottom = -52.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
-text = "Bloqueie os pensamentos ruins                   enquanto deixa os pensametos positivos                   chegarem até o João."
+text = "Bloqueie os pensamentos ruins                   enquanto deixa os pensamentos positivos                   chegarem até o João."
 label_settings = SubResource("LabelSettings_43sjh")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -169,9 +169,9 @@ text = "Jogar"
 
 [node name="GoodThought" type="TextureRect" parent="Tutorial/Background" unique_id=2040457468]
 layout_mode = 0
-offset_left = 576.0
+offset_left = 585.0
 offset_top = 264.0
-offset_right = 742.0
+offset_right = 751.0
 offset_bottom = 341.0
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("6_y24fe")
