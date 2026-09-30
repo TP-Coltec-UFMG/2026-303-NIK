@@ -366,8 +366,7 @@ offset = Vector2(-5, -110)
 [node name="Leonardo" type="Node2D" parent="AnimatedProps" unique_id=405018188]
 z_index = -1
 position = Vector2(17407, 1623)
-rotation = 3.1415927
-scale = Vector2(1, -1)
+scale = Vector2(-1, 1)
 script = ExtResource("13_nykyp")
 
 [node name="Shadow" type="Sprite2D" parent="AnimatedProps/Leonardo" unique_id=1263899258]
@@ -487,8 +486,7 @@ offset = Vector2(-5, -110)
 [node name="Joao" type="Node2D" parent="AnimatedProps" unique_id=583138275]
 z_index = -1
 position = Vector2(14654, -558)
-rotation = 3.1415927
-scale = Vector2(1, -1)
+scale = Vector2(-1, 1)
 script = ExtResource("13_nykyp")
 
 [node name="Shadow" type="Sprite2D" parent="AnimatedProps/Joao" unique_id=1748447363]

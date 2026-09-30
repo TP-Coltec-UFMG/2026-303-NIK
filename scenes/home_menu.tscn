@@ -2,11 +2,11 @@
 
 [ext_resource type="FontFile" uid="uid://mb7lv5gfarwo" path="res://fonts/Chewy-Regular.ttf" id="1_6firx"]
 [ext_resource type="Script" uid="uid://dd648fusdu5cs" path="res://scenes/home_menu.gd" id="1_ecwv3"]
+[ext_resource type="Texture2D" uid="uid://xtqu8n3y6uac" path="res://sprites/ui/home_menu.png" id="2_k4o2j"]
 [ext_resource type="Theme" uid="uid://gmvr2lib4uc3" path="res://themes/default.tres" id="3_bp8ob"]
 [ext_resource type="Texture2D" uid="uid://dfeyjo2mnrmlv" path="res://sprites/map/npcs/nikole.png" id="3_yy0av"]
 [ext_resource type="Texture2D" uid="uid://cav8bgxy4awsf" path="res://sprites/map/npcs/vovo_maria.png" id="4_k4o2j"]
 [ext_resource type="Texture2D" uid="uid://c2fe0k122wggp" path="res://sprites/ui/key.png" id="4_lhq7i"]
-[ext_resource type="Texture2D" uid="uid://hqdkg05r0yy3" path="res://sprites/map/map2.png" id="5_lhq7i"]
 [ext_resource type="Texture2D" uid="uid://b56qyswhmu100" path="res://sprites/map/npcs/caio.png" id="5_nibv0"]
 [ext_resource type="Texture2D" uid="uid://bnqq8uipelgtr" path="res://sprites/map/npcs/joao.png" id="6_hvx0t"]
 [ext_resource type="Texture2D" uid="uid://wc38btkrp2b" path="res://sprites/map/npcs/alex.png" id="7_0k336"]
@@ -76,114 +76,112 @@ script = ExtResource("1_ecwv3")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -2590.0
-offset_top = -322.0
-offset_right = -2590.0
-offset_bottom = -322.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(3.125, 3.125)
 offset_transform_enabled = true
-texture = ExtResource("5_lhq7i")
-expand_mode = 3
+texture = ExtResource("2_k4o2j")
+expand_mode = 1
+stretch_mode = 3
 
 [node name="Nik" type="TextureRect" parent="Background" unique_id=833697954]
 layout_mode = 0
-offset_left = 1089.0
-offset_top = 259.5
-offset_right = 1338.0
-offset_bottom = 547.5
-scale = Vector2(0.14, 0.14)
+offset_left = 342.0
+offset_top = 371.0
+offset_right = 591.0
+offset_bottom = 659.0
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_yy0av")
+stretch_mode = 3
 
 [node name="VovoMaria" type="TextureRect" parent="Background" unique_id=1416231157]
 layout_mode = 0
-offset_left = 1168.64
-offset_top = 255.68001
-offset_right = 1417.64
-offset_bottom = 543.68
-scale = Vector2(-0.14, 0.14)
+offset_left = 696.0
+offset_top = 243.0
+offset_right = 945.0
+offset_bottom = 531.0
+scale = Vector2(-0.5, 0.5)
 texture = ExtResource("4_k4o2j")
+stretch_mode = 3
 
 [node name="Caio" type="TextureRect" parent="Background" unique_id=1827807879]
 layout_mode = 0
-offset_left = 1057.5997
-offset_top = 281.92004
-offset_right = 1306.5997
-offset_bottom = 569.92004
-scale = Vector2(0.14, 0.14)
+offset_left = 751.0
+offset_top = 378.0
+offset_right = 1000.0
+offset_bottom = 666.0
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_nibv0")
-stretch_mode = 5
+stretch_mode = 3
 
 [node name="Joao" type="TextureRect" parent="Background" unique_id=2068201016]
 layout_mode = 0
-offset_left = 1152.32
-offset_top = 290.55997
-offset_right = 1401.32
-offset_bottom = 578.55994
-scale = Vector2(-0.14, 0.14)
+offset_left = 998.0
+offset_top = 382.0
+offset_right = 1247.0
+offset_bottom = 670.0
+scale = Vector2(-0.5, 0.5)
 texture = ExtResource("6_hvx0t")
-stretch_mode = 5
+stretch_mode = 3
 
 [node name="Alex" type="TextureRect" parent="Background" unique_id=1427778402]
 layout_mode = 0
-offset_left = 1198.72
-offset_top = 281.28
-offset_right = 1447.72
-offset_bottom = 569.28
-scale = Vector2(-0.14, 0.14)
+offset_left = 468.0
+offset_top = 265.0
+offset_right = 717.0
+offset_bottom = 553.0
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("7_0k336")
-stretch_mode = 5
+stretch_mode = 3
 
 [node name="DonaLuzia" type="TextureRect" parent="Background" unique_id=756640230]
 layout_mode = 0
-offset_left = 1023.3599
-offset_top = 275.19998
-offset_right = 1272.3599
-offset_bottom = 563.19995
-scale = Vector2(0.14, 0.14)
+offset_left = 596.0
+offset_top = 486.0
+offset_right = 844.99994
+offset_bottom = 774.0
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("8_e8hk2")
-stretch_mode = 5
+stretch_mode = 3
 
 [node name="Luis" type="TextureRect" parent="Background" unique_id=887300591]
 layout_mode = 0
-offset_left = 1008.9599
-offset_top = 291.2
-offset_right = 1257.9597
-offset_bottom = 579.20013
-scale = Vector2(0.09, 0.09)
+offset_left = 461.0
+offset_top = 475.0
+offset_right = 709.9998
+offset_bottom = 763.0001
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_u2ahj")
-stretch_mode = 5
+stretch_mode = 3
 
 [node name="Flavia" type="TextureRect" parent="Background" unique_id=484918939]
 layout_mode = 0
-offset_left = 1016.95996
-offset_top = 299.52002
-offset_right = 1286.96
-offset_bottom = 587.52
-scale = Vector2(0.13, 0.13)
+offset_left = 508.0
+offset_top = 533.0
+offset_right = 778.0
+offset_bottom = 821.0
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_yc4qc")
-stretch_mode = 5
+stretch_mode = 3
 
 [node name="Francisco" type="TextureRect" parent="Background" unique_id=261065061]
 layout_mode = 0
-offset_left = 998.0799
-offset_top = 303.36
-offset_right = 1247.0798
-offset_bottom = 591.36
-scale = Vector2(0.11, 0.11)
+offset_left = 816.0
+offset_top = 533.0
+offset_right = 1065.0
+offset_bottom = 821.0
+scale = Vector2(-0.5, 0.5)
 texture = ExtResource("11_nwib3")
-stretch_mode = 5
+stretch_mode = 3
 
 [node name="Leonardo" type="TextureRect" parent="Background" unique_id=1090287537]
 layout_mode = 0
-offset_left = 1233.28
-offset_top = 263.04
-offset_right = 1482.28
-offset_bottom = 551.04004
-scale = Vector2(-0.14, 0.14)
+offset_left = 767.0
+offset_top = 275.0
+offset_right = 1016.0
+offset_bottom = 563.0
+scale = Vector2(-0.5, 0.5)
 texture = ExtResource("12_ogu25")
-stretch_mode = 5
+stretch_mode = 3
 
 [node name="Gradient" type="TextureRect" parent="." unique_id=516742917]
 offset_right = 1280.0
