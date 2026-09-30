@@ -172,7 +172,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("move_left") and current_node.node_left:
 		move_to_node(current_node.node_left, current_node.path_left)
 
-func _process(delta: float) -> void:        
+func _process(delta: float) -> void:
 	animate(delta)
 
 func animate(delta : float):

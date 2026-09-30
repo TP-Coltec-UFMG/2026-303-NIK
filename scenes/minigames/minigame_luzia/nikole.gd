@@ -58,7 +58,7 @@ func _draw() -> void:
 func draw_arrow(target : int):
 	var deg = 0
 
-	if target != 3: deg = (Vector2(maze.tile_scale, maze.tile_scale) - position).angle()
+	if target == 3: deg = (Vector2(maze.tile_scale, maze.tile_scale) - position).angle()
 	else: deg = (targets[target] - position).angle()
 
 	var arrow_position = Vector2.from_angle(deg) * (arrow_orbit_radius - (sin(animation_progress / 5) * arrow_orbit_radius * 0.05)) + arrow_orbit_offset
