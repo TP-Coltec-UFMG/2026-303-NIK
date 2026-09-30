@@ -44,19 +44,9 @@ func _process(delta: float) -> void:
 		time_to_qte -= delta
 	
 	# Sorteia um outro qte quando o tempo acabar e se já não tiver um ativo.
-	if time_to_qte <= 0 and active_game and !active_qte:
+	if time_to_qte <= 0 and active_game and !active_qte and not reach_final_course:
 		time_to_qte = TIME_TO_QTE + QTE_DURATION
 		roll_qte()
-	
-	if root.position.y <= 631.0:
-		# Para o jogo.
-		active_game = false
-		# Timer legal.
-		await get_tree().create_timer(1).timeout
-		# Volta pro mundo normal
-		GameManager.load_map()
-		GameManager.set_game_data("leonardo_minigame_completed", true)
-		DialogueController.start_dialogue("leonardo_post_minigame")
 
 func roll_qte() -> void:
 	# Escolhe uma letra aleatória.
@@ -147,16 +137,29 @@ func qte_success() -> void:
 	await tween.finished
 	
 	# Verificação dos qte para os diálogos.
-	if qte_passed == 5:
+	if qte_passed == 2:
 		DialogueController.start_dialogue("leonardo_minigame_dialogue_1")
 		await DialogueController.dialogue_finished
-	if qte_passed == 10:
+	if qte_passed == 4:
 		DialogueController.start_dialogue("leonardo_minigame_dialogue_2")
 		await DialogueController.dialogue_finished
-	if qte_passed == 15:
+	if qte_passed == 6:
 		DialogueController.start_dialogue("leonardo_minigame_dialogue_3")
 		await DialogueController.dialogue_finished
+		root.position.y = nikole.position.y + DIG_DISTANCE * 3.5
 		reach_final_course = true
+		for i in range(5):
+			qte_success()
+			await get_tree().create_timer(0.25).timeout
+
+		# Para o jogo.
+		active_game = false
+		# Timer legal.
+		await get_tree().create_timer(1).timeout
+		# Volta pro mundo normal
+		await GameManager.load_map()
+		GameManager.set_game_data("leonardo_minigame_completed", true)
+		DialogueController.start_dialogue("leonardo_post_minigame")
 	
 func qte_failure() -> void:
 	qte_finished.emit()

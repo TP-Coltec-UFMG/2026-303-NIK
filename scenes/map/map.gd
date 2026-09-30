@@ -15,10 +15,12 @@ func _ready() -> void:
 		nikole.position = Vector2(1318.0, -598.0)
 		nikole.visible = false
 		$AnimatedProps/VovoMaria.visible = false
-	else: go_to_node(GameManager.get_game_data("map_position"))
+	else:
+		nikole.can_move = true 
+		go_to_node(int(GameManager.get_game_data("map_position")))
 
 func update_node_position(map_node : MapNode):
-	GameManager.set_game_data("map_position", map_nodes.find(map_node))
+	GameManager.set_game_data("map_position", int(map_nodes.find(map_node)))
 
 func go_to_node(idx):
 	var node = map_nodes[idx]

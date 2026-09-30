@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://bkfmly301p0aa" path="res://sprites/minigames/minigame_caio/carrot.png" id="6_baq18"]
 [ext_resource type="Texture2D" uid="uid://fdkw2tqo8spc" path="res://sprites/minigames/minigame_caio/carrot_a.png" id="7_cbnwe"]
 [ext_resource type="Texture2D" uid="uid://cl7vd4avopnw0" path="res://sprites/minigames/minigame_caio/carrot_b.png" id="8_sl7od"]
+[ext_resource type="Texture2D" uid="uid://x87twas37bum" path="res://sprites/minigames/minigame_caio/beet.png" id="9_sl7od"]
+[ext_resource type="Texture2D" uid="uid://cgl055c4wlqts" path="res://sprites/minigames/minigame_caio/beet_a.png" id="10_jccbt"]
+[ext_resource type="Texture2D" uid="uid://b8uh1k3ygnk15" path="res://sprites/minigames/minigame_caio/beet_b.png" id="11_lchi6"]
 
 [sub_resource type="Curve" id="Curve_cbnwe"]
 _limits = [-360.0, 360.0, 0.0, 1.0]
@@ -26,7 +29,7 @@ initial_velocity_min = 750.0
 initial_velocity_max = 1500.0
 angular_velocity_min = -175.00002
 angular_velocity_max = 174.99998
-gravity = Vector3(0, 1250, 0)
+gravity = Vector3(0, 0, 0)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x5mrr"]
 radius = 83.55
@@ -35,6 +38,14 @@ height = 242.24
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cbnwe"]
 radius = 66.79077
 height = 306.15063
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1f1k0"]
+radius = 71.06327
+
+[sub_resource type="LabelSettings" id="LabelSettings_8iq46"]
+font_size = 30
+outline_size = 12
+outline_color = Color(0.21568628, 0.19215687, 0.30588236, 1)
 
 [node name="SpecialRecipe" type="Node2D" unique_id=422842137]
 
@@ -56,19 +67,25 @@ template = true
 texture = ExtResource("1_eou83")
 
 [node name="A" type="GPUParticles2D" parent="VeggieGenerator/Potato" unique_id=1471722157]
+position = Vector2(4, 0)
 emitting = false
 amount = 1
 texture = ExtResource("2_2ocu5")
 lifetime = 15.0
 one_shot = true
+visibility_rect = Rect2(-5000, -3250, 10000, 6500)
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_x5mrr")
 
 [node name="B" type="GPUParticles2D" parent="VeggieGenerator/Potato" unique_id=2122584118]
+position = Vector2(4, 0)
 emitting = false
 amount = 1
 texture = ExtResource("3_x5mrr")
 lifetime = 15.0
 one_shot = true
+visibility_rect = Rect2(-5000, -3250, 10000, 6500)
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_x5mrr")
 
 [node name="Collision" type="CollisionShape2D" parent="VeggieGenerator/Potato" unique_id=1958110040]
@@ -86,25 +103,77 @@ template = true
 texture = ExtResource("6_baq18")
 
 [node name="A" type="GPUParticles2D" parent="VeggieGenerator/Carrot" unique_id=1683246047]
+position = Vector2(4, 0)
 emitting = false
 amount = 1
 texture = ExtResource("7_cbnwe")
 lifetime = 15.0
 one_shot = true
+visibility_rect = Rect2(-5000, -3250, 10000, 6500)
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_x5mrr")
 
 [node name="B" type="GPUParticles2D" parent="VeggieGenerator/Carrot" unique_id=1486978258]
+position = Vector2(4, 0)
 emitting = false
 amount = 1
 texture = ExtResource("8_sl7od")
 lifetime = 15.0
 one_shot = true
+visibility_rect = Rect2(-5000, -3250, 10000, 6500)
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_x5mrr")
 
 [node name="Collision" type="CollisionShape2D" parent="VeggieGenerator/Carrot" unique_id=1226184522]
 position = Vector2(-3, 5.000001)
 rotation = -2.3917282
 shape = SubResource("CapsuleShape2D_cbnwe")
+
+[node name="Beet" type="Area2D" parent="VeggieGenerator" unique_id=787930629]
+process_mode = 4
+position = Vector2(-1936, -42)
+script = ExtResource("1_baq18")
+template = true
+
+[node name="Sprite" type="Sprite2D" parent="VeggieGenerator/Beet" unique_id=1184402959]
+texture = ExtResource("9_sl7od")
+
+[node name="A" type="GPUParticles2D" parent="VeggieGenerator/Beet" unique_id=901959382]
+position = Vector2(4, 0)
+emitting = false
+amount = 1
+texture = ExtResource("10_jccbt")
+lifetime = 15.0
+one_shot = true
+visibility_rect = Rect2(-5000, -3250, 10000, 6500)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_x5mrr")
+
+[node name="B" type="GPUParticles2D" parent="VeggieGenerator/Beet" unique_id=2104320573]
+position = Vector2(4, 0)
+emitting = false
+amount = 1
+texture = ExtResource("11_lchi6")
+lifetime = 15.0
+one_shot = true
+visibility_rect = Rect2(-5000, -3250, 10000, 6500)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_x5mrr")
+
+[node name="Collision" type="CollisionShape2D" parent="VeggieGenerator/Beet" unique_id=1115067101]
+position = Vector2(1, -3.999999)
+rotation = -2.3917282
+shape = SubResource("CircleShape2D_1f1k0")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="VeggieGenerator" unique_id=386577852]
+
+[node name="Label" type="Label" parent="VeggieGenerator/CanvasLayer" unique_id=1794126373]
+offset_left = 1182.0
+offset_top = 29.0
+offset_right = 1245.0
+offset_bottom = 69.0
+text = "0/30"
+label_settings = SubResource("LabelSettings_8iq46")
 
 [node name="BG" type="CanvasLayer" parent="." unique_id=203260506]
 process_mode = 4

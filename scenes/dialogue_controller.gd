@@ -87,6 +87,8 @@ func next_line(idx : int = -1):
 		
 
 func end_dialogue():
+	GameManager.can_start_dialogue = false
+
 	var current_redirects = active_dialogue.redirects
 	active_dialogue = null
 
@@ -101,9 +103,15 @@ func end_dialogue():
 		execute_redirects(current_redirects)
 	GameManager.save_game()
 
-	GameManager.can_start_dialogue = false
-	await get_tree().create_timer(0.5).timeout
-	GameManager.can_start_dialogue = true
+	var is_changing_scene = false
+	for action in current_redirects:
+		if action.type == RedirectType.SCENE:
+			is_changing_scene = true
+			break
+
+	if not is_changing_scene: # se nao tiver trocando de cena ele reativa normal, e se tiver trocando ele vai reativar sozinho quando carregar a cena nova
+		await get_tree().create_timer(0.5).timeout
+		GameManager.can_start_dialogue = true
 
 var _char_animation_time : float = 0.0 # tempo desde a aparição do último caractere
 var _box_animation_i : float = 0 # contador de animação da caixa de diálogo

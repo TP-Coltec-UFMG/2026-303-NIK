@@ -64,11 +64,11 @@ texture = ExtResource("5_5mg4s")
 centered = false
 
 [node name="Root" type="Sprite2D" parent="Background" unique_id=1219285965]
-position = Vector2(260.5, 5446.55)
+position = Vector2(260.5, 4097.55)
 texture = ExtResource("6_5mg4s")
 
 [node name="Nikole" type="Area2D" parent="." unique_id=991965568]
-position = Vector2(327, 5815)
+position = Vector2(327, 415)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Nikole" unique_id=621563]

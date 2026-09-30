@@ -60,7 +60,9 @@ func load_scene(cena: String) -> void:
 	black_background.visible = false
 	can_start_dialogue = true
 
-func load_map(idx_node : int = game_data["map_position"]) -> void:
+func load_map(idx_node : int = -1) -> void:
+	if idx_node == -1:
+		idx_node = game_data["map_position"]
 	play_music("neighborhood")
 	await load_scene("map")
 	if get_game_data("luzia_minigame_completed") and get_game_data("joao_minigame_completed") and get_game_data("leonardo_minigame_completed") and get_game_data("alex_minigame_completed"):
@@ -233,12 +235,8 @@ func get_setting(key : String):
 	return settings[key]
 	
 func save_game() -> void:
-	var save_data = {}
-	for save in game_data.keys():
-		if game_data[save] is Vector2:
-			save_data[save] = { "x" : game_data[save].x, "y" : game_data[save].y }
-		else:
-			save_data[save] = game_data[save]
+
+	var save_data = serializer(game_data)
 
 	var json = JSON.stringify(save_data, "\t")
 	var file = FileAccess.open(path_save, FileAccess.WRITE)
@@ -250,6 +248,23 @@ func save_game() -> void:
 		print("could not open save file!!!")
 	# load_save()
 
+#funcao recursiva pra garantir que os vector2 sejam salvos como dicionarios ao inves de explodirem, aka, serem salvos como "(x, y)"
+func serializer(value : Variant):
+	if value is Vector2:
+		return { "x": value.x, "y": value.y }
+	elif value is Dictionary:
+		var result := {}
+		for key in value:
+			result[key] = serializer(value[key])
+		return result
+	elif value is Array:
+		var result := []
+		for item in value:
+			result.append(serializer(item))
+		return result
+	return value
+
+
 func load_save() -> void:
 	var file = FileAccess.open(path_save, FileAccess.READ)
 	if file:
@@ -258,7 +273,10 @@ func load_save() -> void:
 
 		if save_data != null:
 			for save in save_data.keys():
-				game_data[save] = save_data[save]
+				if save == "map_position":
+					game_data[save] = int(save_data[save])
+				else:
+					game_data[save] = save_data[save]
 
 		# load_map()
 		file.close()
@@ -319,7 +337,7 @@ func load_save_and_start() -> void:
 	# Carrega o save
 	GameManager.load_save()
 	# Carrega o mapa
-	GameManager.load_map()
+	await GameManager.load_map()
 
 # Cria um novo jogo, sobrescrevendo o save antigo
 func create_new_game() -> void:
