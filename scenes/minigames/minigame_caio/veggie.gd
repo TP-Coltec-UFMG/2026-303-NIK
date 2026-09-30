@@ -36,7 +36,7 @@ func _process(delta: float) -> void:
 	speed.y += delta * 1250
 
 func slice():
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and sprite.visible and not DialogueController.active_dialogue:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and sprite.visible and not DialogueController.active_dialogue and generator.active_game:
 		slice_a.emitting = true
 		slice_b.emitting = true
 		sprite.visible = false

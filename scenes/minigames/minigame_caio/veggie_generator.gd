@@ -2,18 +2,19 @@ extends Node2D
 class_name VeggieGenerator
 
 var next_veggie_time : float
-var interval_multiplier : float = 3
+var interval_multiplier : float = 2.5
 
 @onready var veggies : Array[Area2D] = [ $Potato, $Carrot, $Beet ]
 @onready var label : Label = $CanvasLayer/Label
 
 var points : int = 0
+var active_game : bool = false
 
 func _ready() -> void:
 	next_veggie_time = 1.0
 
 func _process(delta: float) -> void:
-	if not DialogueController.active_dialogue:
+	if not DialogueController.active_dialogue and active_game:
 		next_veggie_time -= delta
 		if(next_veggie_time <= 0):
 			next_veggie_time = -0.5 * log(1 - maxf(randf(), 0.5)) * interval_multiplier
@@ -30,11 +31,11 @@ func veggie_sliced():
 	label.text = str(points) + "/30"
 
 	if points == 10:
-		interval_multiplier *= 0.5
+		interval_multiplier *= 0.75
 		DialogueController.start_dialogue("caio_minigame_dialogue_1")
 		await DialogueController.dialogue_finished
-	if points == 15:
-		interval_multiplier *= 0.5
+	if points == 20:
+		interval_multiplier *= 0.75
 		DialogueController.start_dialogue("caio_minigame_dialogue_2")
 		await DialogueController.dialogue_finished
 	if points == 30:
@@ -52,3 +53,11 @@ func veggie_sliced():
 		GameManager.load_map_with_dialogue("caio_post_minigame")
 
 		await get_tree().create_timer(3).timeout
+
+
+func _on_play_pressed():
+	$Tutorial.visible = false
+
+	# Dá um tempo entre o play e o jogo realmente começar
+	await get_tree().create_timer(1).timeout
+	active_game = true

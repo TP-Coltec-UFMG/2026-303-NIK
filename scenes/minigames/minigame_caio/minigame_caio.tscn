@@ -11,6 +11,18 @@
 [ext_resource type="Texture2D" uid="uid://x87twas37bum" path="res://sprites/minigames/minigame_caio/beet.png" id="9_sl7od"]
 [ext_resource type="Texture2D" uid="uid://cgl055c4wlqts" path="res://sprites/minigames/minigame_caio/beet_a.png" id="10_jccbt"]
 [ext_resource type="Texture2D" uid="uid://b8uh1k3ygnk15" path="res://sprites/minigames/minigame_caio/beet_b.png" id="11_lchi6"]
+[ext_resource type="Texture2D" uid="uid://c4vvetqpffl0w" path="res://sprites/minigames/minigame_caio/tutorial.png" id="12_lchi6"]
+[ext_resource type="Texture2D" uid="uid://c4ggljqh3ogf1" path="res://sprites/ui/mouse_drag.png" id="13_1f1k0"]
+[ext_resource type="Texture2D" uid="uid://bbtfyf5t4s005" path="res://sprites/minigames/minigame_caio/background.png" id="14_jfwtn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2tf08"]
+font_size = 48
+font_color = Color(0.844, 1, 0.76, 1)
+outline_size = 24
+outline_color = Color(0.33600003, 0.6, 0.3404, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fq8tp"]
+font_size = 32
 
 [sub_resource type="Curve" id="Curve_cbnwe"]
 _limits = [-360.0, 360.0, 0.0, 1.0]
@@ -56,6 +68,92 @@ zoom = Vector2(0.5, 0.5)
 [node name="VeggieGenerator" type="Node2D" parent="." unique_id=955645792]
 position = Vector2(640, 360)
 script = ExtResource("1_mqj3w")
+
+[node name="Tutorial" type="CanvasLayer" parent="VeggieGenerator" unique_id=1445134875]
+process_mode = 1
+layer = 2
+
+[node name="Background" type="ColorRect" parent="VeggieGenerator/Tutorial" unique_id=1067874202]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1665, 0.23433338, 0.37, 0.7490196)
+
+[node name="Title" type="Label" parent="VeggieGenerator/Tutorial/Background" unique_id=1161283877]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 30.0
+offset_bottom = 93.0
+grow_horizontal = 2
+text = "Receita da Mamãe"
+label_settings = SubResource("LabelSettings_2tf08")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Subtitle" type="Label" parent="VeggieGenerator/Tutorial/Background" unique_id=1043015814]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 80.0
+offset_bottom = 143.0
+grow_horizontal = 2
+text = "Corte os ingredientes da sopa!"
+label_settings = SubResource("LabelSettings_fq8tp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="VeggieGenerator/Tutorial/Background" unique_id=839469165]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.5
+anchor_right = 0.85
+anchor_bottom = 0.5
+offset_top = -139.0
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+text = "Pressione e arraste o mouse              para cortar os ingredientes!"
+label_settings = SubResource("LabelSettings_fq8tp")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Play" type="Button" parent="VeggieGenerator/Tutorial/Background" unique_id=956356109]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.85
+anchor_right = 0.7
+anchor_bottom = 1.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Jogar"
+
+[node name="Slicing" type="TextureRect" parent="VeggieGenerator/Tutorial/Background" unique_id=839984060]
+layout_mode = 0
+offset_left = 483.00003
+offset_top = 339.0
+offset_right = 902.0
+offset_bottom = 655.0
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("12_lchi6")
+
+[node name="Drag" type="TextureRect" parent="VeggieGenerator/Tutorial/Background" unique_id=970127045]
+layout_mode = 0
+offset_left = 475.0
+offset_top = 146.0
+offset_right = 894.0
+offset_bottom = 462.0
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("13_1f1k0")
+stretch_mode = 3
 
 [node name="Potato" type="Area2D" parent="VeggieGenerator" unique_id=670194292]
 process_mode = 4
@@ -179,7 +277,7 @@ label_settings = SubResource("LabelSettings_8iq46")
 process_mode = 4
 layer = -1
 
-[node name="ColorRect" type="ColorRect" parent="BG" unique_id=1070220757]
+[node name="ColorRect" type="TextureRect" parent="BG" unique_id=1914543978]
 process_mode = 4
 z_index = -4096
 anchors_preset = 15
@@ -188,4 +286,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.7372549, 0.8627451, 0.90588236, 1)
+texture = ExtResource("14_jfwtn")
+
+[connection signal="pressed" from="VeggieGenerator/Tutorial/Background/Play" to="VeggieGenerator" method="_on_play_pressed"]
