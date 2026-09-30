@@ -64,6 +64,5 @@ func _on_play_pressed():
 	active_game = true
 
 func end_game():
-	GameManager.load_map()
 	GameManager.set_game_data("caio_minigame_completed", true)
 	GameManager.load_map_with_dialogue("caio_post_minigame")

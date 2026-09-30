@@ -77,16 +77,16 @@ label_settings = SubResource("LabelSettings_2ckv8")
 
 [node name="LabelAgradecimentos" type="Label" parent="BG2/VBoxContainer" unique_id=167759124]
 layout_mode = 2
-text = "Alexandre Camargos Gonçalves
-Flávia Thaís Santos
-Beatriz Maria Monteiro de Castro Oliveira
-Duda Moreira ✅ 
-Profa Virgínia ✅ 
-Allana Mátar ✅ 
-Gabriel Nascimento dos Santos ✅ 
-Codama✅ 
-Hiago ✅ 
-Amiga do Dedé "
+text = "Xande
+Flávia Thaís
+Beatriz Maria Monteiro
+Duda Moreira
+Profª Virgínia
+Allana Mátar
+Gabriel Nascimento dos Santos
+Codama
+Hiago
+Izabella Torres"
 
 [node name="Back" type="Button" parent="." unique_id=1545528574]
 offset_left = 16.0

@@ -27,6 +27,8 @@ var active_dialogue : DialogueString = null
 var current_line = 0;
 
 signal dialogue_finished
+signal redirects_finished
+var redirects_active : int = 0
 
 signal please_move_nikole(node_idx: String, follower: String, target_position: Vector2)
 signal nikole_moved
@@ -98,10 +100,11 @@ func end_dialogue():
 
 	dialogue_text.visible_characters = 0
 	
+	redirects_active += 1
 	emit_signal("dialogue_finished")
 	
 	if current_redirects.size() > 0:
-		execute_redirects(current_redirects)
+		await execute_redirects(current_redirects)
 	GameManager.save_game()
 
 	var is_changing_scene = false
@@ -113,6 +116,10 @@ func end_dialogue():
 	if not is_changing_scene: # se nao tiver trocando de cena ele reativa normal, e se tiver trocando ele vai reativar sozinho quando carregar a cena nova
 		await get_tree().create_timer(0.5).timeout
 		GameManager.can_start_dialogue = true
+	
+	redirects_active -= 1
+	if redirects_active <= 0:
+		emit_signal("redirects_finished")
 
 # Retorna se a animação de caracteres já terminou
 func has_character_animation_finished() -> bool:
