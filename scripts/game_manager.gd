@@ -86,7 +86,10 @@ func check_end_game():
 		set_game_data("game_completed", true)
 		if DialogueController.active_dialogue:
 			await DialogueController.dialogue_finished
-		DialogueController.start_dialogue("ending_pointer_dialogue")
+			
+		if DialogueController.redirects_active > 0:
+			await DialogueController.redirects_finished
+		DialogueController.start_dialogue("ending_pointer_dialogue", true)
 
 func unload_current_map() -> void:
 	black_background.visible = true

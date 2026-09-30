@@ -23,9 +23,8 @@ func animate(delta : float):
 	joao.reset_physics_interpolation()
 
 func end_game() -> void:
-	GameManager.load_map()
 	GameManager.set_game_data("joao_minigame_completed", true)
-	DialogueController.start_dialogue("joao_post_minigame")
+	GameManager.load_map_with_dialogue("joao_post_minigame")
 
 
 func _unhandled_input(event: InputEvent) -> void:

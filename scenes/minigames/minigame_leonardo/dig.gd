@@ -147,11 +147,12 @@ func qte_success() -> void:
 		DialogueController.start_dialogue("leonardo_minigame_dialogue_2")
 		await DialogueController.dialogue_finished
 	if qte_passed == 15:
+		root.position.y = nikole.position.y + DIG_DISTANCE * 3.5
 		DialogueController.start_dialogue("leonardo_minigame_dialogue_3")
 		await DialogueController.dialogue_finished
-		root.position.y = nikole.position.y + DIG_DISTANCE * 3.5
 		root.visible = true
 		reach_final_course = true
+		
 		for i in range(5):
 			qte_success()
 			await get_tree().create_timer(0.25).timeout
@@ -190,6 +191,5 @@ func _on_play_pressed():
 	active_game = true
 
 func end_game():
-	GameManager.load_map()
 	GameManager.set_game_data("leonardo_minigame_completed", true)
 	GameManager.load_map_with_dialogue("leonardo_post_minigame")

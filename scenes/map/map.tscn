@@ -80,7 +80,7 @@ point_count = 2
 
 [sub_resource type="Resource" id="Resource_0bpdh"]
 script = ExtResource("17_p2b7t")
-condition = "leonardo_pre_minigame"
+condition = "leonardo_minigame_completed"
 true_sprite = ExtResource("14_e07uo")
 false_sprite = ExtResource("16_j4o0h")
 metadata/_custom_type_script = "uid://bl486i8whbhp6"
