@@ -1,6 +1,21 @@
 [gd_scene format=3 uid="uid://1brwi5ogjjop"]
 
 [ext_resource type="Script" uid="uid://bj1ng2q0wmyk7" path="res://scenes/credits.gd" id="1_0bpdh"]
+[ext_resource type="Script" uid="uid://badcjjys1xjxk" path="res://scenes/map/animated_prop.gd" id="2_8gwij"]
+[ext_resource type="Texture2D" uid="uid://xtqu8n3y6uac" path="res://sprites/ui/home_menu.png" id="2_mah5v"]
+[ext_resource type="Texture2D" uid="uid://cymo0pwdrymxq" path="res://sprites/map/npcs/gabriel.png" id="3_mah5v"]
+[ext_resource type="Texture2D" uid="uid://b2f673bduwoft" path="res://sprites/map/npcs/andré.png" id="4_kyhnv"]
+[ext_resource type="Texture2D" uid="uid://c7l5dnmquxjyb" path="res://sprites/map/npcs/fred.png" id="5_ooihk"]
+
+[sub_resource type="Gradient" id="Gradient_mah5v"]
+offsets = PackedFloat32Array(0, 0.24698795, 0.6807229)
+colors = PackedColorArray(0, 0, 0, 0.7294118, 0, 0, 0, 0.64549714, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bhunq"]
+gradient = SubResource("Gradient_mah5v")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2ckv8"]
 font_size = 48
@@ -11,24 +26,119 @@ outline_color = Color(0.92, 0.53313994, 0.1196, 1)
 [node name="Credits" type="CanvasLayer" unique_id=318697145]
 script = ExtResource("1_0bpdh")
 
-[node name="BG" type="ColorRect" parent="." unique_id=1676205430]
+[node name="BG" type="TextureRect" parent="." unique_id=1115204275]
 z_index = -4096
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.60784316, 0.81960785, 0.41568628, 1)
+texture = ExtResource("2_mah5v")
 
-[node name="Desenvolvedores" type="Label" parent="." unique_id=89725889]
-offset_right = 267.0
-offset_bottom = 67.0
+[node name="BG2" type="TextureRect" parent="." unique_id=1660125063]
+z_index = -4096
+anchors_preset = -1
+anchor_left = 0.2
+anchor_right = 0.8
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_bhunq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2128671297]
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -299.5
+offset_right = 299.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Desenvolvedores" type="Label" parent="VBoxContainer" unique_id=89725889]
+layout_mode = 2
 text = "Daltonismo"
 label_settings = SubResource("LabelSettings_2ckv8")
+horizontal_alignment = 1
 
-[node name="Label" type="Label" parent="." unique_id=1580764463]
-offset_right = 281.0
-offset_bottom = 104.0
+[node name="LabelDev" type="Label" parent="VBoxContainer" unique_id=1580764463]
+layout_mode = 2
 text = "Gabriel Della Gaspera
 André Dias de Paula
 Frederico Santos Gonçalves"
+horizontal_alignment = 1
+
+[node name="AgradecimentosEspeciais" type="Label" parent="VBoxContainer" unique_id=807642467]
+layout_mode = 2
+text = "Agradecimentos Especiais"
+label_settings = SubResource("LabelSettings_2ckv8")
+horizontal_alignment = 1
+
+[node name="LabelAgradecimentos" type="Label" parent="VBoxContainer" unique_id=167759124]
+layout_mode = 2
+text = "Alexandre Camargos Gonçalves
+Flávia Thaís Santos
+Beatriz Maria Monteiro de Castro Oliveira
+Duda Moreira ✅ 
+Profa Virgínia ✅ 
+Allana Mátar ✅ 
+Gabriel Nascimento dos Santos ✅ 
+Codama✅ 
+Hiago ✅ 
+Amiga do Dedé "
+horizontal_alignment = 1
+
+[node name="Back" type="Button" parent="." unique_id=1545528574]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 71.0
+offset_bottom = 47.0
+text = "Voltar"
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1854903985]
+position = Vector2(1033, 560)
+scale = Vector2(0.5, 0.5)
+
+[node name="Gabriel" type="Node2D" parent="Node2D" unique_id=687923498]
+z_index = -1
+script = ExtResource("2_8gwij")
+type = 2
+radius = Vector2(400, 150)
+duration = 3.25
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/Gabriel" unique_id=245252382]
+z_index = 50
+scale = Vector2(-1, 1)
+texture = ExtResource("3_mah5v")
+offset = Vector2(-5, -110)
+
+[node name="Andre" type="Node2D" parent="Node2D" unique_id=1702482568]
+z_index = -1
+script = ExtResource("2_8gwij")
+type = 2
+radius = Vector2(400, 150)
+duration = 3.25
+running_progress = 2.245
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/Andre" unique_id=699559387]
+z_index = 50
+scale = Vector2(-1, 1)
+texture = ExtResource("4_kyhnv")
+offset = Vector2(-5, -110)
+
+[node name="Fred" type="Node2D" parent="Node2D" unique_id=1029945943]
+z_index = -1
+script = ExtResource("2_8gwij")
+type = 2
+radius = Vector2(400, 150)
+duration = 3.25
+running_progress = 4.15
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/Fred" unique_id=1773725970]
+z_index = 50
+scale = Vector2(-1, 1)
+texture = ExtResource("5_ooihk")
+offset = Vector2(-5, -110)
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

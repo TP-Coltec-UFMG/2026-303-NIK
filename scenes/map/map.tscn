@@ -20,10 +20,13 @@
 [ext_resource type="Texture2D" uid="uid://cqa1l7sin5v5s" path="res://sprites/map/npcs/francisco.png" id="15_58ndj"]
 [ext_resource type="Texture2D" uid="uid://wc38btkrp2b" path="res://sprites/map/npcs/alex.png" id="15_e07uo"]
 [ext_resource type="Texture2D" uid="uid://bnqq8uipelgtr" path="res://sprites/map/npcs/joao.png" id="15_rqo2c"]
+[ext_resource type="Texture2D" uid="uid://ka73qh7t7lwp" path="res://sprites/map/npcs/leonardo_asleep.png" id="16_j4o0h"]
 [ext_resource type="Texture2D" uid="uid://cymo0pwdrymxq" path="res://sprites/map/npcs/gabriel.png" id="17_78kcs"]
+[ext_resource type="Script" uid="uid://bl486i8whbhp6" path="res://scenes/map/sprite_condition.gd" id="17_p2b7t"]
 [ext_resource type="Texture2D" uid="uid://b2f673bduwoft" path="res://sprites/map/npcs/andré.png" id="18_2kc6l"]
 [ext_resource type="Texture2D" uid="uid://c7l5dnmquxjyb" path="res://sprites/map/npcs/fred.png" id="19_eix18"]
 [ext_resource type="Texture2D" uid="uid://dr4t2k3327bfj" path="res://sprites/map/npcs/birds/brown.png" id="20_30ska"]
+[ext_resource type="Texture2D" uid="uid://bnmbtslnwgvdl" path="res://sprites/map/npcs/nix_sleeping.png" id="20_cde6h"]
 [ext_resource type="Texture2D" uid="uid://bycl2dvn3hoc" path="res://sprites/map/npcs/birds/red.png" id="20_uclq6"]
 [ext_resource type="Script" uid="uid://dhvhueq3g1dmm" path="res://scenes/map/animation_condition.gd" id="23_ah1fr"]
 [ext_resource type="Texture2D" uid="uid://dvchgi71sj6dw" path="res://sprites/map/npcs/birds/white.png" id="23_omedl"]
@@ -74,6 +77,19 @@ _data = {
 "points": PackedVector2Array(1557.7024, 823.93536, -1557.7024, -823.93536, 9614, 3474, -971.1613, 833.12726, 971.1613, -833.12726, 10363, 345)
 }
 point_count = 2
+
+[sub_resource type="Resource" id="Resource_0bpdh"]
+script = ExtResource("17_p2b7t")
+condition = "leonardo_pre_minigame"
+true_sprite = ExtResource("14_e07uo")
+false_sprite = ExtResource("16_j4o0h")
+metadata/_custom_type_script = "uid://bl486i8whbhp6"
+
+[sub_resource type="Resource" id="Resource_2ckv8"]
+script = ExtResource("23_ah1fr")
+condition = "leonardo_pre_minigame"
+false_type = 3
+metadata/_custom_type_script = "uid://dhvhueq3g1dmm"
 
 [sub_resource type="Resource" id="Resource_syykr"]
 script = ExtResource("23_ah1fr")
@@ -417,9 +433,10 @@ offset = Vector2(-5, -110)
 
 [node name="Leonardo" type="Node2D" parent="AnimatedProps" unique_id=405018188]
 z_index = -1
-position = Vector2(17407, 1623)
+position = Vector2(17356, 1499)
 scale = Vector2(-1, 1)
 script = ExtResource("13_nykyp")
+conditions = Array[Resource]([SubResource("Resource_0bpdh"), SubResource("Resource_2ckv8")])
 
 [node name="Shadow" type="Sprite2D" parent="AnimatedProps/Leonardo" unique_id=1263899258]
 modulate = Color(0, 0, 0, 0.30588236)
@@ -432,6 +449,26 @@ offset = Vector2(-20, -125)
 z_index = 50
 scale = Vector2(-1, 1)
 texture = ExtResource("14_e07uo")
+offset = Vector2(-5, -110)
+
+[node name="Nix" type="Node2D" parent="AnimatedProps" unique_id=836452634]
+z_index = -1
+position = Vector2(17160, 1679)
+scale = Vector2(-1, 1)
+script = ExtResource("13_nykyp")
+type = 3
+
+[node name="Shadow" type="Sprite2D" parent="AnimatedProps/Nix" unique_id=1982167819]
+modulate = Color(0, 0, 0, 0.30588236)
+z_index = 1
+position = Vector2(67, 160)
+scale = Vector2(3.5554767, 1.2380953)
+offset = Vector2(-20, -125)
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatedProps/Nix" unique_id=761495955]
+z_index = 50
+scale = Vector2(-1, 1)
+texture = ExtResource("20_cde6h")
 offset = Vector2(-5, -110)
 
 [node name="Francisco" type="Node2D" parent="AnimatedProps" unique_id=1940497751]
@@ -557,8 +594,7 @@ offset = Vector2(-5, -110)
 [node name="DonaLuzia" type="Node2D" parent="AnimatedProps" unique_id=2125736831]
 z_index = -1
 position = Vector2(5852, -1265)
-rotation = 3.1415927
-scale = Vector2(1, -1)
+scale = Vector2(-1, 1)
 script = ExtResource("13_nykyp")
 conditions = Array[Resource]([SubResource("Resource_syykr")])
 radius = Vector2(200, 50)

@@ -157,7 +157,8 @@
 					"name": "Vovó",
 					"text": "Vamos sim! A Sessão da Tarde vai começar agora. Vou fazer a pipoca!"
 				}
-			]
+			],
+			"redirect": "scene:credits"
 		},
 
 		{

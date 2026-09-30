@@ -52,12 +52,16 @@ func _draw() -> void:
 	if not maze.dropped_francisco: draw_arrow(0)
 	if not maze.dropped_luis: draw_arrow(1)
 	if not maze.dropped_flavia: draw_arrow(2)
+	if maze.dropped_francisco and maze.dropped_luis and maze.dropped_flavia:
+		draw_arrow(3)
 
 func draw_arrow(target : int):
-	var deg = (targets[target] - position).angle()
-	var arrow_position = Vector2.from_angle(deg) * (arrow_orbit_radius - (sin(animation_progress / 5) * arrow_orbit_radius * 0.05)) + arrow_orbit_offset
+	var deg = 0
 
-	# print(deg)
+	if target != 3: deg = (Vector2(maze.tile_scale, maze.tile_scale) - position).angle()
+	else: deg = (targets[target] - position).angle()
+
+	var arrow_position = Vector2.from_angle(deg) * (arrow_orbit_radius - (sin(animation_progress / 5) * arrow_orbit_radius * 0.05)) + arrow_orbit_offset
 
 	var texture = arrow_sprites[target]
 	var texture_size = texture.get_size()

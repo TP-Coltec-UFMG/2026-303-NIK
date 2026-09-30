@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://dsplgekwgni7j" path="res://sprites/shadow.png" id="15_33v6b"]
 [ext_resource type="Texture2D" uid="uid://c3p3g67gltqvc" path="res://sprites/minigames/minigame_luzia/deactivated_star_francisco.png" id="15_u45vi"]
 [ext_resource type="Texture2D" uid="uid://btw58gnaw1cpu" path="res://sprites/minigames/minigame_luzia/deactivated_star_luis.png" id="16_xo3sy"]
+[ext_resource type="Texture2D" uid="uid://8lb68skgj1oq" path="res://sprites/minigames/minigame_luzia/arrow_nikole.png" id="17_681ny"]
 [ext_resource type="Texture2D" uid="uid://76u82brsyih3" path="res://sprites/minigames/minigame_luzia/deactivated_star_flavia.png" id="17_saydg"]
 [ext_resource type="Texture2D" uid="uid://3t34efkge520" path="res://sprites/minigames/minigame_luzia/deactivated_star_nikole.png" id="18_aey8s"]
 
@@ -77,7 +78,7 @@ offset = Vector2(3000, 3000)
 
 [node name="Nikole" type="Node2D" parent="." unique_id=1673519271]
 script = ExtResource("7_o3sm5")
-arrow_sprites = Array[Texture2D]([ExtResource("12_kpldb"), ExtResource("13_mhd7j"), ExtResource("14_gr1nu")])
+arrow_sprites = Array[Texture2D]([ExtResource("12_kpldb"), ExtResource("13_mhd7j"), ExtResource("14_gr1nu"), ExtResource("17_681ny")])
 
 [node name="Camera2D" type="Camera2D" parent="Nikole" unique_id=572465459]
 process_mode = 3
@@ -209,6 +210,8 @@ anchor_left = 0.15
 anchor_top = 0.5
 anchor_right = 0.85
 anchor_bottom = 0.5
+offset_top = -137.0
+offset_bottom = -44.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
@@ -227,9 +230,9 @@ anchor_top = 0.5
 anchor_right = 0.85
 anchor_bottom = 0.5
 offset_left = 10.0
-offset_top = 29.0
+offset_top = 10.0
 offset_right = 10.0
-offset_bottom = 116.0
+offset_bottom = 97.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
