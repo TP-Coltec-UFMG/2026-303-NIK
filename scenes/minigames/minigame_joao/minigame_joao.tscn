@@ -169,9 +169,9 @@ text = "Jogar"
 
 [node name="GoodThought" type="TextureRect" parent="Tutorial/Background" unique_id=2040457468]
 layout_mode = 0
-offset_left = 585.0
+offset_left = 582.0
 offset_top = 264.0
-offset_right = 751.0
+offset_right = 748.0
 offset_bottom = 341.0
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("6_y24fe")
