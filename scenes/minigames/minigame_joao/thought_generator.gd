@@ -63,6 +63,7 @@ func create_thought() -> void:
 
 func arrivedPoints(thought : Thought) -> void:
 	if !thought.damage: points += 1
+	if thought.damage and points > 0: points -= 1
 	updateLabel()
 
 func blockedPoints(thought : Thought) -> void:
