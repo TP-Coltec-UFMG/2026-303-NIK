@@ -330,7 +330,7 @@ func create_blank_save():
 		"3" : "joao_pre_minigame",
 		"4" : "leonardo_pre_minigame",
 		"5" : "alex_pre_minigame",
-		"6" : ""
+		"6" : "luzia_lost"
 	})
 
 	set_game_data("props", {

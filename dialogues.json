@@ -53,10 +53,6 @@
 					"text": "Que bom, querida. Acabei de fazer o café aqui para gente. Vamos lá?"
 				},
 				{
-					"name": "",
-					"text": "*Elas andam até a cozinha*"
-				},
-				{
 					"name": "Vovó Maria",
 					"text": "E então, já decidiu o que vai fazer hoje?"
 				},
@@ -106,64 +102,60 @@
 			"id": "final_dialogue",
 			"lines": [
 				{
-					"name": "",
-					"text": "*Trimm-trimm trimm-trimm trimm- trimm*"
-				},
-				{
 					"name": "Nikole",
-					"text": "Uuaaaaaaaaaáh!"
-				},
-				{
-					"name": "Nikole",
-					"text": "Bom dia, dia! Vamos lá levantar que hoje é meu dia de folga!"
-				},
-				{
-					"name": "Nikole",
-					"text": "Estou doida para conversar com o pessoal da vila, principalmente com a nova moradora!"
-				},
-				{
-					"name": "Nikole",
-					"text": "Essa semana foi corrida. Poder descansar um pouco vai ser bom."
-				},
-				{
-					"name": "",
-					"text": "*Toc toc toc.*"
+					"text": "Oi, vovó! Voltei! Como foi o dia?"
 				},
 				{
 					"name": "Vovó",
-					"text": "Bom dia, minha neta! Dormiu bem?"
+					"text": "Foi ótimo, passei o dia cuidando da horta. Mas me conta, como está o pessoal da vila?"
 				},
 				{
 					"name": "Nikole",
-					"text": "Bom dia, vovó. Dormi bem sim."
-				},
-				{
-					"name": "Vovó",
-					"text": "Que bom, querida. Acabei de fazer o café aqui para gente. Vamos lá?"
-				},
-				{
-					"name": "",
-					"text": "*Elas andam até a cozinha*"
-				},
-				{
-					"name": "Vovó",
-					"text": "E então, já decidiu o que vai fazer hoje?"
+					"text": "Ah vó, é aquela coisa né. Todos enfrentando seus próprios problemas…"
 				},
 				{
 					"name": "Nikole",
-					"text": "Já sim! Como de costume, vou conversar com o pessoal da vila. E vou te contar, sinto que hoje será um dia de aprendizado, viu!"
+					"text": "Eu tentei ajudar como pude, sabe? Ouvindo e acolhendo eles."
 				},
 				{
 					"name": "Vovó",
-					"text": "Que ótimo, Nik! Depois me conta como foi... Coma o seu misto aí antes que ele esfrie!"
+					"text": "Imagino. Fico grata por você ajudar eles, Nik. Vejo que a educação que te dei funcionou, ainda bem!"
+				},
+				{
+					"name": "Vovó",
+					"text": "Na minha época, as pessoas conversavam mais sobre essas coisas…"
 				},
 				{
 					"name": "Nikole",
-					"text": "Vou ir comendo ele, até mais, vovó!"
+					"text": "Pode ser… Parece mesmo que as pessoas estão se distanciando mais. Isso não é bom."
+				},
+				{
+					"name": "Nikole",
+					"text": "Gosto de poder ouvir meus amigos quando eles precisam. Me sinto feliz quando posso ajudar eles com seus problemas."
 				},
 				{
 					"name": "Vovó",
-					"text": "Tchau, Nik. Toma cuidado na rua!"
+					"text": "Ô minha neta, espero que existam por aí mais pessoas como você."
+				},
+				{
+					"name": "Nikole",
+					"text": "Obrigado, vovó! Você não sabe o quanto isso significa para mim…"
+				},
+				{
+					"name": "Nikole",
+					"text": "Existem tantos problemas diferentes no mundo… Mal sabemos nós!"
+				},
+				{
+					"name": "Vovó",
+					"text": "Tudo se resume a empatia, né? Saber se colocar no lugar do outro."
+				},
+				{
+					"name": "Nikole",
+					"text": "Você tem razão, vovó! Mas bom, vamos entrar e assistir um filme! Passei o dia com o pessoal e não pude ficar com você!"
+				},
+				{
+					"name": "Vovó",
+					"text": "Vamos sim! A Sessão da Tarde vai começar agora. Vou fazer a pipoca!"
 				}
 			]
 		},
@@ -332,6 +324,37 @@
 				{
 					"name": "Nikole",
 					"text": "Tchau, Francisco!"
+				}
+			]
+		},
+
+		{
+			"id": "luzia_lost",
+			"condition": {
+				"data": "luzia_minigame_completed",
+				"value": "false",
+				"else": "luzia_completed"
+			},
+			"lines": [
+				{
+					"name": "Francisco",
+					"text": "Com licensa, Nik. Você viu minha avó por aí?"
+				},
+				{
+					"name": "Francisco",
+					"text": "Ela saiu sozinha sem a gente perceber..."
+				},
+				{
+					"name": "Nikole",
+					"text": "Meu Deus! Acho vi ela perto da minha casa, Francisco. Vou trazer ela agora mesmo."
+				},
+				{
+					"name": "Francisco",
+					"text": "Obrigado, Nik. Ela não pode sair assim por causa da condição dela..."
+				},
+				{
+					"name": "Nikole",
+					"text": "Eu entendo. Vai dar tudo certo, não se preocupa."
 				}
 			]
 		},
@@ -577,7 +600,7 @@
 				},
 				{
 					"name": "",
-					"text": "*caio, coloca o regador de lado.*"
+					"text": "*Caio, coloca o regador de lado.*"
 				},
 				{
 					"name": "Caio",

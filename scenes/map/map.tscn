@@ -296,7 +296,8 @@ path_right = NodePath("../../Paths/Path6")
 node_up = NodePath("../MapNode3")
 node_left = NodePath("../MapNode3")
 node_right = NodePath("../MapNode6")
-dialogue_id = "luzia_completed"
+dialogue_id = "luzia_lost"
+can_interact = true
 
 [node name="Paths" type="Node2D" parent="Path" unique_id=1510341413]
 
