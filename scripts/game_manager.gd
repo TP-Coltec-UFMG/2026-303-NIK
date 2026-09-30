@@ -65,9 +65,6 @@ func load_map(idx_node : int = -1) -> void:
 		idx_node = game_data["map_position"]
 	play_music("neighborhood")
 	await load_scene("map")
-	if get_game_data("luzia_minigame_completed") and get_game_data("joao_minigame_completed") and get_game_data("leonardo_minigame_completed") and get_game_data("alex_minigame_completed"):
-		set_game_data("game_completed", true)
-		DialogueController.start_dialogue("ending_pointer_dialogue")
 
 	# (get_tree().get_root().get_child(0) as MapController).go_to_node(idx_node)
 
@@ -75,7 +72,16 @@ func load_map_with_dialogue(dialogue_id: String) -> void:
 	await load_map()
 	await get_tree().create_timer(1.0).timeout
 	DialogueController.start_dialogue(dialogue_id, true)
+	await DialogueController.dialogue_finished
+	check_end_game()
 	
+func check_end_game():
+	if get_game_data("luzia_minigame_completed") and get_game_data("joao_minigame_completed") and get_game_data("leonardo_minigame_completed") and get_game_data("alex_minigame_completed") and get_game_data("caio_minigame_completed"):
+		set_game_data("game_completed", true)
+		if DialogueController.active_dialogue:
+			await DialogueController.dialogue_finished
+		DialogueController.start_dialogue("ending_pointer_dialogue")
+
 func unload_current_map() -> void:
 	black_background.visible = true
 	animation_player.play("fade")

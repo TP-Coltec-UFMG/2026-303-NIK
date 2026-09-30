@@ -1,7 +1,7 @@
 class_name Thought extends Area2D
 
 @export var textura : Texture2D
-@export var damage : bool = randf_range(0, 1) < 0.5
+@export var damage : bool
 @onready var sprite = $Sprite2D
 var tween : Tween
 signal blocked

@@ -25,9 +25,12 @@
 [ext_resource type="Texture2D" uid="uid://c7l5dnmquxjyb" path="res://sprites/map/npcs/fred.png" id="19_eix18"]
 [ext_resource type="Texture2D" uid="uid://dr4t2k3327bfj" path="res://sprites/map/npcs/birds/brown.png" id="20_30ska"]
 [ext_resource type="Texture2D" uid="uid://bycl2dvn3hoc" path="res://sprites/map/npcs/birds/red.png" id="20_uclq6"]
+[ext_resource type="Script" uid="uid://dhvhueq3g1dmm" path="res://scenes/map/animation_condition.gd" id="23_ah1fr"]
 [ext_resource type="Texture2D" uid="uid://dvchgi71sj6dw" path="res://sprites/map/npcs/birds/white.png" id="23_omedl"]
 [ext_resource type="Texture2D" uid="uid://mnoyny55aveu" path="res://sprites/map/npcs/birds/black.png" id="24_3xi6f"]
 [ext_resource type="Texture2D" uid="uid://btip70gunrohd" path="res://sprites/map/npcs/birds/yellow.png" id="24_78kcs"]
+[ext_resource type="Script" uid="uid://r35t6ldh54f3" path="res://scenes/map/npc_particle.gd" id="25_ah1fr"]
+[ext_resource type="Texture2D" uid="uid://bw576lnpj7mi2" path="res://sprites/map/npcs/particles/confusion.png" id="25_hs4c0"]
 [ext_resource type="Texture2D" uid="uid://babiso5qvo2h0" path="res://sprites/map/npcs/birds/green.png" id="25_xks3a"]
 
 [sub_resource type="Curve2D" id="Curve2D_crek2"]
@@ -71,6 +74,54 @@ _data = {
 "points": PackedVector2Array(1557.7024, 823.93536, -1557.7024, -823.93536, 9614, 3474, -971.1613, 833.12726, 971.1613, -833.12726, 10363, 345)
 }
 point_count = 2
+
+[sub_resource type="Resource" id="Resource_syykr"]
+script = ExtResource("23_ah1fr")
+condition = "luzia_minigame_completed"
+true_type = 2
+metadata/_custom_type_script = "uid://dhvhueq3g1dmm"
+
+[sub_resource type="Gradient" id="Gradient_30ska"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.13962264, 0.28679246, 0.4264151, 0.56226414, 0.71320754, 0.8566038)
+colors = PackedColorArray(1, 0.41000003, 0.41000003, 1, 1, 0.70500004, 0.41000003, 1, 0.99016666, 1, 0.41000003, 1, 0.52528, 0.98, 0.41160002, 1, 0.415, 0.83, 0.78158337, 1, 0.41000003, 0.53783333, 1, 1, 0.60576004, 0.4752, 0.72, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3xi6f"]
+gradient = SubResource("Gradient_30ska")
+
+[sub_resource type="Curve" id="Curve_tmgcv"]
+_limits = [-1.9999998, 2.0, 0.0, 1.0]
+_data = [Vector2(0, -1.9999998), 0.0, 0.0, 0, 0, Vector2(0.17182131, 2), 0.0, 0.0, 0, 0, Vector2(0.3848797, -1.890909), 0.0, 0.0, 0, 0, Vector2(0.60137457, 2), 0.0, 0.0, 0, 0, Vector2(0.862543, -1.9272726), 0.0, 0.0, 0, 0, Vector2(1, 2), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="CurveTexture" id="CurveTexture_tmgcv"]
+curve = SubResource("Curve_tmgcv")
+
+[sub_resource type="Curve" id="Curve_omedl"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0.0034364313, 0), 0.0, 0.0, 0, 0, Vector2(0.2371134, 1.5636363), 0.0, 0.0, 0, 0, Vector2(0.3402062, 0.9999999), -0.10724899, -0.10724899, 0, 0, Vector2(1, 0), -2.2805643, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_omedl"]
+curve = SubResource("Curve_omedl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hs4c0"]
+lifetime_randomness = 0.1
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 128.0
+angle_min = -29.99999
+angle_max = 30.000011
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_max = 50.0
+orbit_velocity_min = 0.1
+orbit_velocity_max = 0.1
+orbit_velocity_curve = SubResource("CurveTexture_tmgcv")
+gravity = Vector3(0, -25, 0)
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_omedl")
+color_initial_ramp = SubResource("GradientTexture1D_3xi6f")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bhunq"]
 atlas = ExtResource("20_uclq6")
@@ -504,23 +555,29 @@ offset = Vector2(-5, -110)
 
 [node name="DonaLuzia" type="Node2D" parent="AnimatedProps" unique_id=2125736831]
 z_index = -1
-position = Vector2(5907, -1214)
+position = Vector2(5852, -1265)
 rotation = 3.1415927
 scale = Vector2(1, -1)
 script = ExtResource("13_nykyp")
-
-[node name="Shadow" type="Sprite2D" parent="AnimatedProps/DonaLuzia" unique_id=11705547]
-modulate = Color(0, 0, 0, 0.30588236)
-z_index = 1
-position = Vector2(67, 160)
-scale = Vector2(3.5554767, 1.2380953)
-offset = Vector2(-20, -125)
+conditions = Array[Resource]([SubResource("Resource_syykr")])
+radius = Vector2(200, 50)
+duration = 10.0
 
 [node name="Sprite2D" type="Sprite2D" parent="AnimatedProps/DonaLuzia" unique_id=603875863]
 z_index = 50
 scale = Vector2(-1, 1)
 texture = ExtResource("14_2kc6l")
 offset = Vector2(-5, -110)
+
+[node name="Confusion" type="GPUParticles2D" parent="AnimatedProps/DonaLuzia" unique_id=2061887969]
+z_index = 51
+position = Vector2(4.000011, -249)
+amount = 2
+texture = ExtResource("25_hs4c0")
+lifetime = 1.5
+process_material = SubResource("ParticleProcessMaterial_hs4c0")
+script = ExtResource("25_ah1fr")
+condition = "luzia_minigame_completed"
 
 [node name="Bird1" type="Sprite2D" parent="AnimatedProps" unique_id=1387908871]
 z_index = -1

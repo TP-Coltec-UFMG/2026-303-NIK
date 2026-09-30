@@ -8,7 +8,7 @@ var rotation_speed : float
 @onready var slice_b : GPUParticles2D = $B
 @export var template = false
 
-var generator : VeggieGenerator
+@onready var generator : VeggieGenerator = get_parent()
 
 signal sliced
 
@@ -36,7 +36,7 @@ func _process(delta: float) -> void:
 	speed.y += delta * 1250
 
 func slice():
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and sprite.visible and not DialogueController.active_dialogue and generator.active_game:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and sprite.visible and not DialogueController.active_dialogue and generator.active_game and not generator.game_ended:
 		slice_a.emitting = true
 		slice_b.emitting = true
 		sprite.visible = false

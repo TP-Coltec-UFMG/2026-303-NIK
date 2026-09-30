@@ -1,4 +1,3 @@
-@tool
 extends BaseButton
 class_name ConfigButton
 

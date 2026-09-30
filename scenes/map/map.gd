@@ -1,6 +1,7 @@
 class_name MapController extends Node2D
 
 var map_nodes : Array[MapNode]
+var npc_particles : Array[NPCParticles]
 @onready var nikole : Nikole = $Nikole
 
 func _ready() -> void:
@@ -18,6 +19,8 @@ func _ready() -> void:
 	else:
 		nikole.can_move = true 
 		go_to_node(int(GameManager.get_game_data("map_position")))
+
+	find_particles(self)
 
 func update_node_position(map_node : MapNode):
 	GameManager.set_game_data("map_position", int(map_nodes.find(map_node)))
@@ -56,3 +59,8 @@ func load_props_data():
 			prop_node.position.y = data[prop].position.y
 
 	print("loaded all props data")
+
+func find_particles(node : Node):
+	for child in node.get_children():
+		find_particles(child)
+		if child is NPCParticles: npc_particles.append(child)

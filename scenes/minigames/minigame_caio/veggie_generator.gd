@@ -9,6 +9,7 @@ var interval_multiplier : float = 2.5
 
 var points : int = 0
 var active_game : bool = false
+var game_ended : bool = false
 
 func _ready() -> void:
 	next_veggie_time = 1.0
@@ -41,6 +42,7 @@ func veggie_sliced():
 	if points == 30:
 		DialogueController.start_dialogue("caio_minigame_dialogue_3")
 		await DialogueController.dialogue_finished
+		game_ended = true
 
 		var tween = create_tween()
 		tween.set_trans(Tween.TRANS_EXPO)
@@ -51,8 +53,6 @@ func veggie_sliced():
 		GameManager.load_map()
 		GameManager.set_game_data("caio_minigame_completed", true)
 		GameManager.load_map_with_dialogue("caio_post_minigame")
-
-		await get_tree().create_timer(3).timeout
 
 
 func _on_play_pressed():

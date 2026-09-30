@@ -12,8 +12,8 @@ class_name Dig extends Node2D
 
 # Constantes
 const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"  # Alfabeto para o sorteio da letra.
-const TIME_TO_QTE : float = .125  # Tempo entre os QTE em segundos.
-const QTE_DURATION : float = 2  # Tempo entre os QTE em segundos.
+const TIME_TO_QTE : float = .05  # Tempo entre os QTE em segundos.
+const QTE_DURATION : float = 2.5  # Tempo entre os QTE em segundos.
 const DIG_DISTANCE : float = 270.0  # Distância da descida em unidades.
 
 # Variáveis de controle
@@ -33,6 +33,7 @@ func _ready() -> void:
 	qte_rect.scale = Vector2(0, 0)
 	qte_rect.visible = false
 	label = qte_rect.get_node("Label")
+	root.visible = false
 	
 	# Garante a posição correta de alguns dos fundos.
 	surface.position.x = 0
@@ -59,10 +60,9 @@ func roll_qte() -> void:
 	# Tween para a aparição do comando na tela.
 	var tween : Tween = qte_rect.create_tween()
 	tween\
-		.tween_property(qte_rect, "scale", Vector2(1, 1), 0.4)\
-		.set_trans(Tween.TRANS_ELASTIC)\
+		.tween_property(qte_rect, "scale", Vector2(1, 1), 0.1)\
+		.set_trans(Tween.TRANS_SINE)\
 		.set_ease(Tween.EASE_OUT)
-	tween.parallel().tween_property(qte_rect, 'offset_transform_position', Vector2(-qte_rect.size.x/2, qte_rect.size.x/2), 0.4)
 
 	var tween_progress : Tween = qte_rect.create_tween()
 	tween_progress\
@@ -137,16 +137,17 @@ func qte_success() -> void:
 	await tween.finished
 	
 	# Verificação dos qte para os diálogos.
-	if qte_passed == 2:
+	if qte_passed == 5:
 		DialogueController.start_dialogue("leonardo_minigame_dialogue_1")
 		await DialogueController.dialogue_finished
-	if qte_passed == 4:
+	if qte_passed == 10:
 		DialogueController.start_dialogue("leonardo_minigame_dialogue_2")
 		await DialogueController.dialogue_finished
-	if qte_passed == 6:
+	if qte_passed == 15:
 		DialogueController.start_dialogue("leonardo_minigame_dialogue_3")
 		await DialogueController.dialogue_finished
 		root.position.y = nikole.position.y + DIG_DISTANCE * 3.5
+		root.visible = true
 		reach_final_course = true
 		for i in range(5):
 			qte_success()
@@ -154,12 +155,11 @@ func qte_success() -> void:
 
 		# Para o jogo.
 		active_game = false
-		# Timer legal.
-		await get_tree().create_timer(1).timeout
+		# Tempinho pra ver a raíz.
+		await get_tree().create_timer(3).timeout
 		# Volta pro mundo normal
-		await GameManager.load_map()
 		GameManager.set_game_data("leonardo_minigame_completed", true)
-		GameManager.load_map_with_dialogue("leonardo_post_minigame")
+		await GameManager.load_map_with_dialogue("leonardo_post_minigame")
 	
 func qte_failure() -> void:
 	qte_finished.emit()

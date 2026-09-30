@@ -11,6 +11,8 @@ var points : int = 0
 var flag : int = 10
 var thoughts : Array[Thought] = []
 var generate : bool = true
+var odds : float = 0.75
+var interval_multiplier : float = 1
 
 func _ready() -> void:
 	points = int(label_points.text.replace("/30", ""))
@@ -25,6 +27,7 @@ func create_thought() -> void:
 				var angle = atan2(randfn(0.0, 0.2), randfn(0.0, 1.0))
 
 				var thought = thought_scene.instantiate() as Thought
+				thought.damage = randf() <= odds
 				if !thought.damage:
 					if good_thought_textures.size() > 0:
 						thought.textura = good_thought_textures.pick_random()
@@ -40,7 +43,7 @@ func create_thought() -> void:
 				thought.arrived.connect(arrivedPoints.bind(thought))
 				thought.tree_exited.connect(func(): thoughts.erase(thought))
 				
-				await get_tree().create_timer(1).timeout
+				await get_tree().create_timer(1 * interval_multiplier).timeout
 			else:
 				generate = false
 
@@ -52,9 +55,17 @@ func create_thought() -> void:
 				elif points >= 20:
 					DialogueController.start_dialogue("joao_minigame_dialogue_2")
 					await DialogueController.dialogue_finished
+					protector.animation_amplitude *= 0.75
+					protector.animation_speed *= 0.75
+					odds = 0.25
+					interval_multiplier *= 0.8
 				elif points >= 10:
 					DialogueController.start_dialogue("joao_minigame_dialogue_1")
 					await DialogueController.dialogue_finished
+					protector.animation_amplitude *= 0.75
+					protector.animation_speed *= 0.75
+					odds = 0.5
+					interval_multiplier *= 0.8
 				flag += 10
 				generate = true
 				

@@ -2,8 +2,8 @@
 extends Node2D
 
 # Tempo mínimo/máximo entre tarefas (em segundos)
-const MIN_TIME_BETWEEN_TASKS : float = 0.9
-const MAX_TIME_BETWEEN_TASKS : float = 2
+var MIN_TIME_BETWEEN_TASKS : float = 0.9
+var MAX_TIME_BETWEEN_TASKS : float = 2
 
 # Tempo que da animação da tarefa aparecer/desaparecer
 const TASK_ANIMATION_TIME : float = 0.5
@@ -56,7 +56,7 @@ func _process(delta: float) -> void:
 	next_task_time -= delta
 
 	# Se já deu tempo de gerar outra tarefa, gera ela
-	if next_task_time < 0 and tasks_generated < NUMBER_OF_TASKS and is_minigame_running:
+	if next_task_time < 0 and tasks_generated < NUMBER_OF_TASKS * 2 and is_minigame_running:
 		# Obtém um novo tempo para a próxima tarefa 
 		next_task_time = randf_range(MIN_TIME_BETWEEN_TASKS, MAX_TIME_BETWEEN_TASKS)
 		# Gera a carta
@@ -133,6 +133,8 @@ func handle_task_completion(task_number : int) -> void:
 	if task_number == NUMBER_OF_TASKS_TO_BURNOUT:
 		# Começa o burnout
 		skill_check.is_on_burnout = true
+		MIN_TIME_BETWEEN_TASKS *= 0.125
+		MAX_TIME_BETWEEN_TASKS *= 0.125
 
 		DialogueController.start_dialogue("alex_minigame_dialogue_3")
 		
@@ -149,12 +151,16 @@ func handle_task_completion(task_number : int) -> void:
 		is_minigame_running = false
 		DialogueController.start_dialogue("alex_minigame_dialogue_1")
 		await DialogueController.dialogue_finished
+		MIN_TIME_BETWEEN_TASKS *= 0.75
+		MAX_TIME_BETWEEN_TASKS *= 0.75
 		is_minigame_running = true
 		
 	elif task_number == 30: # se 20 tarefas foram completadas
 		is_minigame_running = false
 		DialogueController.start_dialogue("alex_minigame_dialogue_2")
 		await DialogueController.dialogue_finished
+		MIN_TIME_BETWEEN_TASKS *= 0.33
+		MAX_TIME_BETWEEN_TASKS *= 0.33
 		is_minigame_running = true
 
 # Quando o botão de play for pressionado
