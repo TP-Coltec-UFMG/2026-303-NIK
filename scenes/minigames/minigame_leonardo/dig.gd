@@ -55,7 +55,6 @@ func roll_qte() -> void:
 	var rand_letter = LETTERS[rand_i]
 	label.text = rand_letter
 	qte_rect.value = 100
-	qte_rect.offset_transform_position = Vector2(0, 0)
 	
 	# Tween para a aparição do comando na tela.
 	var tween : Tween = qte_rect.create_tween()
@@ -64,33 +63,34 @@ func roll_qte() -> void:
 		.set_trans(Tween.TRANS_SINE)\
 		.set_ease(Tween.EASE_OUT)
 
-	var tween_progress : Tween = qte_rect.create_tween()
-	tween_progress\
-		.tween_property(qte_rect, 'value', 0, QTE_DURATION)\
-		.set_trans(Tween.TRANS_LINEAR)\
-		.set_ease(Tween.EASE_OUT)
-		
 	# Alteração das variáveis de controle.
 	active_qte = true
 	qte_rect.visible = true
 
-	var qte_status = { "running" : true}
+	if not (GameManager.settings.has("qte_time_limit") and not GameManager.settings["qte_time_limit"]):
+		var tween_progress : Tween = qte_rect.create_tween()
+		tween_progress\
+			.tween_property(qte_rect, 'value', 0, QTE_DURATION)\
+			.set_trans(Tween.TRANS_LINEAR)\
+			.set_ease(Tween.EASE_OUT)
 
-	var clear_binds = func():
-		if qte_status.running:
-			qte_status.running = false
-			if tween_progress.is_valid():
-				tween_progress.kill()
+		var qte_status = { "running" : true}
 
-	qte_finished.connect(clear_binds, CONNECT_ONE_SHOT)
-	tween_progress.finished.connect(clear_binds, CONNECT_ONE_SHOT)
+		var clear_binds = func():
+			if qte_status.running:
+				qte_status.running = false
+				if tween_progress.is_valid():
+					tween_progress.kill()
 
-	while qte_status.running:
-		await get_tree().process_frame
-	
-	if active_qte:
-		qte_failure()
-		active_qte = false
+		qte_finished.connect(clear_binds, CONNECT_ONE_SHOT)
+		tween_progress.finished.connect(clear_binds, CONNECT_ONE_SHOT)
+
+		while qte_status.running:
+			await get_tree().process_frame
+		
+		if active_qte:
+			qte_failure()
+			active_qte = false
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("skip_minigame"):
@@ -152,7 +152,7 @@ func qte_success() -> void:
 		await DialogueController.dialogue_finished
 		root.visible = true
 		reach_final_course = true
-		
+
 		for i in range(5):
 			qte_success()
 			await get_tree().create_timer(0.25).timeout
