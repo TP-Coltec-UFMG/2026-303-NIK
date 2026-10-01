@@ -111,7 +111,7 @@
 				},
 				{
 					"name": "Nikole",
-					"text": "Ah vó, é aquela coisa né. Todos enfrentando seus próprios problemas…"
+					"text": "Ah, vó, é aquela coisa, né. Todos enfrentando seus próprios problemas..."
 				},
 				{
 					"name": "Nikole",
@@ -123,11 +123,11 @@
 				},
 				{
 					"name": "Vovó Maria",
-					"text": "Na minha época, as pessoas conversavam mais sobre essas coisas…"
+					"text": "Na minha época, as pessoas conversavam mais sobre essas coisas..."
 				},
 				{
 					"name": "Nikole",
-					"text": "Pode ser… Parece mesmo que as pessoas estão se distanciando mais. Isso não é bom."
+					"text": "Pode ser... Parece mesmo que as pessoas estão se distanciando mais. Isso não é bom."
 				},
 				{
 					"name": "Nikole",
@@ -139,15 +139,15 @@
 				},
 				{
 					"name": "Nikole",
-					"text": "Obrigada, vovó! Você não sabe o quanto isso significa para mim…"
+					"text": "Obrigada, vovó! Você não sabe o quanto isso significa para mim..."
 				},
 				{
 					"name": "Nikole",
-					"text": "Existem tantos problemas diferentes no mundo… Mal sabemos nós!"
+					"text": "Existem tantos problemas diferentes no mundo... Mal sabemos nós!"
 				},
 				{
 					"name": "Vovó Maria",
-					"text": "Tudo se resume a empatia, né? Saber se colocar no lugar do outro."
+					"text": "Tudo se resume à empatia, né? Saber se colocar no lugar do outro."
 				},
 				{
 					"name": "Nikole",
@@ -203,7 +203,7 @@
 				},
 				{
 					"name": "Dona Luzia",
-					"text": "Ah sim… Nikole! Quanto tempo não te vejo, minha filha."
+					"text": "Ah sim... Nikole! Quanto tempo não te vejo, minha filha."
 				},
 				{
 					"name": "Nikole",
@@ -219,7 +219,7 @@
 				},
 				{
 					"name": "Dona Luzia",
-					"text": "Você sabe quem são essas pessoas? Porque essa foto está comigo afinal?"
+					"text": "Você sabe quem são essas pessoas? Por que essa foto está comigo, afinal?"
 				}
 			],
 			"redirect": "scene:minigame_luzia"
@@ -234,7 +234,7 @@
 				},
 				{
 					"name": "Dona Luzia",
-					"text": "Francisco… sabia que foi eu mesma que escolhi o nome dele?"
+					"text": "Francisco... sabia que fui eu mesma que escolhi o nome dele?"
 				}
 			]
 		},
@@ -244,7 +244,7 @@
 			"lines": [
 				{
 					"name": "Nikole",
-					"text": "O menino com o cabelo super descolado é o Luís…"
+					"text": "O menino com o cabelo super descolado é o Luís..."
 				},
 				{
 					"name": "Dona Luzia",
@@ -281,7 +281,7 @@
 				},
 				{
 					"name": "Dona Luzia",
-					"text": "Chico, Luisinho e Flavinha… Onde eles estão agora? Preciso apresentá-los ao meu namorado Antônio. Ele vai amar eles!"
+					"text": "Chico, Luisinho e Flavinha... Onde eles estão agora? Preciso apresentá-los ao meu namorado Antônio. Ele vai amar eles!"
 				},
 				{
 					"name": "Nikole",
@@ -304,7 +304,7 @@
 			"lines": [
 				{
 					"name": "Francisco",
-					"text": "Obrigado por trazer ela de volta, Nik! Estávamos preocupados…"
+					"text": "Obrigado por trazer ela de volta, Nik! Estávamos preocupados..."
 				},
 				{
 					"name": "Nikole",
@@ -312,7 +312,7 @@
 				},
 				{
 					"name": "Francisco",
-					"text": "O Alzheimer é uma doença difícil sabe? Conviver com alguém que não se lembra de você, apesar de você a conhecer desde o seu nascimento dói, mas mesmo assim vamos continuar amando ela sempre."
+					"text": "O Alzheimer é uma doença difícil sabe? Conviver com alguém que não se lembra de você, apesar de você a conhecer desde o seu nascimento, dói. Mas mesmo assim vamos continuar amando ela sempre."
 				},
 				{
 					"name": "Nikole",
@@ -347,7 +347,7 @@
 				},
 				{
 					"name": "Nikole",
-					"text": "Meu Deus! Acho vi ela perto da minha casa, Francisco. Vou trazer ela agora mesmo."
+					"text": "Meu Deus! Acho que vi ela perto da minha casa, Francisco. Vou trazer ela agora mesmo."
 				},
 				{
 					"name": "Francisco",
@@ -413,7 +413,7 @@
 				},
 				{
 					"name": "João",
-					"text": "É que, recentemente, comecei a escutar uns comentários sobre mim…"
+					"text": "É que, recentemente, comecei a escutar uns comentários sobre mim..."
 				},
 				{
 					"name": "João",
@@ -429,7 +429,7 @@
 				},
 				{
 					"name": "João",
-					"text": "Você acha que é errado eu ser… eu?"
+					"text": "Você acha que é errado eu ser... eu?"
 				},
 				{
 					"name": "João",
@@ -449,7 +449,7 @@
 				},
 				{
 					"name": "Nikole",
-					"text": "Olha…"
+					"text": "Olha..."
 				}
 			],
 			"redirect": "scene:minigame_joao"
@@ -461,7 +461,7 @@
 			"lines": [
 				{
 					"name": "Nikole",
-					"text": "João…  eu imagino que isso seja difícil, mas você não pode dar ouvidos a essas pessoas!"
+					"text": "João...  eu imagino que isso seja difícil, mas você não pode dar ouvidos a essas pessoas!"
 				},
 				{
 					"name": "Nikole",
@@ -469,7 +469,7 @@
 				},
 				{
 					"name": "João",
-					"text": "Eu… só queria essa confiança que você tem."
+					"text": "Eu... só queria essa confiança que você tem."
 				}
 			]
 		},
@@ -499,11 +499,11 @@
 			"lines": [
 				{
 					"name": "João",
-					"text": "Acho que talvez você tenha razão…"
+					"text": "Acho que talvez você tenha razão..."
 				},
 				{
 					"name": "João",
-					"text": "Eu fico tão incomodado quando começam a falar essas coisas de mim, sabe? Eles todos fazem parecer…"
+					"text": "Eu fico tão incomodado quando começam a falar essas coisas de mim, sabe? Eles todos fazem parecer..."
 				},
 				{
 					"name": "João",
@@ -523,7 +523,7 @@
 				},
 				{
 					"name": "João",
-					"text": "Não sei… Preciso pensar um pouco mais sobre."
+					"text": "Não sei... Preciso pensar um pouco mais sobre."
 				},
 				{
 					"name": "Nikole",
@@ -577,15 +577,15 @@
 				},
 				{
 					"name": "Nikole",
-					"text": "Elas são mesmo de tirar o fôlego… Foi você que plantou elas?"
+					"text": "Elas são mesmo de tirar o fôlego... Foi você que plantou elas?"
 				},
 				{
 					"name": "Caio",
-					"text": "Ah não, não. Foi minha falecida mãe. Ela tinha o jeito para jardinagem… Pensando melhor, ela tinha o jeito para muitas coisas!"
+					"text": "Ah não, não. Foi minha falecida mãe. Ela tinha o jeito para jardinagem... Pensando melhor, ela tinha o jeito para muitas coisas!"
 				},
 				{
 					"name": "Nikole",
-					"text": "Meus pêsames, Caio. Eu não sabia…"
+					"text": "Meus pêsames, Caio. Eu não sabia..."
 				},
 				{
 					"name": "Caio",
@@ -597,7 +597,7 @@
 				},
 				{
 					"name": "Caio",
-					"text": "Vamos lá, por onde eu começo… Ah sim."
+					"text": "Vamos lá, por onde eu começo... Ah sim."
 				},
 				{
 					"name": "",
@@ -641,7 +641,7 @@
 			"lines": [
 				{
 					"name": "Caio",
-					"text": "Comece cortando os ingredientes para adicionarmos a panela."
+					"text": "Comece cortando os ingredientes para adicionarmos à panela."
 				}
 			]
 		},
@@ -686,7 +686,7 @@
 				},
 				{
 					"name": "Caio",
-					"text": "Nem me fala! Obrigado pela companhia, Nikole. Cozinhar as receitas dela é como ser transportado de volta para a minha infância e ter ela comigo de novo…"
+					"text": "Nem me fala! Obrigado pela companhia, Nikole. Cozinhar as receitas dela é como ser transportado de volta para a minha infância e ter ela comigo de novo..."
 				},
 				{
 					"name": "Nikole",
@@ -694,7 +694,7 @@
 				},
 				{
 					"name": "Caio",
-					"text": "Você tem razão! Ela sempre estará comigo sim… A vida é efêmera, mas, afinal de contas, é justamente isso que a torna especial. Obrigado mais uma vez. Se cuida, viu?"
+					"text": "Você tem razão! Ela sempre estará comigo sim... A vida é efêmera, mas, afinal de contas, é justamente isso que a torna especial. Obrigado mais uma vez. Se cuida, viu?"
 				},
 				{
 					"name": "Nikole",
@@ -708,11 +708,11 @@
 			"lines": [
 				{
 					"name": "Caio",
-					"text": "Aquela comida estava boa mesmo. ein?"
+					"text": "Aquela comida estava boa mesmo, hein?"
 				},
 				{
 					"name": "Caio",
-					"text": "Parece que a sua ajuda trouxe um tchã a mais, tá ligado?"
+					"text": "Parece que a sua ajuda trouxe um tcham a mais, tá ligado?"
 				}
 			]
 		},
@@ -744,7 +744,7 @@
 				},
 				{
 					"name": "Leonardo",
-					"text": "Ô se sei viu! Já faço isso todos os dias há 10 anos. Como sou aposentando, posso ficar aqui e bater papo com quem passar."
+					"text": "Ô se sei viu! Já faço isso todos os dias há 10 anos. Como sou aposentado, posso ficar aqui e bater papo com quem passar."
 				},
 				{
 					"name": "Nikole",
@@ -760,11 +760,11 @@
 				},
 				{
 					"name": "Leonardo",
-					"text": "Pois é né. Mas confesso que foi difícil me adaptar… Eu era o único professor negro na escola."
+					"text": "Pois é né. Mas confesso que foi difícil me adaptar... Eu era o único professor negro na escola."
 				},
 				{
 					"name": "Nikole",
-					"text": "Ah… Eu entendo…"
+					"text": "Ah... Eu entendo..."
 				},
 				{
 					"name": "Leonardo",
@@ -788,11 +788,11 @@
 				},
 				{
 					"name": "Nikole",
-					"text": "Mas por que não seria, seu Léo? Há tempos eu não escuto uma expressão racista… As pessoas estão mudando."
+					"text": "Mas por que não seria, seu Léo? Há tempos eu não escuto uma expressão racista... As pessoas estão mudando."
 				},
 				{
 					"name": "Leonardo",
-					"text": "Essas expressões podem não ser usadas, mas quem disse que ainda não há racismo na língua? Olha só…"
+					"text": "Essas expressões podem não ser usadas, mas quem disse que ainda não há racismo na língua? Olha só..."
 				}
 			],
 			"redirect": "scene:minigame_leonardo"
@@ -838,11 +838,11 @@
 				},
 				{
 					"name": "Leonardo",
-					"text": "Isso acontece, porque ele engessa o racismo estrutural na fala, dando mais material para o prolongamento do racismo."
+					"text": "Isso acontece porque ele engessa o racismo estrutural na fala, dando mais material para o prolongamento do racismo."
 				},
 				{
 					"name": "Leonardo",
-					"text": "E é justamente ele que continua presente na nossa sociedade…"
+					"text": "E é justamente ele que continua presente na nossa sociedade..."
 				}
 			]
 		},
@@ -857,7 +857,7 @@
 			"lines": [
 				{
 					"name": "Nikole",
-					"text": "Que interessante… Então quer dizer que não adianta apenas mudar a superfície, né? Precisamos também olhar para as raízes."
+					"text": "Que interessante... Então quer dizer que não adianta apenas mudar a superfície, né? Precisamos também olhar para as raízes."
 				},
 				{
 					"name": "Leonardo",
@@ -915,7 +915,7 @@
 				},
 				{
 					"name": "Nikole",
-					"text": "Você tem razão… Nunca me canso de olhar para a paisagem. Espera só até você conhecer o laguinho que tem aqui perto!"
+					"text": "Você tem razão... Nunca me canso de olhar para a paisagem. Espera só até você conhecer o laguinho que tem aqui perto!"
 				},
 				{
 					"name": "Nikole",
@@ -935,7 +935,7 @@
 				},
 				{
 					"name": "Nikole",
-					"text": "Entendo… Mas o que te levou a mudar de vida? Se não for problema perguntar."
+					"text": "Entendo... Mas o que te levou a mudar de vida? Se não for problema perguntar."
 				},
 				{
 					"name": "Alex",
@@ -1040,7 +1040,7 @@
 				},
 				{
 					"name": "Nikole",
-					"text": "Nós como mulheres não sermos reconhecidas nesse mundo é algo tão… Nem palavras para descrever eu tenho."
+					"text": "Nós como mulheres não sermos reconhecidas nesse mundo é algo tão... Nem palavras para descrever eu tenho."
 				},
 				{
 					"name": "Nikole",
