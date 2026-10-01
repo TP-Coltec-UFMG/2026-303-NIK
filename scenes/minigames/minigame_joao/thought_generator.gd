@@ -15,6 +15,7 @@ var odds : float = 0.75
 var interval_multiplier : float = 1
 
 func _ready() -> void:
+	GameManager.play_music('yupii')
 	points = int(label_points.text.replace("/30", ""))
 
 func _process(delta: float) -> void:

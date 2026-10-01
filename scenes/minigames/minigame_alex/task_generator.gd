@@ -46,6 +46,7 @@ func _ready() -> void:
 	is_minigame_running = false
 	tasks_generated = 0
 	tasks_completed = 0
+	GameManager.play_music('yupii')
 	
 	#key_node.text = OS.get_keycode_string(GameManager.get_setting("interact"))
 

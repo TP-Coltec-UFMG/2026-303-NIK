@@ -38,6 +38,7 @@ func _ready() -> void:
 	# Garante a posição correta de alguns dos fundos.
 	surface.position.x = 0
 	earth.position.x = -640
+	GameManager.play_music('head_is_a_maze')
 
 func _process(delta: float) -> void:	
 	# Diminui o tempo para o próximo qte.

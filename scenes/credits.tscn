@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cymo0pwdrymxq" path="res://sprites/map/npcs/gabriel.png" id="3_mah5v"]
 [ext_resource type="Texture2D" uid="uid://b2f673bduwoft" path="res://sprites/map/npcs/andré.png" id="4_kyhnv"]
 [ext_resource type="Texture2D" uid="uid://c7l5dnmquxjyb" path="res://sprites/map/npcs/fred.png" id="5_ooihk"]
+[ext_resource type="FontFile" uid="uid://mb7lv5gfarwo" path="res://fonts/Chewy-Regular.ttf" id="7_kyhnv"]
 
 [sub_resource type="Gradient" id="Gradient_mah5v"]
 offsets = PackedFloat32Array(0, 0.24698795, 0.6807229)
@@ -26,6 +27,16 @@ outline_color = Color(0.92, 0.53313994, 0.1196, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_pitpm"]
 font_size = 18
 font_color = Color(0.78235406, 0.78235406, 0.78235406, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ooihk"]
+font = ExtResource("7_kyhnv")
+font_size = 82
+font_color = Color(1, 0.72156864, 0.25882354, 1)
+outline_size = 41
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 62
+shadow_color = Color(1, 1, 1, 1)
+shadow_offset = Vector2(0, 0)
 
 [node name="Credits" type="CanvasLayer" unique_id=318697145]
 script = ExtResource("1_0bpdh")
@@ -148,5 +159,28 @@ z_index = 50
 scale = Vector2(-1, 1)
 texture = ExtResource("5_ooihk")
 offset = Vector2(-5, -110)
+
+[node name="BlackRect" type="ColorRect" parent="." unique_id=86339504]
+z_index = 100
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Title" type="Label" parent="BlackRect" unique_id=1934074799]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -960.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "NIK"
+label_settings = SubResource("LabelSettings_ooihk")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
