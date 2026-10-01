@@ -87,7 +87,7 @@ metadata/_custom_type_script = "uid://bl486i8whbhp6"
 
 [sub_resource type="Resource" id="Resource_2ckv8"]
 script = ExtResource("23_ah1fr")
-condition = "leonardo_pre_minigame"
+condition = "leonardo_minigame_completed"
 false_type = 3
 metadata/_custom_type_script = "uid://dhvhueq3g1dmm"
 
@@ -185,57 +185,68 @@ script = ExtResource("1_mgs8m")
 
 [node name="Pieces" type="Node2D" parent="." unique_id=1565263921]
 position = Vector2(-294, -45)
+metadata/_edit_lock_ = true
 
 [node name="Mapa1" type="Sprite2D" parent="Pieces" unique_id=1292292278]
 z_index = -1
 position = Vector2(6000, -4000)
 texture = ExtResource("6_nykyp")
 offset = Vector2(-20, -125)
+metadata/_edit_lock_ = true
 
 [node name="Mapa2" type="Sprite2D" parent="Pieces" unique_id=615680915]
 z_index = -1
 texture = ExtResource("2_mrjnl")
 offset = Vector2(-20, -125)
+metadata/_edit_lock_ = true
 
 [node name="Mapa3" type="Sprite2D" parent="Pieces" unique_id=615610437]
 z_index = -1
 position = Vector2(6000, 0)
 texture = ExtResource("3_rqo2c")
 offset = Vector2(-20, -125)
+metadata/_edit_lock_ = true
 
 [node name="Mapa4" type="Sprite2D" parent="Pieces" unique_id=709136357]
 z_index = -1
 position = Vector2(12000, 0)
 texture = ExtResource("4_e07uo")
 offset = Vector2(-20, -125)
+metadata/_edit_lock_ = true
 
 [node name="Mapa5" type="Sprite2D" parent="Pieces" unique_id=373644834]
 z_index = -1
 position = Vector2(18000, 0)
 texture = ExtResource("5_58ndj")
 offset = Vector2(-20, -125)
+metadata/_edit_lock_ = true
 
 [node name="Mapa6" type="Sprite2D" parent="Pieces" unique_id=139966770]
 z_index = -1
 position = Vector2(6000, 4000)
 texture = ExtResource("10_rqo2c")
 offset = Vector2(-20, -125)
+metadata/_edit_lock_ = true
 
 [node name="Mapa7" type="Sprite2D" parent="Pieces" unique_id=675725030]
 z_index = -1
 position = Vector2(12000, 4000)
 texture = ExtResource("9_tmgcv")
 offset = Vector2(-20, -125)
+metadata/_edit_lock_ = true
 
 [node name="Mapa8" type="Sprite2D" parent="Pieces" unique_id=1155627797]
 z_index = -1
 position = Vector2(18000, 4000)
 texture = ExtResource("8_30ska")
 offset = Vector2(-20, -125)
+metadata/_edit_lock_ = true
 
 [node name="Path" type="Node2D" parent="." unique_id=1350687154]
+metadata/_edit_lock_ = true
 
 [node name="Nodes" type="Node2D" parent="Path" unique_id=1945155859]
+metadata/_edit_lock_ = true
 
 [node name="MapNode1" type="Node2D" parent="Path/Nodes" unique_id=1506791135 node_paths=PackedStringArray("path_right", "node_right")]
 position = Vector2(750, -97)
@@ -244,6 +255,7 @@ path_right = NodePath("../../Paths/Path1")
 node_right = NodePath("../MapNode2")
 dialogue_id = "maria_dialogue"
 can_interact = true
+metadata/_edit_lock_ = true
 
 [node name="MapNode2" type="Node2D" parent="Path/Nodes" unique_id=1279879671 node_paths=PackedStringArray("path_left", "path_right", "node_left", "node_right")]
 position = Vector2(6228, -1014)
@@ -254,6 +266,7 @@ node_left = NodePath("../MapNode1")
 node_right = NodePath("../MapNode3")
 dialogue_id = "luzia_pre_minigame"
 can_interact = true
+metadata/_edit_lock_ = true
 
 [node name="MapNode3" type="Node2D" parent="Path/Nodes" unique_id=30385646 node_paths=PackedStringArray("path_left", "path_right", "path_down", "node_left", "node_right", "node_down")]
 position = Vector2(10363, 345)
@@ -266,6 +279,7 @@ node_right = NodePath("../MapNode4")
 node_down = NodePath("../MapNode7")
 dialogue_id = "caio_pre_minigame"
 can_interact = true
+metadata/_edit_lock_ = true
 
 [node name="MapNode4" type="Node2D" parent="Path/Nodes" unique_id=1058803581 node_paths=PackedStringArray("path_up", "path_left", "path_right", "path_down", "node_up", "node_left", "node_right", "node_down")]
 position = Vector2(14950, -349)
@@ -280,6 +294,7 @@ node_right = NodePath("../MapNode5")
 node_down = NodePath("../MapNode3")
 dialogue_id = "joao_pre_minigame"
 can_interact = true
+metadata/_edit_lock_ = true
 
 [node name="MapNode5" type="Node2D" parent="Path/Nodes" unique_id=1529243064 node_paths=PackedStringArray("path_up", "path_left", "path_down", "node_up", "node_left", "node_down")]
 position = Vector2(17946, 1721)
@@ -292,6 +307,7 @@ node_left = NodePath("../MapNode6")
 node_down = NodePath("../MapNode6")
 dialogue_id = "leonardo_pre_minigame"
 can_interact = true
+metadata/_edit_lock_ = true
 
 [node name="MapNode6" type="Node2D" parent="Path/Nodes" unique_id=1482406757 node_paths=PackedStringArray("path_left", "path_right", "node_left", "node_right")]
 position = Vector2(13589, 3602)
@@ -302,6 +318,7 @@ node_left = NodePath("../MapNode7")
 node_right = NodePath("../MapNode5")
 dialogue_id = "alex_pre_minigame"
 can_interact = true
+metadata/_edit_lock_ = true
 
 [node name="MapNode7" type="Node2D" parent="Path/Nodes" unique_id=1030177186 node_paths=PackedStringArray("path_up", "path_left", "path_right", "node_up", "node_left", "node_right")]
 position = Vector2(9614, 3474)
@@ -314,36 +331,45 @@ node_left = NodePath("../MapNode3")
 node_right = NodePath("../MapNode6")
 dialogue_id = "luzia_lost"
 can_interact = true
+metadata/_edit_lock_ = true
 
 [node name="Paths" type="Node2D" parent="Path" unique_id=1510341413]
+metadata/_edit_lock_ = true
 
 [node name="Path1" type="Path2D" parent="Path/Paths" unique_id=138609523]
 z_index = 50
 curve = SubResource("Curve2D_crek2")
+metadata/_edit_lock_ = true
 
 [node name="Path2" type="Path2D" parent="Path/Paths" unique_id=1951884185]
 z_index = 50
 curve = SubResource("Curve2D_vt6gj")
+metadata/_edit_lock_ = true
 
 [node name="Path3" type="Path2D" parent="Path/Paths" unique_id=1976038076]
 z_index = 50
 curve = SubResource("Curve2D_do0j7")
+metadata/_edit_lock_ = true
 
 [node name="Path4" type="Path2D" parent="Path/Paths" unique_id=810219794]
 z_index = 50
 curve = SubResource("Curve2D_sj5qj")
+metadata/_edit_lock_ = true
 
 [node name="Path5" type="Path2D" parent="Path/Paths" unique_id=1816792060]
 z_index = 50
 curve = SubResource("Curve2D_mrjnl")
+metadata/_edit_lock_ = true
 
 [node name="Path6" type="Path2D" parent="Path/Paths" unique_id=540340502]
 z_index = 50
 curve = SubResource("Curve2D_rqo2c")
+metadata/_edit_lock_ = true
 
 [node name="Path7" type="Path2D" parent="Path/Paths" unique_id=846502078]
 z_index = 50
 curve = SubResource("Curve2D_e07uo")
+metadata/_edit_lock_ = true
 
 [node name="Nikole" type="Node2D" parent="." unique_id=309553364 node_paths=PackedStringArray("current_node")]
 z_index = 1

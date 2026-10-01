@@ -8,14 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://c7l5dnmquxjyb" path="res://sprites/map/npcs/fred.png" id="5_ooihk"]
 
 [sub_resource type="Gradient" id="Gradient_mah5v"]
-offsets = PackedFloat32Array(0, 0.24698795, 0.6807229)
-colors = PackedColorArray(0, 0, 0, 0.7294118, 0, 0, 0, 0.64549714, 0, 0, 0, 0)
+offsets = PackedFloat32Array(0.22289157, 1)
+colors = PackedColorArray(0.043137256, 0.023529412, 0.06666667, 0.7294118, 0, 0, 0.03137255, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_bhunq"]
 gradient = SubResource("Gradient_mah5v")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(1, 1)
+fill_from = Vector2(0, 0.5)
+fill_to = Vector2(1, 0.50869566)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2ckv8"]
 font_size = 48
@@ -47,26 +46,23 @@ grow_vertical = 2
 texture = ExtResource("2_mah5v")
 
 [node name="BG2" type="TextureRect" parent="." unique_id=1660125063]
-z_index = -4096
+z_index = 50
 anchors_preset = -1
 anchor_left = 0.2
 anchor_right = 0.8
 anchor_bottom = 1.0
 offset_left = -306.0
-offset_right = -306.0
+offset_right = 225.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_bhunq")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BG2" unique_id=2128671297]
 layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
+anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = -299.5
-offset_right = 299.5
-grow_horizontal = 2
+offset_left = 110.0
+offset_right = 709.0
 grow_vertical = 2
 alignment = 1
 
@@ -105,13 +101,6 @@ label_settings = SubResource("LabelSettings_uiwhc")
 layout_mode = 2
 text = "Sem vocês, o jogo não existiria!"
 label_settings = SubResource("LabelSettings_mah5v")
-
-[node name="Back" type="Button" parent="." unique_id=1545528574]
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 71.0
-offset_bottom = 47.0
-text = "Voltar"
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1854903985]
 position = Vector2(861, 505)
@@ -157,5 +146,24 @@ z_index = 50
 scale = Vector2(-1, 1)
 texture = ExtResource("5_ooihk")
 offset = Vector2(-5, -110)
+
+[node name="BlackRect" type="ColorRect" parent="." unique_id=208107077]
+visible = false
+z_index = 250
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Back" type="Button" parent="." unique_id=1545528574]
+z_index = 501
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 71.0
+offset_bottom = 47.0
+text = "Voltar"
 
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
