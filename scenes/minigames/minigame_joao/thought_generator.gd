@@ -73,11 +73,11 @@ func create_thought() -> void:
 				await get_tree().process_frame
 
 func arrivedPoints(thought : Thought) -> void:
-	if !thought.damage: points += 1
+	if !thought.damage and generate: points += 1
 	updateLabel()
 
 func blockedPoints(thought : Thought) -> void:
-	if thought.damage: points += 1
+	if thought.damage and generate: points += 1
 	updateLabel()
 
 func updateLabel():

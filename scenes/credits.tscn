@@ -14,7 +14,7 @@ colors = PackedColorArray(0, 0, 0, 0.7294118, 0, 0, 0, 0.64549714, 0, 0, 0, 0)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_bhunq"]
 gradient = SubResource("Gradient_mah5v")
 fill = 1
-fill_from = Vector2(0.5, 0.5)
+fill_from = Vector2(0, 0.50869566)
 fill_to = Vector2(1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2ckv8"]
@@ -22,6 +22,10 @@ font_size = 48
 font_color = Color(1, 0.8360001, 0.18, 1)
 outline_size = 16
 outline_color = Color(0.92, 0.53313994, 0.1196, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pitpm"]
+font_size = 18
+font_color = Color(0.78235406, 0.78235406, 0.78235406, 1)
 
 [node name="Credits" type="CanvasLayer" unique_id=318697145]
 script = ExtResource("1_0bpdh")
@@ -61,7 +65,7 @@ alignment = 1
 
 [node name="Desenvolvedores" type="Label" parent="BG2/VBoxContainer" unique_id=89725889]
 layout_mode = 2
-text = "Daltonismo"
+text = "Criado por"
 label_settings = SubResource("LabelSettings_2ckv8")
 
 [node name="LabelDev" type="Label" parent="BG2/VBoxContainer" unique_id=1580764463]
@@ -77,16 +81,21 @@ label_settings = SubResource("LabelSettings_2ckv8")
 
 [node name="LabelAgradecimentos" type="Label" parent="BG2/VBoxContainer" unique_id=167759124]
 layout_mode = 2
-text = "Xande
-Flávia Thaís
+text = "Allana Mátar
 Beatriz Maria Monteiro
-Duda Moreira
-Profª Virgínia
-Allana Mátar
-Gabriel Nascimento dos Santos
 Codama
+Duda Moreira
+Flávia Thaís
+Gabriel Nascimento dos Santos
 Hiago
-Izabella Torres"
+Izabella Torres
+Profª Virgínia
+Xande"
+
+[node name="LabelSemVoces" type="Label" parent="BG2/VBoxContainer" unique_id=685029884]
+layout_mode = 2
+text = "Sem vocês, o jogo não existiria!"
+label_settings = SubResource("LabelSettings_pitpm")
 
 [node name="Back" type="Button" parent="." unique_id=1545528574]
 offset_left = 16.0
