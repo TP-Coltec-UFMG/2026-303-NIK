@@ -25,7 +25,6 @@
 [ext_resource type="AudioStream" uid="uid://bh6f270m55jwq" path="res://audio/musics/kitchen.mp3" id="14_8rwna"]
 [ext_resource type="Script" uid="uid://csl2o2drb1mft" path="res://scripts/settings_buttons/setting_keybind.gd" id="14_hqtnj"]
 [ext_resource type="Theme" uid="uid://gmvr2lib4uc3" path="res://themes/default.tres" id="15_5xtl8"]
-[ext_resource type="AudioStream" uid="uid://dtqrmo30tabk" path="res://audio/musics/new_life.mp3" id="15_8rwna"]
 [ext_resource type="Theme" uid="uid://0uymsrkb4nyn" path="res://themes/easy_read.tres" id="15_kvitc"]
 [ext_resource type="PackedScene" uid="uid://61dt6fnpa7ht" path="res://scenes/home_menu.tscn" id="16_home"]
 [ext_resource type="Texture2D" uid="uid://c2fe0k122wggp" path="res://sprites/ui/key.png" id="18_pc0jn"]
@@ -152,7 +151,7 @@ font = ExtResource("8_yxe1x")
 font_size = 82
 font_color = Color(1, 0.72156864, 0.25882354, 1)
 outline_size = 41
-outline_color = Color(0, 0, 0, 1)
+outline_color = Color(0.21568628, 0.19215687, 0.30588236, 1)
 shadow_size = 62
 shadow_color = Color(1, 1, 1, 1)
 shadow_offset = Vector2(0, 0)
@@ -202,7 +201,6 @@ musics = Dictionary[String, AudioStreamMP3]({
 "head_is_a_maze": ExtResource("11_wcunu"),
 "kitchen": ExtResource("14_8rwna"),
 "neighborhood": ExtResource("5_30v7y"),
-"new_life": ExtResource("15_8rwna"),
 "yupii": ExtResource("13_uiwhc")
 })
 chirp_particle = ExtResource("12_kvitc")

@@ -35,22 +35,20 @@ font = ExtResource("1_6firx")
 font_size = 82
 font_color = Color(1, 0.72156864, 0.25882354, 1)
 outline_size = 41
-outline_color = Color(0, 0, 0, 1)
+outline_color = Color(0.21568628, 0.19215687, 0.30588236, 1)
 shadow_size = 62
 shadow_color = Color(1, 1, 1, 1)
 shadow_offset = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_bp8ob"]
 font_size = 48
-font_color = Color(1, 0.8360001, 0.18, 1)
 outline_size = 16
-outline_color = Color(0.92, 0.53313994, 0.1196, 1)
+outline_color = Color(0.21568628, 0.19215687, 0.30588236, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_lhq7i"]
 font_size = 48
-font_color = Color(1, 0.8352941, 0.49411765, 1)
 outline_size = 16
-outline_color = Color(1.1753994, 0.5676728, 0, 1)
+outline_color = Color(0.21568628, 0.19215687, 0.30588236, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yy0av"]
 texture = ExtResource("4_lhq7i")

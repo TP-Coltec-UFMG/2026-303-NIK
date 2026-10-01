@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://cymo0pwdrymxq" path="res://sprites/map/npcs/gabriel.png" id="3_mah5v"]
 [ext_resource type="Texture2D" uid="uid://b2f673bduwoft" path="res://sprites/map/npcs/andré.png" id="4_kyhnv"]
 [ext_resource type="Texture2D" uid="uid://c7l5dnmquxjyb" path="res://sprites/map/npcs/fred.png" id="5_ooihk"]
-[ext_resource type="FontFile" uid="uid://mb7lv5gfarwo" path="res://fonts/Chewy-Regular.ttf" id="7_kyhnv"]
 
 [sub_resource type="Gradient" id="Gradient_mah5v"]
 offsets = PackedFloat32Array(0, 0.24698795, 0.6807229)
@@ -15,28 +14,25 @@ colors = PackedColorArray(0, 0, 0, 0.7294118, 0, 0, 0, 0.64549714, 0, 0, 0, 0)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_bhunq"]
 gradient = SubResource("Gradient_mah5v")
 fill = 1
-fill_from = Vector2(0, 0.50869566)
+fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2ckv8"]
 font_size = 48
 font_color = Color(1, 0.8360001, 0.18, 1)
 outline_size = 16
-outline_color = Color(0.92, 0.53313994, 0.1196, 1)
+outline_color = Color(0.7411765, 0.42745098, 0.22352941, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_pitpm"]
-font_size = 18
-font_color = Color(0.78235406, 0.78235406, 0.78235406, 1)
+[sub_resource type="LabelSettings" id="LabelSettings_uiwhc"]
+font_size = 24
+outline_size = 16
+outline_color = Color(0.16862746, 0.14901961, 0.23921569, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_ooihk"]
-font = ExtResource("7_kyhnv")
-font_size = 82
-font_color = Color(1, 0.72156864, 0.25882354, 1)
-outline_size = 41
-outline_color = Color(0, 0, 0, 1)
-shadow_size = 62
-shadow_color = Color(1, 1, 1, 1)
-shadow_offset = Vector2(0, 0)
+[sub_resource type="LabelSettings" id="LabelSettings_mah5v"]
+font_size = 20
+font_color = Color(1, 0.49019608, 0.5411765, 1)
+outline_size = 16
+outline_color = Color(0.16862746, 0.14901961, 0.23921569, 1)
 
 [node name="Credits" type="CanvasLayer" unique_id=318697145]
 script = ExtResource("1_0bpdh")
@@ -76,7 +72,7 @@ alignment = 1
 
 [node name="Desenvolvedores" type="Label" parent="BG2/VBoxContainer" unique_id=89725889]
 layout_mode = 2
-text = "Criado por"
+text = "Daltonismo"
 label_settings = SubResource("LabelSettings_2ckv8")
 
 [node name="LabelDev" type="Label" parent="BG2/VBoxContainer" unique_id=1580764463]
@@ -84,6 +80,7 @@ layout_mode = 2
 text = "Gabriel Della Gaspera
 André Dias de Paula
 Frederico Santos Gonçalves"
+label_settings = SubResource("LabelSettings_uiwhc")
 
 [node name="AgradecimentosEspeciais" type="Label" parent="BG2/VBoxContainer" unique_id=807642467]
 layout_mode = 2
@@ -92,21 +89,22 @@ label_settings = SubResource("LabelSettings_2ckv8")
 
 [node name="LabelAgradecimentos" type="Label" parent="BG2/VBoxContainer" unique_id=167759124]
 layout_mode = 2
-text = "Allana Mátar
-Beatriz Maria Monteiro
-Codama
-Duda Moreira
+text = "Xande
 Flávia Thaís
-Gabriel Nascimento dos Santos
-Hiago
-Izabella Torres
+Beatriz Maria Monteiro
+Duda Moreira
 Profª Virgínia
-Xande"
+Allana Mátar
+Gabriel Nascimento dos Santos
+Codama
+Hiago
+Izabella Torres"
+label_settings = SubResource("LabelSettings_uiwhc")
 
-[node name="LabelSemVoces" type="Label" parent="BG2/VBoxContainer" unique_id=685029884]
+[node name="LabelAgradecimentos2" type="Label" parent="BG2/VBoxContainer" unique_id=57400770]
 layout_mode = 2
 text = "Sem vocês, o jogo não existiria!"
-label_settings = SubResource("LabelSettings_pitpm")
+label_settings = SubResource("LabelSettings_mah5v")
 
 [node name="Back" type="Button" parent="." unique_id=1545528574]
 offset_left = 16.0
@@ -159,28 +157,5 @@ z_index = 50
 scale = Vector2(-1, 1)
 texture = ExtResource("5_ooihk")
 offset = Vector2(-5, -110)
-
-[node name="BlackRect" type="ColorRect" parent="." unique_id=86339504]
-z_index = 100
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
-[node name="Title" type="Label" parent="BlackRect" unique_id=1934074799]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.75
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -960.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "NIK"
-label_settings = SubResource("LabelSettings_ooihk")
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
