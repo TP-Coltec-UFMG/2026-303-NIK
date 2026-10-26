@@ -5,13 +5,20 @@ const MUSIC_TRANSITION_DURATION : float = 2.0
 # Volume normal do Music Player (em dB)
 const MUSIC_VOLUME : float = 0 # 0db = volume padrão do arquivo
 
+# Quantidade máxima de reproduções simultâneas de um efeito sonoro
+const MAX_SFX_POLYPHONY : int = 8
+
 @onready var animation_player = $UI/AnimationPlayer
 @onready var black_background = $UI/Black
 @onready var music_player = $UI/MusicPlayer
 @onready var color_blind_filter = $UI/ColorBlindessFilter
 @onready var menu = $UI/Menu
+@onready var sfxs_parent : Node = $UI/SFXs
+@onready var sfx_template : AudioStreamPlayer = $UI/SFXs/SFXTemplate
 @export var scenes : Dictionary[String, PackedScene] = {}
 @export var musics : Dictionary[String, AudioStreamMP3] = {}
+@export var sfxs : Dictionary[String, AudioStreamMP3] = {}
+var sfxs_streams : Dictionary[String, AudioStreamPlayer] = {}
 var current_scene: String
 var current_music : String
 
@@ -33,6 +40,7 @@ var can_start_dialogue = true
 
 func _ready():
 	load_settings()
+	prepare_sfxs()
 	# load_musics()
 	play_music("neighborhood")
 	# load_scene("Principal")
@@ -467,3 +475,29 @@ func play_music(song_name : String):
 	await _current_music_tween.finished
 	if transition_id == _music_transition_id:
 		_current_music_tween = null
+
+# Carrega/prepara os efeitos sonoros, criando um AudioStreamPlayer para cada um.
+# Isso é necessário para manter as independências entre eles.
+func prepare_sfxs() -> void:
+	sfx_template.max_polyphony = MAX_SFX_POLYPHONY
+
+	for key in sfxs.keys():
+		# Clona o template e altera o áudio
+		var stream_clone : AudioStreamPlayer = sfx_template.duplicate()
+		stream_clone.stream = sfxs[key]
+		sfxs_parent.add_child(stream_clone)
+
+		sfxs_streams[key] = stream_clone
+		
+
+# Toca um efeito sonoro, mesmo se já tiver um tocando (independente
+# se for o mesmo ou não, de forma que nenhum dos efeitos sejam afetados).
+# Ou seja, cada vez que a função é chamada, um novo som é tocado.
+func play_sfx(sfx_name : String):
+	var stream : AudioStreamPlayer = sfxs_streams.get(sfx_name)
+
+	if not stream:
+		print("Efeito sonoro nao encontrado: " + sfx_name)
+		return
+
+	stream.play()
