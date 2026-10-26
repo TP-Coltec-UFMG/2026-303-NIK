@@ -185,6 +185,10 @@ func open_screen(target : String, on_main_menu : bool = false):
 		for menu in menus.keys():
 			if menu == target:
 				current_idx = menus[menu].active_idx if menus[menu].keep_idx else 0
+
+				# Se o cursor estiver fora do intervalo dos botões, reseta a posição dele
+				if current_idx < 0 or current_idx >= menus[menu].buttons.size(): current_idx = 0
+
 				current_position = menus[menu].objects.find(menus[menu].buttons[current_idx])
 				active_menu = menu
 				menus[menu].buttons[current_idx].grab_focus()
