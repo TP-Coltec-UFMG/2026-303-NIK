@@ -228,6 +228,8 @@ func end_skill_check() -> void:
 func fail_skill_check() -> void:
 	input_on_cooldown = true
 
+	GameManager.play_sfx('damage')
+
 	const shake_time : float = SKILL_CHECK_TRY_COOLDOWN * 0.4
 	const shake_step : float = shake_time / 5.0
 

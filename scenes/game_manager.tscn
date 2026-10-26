@@ -27,9 +27,12 @@
 [ext_resource type="Theme" uid="uid://gmvr2lib4uc3" path="res://themes/default.tres" id="15_5xtl8"]
 [ext_resource type="AudioStream" uid="uid://44bst5doiso0" path="res://audio/musics/new_life.mp3" id="15_8rwna"]
 [ext_resource type="Theme" uid="uid://0uymsrkb4nyn" path="res://themes/easy_read.tres" id="15_kvitc"]
+[ext_resource type="AudioStream" uid="uid://dcym52lnpyif6" path="res://audio/sfx/right.mp3" id="16_1llei"]
 [ext_resource type="PackedScene" uid="uid://61dt6fnpa7ht" path="res://scenes/home_menu.tscn" id="16_home"]
-[ext_resource type="AudioStream" uid="uid://cl5nkrofeljsr" path="res://audio/sfx/happy_star.mp3" id="16_rscnb"]
+[ext_resource type="AudioStream" uid="uid://bp1vyg0ttr2b" path="res://audio/sfx/snap.mp3" id="17_rtxrx"]
 [ext_resource type="Texture2D" uid="uid://c2fe0k122wggp" path="res://sprites/ui/key.png" id="18_pc0jn"]
+[ext_resource type="AudioStream" uid="uid://b5lu52qknb7kg" path="res://audio/sfx/damage.mp3" id="18_x4ngh"]
+[ext_resource type="AudioStream" uid="uid://do7ynuhif52sq" path="res://audio/sfx/pop.mp3" id="19_5it8k"]
 [ext_resource type="Texture2D" uid="uid://doyml4kubctxa" path="res://sprites/ui/mouse_l.png" id="22_jrl6a"]
 
 [sub_resource type="Animation" id="Animation_rerct"]
@@ -207,7 +210,10 @@ musics = Dictionary[String, AudioStreamMP3]({
 "yupii": ExtResource("13_uiwhc")
 })
 sfxs = Dictionary[String, AudioStreamMP3]({
-"happy_star": ExtResource("16_rscnb")
+"damage": ExtResource("18_x4ngh"),
+"pop": ExtResource("19_5it8k"),
+"right": ExtResource("16_1llei"),
+"snap": ExtResource("17_rtxrx")
 })
 chirp_particle = ExtResource("12_kvitc")
 sleep_particle = ExtResource("13_hqtnj")

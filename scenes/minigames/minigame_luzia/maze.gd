@@ -1,5 +1,8 @@
 class_name Maze extends Node2D
 
+# efeito sonoro q toca quando o jogador deixa a criança na estrela
+const STAR_DROPOUT_SFX_NAME : String = 'right'
+
 @onready var nikole : NikoleMaze = $Nikole
 var maze : Array
 var tile_scale : float = 375
@@ -105,6 +108,7 @@ func check_kid_dropout(column: int, row: int) -> bool:
 				has_francisco = false
 				dropped_francisco = true
 				$Stars/FranciscoS.texture = estrela_ligada_francisco
+				GameManager.play_sfx(STAR_DROPOUT_SFX_NAME)
 				wait_a_lil_time_and_start_dialogue("luzia_francisco")
 				return true
 		20:
@@ -114,6 +118,7 @@ func check_kid_dropout(column: int, row: int) -> bool:
 				has_luis = false
 				dropped_luis = true
 				$Stars/LuisS.texture = estrela_ligada_luis
+				GameManager.play_sfx(STAR_DROPOUT_SFX_NAME)
 				wait_a_lil_time_and_start_dialogue("luzia_luis")
 				return true
 		30:
@@ -123,6 +128,7 @@ func check_kid_dropout(column: int, row: int) -> bool:
 				has_flavia = false
 				dropped_flavia = true
 				$Stars/FlaviaS.texture = estrela_ligada_flavia
+				GameManager.play_sfx(STAR_DROPOUT_SFX_NAME)
 				wait_a_lil_time_and_start_dialogue("luzia_flavia")
 				return true
 	return false

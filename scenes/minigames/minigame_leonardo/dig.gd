@@ -118,6 +118,8 @@ func qte_success() -> void:
 	# Contagem.
 	qte_passed += 1
 
+	GameManager.play_sfx('right')
+
 	# Tween para fazer o comando piscar verde.
 	var tween : Tween = qte_rect.create_tween()
 	tween\
@@ -167,6 +169,9 @@ func qte_success() -> void:
 	
 func qte_failure() -> void:
 	qte_finished.emit()
+
+	GameManager.play_sfx('damage')
+
 	# Tween para fazer o comando piscar vermelho.
 	var tween : Tween = qte_rect.create_tween()
 	tween\

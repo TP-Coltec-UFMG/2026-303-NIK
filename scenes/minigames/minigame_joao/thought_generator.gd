@@ -75,6 +75,7 @@ func create_thought() -> void:
 
 func arrivedPoints(thought : Thought) -> void:
 	if !thought.damage and generate: points += 1
+	if thought.damage and generate: GameManager.play_sfx('damage')
 	updateLabel()
 
 func blockedPoints(thought : Thought) -> void:

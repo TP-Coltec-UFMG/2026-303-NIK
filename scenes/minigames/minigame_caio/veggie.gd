@@ -41,6 +41,8 @@ func slice():
 		slice_b.emitting = true
 		sprite.visible = false
 
+		GameManager.play_sfx('pop')
+
 		sliced.emit()
 
 		await get_tree().create_timer(15).timeout
