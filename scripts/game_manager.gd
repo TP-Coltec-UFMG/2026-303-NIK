@@ -79,6 +79,10 @@ func load_map_with_dialogue(dialogue_id: String) -> void:
 	await get_tree().create_timer(1.0).timeout
 	DialogueController.start_dialogue(dialogue_id, true)
 	await DialogueController.dialogue_finished
+	if dialogue_id == "leonardo_post_minigame":
+		set_game_data("leonardo_post_dialogue_completed", true)
+		get_tree().current_scene.get_node("AnimatedProps/Leonardo").apply_conditions()
+		save_game()
 	check_end_game()
 	
 func check_end_game():
@@ -329,6 +333,7 @@ func create_blank_save():
 	set_game_data("joao_minigame_completed", false)
 	set_game_data("caio_minigame_completed", false)
 	set_game_data("leonardo_minigame_completed", false)
+	set_game_data("leonardo_post_dialogue_completed", false)
 	set_game_data("alex_minigame_completed", false)
 	set_game_data("game_completed", false)
 

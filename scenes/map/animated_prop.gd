@@ -25,7 +25,9 @@ func _ready() -> void:
 		chirp()
 	if type == PropTypes.Type.SLEEPING:
 		sleep()
-	
+	apply_conditions()
+
+func apply_conditions() -> void:
 	for condition in conditions:
 		if GameManager.get_game_data(condition.condition) == condition.value:
 			if condition is AnimationCondition: type = condition.true_type

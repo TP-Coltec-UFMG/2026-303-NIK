@@ -80,15 +80,18 @@ point_count = 2
 
 [sub_resource type="Resource" id="Resource_0bpdh"]
 script = ExtResource("17_p2b7t")
-condition = "leonardo_minigame_completed"
-true_sprite = ExtResource("14_e07uo")
-false_sprite = ExtResource("16_j4o0h")
+condition = "leonardo_post_dialogue_completed"
+value = true
+true_sprite = ExtResource("16_j4o0h")
+false_sprite = ExtResource("14_e07uo")
 metadata/_custom_type_script = "uid://bl486i8whbhp6"
 
 [sub_resource type="Resource" id="Resource_2ckv8"]
 script = ExtResource("23_ah1fr")
-condition = "leonardo_minigame_completed"
-false_type = 3
+condition = "leonardo_post_dialogue_completed"
+value = true
+true_type = 3
+false_type = 0
 metadata/_custom_type_script = "uid://dhvhueq3g1dmm"
 
 [sub_resource type="Resource" id="Resource_syykr"]
