@@ -68,7 +68,7 @@ alignment = 1
 
 [node name="Desenvolvedores" type="Label" parent="BG2/VBoxContainer" unique_id=89725889]
 layout_mode = 2
-text = "Daltonismo"
+text = "Criadores"
 label_settings = SubResource("LabelSettings_2ckv8")
 
 [node name="LabelDev" type="Label" parent="BG2/VBoxContainer" unique_id=1580764463]

@@ -2,7 +2,7 @@ extends CanvasLayer
 
 const INITIAL_SCALE : float = 1.2
 
-const MUSIC_FADE_TIME : float = 7.5
+const MUSIC_FADE_TIME : float = 2.9
 
 func _ready() -> void:
 	$BlackRect.visible = true
