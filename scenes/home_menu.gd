@@ -145,6 +145,7 @@ func _input(event: InputEvent) -> void:
 	if movement:
 		move_pointer(movement)
 	elif event.is_action_pressed('interact'):
+		GameManager.play_sfx('menu_snap')
 		press_current_button()
 
 # Retorna o botão atualmente selecionado

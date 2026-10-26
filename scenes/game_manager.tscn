@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://c2fe0k122wggp" path="res://sprites/ui/key.png" id="18_pc0jn"]
 [ext_resource type="AudioStream" uid="uid://b5lu52qknb7kg" path="res://audio/sfx/damage.mp3" id="18_x4ngh"]
 [ext_resource type="AudioStream" uid="uid://do7ynuhif52sq" path="res://audio/sfx/pop.mp3" id="19_5it8k"]
+[ext_resource type="AudioStream" uid="uid://cgh1xwni51r5d" path="res://audio/sfx/menu_snap.mp3" id="20_rtxrx"]
 [ext_resource type="Texture2D" uid="uid://doyml4kubctxa" path="res://sprites/ui/mouse_l.png" id="22_jrl6a"]
 
 [sub_resource type="Animation" id="Animation_rerct"]
@@ -211,6 +212,7 @@ musics = Dictionary[String, AudioStreamMP3]({
 })
 sfxs = Dictionary[String, AudioStreamMP3]({
 "damage": ExtResource("18_x4ngh"),
+"menu_snap": ExtResource("20_rtxrx"),
 "pop": ExtResource("19_5it8k"),
 "right": ExtResource("16_1llei"),
 "snap": ExtResource("17_rtxrx")

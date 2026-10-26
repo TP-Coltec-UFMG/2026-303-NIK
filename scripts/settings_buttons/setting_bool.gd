@@ -46,5 +46,4 @@ func _draw() -> void:
 
 func _pressed() -> void:
 	value = !value
-
 	GameManager.change_setting(id, value)
