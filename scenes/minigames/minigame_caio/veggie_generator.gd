@@ -34,15 +34,15 @@ func veggie_sliced():
 	points += 1
 	label.text = str(points) + "/30"
 
-	if points == 1:
+	if points == 10:
 		interval_multiplier *= 0.75
 		DialogueController.start_dialogue("caio_minigame_dialogue_1")
 		await DialogueController.dialogue_finished
-	if points == 2:
+	if points == 20:
 		interval_multiplier *= 0.75
 		DialogueController.start_dialogue("caio_minigame_dialogue_2")
 		await DialogueController.dialogue_finished
-	if points >= 3:
+	if points >= 30:
 		DialogueController.start_dialogue("caio_minigame_dialogue_3")
 		await DialogueController.dialogue_finished
 		game_ended = true
@@ -51,7 +51,7 @@ func veggie_sliced():
 		size_multiplier = 2
 		
 
-		await get_tree().create_timer(4).timeout
+		await get_tree().create_timer(2.75).timeout
 		end_game()
 
 func _unhandled_input(event: InputEvent) -> void:

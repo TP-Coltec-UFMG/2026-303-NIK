@@ -72,7 +72,7 @@ func read_maze() -> Array:
 		for c in range(width):
 			var column = []
 			for r in range(height):
-				column.append(0 if maze_bitmap.get_bit(c, r) else 0)
+				column.append(-1 if maze_bitmap.get_bit(c, r) else 0)
 			matrix.append(column)
 
 	return matrix
@@ -124,6 +124,8 @@ func check_kid_dropout(column: int, row: int) -> bool:
 				dropped_luis = true
 				$Stars/LuisS.texture = estrela_ligada_luis
 				GameManager.play_sfx(STAR_DROPOUT_SFX_NAME)
+				var particle = dropout_particle.instantiate() as GPUParticles2D
+				$Stars/FranciscoS.add_child(particle)
 				wait_a_lil_time_and_start_dialogue("luzia_luis")
 				return true
 		30:
@@ -134,6 +136,8 @@ func check_kid_dropout(column: int, row: int) -> bool:
 				dropped_flavia = true
 				$Stars/FlaviaS.texture = estrela_ligada_flavia
 				GameManager.play_sfx(STAR_DROPOUT_SFX_NAME)
+				var particle = dropout_particle.instantiate() as GPUParticles2D
+				$Stars/FranciscoS.add_child(particle)
 				wait_a_lil_time_and_start_dialogue("luzia_flavia")
 				return true
 	return false
@@ -219,7 +223,7 @@ func initialize_pathfinding() -> void:
 	# Coloca as paredes
 	for c in range(width):
 		for r in range(height):
-			_astar_grid.set_point_solid( Vector2i(c, r), true if maze[c][r] == -1 else false)
+			_astar_grid.set_point_solid(Vector2i(c, r), true if maze[c][r] == -1 else false)
 
 	# Atualiza o grid (com as novas informações de parede e tal)
 	_astar_grid.update()

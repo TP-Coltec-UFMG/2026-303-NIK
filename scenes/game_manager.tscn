@@ -39,6 +39,7 @@
 [ext_resource type="AudioStream" uid="uid://6cd70mqw66e6" path="res://audio/sfx/chop.mp3" id="22_d231i"]
 [ext_resource type="Texture2D" uid="uid://doyml4kubctxa" path="res://sprites/ui/mouse_l.png" id="22_jrl6a"]
 [ext_resource type="AudioStream" uid="uid://dse71k78dq3xg" path="res://audio/sfx/piriririri.mp3" id="23_d231i"]
+[ext_resource type="AudioStream" uid="uid://4mmgioaq5acb" path="res://audio/sfx/whoosh.mp3" id="25_u168d"]
 
 [sub_resource type="Animation" id="Animation_rerct"]
 length = 0.001
@@ -223,7 +224,8 @@ sfxs = Dictionary[String, AudioStreamMP3]({
 "piriririri": ExtResource("23_d231i"),
 "pop": ExtResource("19_5it8k"),
 "right": ExtResource("16_1llei"),
-"snap": ExtResource("17_rtxrx")
+"snap": ExtResource("17_rtxrx"),
+"whoosh": ExtResource("25_u168d")
 })
 chirp_particle = ExtResource("12_kvitc")
 sleep_particle = ExtResource("13_hqtnj")

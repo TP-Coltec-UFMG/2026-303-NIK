@@ -10,6 +10,7 @@ signal arrived
 func _ready() -> void:
 	if textura:
 		sprite.texture = textura;
+		get_parent().destroy_thoughts.connect(kill_me)
 
 func block() -> void:
 	emit_signal("blocked");
@@ -43,8 +44,19 @@ func _on_tween_finished() -> void:
 	tween.set_trans(Tween.TRANS_CUBIC)
 	
 	tween.tween_property(self, "scale", Vector2.ZERO, .1)
+	arrived.emit()
+
 	await tween.finished
 
-	arrived.emit()
+	queue_free()
+
+func kill_me():
+	tween.kill()
+		
+	tween = create_tween()
+	tween.set_trans(Tween.TRANS_CUBIC)
+	
+	tween.tween_property(self, "scale", Vector2.ZERO, .1)
+	await tween.finished
 
 	queue_free()

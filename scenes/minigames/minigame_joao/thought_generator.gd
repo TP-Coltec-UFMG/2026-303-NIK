@@ -14,6 +14,8 @@ var generate : bool = true
 var odds : float = 0.75
 var interval_multiplier : float = 1
 
+signal destroy_thoughts
+
 func _ready() -> void:
 	GameManager.play_music('yupii')
 	points = int(label_points.text.replace("/30", ""))
@@ -44,9 +46,10 @@ func create_thought() -> void:
 				thought.arrived.connect(arrivedPoints.bind(thought))
 				thought.tree_exited.connect(func(): thoughts.erase(thought))
 				
-				await get_tree().create_timer(1 * interval_multiplier).timeout
+				await get_tree().create_timer(1.5 * interval_multiplier).timeout
 			else:
 				generate = false
+				destroy_thoughts.emit()
 
 		else:
 			if thoughts.is_empty():
@@ -58,15 +61,15 @@ func create_thought() -> void:
 					await DialogueController.dialogue_finished
 					protector.animation_amplitude *= 0.75
 					protector.animation_speed *= 0.75
-					odds = 0.25
-					interval_multiplier *= 0.8
+					odds = 0.4
+					interval_multiplier *= 0.85
 				elif points >= 10:
 					DialogueController.start_dialogue("joao_minigame_dialogue_1")
 					await DialogueController.dialogue_finished
 					protector.animation_amplitude *= 0.75
 					protector.animation_speed *= 0.75
-					odds = 0.5
-					interval_multiplier *= 0.8
+					odds = 0.6
+					interval_multiplier *= 0.85
 				flag += 10
 				generate = true
 				
@@ -74,12 +77,19 @@ func create_thought() -> void:
 				await get_tree().process_frame
 
 func arrivedPoints(thought : Thought) -> void:
-	if !thought.damage and generate: points += 1
-	if thought.damage and generate: GameManager.play_sfx('damage')
+	if not thought.damage and generate: 
+		points += 1
+		GameManager.play_sfx('pop')
+	if thought.damage and generate: 
+		GameManager.play_sfx('damage')
 	updateLabel()
 
 func blockedPoints(thought : Thought) -> void:
-	if thought.damage and generate: points += 1
+	if thought.damage and generate: 
+		points += 1
+		GameManager.play_sfx('pop')
+	if not thought.damage and generate:
+		GameManager.play_sfx('damage')
 	updateLabel()
 
 func updateLabel():
