@@ -109,7 +109,7 @@ func on_task_clicked(task_button : TextureButton) -> void:
 	# Atualiza o label do progresso
 	progress_label.text = "%d/%d" % [tasks_completed, NUMBER_OF_TASKS]
 
-	GameManager.play_sfx('pop')
+	GameManager.play_sfx('email')
 
 	var tween : Tween = task_button.create_tween()
 	tween\

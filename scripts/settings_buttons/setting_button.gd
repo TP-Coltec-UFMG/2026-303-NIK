@@ -29,14 +29,15 @@ func draw_text(text : String, offset : Vector2 = Vector2.ZERO, color = null, out
 		text_color = color
 
 	var outline_color
-	if is_focused: # aplica a color correta pro outline
-		if outline:
-			outline_color = outline
+	if outline:
+		outline_color = outline
+	else:
+		if not pressed:
+			outline_color = get_theme_color("color_focus_outline", theme_variation)
+		elif is_focused:
+			outline_color = get_theme_color("color_pressed_outline", theme_variation)
 		else:
-			if not pressed:
-				outline_color = get_theme_color("color_focus_outline", theme_variation)
-			else:
-				outline_color = get_theme_color("color_pressed_outline", theme_variation)
+			outline_color = get_theme_color("color_default_outline", theme_variation)
 
 	# configura a fonte pra funcionar com o tema
 	var font = get_theme_font("font", "Button")

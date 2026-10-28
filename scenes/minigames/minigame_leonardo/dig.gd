@@ -10,6 +10,8 @@ class_name Dig extends Node2D
 @onready var qte_rect : TextureProgressBar = $CanvasLayer/QTE
 @onready var nikole : Area2D = $Nikole
 
+@export var dig_particle : PackedScene
+
 # Constantes
 const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"  # Alfabeto para o sorteio da letra.
 const TIME_TO_QTE : float = .05  # Tempo entre os QTE em segundos.
@@ -118,7 +120,7 @@ func qte_success() -> void:
 	# Contagem.
 	qte_passed += 1
 
-	GameManager.play_sfx('right')
+	GameManager.play_sfx('dig')
 
 	# Tween para fazer o comando piscar verde.
 	var tween : Tween = qte_rect.create_tween()
@@ -127,14 +129,18 @@ func qte_success() -> void:
 		.set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(qte_rect, "modulate", Color.LIME_GREEN, 0.15)
 	tween.tween_property(qte_rect, "modulate", Color.WHITE, 0.15)
-	await tween.finished
 	
 	# Movimentação.
 	hole.region_rect.size.y += DIG_DISTANCE
 	hole_bottom.position.y += DIG_DISTANCE
 	nikole.position.y += DIG_DISTANCE
+
+	var particle = dig_particle.instantiate() as GPUParticles2D
+	hole_bottom.add_child(particle)
+	particle.global_position = hole_bottom.global_position + hole_bottom.texture.get_size() / 2
 		
 	# Tween de desaparecimento do comando.
+	await tween.finished
 	tween.kill()
 	tween = qte_rect.create_tween()
 	tween\

@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://1l8hm441bx2i" path="res://sprites/minigames/minigame_leonardo/hole.png" id="5_3hvv2"]
 [ext_resource type="Texture2D" uid="uid://cns01iubjs7o" path="res://sprites/minigames/minigame_leonardo/hole_bottom.png" id="5_5mg4s"]
 [ext_resource type="Texture2D" uid="uid://cr1t78irp3syu" path="res://sprites/minigames/minigame_leonardo/treasure.png" id="6_5mg4s"]
+[ext_resource type="PackedScene" uid="uid://bccgexy0g2qkq" path="res://scenes/minigames/minigame_leonardo/dig.tscn" id="6_e63n6"]
 [ext_resource type="Texture2D" uid="uid://ok3eik4xxj75" path="res://sprites/minigames/minigame_leonardo/qte.png" id="10_yc8t0"]
 [ext_resource type="Texture2D" uid="uid://c63bl3u8dud1k" path="res://sprites/minigames/minigame_leonardo/qte_progress.png" id="11_e63n6"]
 [ext_resource type="FontFile" uid="uid://mb7lv5gfarwo" path="res://fonts/Chewy-Regular.ttf" id="11_f6asd"]
@@ -32,6 +33,7 @@ font_size = 32
 
 [node name="Dig" type="Node2D" unique_id=1342708563]
 script = ExtResource("1_4nms8")
+dig_particle = ExtResource("6_e63n6")
 
 [node name="Background" type="Node2D" parent="." unique_id=566857887]
 position = Vector2(639.5, 359.44995)

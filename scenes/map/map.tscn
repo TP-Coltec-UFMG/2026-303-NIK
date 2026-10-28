@@ -91,7 +91,6 @@ script = ExtResource("23_ah1fr")
 condition = "leonardo_post_dialogue_completed"
 value = true
 true_type = 3
-false_type = 0
 metadata/_custom_type_script = "uid://dhvhueq3g1dmm"
 
 [sub_resource type="Resource" id="Resource_syykr"]

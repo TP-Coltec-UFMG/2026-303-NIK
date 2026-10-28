@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://br5w0f5w45ihd" path="res://sprites/map/npcs/heads/Caio.png" id="9_5ih08"]
 [ext_resource type="Texture2D" uid="uid://b4o3dxod4p8w8" path="res://sprites/map/npcs/heads/Dona Luzia.png" id="10_noxhw"]
 [ext_resource type="Texture2D" uid="uid://d1bebc6qgyk1m" path="res://sprites/map/npcs/heads/Vovó Maria.png" id="11_d2kxg"]
+[ext_resource type="Texture2D" uid="uid://sy5p2k6nhfxp" path="res://sprites/map/npcs/heads/Celular.png" id="12_5ih08"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xoyff"]
 font_color = Color(0, 0, 0, 1)
@@ -24,6 +25,7 @@ script = ExtResource("1_86us4")
 character_heads = Dictionary[String, Texture2D]({
 "Alex": ExtResource("7_6xhvj"),
 "Caio": ExtResource("9_5ih08"),
+"Celular": ExtResource("12_5ih08"),
 "Dona Luzia": ExtResource("10_noxhw"),
 "Flávia": ExtResource("6_ccu7b"),
 "Francisco": ExtResource("5_03vpb"),
@@ -90,10 +92,13 @@ texture = ExtResource("3_ahwvu")
 [node name="Head" type="TextureRect" parent="DialogueBox" unique_id=878776202]
 layout_mode = 1
 anchors_preset = -1
-offset_left = -212.0
-offset_top = -203.0
-offset_right = 288.0
-offset_bottom = 297.0
+offset_left = -283.0
+offset_top = -273.0
+offset_right = 217.0
+offset_bottom = 227.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(0.667, 0.667)
+pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("4_fyky8")
 stretch_mode = 3
