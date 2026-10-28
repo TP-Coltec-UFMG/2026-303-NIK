@@ -172,6 +172,17 @@ func apply_settings(config : Dictionary = settings):
 			var new_event = InputEventKey.new()
 			new_event.physical_keycode = settings[input]
 			InputMap.action_add_event(input, new_event)
+
+			var arrow_keys = { # adiciona as setinhas manualmente
+				"move_up": KEY_UP,
+				"move_down": KEY_DOWN,
+				"move_left": KEY_LEFT,
+				"move_right": KEY_RIGHT,
+			}
+			if input in arrow_keys and settings[input] != arrow_keys[input]:
+				var arrow_event = InputEventKey.new()
+				arrow_event.physical_keycode = arrow_keys[input]
+				InputMap.action_add_event(input, arrow_event)
 			# Atualiza no menu de dicas de controles
 			menu.update_controls_tip(input, settings[input])
 
