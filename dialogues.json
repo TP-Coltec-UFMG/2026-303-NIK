@@ -10,6 +10,7 @@
 		"Francisco": "#E85353",
 		"Luís": "#E8C853",
 		"Flávia": "#A053E8",
+		"Celular": "#5c7280",
 		"": "#000000"
 	},
 	"dialogues": [
@@ -17,8 +18,9 @@
 			"id": "initial_dialogue",
 			"lines": [
 				{
-					"name": "",
-					"text": "*Trimm-trimm trimm-trimm trimm-trimm*"
+					"name": "Celular",
+					"text": "*Trimm-trimm trimm-trimm trimm-trimm*",
+					"audio": "piriririri"
 				},
 				{
 					"name": "Nikole",

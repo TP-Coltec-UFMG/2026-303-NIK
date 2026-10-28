@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://bccgexy0g2qkq"]
+
+[ext_resource type="Texture2D" uid="uid://ievx5lu5lhf8" path="res://sprites/minigames/minigame_leonardo/particles.png" id="1_hngsu"]
+[ext_resource type="Script" uid="uid://32p58k84r0a" path="res://scenes/minigames/minigame_leonardo/dig_particle.gd" id="2_q4bs8"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_30ska"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_hngsu"]
+colors = PackedColorArray(1, 0.9316667, 0.9, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_e63n6"]
+gradient = SubResource("Gradient_hngsu")
+
+[sub_resource type="Curve" id="Curve_omedl"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0.0034364313, 0), 0.0, 12.1021595, 0, 0, Vector2(0.14285716, 0.98876417), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.2805643, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_omedl"]
+curve = SubResource("Curve_omedl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k28x2"]
+lifetime_randomness = 0.1
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(220, 20, 0)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = 1.0728835e-05
+angle_max = 360.00003
+direction = Vector3(0, -1, 0)
+spread = 33.415
+initial_velocity_min = 320.38
+initial_velocity_max = 500.0
+angular_velocity_min = -500.0
+angular_velocity_max = 499.99997
+gravity = Vector3(0, 2500, 0)
+scale_curve = SubResource("CurveTexture_omedl")
+color_initial_ramp = SubResource("GradientTexture1D_e63n6")
+anim_offset_max = 1.0
+
+[node name="Dig" type="GPUParticles2D" unique_id=103093190]
+z_index = 1
+material = SubResource("CanvasItemMaterial_30ska")
+emitting = false
+amount = 20
+texture = ExtResource("1_hngsu")
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+visibility_rect = Rect2(-2500, -100, 5000, 1200)
+process_material = SubResource("ParticleProcessMaterial_k28x2")
+script = ExtResource("2_q4bs8")

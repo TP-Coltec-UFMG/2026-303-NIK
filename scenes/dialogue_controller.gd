@@ -84,10 +84,28 @@ func next_line(idx : int = -1):
 
 	if not character.is_empty():
 		dialogue_text.text = "[font_size=36][color=" + characters[character] + "]" + character + "\n[font_size=28][color=black]" + line
-		dialogue_head.texture = character_heads[character]
+		if dialogue_head.texture != character_heads[character]:
+			var tween : Tween = create_tween()
+			tween\
+			.tween_property(dialogue_head, 'scale', Vector2(0, 0), 0.1)\
+			.set_trans(Tween.TRANS_QUART)\
+			.set_ease(Tween.EASE_OUT)
+			await tween.finished
+			dialogue_head.texture = character_heads[character]
+			tween.kill()
+			tween = create_tween()
+			tween\
+			.tween_property(dialogue_head, 'scale', Vector2(0.667, 0.667), 0.1)\
+			.set_trans(Tween.TRANS_QUART)\
+			.set_ease(Tween.EASE_OUT)
+			await tween.finished
+		else: dialogue_head.texture = character_heads[character]
 	else:
 		dialogue_head.texture = null
 		dialogue_text.text = "[font_size=36] \n[font_size=28][color=black]" + line
+	
+	if not active_dialogue.lines[current_line].audio.is_empty():
+		GameManager.play_sfx(active_dialogue.lines[current_line].audio);
 		
 func end_dialogue():
 	GameManager.can_start_dialogue = false
@@ -223,7 +241,7 @@ func read_dialogue_file():
 				var condition = DialogueCondition.new(dialogue.condition.data, dialogue.condition.value == "true", dialogue.condition.else) if dialogue.get("condition") else null
 				var lines : Array[DialogueLine] = []
 				for line in dialogue.lines:
-					lines.append(DialogueLine.new(line.name, line.text))
+					lines.append(DialogueLine.new(line.name, line.text, line.audio if line.has("audio") else ""))
 
 				var redirects : Array[DialogueRedirect] = []
 				if dialogue.has("redirect"):
@@ -295,7 +313,9 @@ class DialogueCondition:
 class DialogueLine:
 	var name : String
 	var text : String
+	var audio : String
 
-	func _init(_name : String, _text : String):
+	func _init(_name : String, _text : String, _audio : String):
 		name = _name
 		text = _text
+		audio = _audio

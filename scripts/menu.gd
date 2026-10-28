@@ -44,7 +44,7 @@ const menu_center_offset : Vector2 = Vector2(1000, 0);
 # Ângulo, em radiano, entre os botões
 const menu_angle : float = 0.1
 # Distância, em pixels, entre os botões 
-const menu_distance : float = 64
+const menu_distance : float = 96
 
 # Distância do botão selecionado da circunferência
 const selected_button_offset : float = 0

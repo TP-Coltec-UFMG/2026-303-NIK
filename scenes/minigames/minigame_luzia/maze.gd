@@ -1,7 +1,7 @@
 class_name Maze extends Node2D
 
 # efeito sonoro q toca quando o jogador deixa a criança na estrela
-const STAR_DROPOUT_SFX_NAME : String = 'right'
+const STAR_DROPOUT_SFX_NAME : String = 'snap'
 
 @onready var nikole : NikoleMaze = $Nikole
 var maze : Array
@@ -30,6 +30,8 @@ var pos_flavia : Vector2i
 @export var estrela_ligada_francisco : Texture
 @export var estrela_ligada_luis : Texture
 @export var estrela_ligada_flavia : Texture
+
+@export var dropout_particle : PackedScene
 
 @export var path_dot : Texture
 @export var path_dot_outline : Texture
@@ -70,7 +72,7 @@ func read_maze() -> Array:
 		for c in range(width):
 			var column = []
 			for r in range(height):
-				column.append(-1 if maze_bitmap.get_bit(c, r) else 0)
+				column.append(0 if maze_bitmap.get_bit(c, r) else 0)
 			matrix.append(column)
 
 	return matrix
@@ -109,6 +111,9 @@ func check_kid_dropout(column: int, row: int) -> bool:
 				dropped_francisco = true
 				$Stars/FranciscoS.texture = estrela_ligada_francisco
 				GameManager.play_sfx(STAR_DROPOUT_SFX_NAME)
+				var particle = dropout_particle.instantiate() as GPUParticles2D
+				$Stars/FranciscoS.add_child(particle)
+				particle.global_position = $Stars/FranciscoS.global_position
 				wait_a_lil_time_and_start_dialogue("luzia_francisco")
 				return true
 		20:

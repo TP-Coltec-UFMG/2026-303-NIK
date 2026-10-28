@@ -41,7 +41,7 @@ func slice():
 		slice_b.emitting = true
 		sprite.visible = false
 
-		GameManager.play_sfx('pop')
+		GameManager.play_sfx('chop')
 
 		sliced.emit()
 

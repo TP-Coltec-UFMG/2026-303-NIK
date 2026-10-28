@@ -30,11 +30,15 @@
 [ext_resource type="AudioStream" uid="uid://dcym52lnpyif6" path="res://audio/sfx/right.mp3" id="16_1llei"]
 [ext_resource type="PackedScene" uid="uid://61dt6fnpa7ht" path="res://scenes/home_menu.tscn" id="16_home"]
 [ext_resource type="AudioStream" uid="uid://bp1vyg0ttr2b" path="res://audio/sfx/snap.mp3" id="17_rtxrx"]
+[ext_resource type="AudioStream" uid="uid://b85yppfdje4w1" path="res://audio/sfx/dig.mp3" id="18_d3www"]
 [ext_resource type="Texture2D" uid="uid://c2fe0k122wggp" path="res://sprites/ui/key.png" id="18_pc0jn"]
 [ext_resource type="AudioStream" uid="uid://b5lu52qknb7kg" path="res://audio/sfx/damage.mp3" id="18_x4ngh"]
 [ext_resource type="AudioStream" uid="uid://do7ynuhif52sq" path="res://audio/sfx/pop.mp3" id="19_5it8k"]
 [ext_resource type="AudioStream" uid="uid://cgh1xwni51r5d" path="res://audio/sfx/menu_snap.mp3" id="20_rtxrx"]
+[ext_resource type="AudioStream" uid="uid://c54rn6joid7k6" path="res://audio/sfx/email.mp3" id="21_5it8k"]
+[ext_resource type="AudioStream" uid="uid://6cd70mqw66e6" path="res://audio/sfx/chop.mp3" id="22_d231i"]
 [ext_resource type="Texture2D" uid="uid://doyml4kubctxa" path="res://sprites/ui/mouse_l.png" id="22_jrl6a"]
+[ext_resource type="AudioStream" uid="uid://dse71k78dq3xg" path="res://audio/sfx/piriririri.mp3" id="23_d231i"]
 
 [sub_resource type="Animation" id="Animation_rerct"]
 length = 0.001
@@ -211,8 +215,12 @@ musics = Dictionary[String, AudioStreamMP3]({
 "yupii": ExtResource("13_uiwhc")
 })
 sfxs = Dictionary[String, AudioStreamMP3]({
+"chop": ExtResource("22_d231i"),
 "damage": ExtResource("18_x4ngh"),
+"dig": ExtResource("18_d3www"),
+"email": ExtResource("21_5it8k"),
 "menu_snap": ExtResource("20_rtxrx"),
+"piriririri": ExtResource("23_d231i"),
 "pop": ExtResource("19_5it8k"),
 "right": ExtResource("16_1llei"),
 "snap": ExtResource("17_rtxrx")
@@ -3028,3 +3036,4 @@ vertical_alignment = 1
 
 [node name="SFXTemplate" type="AudioStreamPlayer" parent="UI/SFXs" unique_id=287259504]
 process_mode = 3
+mix_target = 2

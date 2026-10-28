@@ -3,6 +3,7 @@ class_name VeggieGenerator
 
 var next_veggie_time : float
 var interval_multiplier : float = 2.5
+var size_multiplier : float = 1.0
 
 @onready var veggies : Array[Area2D] = [ $Potato, $Carrot, $Beet ]
 @onready var label : Label = $CanvasLayer/Label
@@ -23,6 +24,7 @@ func _process(delta: float) -> void:
 			var veggie = veggies.pick_random()
 			var clone = veggie.duplicate()
 			clone.process_mode = Node.PROCESS_MODE_ALWAYS
+			clone.scale = randf_range(1.0, size_multiplier) * Vector2.ONE
 			clone.template = false
 			clone.visible = true
 			clone.sliced.connect(veggie_sliced)
@@ -32,25 +34,24 @@ func veggie_sliced():
 	points += 1
 	label.text = str(points) + "/30"
 
-	if points == 10:
+	if points == 1:
 		interval_multiplier *= 0.75
 		DialogueController.start_dialogue("caio_minigame_dialogue_1")
 		await DialogueController.dialogue_finished
-	if points == 20:
+	if points == 2:
 		interval_multiplier *= 0.75
 		DialogueController.start_dialogue("caio_minigame_dialogue_2")
 		await DialogueController.dialogue_finished
-	if points == 30:
+	if points >= 3:
 		DialogueController.start_dialogue("caio_minigame_dialogue_3")
 		await DialogueController.dialogue_finished
 		game_ended = true
 
-		var tween = create_tween()
-		tween.set_trans(Tween.TRANS_EXPO)
-		tween.tween_property(self, "interval_multiplier", 0.001, 3)
-		interval_multiplier *= 0.05
+		interval_multiplier = 0.025
+		size_multiplier = 2
+		
 
-		await tween.finished
+		await get_tree().create_timer(4).timeout
 		end_game()
 
 func _unhandled_input(event: InputEvent) -> void:
