@@ -182,6 +182,7 @@ func open_screen(target : String, on_main_menu : bool = false):
 	if target in menus.keys():
 		if target == "Main":
 			refresh_main_menu_buttons()
+			setup_circular_buttons()
 
 		for menu in menus.keys():
 			if menu == target:
