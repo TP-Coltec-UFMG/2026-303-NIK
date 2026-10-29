@@ -181,6 +181,9 @@ func wait_a_lil_time_and_start_dialogue(dialogue_name : String) -> void:
 	await get_tree().create_timer(0.5).timeout
 	DialogueController.start_dialogue(dialogue_name)
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("interact"):
+		if get_tree().paused: start_game()
 
 # Grid do pathfinding (que usa A*)
 var _astar_grid : AStarGrid2D = AStarGrid2D.new()
