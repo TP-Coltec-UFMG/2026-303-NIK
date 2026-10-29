@@ -192,6 +192,10 @@ func apply_settings(config : Dictionary = settings):
 				var arrow_event = InputEventKey.new()
 				arrow_event.physical_keycode = arrow_keys[input]
 				InputMap.action_add_event(input, arrow_event)
+			if input == "interact" and settings[input] != KEY_ENTER:
+				var enter_event = InputEventKey.new()
+				enter_event.physical_keycode = KEY_ENTER
+				InputMap.action_add_event(input, enter_event)
 			# Atualiza no menu de dicas de controles
 			menu.update_controls_tip(input, settings[input])
 
@@ -200,6 +204,9 @@ func apply_settings(config : Dictionary = settings):
 		var accept_event = InputEventKey.new()
 		accept_event.physical_keycode = settings["interact"]
 		InputMap.action_add_event("ui_accept", accept_event)
+		var enter_event = InputEventKey.new()
+		enter_event.physical_keycode = KEY_ENTER
+		InputMap.action_add_event("ui_accept", enter_event)
 
 	menu.setup_circular_buttons()
 
