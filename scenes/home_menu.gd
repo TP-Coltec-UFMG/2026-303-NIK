@@ -74,7 +74,6 @@ class HomeMenuButton:
 @onready var title : Label = $Title
 @onready var buttons_node : VBoxContainer = $Buttons
 @onready var pointer : Label = $Pointer
-@onready var tips : VBoxContainer = $Tips
 
 # Se o jogador está atualmente no menu. Serve para desativar/ativar
 # o tratamento de entrada (no caso, para certificar que o usuário não
