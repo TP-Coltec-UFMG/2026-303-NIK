@@ -1,4 +1,4 @@
-keys;pt_BR;en_US;es_ES
+﻿keys;pt_BR;en_US;es_ES
 MENU_INICIAL_CONTINUAR;Continuar Jogo;Continue Game;Continuar Juego
 MENU_INICIAL_NOVO;Novo Jogo;New Game;Nuevo Juego
 MENU_INICIAL_OPCOES;Opções;Options;Opciones
@@ -27,7 +27,7 @@ MENU_ACESSIBILIDADE_MINIGAMES_PATHFINDING;Guia de Caminhos;Pathfinding;Guía de 
 MENU_ACESSIBILIDADE_MINIGAMES_FLASHING;Elementos Piscantes;Flashing Elements;Elementos Parpadeantes
 MENU_CONFIGURACOES_AUDIO;Áudio;Audio;Audio
 MENU_CONFIGURACOES_AUDIO_V_MASTER;Volume Master;Master Volume;Volume Master
-MENU_CONFIGURACOES_AUDIO_V_VOZES;Volume Vozes;Voices Volume;Volume Voces
+MENU_CONFIGURACOES_AUDIO_V_SFX;Volume Efeitos;SFX Volume;Volume Efectos
 MENU_CONFIGURACOES_AUDIO_V_MUSICA;Volume Música;Music Volume;Volume Música
 MENU_CONFIGURACOES_CONTROLES;Controles;Controls;Controles
 MENU_CONFIGURACOES_CONTROLES_EDITAR;Editar Controles;Edit Controls;Editar Controles
@@ -107,6 +107,10 @@ DIALOGO_LUZIA_LOST_4;Obrigado, Nik. Ela não pode sair assim por causa da condi�
 DIALOGO_LUZIA_LOST_5;Eu entendo. Vai dar tudo certo, não se preocupa.;I understand. Everything will be alright, don't worry.;Lo entiendo. Todo saldrá bien, no te preocupes.
 DIALOGO_LUZIA_COMPLETED_1;Oi de novo, Nikole! Obrigado mais uma vez por trazer nossa vó de volta!;Hi again, Nikole! Thanks once again for bringing our grandma back!;¡Hola de nuevo, Nikole! ¡Gracias una vez más por traer a nuestra abuela de vuelta!
 DIALOGO_LUZIA_COMPLETED_2;Pode deixar que não vamos deixar ela sair sozinha de novo. Falou!;Don't worry, we won't let her go out alone again. Bye!;Tranquila, no la dejaremos salir sola de nuevo. ¡Hasta luego!
+TUTORIAL_LUZIA_TITULO;LABIRINTO DA MEMÓRIA;MEMORY MAZE;LABERINTO DE LA MEMORIA
+TUTORIAL_LUZIA_SUBTITULO;Ajude Nikole a reorganizar as memórias!;Help Nikole reorganize her memories!;¡Ayuda a Nikole a reorganizar los recuerdos!
+TUTORIAL_LUZIA_DESCRICAO;Encontre as lembranças dos três netinhos de Dona Luzia e leve-os para suas estrelas respectivas!;Find the memories Luzia has of her grandchildren and take them to their respective stars.;Encuentra los recuerdos que Luzia tiene de sus nietos y llévalos a sus respectivas estrellas.
+TUTORIAL_LUZIA_DICA;[color=#60bbff][font_size=24]Dica:[color=white] se precisar, ative a opção de [color=gray]Guia de Caminhos[color=white] em [color=#ffd52e]Acessibilidade.;[color=#60bbff][font_size=24]Tip:[color=white] if needed, enable the [color=gray]Pathfinding[color=white] option under [color=#ffd52e]Accessibility.;[color=#60bbff][font_size=24]Consejo:[color=white] si lo necesitas, activa la opción de [color=gray]Guía de rutas[color=white] en [color=#ffd52e]Accesibilidad.
 DIALOGO_JOAO_PRE_MINIGAME_1;Bom dia, Jão! Tudo bom?;Good morning, Jão! How are you doing?;¡Buenos días, Jão! ¿Todo bien?
 DIALOGO_JOAO_PRE_MINIGAME_2;E aí, Nik! Tô bem, e você?;Hey, Nik! I'm good, and you?;¡Qué tal, Nik! Estoy bien, ¿y tú?
 DIALOGO_JOAO_PRE_MINIGAME_3;Estou bem sim. Está curtindo bem o dia? O clima está super agradável.;I'm doing good. Are you enjoying the day? The weather is super nice.;Estoy bien. ¿Disfrutando del día? El clima está súper agradable.
@@ -141,6 +145,10 @@ DIALOGO_JOAO_POST_MINIGAME_9;Obrigado, Nikole.;Thank you, Nikole.;Gracias, Nikol
 DIALOGO_JOAO_POST_MINIGAME_10;Saiba que nossa conversa ajudou muito, viu?!;Know that our conversation helped a lot, you know?!;¡Que sepas que nuestra conversación me ayudó mucho!
 DIALOGO_JOAO_POST_MINIGAME_11;Mais uma vez, quando precisar, só me chamar, Jão!;Once again, whenever you need, just call me, Jão!;Una vez más, cuando lo necesites, ¡solo llámame, Jão!
 DIALOGO_JOAO_POST_MINIGAME_12;Uma última coisa, nunca se esqueça que não tem nada de errado se é o que te faz feliz. Falou!;One last thing, never forget that there's nothing wrong if it makes you happy. Later!;Una última cosa, nunca olvides que no hay nada de malo si es lo que te hace feliz. ¡Nos vemos!
+TUTORIAL_JOAO_TITULO;PENSAMENTOS RUINS;BAD THOUGHTS;PENSAMIENTOS MALOS
+TUTORIAL_JOAO_SUBTITULO;Proteja João de sua autodepreciação!;Protect João from his self-deprecation!;¡Protege a João de su autodepreciación!
+TUTORIAL_JOAO_DESCRICAO_1;Bloqueie os pensamentos ruins enquanto deixa os pensamentos positivos chegarem até o João.;Block out the bad thoughts while letting the positive thoughts reach João.;Bloquea los pensamientos negativos mientras dejas que los pensamientos positivos lleguen hasta João.
+TUTORIAL_JOAO_DESCRICAO_2;[font_size=32]Aponte seu mouse para controlar o escudo.;[font_size=32]Point your mouse to control the shield.;[font_size=32]Mueve el ratón para controlar el escudo.
 DIALOGO_JOAO_COMPLETED_1;E aí, Nikole. Obrigado mais uma vez. De verdade.;Hey, Nikole. Thanks once again. Truly.;Hola, Nikole. Gracias una vez más. De verdad.
 DIALOGO_CAIO_PRE_MINIGAME_1;Bom dia, Caio! O que você está fazendo aí?;Good morning, Caio! What are you doing there?;¡Buenos días, Caio! ¿Qué estás haciendo ahí?
 DIALOGO_CAIO_PRE_MINIGAME_2;Bom dia, Nikole. Estou apenas regando essas lindas rosas aqui. Elas gostam de água pela manhã.;Good morning, Nikole. I'm just watering these beautiful roses here. They like water in the morning.;Buenos días, Nikole. Solo estoy regando estas hermosas rosas aquí. Les gusta el agua por la mañana.
@@ -169,6 +177,9 @@ DIALOGO_CAIO_POST_MINIGAME_5;Você tem razão! Ela sempre estará comigo sim... 
 DIALOGO_CAIO_POST_MINIGAME_6;Adeus, Caio!;Goodbye, Caio!;¡Adiós, Caio!
 DIALOGO_CAIO_COMPLETED_1;Aquela comida estava boa mesmo, hein?;That food was really good, huh?;Esa comida estaba realmente buena, ¿eh?
 DIALOGO_CAIO_COMPLETED_2;Parece que a sua ajuda trouxe um tcham a mais, tá ligado?;It seems your help added a little extra magic, you know?;Parece que tu ayuda le dio un toque especial, ¿sabes?
+TUTORIAL_CAIO_TITULO;RECEITA DA MAMÃE;MOM'S RECIPE;RECETA DE MAMÁ
+TUTORIAL_CAIO_SUBTITULO;Corte os ingredientes da sopa!;Chop the soup ingredients!;¡Corta los ingredientes de la sopa!
+TUTORIAL_CAIO_DESCRICAO;Pressione e arraste o mouse para cortar os ingredientes!;Press and drag the mouse to cut the ingredients!;¡Presiona y arrastra el ratón para cortar los ingredientes!
 DIALOGO_LEONARDO_PRE_MINIGAME_1;Bom dia, seu Léo! Como o senhor está?;Good morning, Mr. Léo! How are you doing?;¡Buenos días, don Léo! ¿Cómo está usted?
 DIALOGO_LEONARDO_PRE_MINIGAME_2;Bom dia, Nikole! Tudo bem sim, e com você? Aproveitando o dia?;Good morning, Nikole! Doing fine, and you? Enjoying the day?;¡Buenos días, Nikole! Todo bien, ¿y tú? ¿Disfrutando del día?
 DIALOGO_LEONARDO_PRE_MINIGAME_3;Tudo bem também, obrigada por perguntar!;Doing good too, thanks for asking!;¡Todo bien también, gracias por preguntar!
@@ -201,6 +212,9 @@ DIALOGO_LEONARDO_POST_MINIGAME_5;Realmente! Obrigada de novo. Nossa conversa foi
 DIALOGO_LEONARDO_POST_MINIGAME_6;Tchau, Nikole!;Bye, Nikole!;¡Chao, Nikole!
 DIALOGO_LEONARDO_COMLETED_1;Zzzzzzzzzzzz...;Zzzzzzzzzzzz...;Zzzzzzzzzzzz...
 DIALOGO_LEONARDO_COMLETED_2;Zzzzzzzz...;Zzzzzzzz...;Zzzzzzzz...
+TUTORIAL_LEONARDO_TITULO;RACISMO LINGUÍSTICO;LINGUISTIC RACISM;RACISMO LINGÜÍSTICO
+TUTORIAL_LEONARDO_SUBTITULO;Corte o mal pela raiz!;Nip the evil in the bud!;¡Corta el mal de raíz!
+TUTORIAL_LEONARDO_DESCRICAO;Aperte as teclas no momento certo para cavar a terra e chegar à raiz do problema.;Press the keys at the right moment to dig into the earth and reach the root of the problem.;Presiona las teclas en el momento justo para cavar la tierra y llegar a la raíz del problema.
 DIALOGO_ALEX_PRE_MINIGAME_1;Bom dia! Você é a nova vizinha, né? Seja bem-vinda a nossa vilazinha!;Good morning! You're the new neighbor, right? Welcome to our little village!;¡Buenos días! Eres la nueva vecina, ¿verdad? ¡Bienvenida a nuestra aldeita!
 DIALOGO_ALEX_PRE_MINIGAME_2;Bom dia! Muito obrigada. Acabei de terminar a minha mudança. Esse lugar é adorável!;Good morning! Thank you so much. I just finished moving in. This place is lovely!;¡Buenos días! Muchas gracias. Acabo de terminar de mudarme. ¡Este lugar es encantador!
 DIALOGO_ALEX_PRE_MINIGAME_3;Você tem razão... Nunca me canso de olhar para a paisagem. Espera só até você conhecer o laguinho que tem aqui perto!;You're right... I never get tired of looking at the landscape. Just wait until you see the little pond near here!;Tienes razón... Nunca me canso de mirar el paisaje. ¡Espera a conocer el pequeñolago que hay aquí cerca!
@@ -233,3 +247,7 @@ DIALOGO_ALEX_POST_MINIGAME_10;Tudo bem, Alex. Só me chamar se precisar conversa
 DIALOGO_ALEX_POST_MINIGAME_11;Espero que você goste da nossa vila! Até mais!;I hope you like our village! See you around!;¡Espero que te guste nuestra aldea! ¡Hasta luego!
 DIALOGO_ALEX_COMPLETED_1;Oi de novo! Ainda estou arrumando as coisas aqui em casa.;Hi again! I'm still unpacking things here at home.;¡Hola de nuevo! Todavía estoy ordenando las cosas aquí en casa.
 DIALOGO_ALEX_COMPLETED_2;Assim que terminar, te chamo para um café!;As soon as I finish, I'll invite you for coffee!;¡En cuanto termine, te llamo para un café!
+TUTORIAL_ALEX_TITULO;DIA DE TRABALHO;WORKDAY;DÍA DE TRABAJO
+TUTORIAL_ALEX_SUBTITULO;Termine um dia de trabalho!;Finish a workday!;¡Termina un día de trabajo!
+TUTORIAL_ALEX_DESCRICAO_1;Clique nas cartas para fazer suas tarefas.;Click on the e-mails to complete your tasks.;Haz clic en las cartas para realizar tus tareas.
+TUTORIAL_ALEX_DESCRICAO_2;[font_size=32]Vença os sentimentos apertando para [color=#E0C764] interagir [color=white]quando a [color=CF5454]barra pequena [color=white]estiver na [color=#88C86A]área[color=white].;[font_size=32]Overcome your feelings by pressing to [color=#E0C764]interact[color=white] when the [color=CF5454]small bar[color=white] is within the [color=#88C86A]area[color=white].;[font_size=32]Supera los sentimientos pulsando para [color=#E0C764] interactuar [color=white]cuando la [color=CF5454]barra pequeña [color=white]esté en el [color=#88C86A]área[color=white].

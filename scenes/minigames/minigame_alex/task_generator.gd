@@ -27,8 +27,6 @@ const NUMBER_OF_TASKS : int = 45
 
 @onready var skill_check : Node2D = $"../SkillCheck"
 
-@onready var key_node : RichTextLabel = $Tutorial/Background/Interact/Key			
-
 
 # Se o minigame está rodando (se consegue gerar mais tarefas ou gerar o skill check)
 var is_minigame_running : bool = false
@@ -49,12 +47,8 @@ func _ready() -> void:
 	GameManager.play_music('yupii')
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
-	#key_node.text = OS.get_keycode_string(GameManager.get_setting("interact"))
-
 
 func _process(delta: float) -> void:
-	key_node.text = OS.get_keycode_string(GameManager.get_setting("interact"))
-
 	next_task_time -= delta
 
 	# Se já deu tempo de gerar outra tarefa, gera ela

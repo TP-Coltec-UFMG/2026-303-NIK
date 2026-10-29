@@ -449,15 +449,15 @@
 			"lines": [
 				{
 					"name": "Nikole",
-					"text": "DIALOGO_JOAO_MINIGAME_DIALOGUE_1_1"
+					"text": "DIALOGO_JOAO_MINIGAME_1_1"
 				},
 				{
 					"name": "Nikole",
-					"text": "DIALOGO_JOAO_MINIGAME_DIALOGUE_1_2"
+					"text": "DIALOGO_JOAO_MINIGAME_1_2"
 				},
 				{
 					"name": "João",
-					"text": "DIALOGO_JOAO_MINIGAME_DIALOGUE_1_3"
+					"text": "DIALOGO_JOAO_MINIGAME_1_3"
 				}
 			]
 		},
@@ -467,11 +467,11 @@
 			"lines": [
 				{
 					"name": "Nikole",
-					"text": "DIALOGO_JOAO_MINIGAME_DIALOGUE_2_1"
+					"text": "DIALOGO_JOAO_MINIGAME_2_1"
 				},
 				{
 					"name": "Nikole",
-					"text": "DIALOGO_JOAO_MINIGAME_DIALOGUE_2_2"
+					"text": "DIALOGO_JOAO_MINIGAME_2_2"
 				}
 			]
 		},
@@ -623,7 +623,7 @@
 			"lines": [
 				{
 					"name": "Caio",
-					"text": "DIALOGO_CAIO_MINIGAME_DIALOGUE_1_1"
+					"text": "DIALOGO_CAIO_MINIGAME_1_1"
 				}
 			]
 		},
@@ -633,7 +633,7 @@
 			"lines": [
 				{
 					"name": "Caio",
-					"text": "DIALOGO_CAIO_MINIGAME_DIALOGUE_2_1"
+					"text": "DIALOGO_CAIO_MINIGAME_2_1"
 				}
 			]
 		},
@@ -643,7 +643,7 @@
 			"lines": [
 				{
 					"name": "Caio",
-					"text": "DIALOGO_CAIO_MINIGAME_DIALOGUE_3_1"
+					"text": "DIALOGO_CAIO_MINIGAME_3_1"
 				}
 			]
 		},
@@ -779,7 +779,7 @@
 			"lines": [
 				{
 					"name": "Leonardo",
-					"text": "DIALOGO_LEONARDO_MINIGAME_DIALOGUE_1_1"
+					"text": "DIALOGO_LEONARDO_MINIGAME_1_1"
 				}
 			]
 		},
@@ -789,15 +789,15 @@
 			"lines": [
 				{
 					"name": "Leonardo",
-					"text": "DIALOGO_LEONARDO_MINIGAME_DIALOGUE_2_1"
+					"text": "DIALOGO_LEONARDO_MINIGAME_2_1"
 				},
 				{
 					"name": "Leonardo",
-					"text": "DIALOGO_LEONARDO_MINIGAME_DIALOGUE_2_2"
+					"text": "DIALOGO_LEONARDO_MINIGAME_2_2"
 				},
 				{
 					"name": "Leonardo",
-					"text": "DIALOGO_LEONARDO_MINIGAME_DIALOGUE_2_3"
+					"text": "DIALOGO_LEONARDO_MINIGAME_2_3"
 				}
 			]
 		},
@@ -807,15 +807,15 @@
 			"lines": [
 				{
 					"name": "Leonardo",
-					"text": "DIALOGO_LEONARDO_MINIGAME_DIALOGUE_3_1"
+					"text": "DIALOGO_LEONARDO_MINIGAME_3_1"
 				},
 				{
 					"name": "Leonardo",
-					"text": "DIALOGO_LEONARDO_MINIGAME_DIALOGUE_3_2"
+					"text": "DIALOGO_LEONARDO_MINIGAME_3_2"
 				},
 				{
 					"name": "Leonardo",
-					"text": "DIALOGO_LEONARDO_MINIGAME_DIALOGUE_3_3"
+					"text": "DIALOGO_LEONARDO_MINIGAME_3_3"
 				}
 			]
 		},
@@ -931,15 +931,15 @@
 			"lines": [
 				{
 					"name": "Alex",
-					"text": "DIALOGO_ALEX_MINIGAME_DIALOGUE_1_1"
+					"text": "DIALOGO_ALEX_MINIGAME_1_1"
 				},
 				{
 					"name": "Alex",
-					"text": "DIALOGO_ALEX_MINIGAME_DIALOGUE_1_2"
+					"text": "DIALOGO_ALEX_MINIGAME_1_2"
 				},
 				{
 					"name": "Alex",
-					"text": "DIALOGO_ALEX_MINIGAME_DIALOGUE_1_3"
+					"text": "DIALOGO_ALEX_MINIGAME_1_3"
 				}
 			]
 		},
@@ -949,15 +949,15 @@
 			"lines": [
 				{
 					"name": "Alex",
-					"text": "DIALOGO_ALEX_MINIGAME_DIALOGUE_2_1"
+					"text": "DIALOGO_ALEX_MINIGAME_2_1"
 				},
 				{
 					"name": "Alex",
-					"text": "DIALOGO_ALEX_MINIGAME_DIALOGUE_2_2"
+					"text": "DIALOGO_ALEX_MINIGAME_2_2"
 				},
 				{
 					"name": "Alex",
-					"text": "DIALOGO_ALEX_MINIGAME_DIALOGUE_2_3"
+					"text": "DIALOGO_ALEX_MINIGAME_2_3"
 				}
 			]
 		},
@@ -967,7 +967,7 @@
 			"lines": [
 				{
 					"name": "Alex",
-					"text": "DIALOGO_ALEX_MINIGAME_DIALOGUE_3_1"
+					"text": "DIALOGO_ALEX_MINIGAME_3_1"
 				}
 			]
 		},

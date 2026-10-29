@@ -5,8 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://bcqolfqc52j3l" path="res://sprites/minigames/minigame_alex/letter.png" id="3_ewbu0"]
 [ext_resource type="Texture2D" uid="uid://dj1s2apfb5d5c" path="res://sprites/minigames/minigame_alex/correct.png" id="4_5ibai"]
 [ext_resource type="Script" uid="uid://bp0aidx1n1pbv" path="res://scenes/minigames/minigame_alex/skill_check.gd" id="4_6dts0"]
-[ext_resource type="Theme" uid="uid://gmvr2lib4uc3" path="res://themes/default.tres" id="4_icvfu"]
-[ext_resource type="Texture2D" uid="uid://c2fe0k122wggp" path="res://sprites/ui/key.png" id="5_3lmwq"]
 [ext_resource type="Texture2D" uid="uid://csa4qrf0l2w1y" path="res://sprites/minigames/minigame_alex/bar_correct.png" id="5_ije47"]
 [ext_resource type="Texture2D" uid="uid://duupd47daodrt" path="res://sprites/minigames/minigame_alex/skill_check_bar_border.png" id="5_n2v2g"]
 [ext_resource type="Texture2D" uid="uid://wxyjfm7h6yq" path="res://sprites/minigames/minigame_alex/skill_check_bar_background.png" id="5_q57vx"]
@@ -28,13 +26,6 @@ outline_color = Color(0.6039216, 0.39215687, 0.34117648, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_pd2vk"]
 font_size = 32
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pd2vk"]
-texture = ExtResource("5_3lmwq")
-texture_margin_left = 8.0
-texture_margin_top = 8.0
-texture_margin_right = 8.0
-texture_margin_bottom = 8.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_sxj77"]
 particles_animation = true
@@ -170,7 +161,7 @@ anchor_right = 1.0
 offset_top = 30.0
 offset_bottom = 93.0
 grow_horizontal = 2
-text = "DIA DE TRABALHO"
+text = "TUTORIAL_ALEX_TITULO"
 label_settings = SubResource("LabelSettings_3lmwq")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -182,7 +173,7 @@ anchor_right = 1.0
 offset_top = 80.0
 offset_bottom = 143.0
 grow_horizontal = 2
-text = "Termine um dia de trabalho!"
+text = "TUTORIAL_ALEX_SUBTITULO"
 label_settings = SubResource("LabelSettings_pd2vk")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -200,36 +191,11 @@ offset_bottom = -52.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
-text = "Clique nas       cartas para fazer suas tarefas."
+text = "TUTORIAL_ALEX_DESCRICAO_1"
 label_settings = SubResource("LabelSettings_pd2vk")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
-
-[node name="Interact" type="PanelContainer" parent="Camera2D/TaskGenerator/Tutorial/Background" unique_id=847930244]
-custom_minimum_size = Vector2(28, 28)
-propagate_maximum_size = false
-layout_mode = 0
-offset_left = 685.0
-offset_top = 350.0
-offset_right = 741.0
-offset_bottom = 390.0
-size_flags_horizontal = 3
-theme = ExtResource("4_icvfu")
-theme_override_styles/panel = SubResource("StyleBoxTexture_pd2vk")
-
-[node name="Key" type="RichTextLabel" parent="Camera2D/TaskGenerator/Tutorial/Background/Interact" unique_id=271357834]
-custom_minimum_size = Vector2(23, 0)
-layout_mode = 2
-theme = ExtResource("4_icvfu")
-theme_override_font_sizes/normal_font_size = 18
-bbcode_enabled = true
-text = "Space"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Description2" type="RichTextLabel" parent="Camera2D/TaskGenerator/Tutorial/Background" unique_id=536176753]
 custom_minimum_size = Vector2(240, 0)
@@ -245,7 +211,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 bbcode_enabled = true
-text = "[font_size=32]Vença os sentimentos apertando para [color=#E0C764]       interagir [color=white]quando a [color=CF5454]barra pequena [color=white]estiver na [color=#88C86A]área[color=white]."
+text = "TUTORIAL_ALEX_DESCRICAO_2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -260,20 +226,6 @@ offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Jogar"
-
-[node name="LetterExample" type="TextureButton" parent="Camera2D/TaskGenerator/Tutorial/Background" unique_id=1829068384]
-custom_minimum_size = Vector2(3, 0)
-custom_maximum_size = Vector2(97.333, 60.667)
-layout_mode = 0
-offset_left = 464.0
-offset_top = 236.0
-offset_right = 561.333
-offset_bottom = 296.667
-scale = Vector2(0.5, 0.5)
-pivot_offset = Vector2(48.667, 30.334)
-offset_transform_enabled = true
-texture_normal = ExtResource("3_ewbu0")
-stretch_mode = 5
 
 [node name="Tip" type="RichTextLabel" parent="Camera2D/TaskGenerator/Tutorial/Background" unique_id=1722742849]
 visible = false

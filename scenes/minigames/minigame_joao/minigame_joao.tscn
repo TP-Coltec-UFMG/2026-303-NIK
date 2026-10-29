@@ -101,7 +101,7 @@ anchor_right = 1.0
 offset_top = 30.0
 offset_bottom = 93.0
 grow_horizontal = 2
-text = "Pensamentos Ruins"
+text = "TUTORIAL_JOAO_TITULO"
 label_settings = SubResource("LabelSettings_y24fe")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -113,7 +113,7 @@ anchor_right = 1.0
 offset_top = 80.0
 offset_bottom = 143.0
 grow_horizontal = 2
-text = "Proteja João de sua autodepreciação!"
+text = "TUTORIAL_JOAO_SUBTITULO"
 label_settings = SubResource("LabelSettings_43sjh")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -131,7 +131,7 @@ offset_bottom = -52.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
-text = "Bloqueie os pensamentos ruins                   enquanto deixa os pensamentos positivos                   chegarem até o João."
+text = "TUTORIAL_JOAO_DESCRICAO_1"
 label_settings = SubResource("LabelSettings_43sjh")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -151,7 +151,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 bbcode_enabled = true
-text = "[font_size=32]Aponte seu mouse para controlar o escudo."
+text = "TUTORIAL_JOAO_DESCRICAO_2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -169,19 +169,19 @@ text = "Jogar"
 
 [node name="GoodThought" type="TextureRect" parent="Tutorial/Background" unique_id=2040457468]
 layout_mode = 0
-offset_left = 582.0
-offset_top = 264.0
-offset_right = 748.0
-offset_bottom = 341.0
+offset_left = 663.0
+offset_top = 487.0
+offset_right = 829.0
+offset_bottom = 564.0
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("6_y24fe")
 
 [node name="BadThought" type="TextureRect" parent="Tutorial/Background" unique_id=1259680281]
 layout_mode = 0
-offset_left = 650.0
-offset_top = 210.0
-offset_right = 818.0
-offset_bottom = 287.0
+offset_left = 492.0
+offset_top = 487.00003
+offset_right = 660.0
+offset_bottom = 564.0
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("8_43sjh")
 
