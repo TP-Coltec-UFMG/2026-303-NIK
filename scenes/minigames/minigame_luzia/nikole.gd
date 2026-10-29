@@ -29,6 +29,7 @@ func _ready() -> void:
 	target_pos = position
 
 func _unhandled_input(event: InputEvent) -> void:
+	if get_tree().paused: return
 	if event.is_action_pressed("move_up"):
 		move_to_tile(current_pos.x, current_pos.y - 1)
 		move_timer = 0.2

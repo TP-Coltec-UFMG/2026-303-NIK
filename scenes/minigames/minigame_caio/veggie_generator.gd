@@ -58,13 +58,13 @@ func veggie_sliced():
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("skip_minigame"):
 		end_game()
-
-func _on_play_pressed():
-	$Tutorial.visible = false
-
-	# Dá um tempo entre o play e o jogo realmente começar
-	await get_tree().create_timer(1).timeout
-	active_game = true
+	
+	if event.is_action_pressed("interact"):
+		if $Tutorial.visible == true:
+			$Tutorial.visible = false
+			# Dá um tempo entre o play e o jogo realmente começar
+			await get_tree().create_timer(1).timeout
+			active_game = true
 
 func end_game():
 	GameManager.set_game_data("caio_minigame_completed", true)

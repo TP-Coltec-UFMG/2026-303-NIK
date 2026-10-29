@@ -159,12 +159,13 @@ func handle_task_completion(task_number : int) -> void:
 		MAX_TIME_BETWEEN_TASKS *= 0.33
 		is_minigame_running = true
 
-# Quando o botão de play for pressionado
-func _on_play_pressed() -> void:
-	$Tutorial.visible = false
-	# Dá um tempo entre o play e o jogo realmente começar
-	await get_tree().create_timer(1).timeout
-	is_minigame_running = true
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("interact"):
+		if $Tutorial.visible == true:
+			$Tutorial.visible = false
+			# Dá um tempo entre o play e o jogo realmente começar
+			await get_tree().create_timer(1).timeout
+			is_minigame_running = true
 
 func end_game():
 	GameManager.set_game_data("alex_minigame_completed", true)

@@ -99,6 +99,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("skip_minigame"):
 		end_game()
 		return
+	if event.is_action_pressed("interact"):
+		if $Tutorial.visible == true:
+			$Tutorial.visible = false
+			# Dá um tempo entre o play e o jogo realmente começar
+			await get_tree().create_timer(1).timeout
+			active_game = true
 	if active_qte and event is InputEventKey and event.pressed and not event.echo:
 		# Compara a tecla pressionada com a sorteada.
 		var pressed_key = event.as_text_keycode().to_upper()
@@ -194,13 +200,6 @@ func qte_failure() -> void:
 		.tween_property(qte_rect, "scale", Vector2(0, 0), 0.2)\
 		.set_ease(Tween.EASE_OUT)
 	await tween.finished
-
-func _on_play_pressed():
-	$Tutorial.visible = false
-
-	# Dá um tempo entre o play e o jogo realmente começar
-	await get_tree().create_timer(1).timeout
-	active_game = true
 
 func end_game():
 	GameManager.set_game_data("leonardo_minigame_completed", true)

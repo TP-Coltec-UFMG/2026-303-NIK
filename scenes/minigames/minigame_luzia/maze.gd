@@ -36,11 +36,10 @@ var pos_flavia : Vector2i
 @export var path_dot : Texture
 @export var path_dot_outline : Texture
 
-@onready var tutorial_button : Button = $UI/Background/Play
-
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	
 	GameManager.play_music('head_is_a_maze')
-	tutorial_button.connect("pressed", start_game)
 	get_tree().paused = true
 
 	maze = read_maze()
@@ -349,8 +348,3 @@ func clear_pathfinding() -> void:
 	# Limpa os pontos antigos
 	for child in $PathfinderPoints.get_children():
 		child.queue_free()
-			
-		
-		
-	
-	

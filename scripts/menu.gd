@@ -165,6 +165,7 @@ func search_focus(button_list : Array) -> int:
 	return current_idx
 
 func open_screen(target : String, on_main_menu : bool = false):
+	get_tree().paused = true
 	_input_cooldown_remaining = INPUT_COOLDOWN_TIME
 	get_viewport().set_input_as_handled()
 	print("loading page \"" + target + "\"")

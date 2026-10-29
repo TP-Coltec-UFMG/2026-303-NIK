@@ -95,9 +95,10 @@ func blockedPoints(thought : Thought) -> void:
 func updateLabel():
 	label_points.text = str(min(30, points)) + "/30"
 
-func _on_play_pressed() -> void:
-	print("iniciar jogo joão")
-	$"../../Tutorial".visible = false
-	# Dá um tempo entre o play e o jogo realmente começar
-	await get_tree().create_timer(1).timeout
-	create_thought()
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("interact"):
+		if $"../../Tutorial".visible == true:
+			$"../../Tutorial".visible = false
+			# Dá um tempo entre o play e o jogo realmente começar
+			await get_tree().create_timer(1).timeout
+			create_thought()

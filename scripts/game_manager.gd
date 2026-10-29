@@ -133,11 +133,11 @@ func apply_settings(config : Dictionary = settings):
 
 	if settings.has("colorblindness_mode"):
 		match settings["colorblindness_mode"]:
-			"protanopia":
+			"Protanopia":
 				(color_blind_filter.material as ShaderMaterial).set_shader_parameter("filter_mode", 4)
-			"deuteranopia":
+			"Deuteranopia":
 				(color_blind_filter.material as ShaderMaterial).set_shader_parameter("filter_mode", 5)
-			"tritanopia":
+			"Tritanopia":
 				(color_blind_filter.material as ShaderMaterial).set_shader_parameter("filter_mode", 6)
 			_:
 				(color_blind_filter.material as ShaderMaterial).set_shader_parameter("filter_mode", 0)
