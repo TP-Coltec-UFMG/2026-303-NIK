@@ -37,7 +37,7 @@ func _draw() -> void:
 		outline = get_theme_color("color_focus_outline", theme_variation)
 
 	var offset
-	offset = draw_text(label, Vector2.ZERO, color, outline)
+	offset = draw_text(tr(label), Vector2.ZERO, color, outline)
 	
 	var value_color
 	var outline_value
@@ -54,7 +54,7 @@ func _draw() -> void:
 	else:
 		value_pos = Vector2(0, offset.y)
 
-	var offset_valor = draw_text(str(value), value_pos, value_color, outline_value)
+	var offset_valor = draw_text(tr(str(value)), value_pos, value_color, outline_value)
 	if is_editing:
 		var font = get_theme_font("font", "Button")
 		var font_size = get_theme_font_size("font_size", "Button")

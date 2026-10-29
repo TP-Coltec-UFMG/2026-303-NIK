@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://beoiykc8b3f4t"
+
+[deps]
+
+files=["res://lang/planilha_traducoes.pt_BR.translation", "res://lang/planilha_traducoes.en_US.translation", "res://lang/planilha_traducoes.es_ES.translation"]
+
+source_file="res://lang/planilha_traducoes.csv"
+dest_files=["res://lang/planilha_traducoes.pt_BR.translation", "res://lang/planilha_traducoes.en_US.translation", "res://lang/planilha_traducoes.es_ES.translation"]
+
+[params]
+
+compress=1
+delimiter=1
+unescape_keys=false
+unescape_translations=true

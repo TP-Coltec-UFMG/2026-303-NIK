@@ -104,6 +104,10 @@ skip_minigame={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://lang/planilha_traducoes.en_US.translation", "res://lang/planilha_traducoes.es_ES.translation", "res://lang/planilha_traducoes.pt_BR.translation")
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

@@ -414,7 +414,7 @@ min_value = 0.5
 max_value = 2.0
 step = 0.25
 id = "ui_scale"
-label = "Escala da interface"
+label = "MENU_ESCALA_UI"
 metadata/_custom_type_script = "uid://blskgvcg8gal"
 
 [node name="Main" type="Control" parent="UI/Menu/Pages" unique_id=1357788077]
@@ -516,7 +516,7 @@ shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("9_jrl6a")
 id = "button_play"
-label = "Fechar Menu"
+label = "MENU_FECHAR_MENU"
 metadata/_custom_type_script = "uid://dxcpaqjaydfjj"
 
 [node name="ButtonSettings" type="BaseButton" parent="UI/Menu/Pages/Main" unique_id=231753211]
@@ -613,7 +613,7 @@ shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("9_jrl6a")
 id = "button_settings"
-label = "Configurações"
+label = "MENU_CONFIGURACOES"
 metadata/_custom_type_script = "uid://dxcpaqjaydfjj"
 
 [node name="ButtonAccessibility" type="BaseButton" parent="UI/Menu/Pages/Main" unique_id=536356699]
@@ -710,7 +710,7 @@ shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("9_jrl6a")
 id = "button_accessibility"
-label = "Acessibilidade"
+label = "MENU_ACESSIBILIDADE"
 metadata/_custom_type_script = "uid://dxcpaqjaydfjj"
 
 [node name="ButtonSave" type="BaseButton" parent="UI/Menu/Pages/Main" unique_id=726278835]
@@ -807,7 +807,7 @@ shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("9_jrl6a")
 id = "button_save"
-label = "Salvar"
+label = "MENU_SALVAR"
 metadata/_custom_type_script = "uid://dxcpaqjaydfjj"
 
 [node name="ButtonQuit" type="BaseButton" parent="UI/Menu/Pages/Main" unique_id=1798534514]
@@ -904,7 +904,7 @@ shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("9_jrl6a")
 id = "button_quit"
-label = "Voltar Ao Menu Principal"
+label = "MENU_QUIT"
 theme_variation = "ConfigButtonExit"
 metadata/_custom_type_script = "uid://dxcpaqjaydfjj"
 
@@ -913,11 +913,11 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ColurBlindness" type="Label" parent="UI/Menu/Pages/Accessibility" unique_id=282528396]
+[node name="ColorBlindness" type="Label" parent="UI/Menu/Pages/Accessibility" unique_id=282528396]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 21.0
-text = "Daltonismo"
+text = "MENU_ACESSIBILIDADE_DALTONISMO"
 label_settings = SubResource("LabelSettings_0fj0i")
 
 [node name="ColorBlindnessType" type="BaseButton" parent="UI/Menu/Pages/Accessibility" unique_id=781584612]
@@ -1014,10 +1014,10 @@ shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("10_wcunu")
 vertical = true
-values = Array[String](["desligado", "protanopia", "deuteranopia", "tritanopia"])
+values = Array[String](["MENU_ACESSIBILIDADE_DALTONISMO_TIPO_DESATIVADO", "Protanopia", "Deuteranopia", "Tritanopia"])
 value = "desligado"
 id = "colorblindness_mode"
-label = "Daltonismo"
+label = "MENU_ACESSIBILIDADE_DALTONISMO_TIPO"
 metadata/_custom_type_script = "uid://dbttx0ech4g7u"
 
 [node name="ColorBlindnessIntensity" type="BaseButton" parent="UI/Menu/Pages/Accessibility" unique_id=1944906087]
@@ -1118,14 +1118,14 @@ slider = true
 max_value = 1.0
 step = 0.1
 id = "colorblindness_intensity"
-label = "Intensidade"
+label = "MENU_ACESSIBILIDADE_DALTONISMO_INTENSIDADE"
 metadata/_custom_type_script = "uid://blskgvcg8gal"
 
 [node name="Interface" type="Label" parent="UI/Menu/Pages/Accessibility" unique_id=571234937]
 layout_mode = 0
 offset_right = 203.0
 offset_bottom = 63.0
-text = "Interface"
+text = "MENU_ACESSIBILIDADE_INTERFACE"
 label_settings = SubResource("LabelSettings_0fj0i")
 
 [node name="CircularMenu" type="BaseButton" parent="UI/Menu/Pages/Accessibility" unique_id=156494143]
@@ -1222,10 +1222,111 @@ shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("12_8ldib")
 vertical = true
-textDisabled = "desligado"
+textEnabled = "MENU_LIGADO"
+textDisabled = "MENU_DESLIGADO"
 id = "circular_menu"
-label = "Menu Circular"
+label = "MENU_ACESSIBILIDADE_INTERFACE_MENU_CIRCULAR"
 metadata/_custom_type_script = "uid://dws6dbyhxolq1"
+
+[node name="SelectedLaguage" type="BaseButton" parent="UI/Menu/Pages/Accessibility" unique_id=154864592]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+oversampling_with_scale = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+custom_minimum_size = Vector2(0, 0)
+custom_maximum_size = Vector2(-1, -1)
+propagate_maximum_size = false
+clip_contents = false
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 1
+grow_vertical = 1
+rotation = 0.0
+scale = Vector2(1, 1)
+pivot_offset = Vector2(0, 0)
+pivot_offset_ratio = Vector2(0, 0)
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+offset_transform_enabled = false
+offset_transform_position = Vector2(0, 0)
+offset_transform_position_ratio = Vector2(0, 0)
+offset_transform_scale = Vector2(1, 1)
+offset_transform_rotation = 0.0
+offset_transform_pivot = Vector2(0, 0)
+offset_transform_pivot_ratio = Vector2(0.5, 0.5)
+offset_transform_visual_only = true
+localize_numeral_system = true
+layout_direction = 0
+translation_context = &""
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 2
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = false
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = null
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = ExtResource("10_wcunu")
+vertical = true
+values = Array[String](["pt BRA", "en USA", "es EPS"])
+value = "pt BRA"
+id = "selected_laguage"
+label = "MENU_ACESSIBILIDADE_INTERFACE_IDIOMA"
+metadata/_custom_type_script = "uid://dbttx0ech4g7u"
 
 [node name="FontFamily" type="BaseButton" parent="UI/Menu/Pages/Accessibility" unique_id=941187777]
 unique_name_in_owner = false
@@ -1321,10 +1422,10 @@ shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("12_8ldib")
 vertical = true
-textEnabled = "Leitura Fácil"
-textDisabled = "Padrão"
+textEnabled = "MENU_ACESSIBILIDADE_INTERFACE_FONTE_TIPO1"
+textDisabled = "MENU_ACESSIBILIDADE_INTERFACE_FONTE_TIPO2"
 id = "font_family"
-label = "Fonte"
+label = "MENU_ACESSIBILIDADE_INTERFACE_FONTE"
 metadata/_custom_type_script = "uid://dws6dbyhxolq1"
 
 [node name="Minigames" type="Label" parent="UI/Menu/Pages/Accessibility" unique_id=1192921399]
@@ -1428,10 +1529,10 @@ shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("12_8ldib")
 vertical = true
-textEnabled = "ligados"
-textDisabled = "desligados"
+textEnabled = "MENU_LIGADO"
+textDisabled = "MENU_DESLIGADO"
 id = "qte_time_limit"
-label = "Eventos Rápidos"
+label = "MENU_ACESSIBILIDADE_MINIGAMES_QTE"
 metadata/_custom_type_script = "uid://dws6dbyhxolq1"
 
 [node name="PathfindingEnabled" type="BaseButton" parent="UI/Menu/Pages/Accessibility" unique_id=1073562862]
@@ -1528,9 +1629,10 @@ shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("12_8ldib")
 vertical = true
-textDisabled = "desligado"
+textEnabled = "MENU_LIGADO"
+textDisabled = "MENU_DESLIGADO"
 id = "pathfinding_enabled"
-label = "Guia de Caminhos"
+label = "MENU_ACESSIBILIDADE_MINIGAMES_PATHFINDING"
 metadata/_custom_type_script = "uid://dws6dbyhxolq1"
 
 [node name="FlashingElements" type="BaseButton" parent="UI/Menu/Pages/Accessibility" unique_id=1811158273]
@@ -1628,9 +1730,10 @@ shortcut_in_tooltip = true
 script = ExtResource("12_8ldib")
 vertical = true
 value = true
-textDisabled = "desligado"
+textEnabled = "MENU_LIGADO"
+textDisabled = "MENU_DESLIGADO"
 id = "flashing_elements"
-label = "Elementos Piscantes"
+label = "MENU_ACESSIBILIDADE_MINIGAMES_FLASHING"
 metadata/_custom_type_script = "uid://dws6dbyhxolq1"
 
 [node name="ButtonSave" type="BaseButton" parent="UI/Menu/Pages/Accessibility" unique_id=1792684709]
@@ -1727,7 +1830,7 @@ shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("9_jrl6a")
 id = "button_save_accessibility"
-label = "Salvar"
+label = "MENU_SALVAR"
 theme_variation = "ConfigButtonExit"
 metadata/_custom_type_script = "uid://dxcpaqjaydfjj"
 
@@ -1740,7 +1843,7 @@ offset_bottom = 40.0
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 21.0
-text = "Áudio"
+text = "MENU_CONFIGURACOES_AUDIO"
 label_settings = SubResource("LabelSettings_0fj0i")
 
 [node name="VolumeMaster" type="BaseButton" parent="UI/Menu/Pages/Settings" unique_id=2084773678]
@@ -1840,7 +1943,7 @@ vertical = true
 slider = true
 step = 5
 id = "volume_master"
-label = "Volume Master"
+label = "MENU_CONFIGURACOES_AUDIO_V_MASTER"
 metadata/_custom_type_script = "uid://v4a1wtjtcbkn"
 
 [node name="VolumeVoices" type="BaseButton" parent="UI/Menu/Pages/Settings" unique_id=112845173]
@@ -1940,7 +2043,7 @@ vertical = true
 slider = true
 step = 5
 id = "volume_voices"
-label = "Volume Vozes"
+label = "MENU_CONFIGURACOES_AUDIO_V_VOZES"
 metadata/_custom_type_script = "uid://v4a1wtjtcbkn"
 
 [node name="VolumeMusic" type="BaseButton" parent="UI/Menu/Pages/Settings" unique_id=1515997683]
@@ -2040,14 +2143,14 @@ vertical = true
 slider = true
 step = 5
 id = "volume_music"
-label = "Volume Música"
+label = "MENU_CONFIGURACOES_AUDIO_V_MUSICA"
 metadata/_custom_type_script = "uid://v4a1wtjtcbkn"
 
 [node name="Controls" type="Label" parent="UI/Menu/Pages/Settings" unique_id=603946296]
 layout_mode = 0
 offset_right = 106.0
 offset_bottom = 63.0
-text = "Controles"
+text = "MENU_CONFIGURACOES_CONTROLES"
 label_settings = SubResource("LabelSettings_0fj0i")
 
 [node name="ButtonControls" type="BaseButton" parent="UI/Menu/Pages/Settings" unique_id=1155915980]
@@ -2144,7 +2247,7 @@ shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("9_jrl6a")
 id = "button_controls"
-label = "Editar controles"
+label = "MENU_CONFIGURACOES_CONTROLES_EDITAR"
 metadata/_custom_type_script = "uid://dxcpaqjaydfjj"
 
 [node name="ButtonSave" type="BaseButton" parent="UI/Menu/Pages/Settings" unique_id=1456524895]
@@ -2241,7 +2344,7 @@ shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("9_jrl6a")
 id = "button_save_settings"
-label = "Salvar"
+label = "MENU_SALVAR"
 theme_variation = "ConfigButtonExit"
 metadata/_custom_type_script = "uid://dxcpaqjaydfjj"
 
@@ -2254,7 +2357,7 @@ offset_bottom = 40.0
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 21.0
-text = "Movimento"
+text = "MENU_CONTROLES_MOVIMENTO"
 label_settings = SubResource("LabelSettings_0fj0i")
 
 [node name="MoveLeft" type="BaseButton" parent="UI/Menu/Pages/Controls" unique_id=847211868]
@@ -2353,7 +2456,7 @@ script = ExtResource("14_hqtnj")
 vertical = true
 input = "move_left"
 id = "move_left"
-label = "Esquerda"
+label = "MENU_CONTROLES_MOVIMENTO_ESQUERDA"
 metadata/_custom_type_script = "uid://csl2o2drb1mft"
 
 [node name="MoveRight" type="BaseButton" parent="UI/Menu/Pages/Controls" unique_id=1404896484]
@@ -2451,7 +2554,7 @@ shortcut_in_tooltip = true
 script = ExtResource("14_hqtnj")
 vertical = true
 id = "move_right"
-label = "Direita"
+label = "MENU_CONTROLES_MOVIMENTO_DIREITA"
 metadata/_custom_type_script = "uid://csl2o2drb1mft"
 
 [node name="MoveUp" type="BaseButton" parent="UI/Menu/Pages/Controls" unique_id=1939435078]
@@ -2550,7 +2653,7 @@ script = ExtResource("14_hqtnj")
 vertical = true
 input = "move_up"
 id = "move_up"
-label = "Cima"
+label = "MENU_CONTROLES_MOVIMENTO_CIMA"
 metadata/_custom_type_script = "uid://csl2o2drb1mft"
 
 [node name="MoveDown" type="BaseButton" parent="UI/Menu/Pages/Controls" unique_id=1787976865]
@@ -2649,14 +2752,14 @@ script = ExtResource("14_hqtnj")
 vertical = true
 input = "move_down"
 id = "move_down"
-label = "Baixo"
+label = "MENU_CONTROLES_MOVIMENTO_BAIXO"
 metadata/_custom_type_script = "uid://csl2o2drb1mft"
 
 [node name="Interaction" type="Label" parent="UI/Menu/Pages/Controls" unique_id=1810244912]
 layout_mode = 0
 offset_right = 106.0
 offset_bottom = 63.0
-text = "Interação"
+text = "MENU_CONTROLES_INTERACAO"
 label_settings = SubResource("LabelSettings_0fj0i")
 
 [node name="Interact" type="BaseButton" parent="UI/Menu/Pages/Controls" unique_id=37613302]
@@ -2755,7 +2858,7 @@ script = ExtResource("14_hqtnj")
 vertical = true
 input = "interact"
 id = "interact"
-label = "Interagir"
+label = "MENU_CONTROLES_INTERACAO_INTERAGIR"
 metadata/_custom_type_script = "uid://csl2o2drb1mft"
 
 [node name="ButtonSave" type="BaseButton" parent="UI/Menu/Pages/Controls" unique_id=303319681]
@@ -2852,7 +2955,7 @@ shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("9_jrl6a")
 id = "button_save_controls"
-label = "Salvar"
+label = "MENU_SALVAR"
 theme_variation = "ConfigButtonExit"
 metadata/_custom_type_script = "uid://dxcpaqjaydfjj"
 
@@ -2986,7 +3089,7 @@ custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 theme = ExtResource("15_5xtl8")
 bbcode_enabled = true
-text = "Mover"
+text = "MENU_INICIAL_MOVER"
 fit_content = true
 vertical_alignment = 1
 
@@ -3030,7 +3133,7 @@ custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 theme = ExtResource("15_5xtl8")
 bbcode_enabled = true
-text = "Interagir"
+text = "MENU_INICIAL_INTERAGIR"
 fit_content = true
 vertical_alignment = 1
 

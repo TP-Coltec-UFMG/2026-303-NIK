@@ -284,7 +284,7 @@ func refresh_main_menu_buttons() -> void:
 				continue
 			
 			if child.id == "button_quit":
-				child.label = "Voltar Ao Menu Principal" if GameManager.current_scene == "map" else "Voltar Ao Mapa"
+				child.label = tr("MENU_QUIT") if GameManager.current_scene == "map" else "Voltar Ao Mapa"
 
 			main_menu.buttons.append(child)
 			child.size.x = 300

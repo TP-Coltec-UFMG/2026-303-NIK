@@ -61,7 +61,7 @@ func _draw() -> void:
 		color = get_theme_color("color_focus", theme_variation)
 		outline = get_theme_color("color_focus_outline", theme_variation)
 
-	var offset = draw_text(label, Vector2.ZERO, color, outline)
+	var offset = draw_text(tr(label), Vector2.ZERO, color, outline)
 	
 	if line_edit and not slider:  
 		if not vertical:

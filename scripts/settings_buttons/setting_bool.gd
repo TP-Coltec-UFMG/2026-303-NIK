@@ -21,7 +21,7 @@ func _draw() -> void:
 		color = get_theme_color("color_focus", theme_variation)
 		outline = get_theme_color("color_focus_outline", theme_variation)
 
-	var offset = draw_text(label, Vector2.ZERO, color, outline)
+	var offset = draw_text(tr(label), Vector2.ZERO, color, outline)
 
 	var value_pos
 	var value_color
@@ -42,7 +42,7 @@ func _draw() -> void:
 	# 	desenha_texto("ligado" if value else "disabled", value_pos, value_color, outline_value)
 	# else:
 	# 	desenha_texto("ligado" if value else "disabled", value_pos, value_color, outline_value)
-	draw_text(textEnabled if value else textDisabled, value_pos, value_color, value_outline)
+	draw_text(tr(textEnabled) if value else tr(textDisabled), value_pos, value_color, value_outline)
 
 func _pressed() -> void:
 	value = !value

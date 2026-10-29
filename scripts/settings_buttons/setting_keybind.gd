@@ -26,7 +26,7 @@ func _draw() -> void:
 		outline = get_theme_color("color_focus_outline", theme_variation)
 
 	var offset
-	offset = draw_text(label, Vector2.ZERO, color, outline)
+	offset = draw_text(tr(label), Vector2.ZERO, color, outline)
 	
 	var value_color
 	var outline_value
