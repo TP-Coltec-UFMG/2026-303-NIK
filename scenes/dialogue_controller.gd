@@ -23,6 +23,8 @@ const dialogue_files = "res://dialogues.json"
 var dialogues = {}
 var characters = {}
 
+var dialogue_sfx_stream : AudioStreamPlayer
+
 var active_dialogue : DialogueString = null
 var current_line = 0;
 
@@ -104,8 +106,10 @@ func next_line(idx : int = -1):
 		dialogue_head.texture = null
 		dialogue_text.text = "[font_size=36] \n[font_size=28][color=black]" + line
 	
-	if not active_dialogue.lines[current_line].audio.is_empty():
-		GameManager.play_sfx(active_dialogue.lines[current_line].audio);
+	if dialogue_sfx_stream: dialogue_sfx_stream.stop()
+	if active_dialogue: 
+		if not active_dialogue.lines[current_line].audio.is_empty():
+			dialogue_sfx_stream = GameManager.play_sfx(active_dialogue.lines[current_line].audio);
 		
 func end_dialogue():
 	GameManager.can_start_dialogue = false

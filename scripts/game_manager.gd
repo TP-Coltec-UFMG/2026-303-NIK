@@ -4,6 +4,7 @@ extends Control
 const MUSIC_TRANSITION_DURATION : float = 2.0
 # Volume normal do Music Player (em dB)
 const MUSIC_VOLUME : float = 0 # 0db = volume padrão do arquivo
+const SFX_VOLUME : float = 0 # 0db = volume padrão do arquivo
 
 # Quantidade máxima de reproduções simultâneas de um efeito sonoro
 const MAX_SFX_POLYPHONY : int = 8
@@ -19,6 +20,7 @@ const MAX_SFX_POLYPHONY : int = 8
 @export var musics : Dictionary[String, AudioStreamMP3] = {}
 @export var sfxs : Dictionary[String, AudioStreamMP3] = {}
 var sfxs_streams : Dictionary[String, AudioStreamPlayer] = {}
+var sfx_volume : float = 0;
 var current_scene: String
 var current_music : String
 
@@ -252,7 +254,7 @@ func create_default_settings() -> void:
 	settings["ui_scale"] = 1.0
 	settings["volume_master"] = 50.0
 	settings["volume_music"] = 50.0
-	settings["volume_voices"] = 50.0
+	settings["volume_sfx"] = 50.0
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	save_settings()
 
@@ -456,10 +458,10 @@ func play_music(song_name : String):
 
 	_music_transition_id += 1
 	var transition_id := _music_transition_id
-	var target_volume_db := MUSIC_VOLUME
+	var target_volume_db_music := MUSIC_VOLUME
 	if settings.has("volume_music") and settings.has("volume_master"):
 		var target_volume_linear = (settings["volume_music"] / 100.0) * (settings["volume_master"] / 100.0)
-		target_volume_db = linear_to_db(maxf(target_volume_linear, 0.0001))
+		target_volume_db_music = linear_to_db(maxf(target_volume_linear, 0.0001))
 
 	# Se já tiver transição, para ela
 	if _current_music_tween and _current_music_tween.is_valid():
@@ -490,7 +492,7 @@ func play_music(song_name : String):
 	music_player.play()
 	_current_music_tween = create_tween()
 	_current_music_tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
-	_current_music_tween.tween_property(music_player, 'volume_db', target_volume_db, MUSIC_TRANSITION_DURATION / 2)
+	_current_music_tween.tween_property(music_player, 'volume_db', target_volume_db_music, MUSIC_TRANSITION_DURATION / 2)
 	await _current_music_tween.finished
 	if transition_id == _music_transition_id:
 		_current_music_tween = null
@@ -515,8 +517,12 @@ func prepare_sfxs() -> void:
 func play_sfx(sfx_name : String):
 	var stream : AudioStreamPlayer = sfxs_streams.get(sfx_name)
 
+	if settings.has("volume_sfx") and settings.has("volume_master"):
+		stream.volume_linear = (settings["volume_sfx"] / 100.0) * (settings["volume_master"] / 100.0)
+
 	if not stream:
 		print("Efeito sonoro nao encontrado: " + sfx_name)
 		return
 
 	stream.play()
+	return stream

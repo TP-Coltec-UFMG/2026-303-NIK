@@ -1946,7 +1946,7 @@ id = "volume_master"
 label = "MENU_CONFIGURACOES_AUDIO_V_MASTER"
 metadata/_custom_type_script = "uid://v4a1wtjtcbkn"
 
-[node name="VolumeVoices" type="BaseButton" parent="UI/Menu/Pages/Settings" unique_id=112845173]
+[node name="VolumeSFX" type="BaseButton" parent="UI/Menu/Pages/Settings" unique_id=112845173]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -2042,8 +2042,8 @@ script = ExtResource("13_kvitc")
 vertical = true
 slider = true
 step = 5
-id = "volume_voices"
-label = "MENU_CONFIGURACOES_AUDIO_V_VOZES"
+id = "volume_sfx"
+label = "MENU_CONFIGURACOES_AUDIO_V_SFX"
 metadata/_custom_type_script = "uid://v4a1wtjtcbkn"
 
 [node name="VolumeMusic" type="BaseButton" parent="UI/Menu/Pages/Settings" unique_id=1515997683]
