@@ -25,15 +25,15 @@ script = ExtResource("1_86us4")
 character_heads = Dictionary[String, Texture2D]({
 "Alex": ExtResource("7_6xhvj"),
 "Caio": ExtResource("9_5ih08"),
-"Celular": ExtResource("12_5ih08"),
-"Dona Luzia": ExtResource("10_noxhw"),
 "Flávia": ExtResource("6_ccu7b"),
 "Francisco": ExtResource("5_03vpb"),
 "João": ExtResource("8_ocawk"),
 "Leonardo": ExtResource("3_vogiq"),
 "Luís": ExtResource("4_x1cjp"),
-"Nikole": ExtResource("4_fyky8"),
-"Vovó Maria": ExtResource("11_d2kxg")
+"NOME_CELULAR": ExtResource("12_5ih08"),
+"NOME_LUZIA": ExtResource("10_noxhw"),
+"NOME_MARIA": ExtResource("11_d2kxg"),
+"Nikole": ExtResource("4_fyky8")
 })
 
 [node name="DialogueBox" type="TextureRect" parent="." unique_id=1943485536]

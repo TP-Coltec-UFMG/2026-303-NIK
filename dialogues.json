@@ -1,8 +1,8 @@
 {
 	"character_colors": {
 		"Nikole": "#3DBCDD",
-		"Vovó Maria": "#641B25",
-		"Dona Luzia": "#DF5959",
+		"NOME_MARIA": "#641B25",
+		"NOME_LUZIA": "#DF5959",
 		"Caio": "#7394E1",
 		"João": "#2C3897",
 		"Leonardo": "#964069",
@@ -10,7 +10,7 @@
 		"Francisco": "#E85353",
 		"Luís": "#E8C853",
 		"Flávia": "#A053E8",
-		"Celular": "#5c7280",
+		"NOME_CELULAR": "#5c7280",
 		"": "#000000"
 	},
 	"dialogues": [
@@ -18,65 +18,64 @@
 			"id": "initial_dialogue",
 			"lines": [
 				{
-					"name": "Celular",
-					"text": "*Trimm-trimm trimm-trimm trimm-trimm*",
+					"name": "NOME_CELULAR",
+					"text": "DIALOGO_INICIAL_1",
 					"audio": "piriririri"
 				},
 				{
 					"name": "Nikole",
-					"text": "Uuaaaaaaaaaáh!"
+					"text": "DIALOGO_INICIAL_2"
 				},
 				{
 					"name": "Nikole",
-					"text": "Bom dia, dia! Vamos lá levantar que hoje é meu dia de folga!"
+					"text": "DIALOGO_INICIAL_3"
 				},
 				{
 					"name": "Nikole",
-					"text": "Estou doida para conversar com o pessoal da vila, principalmente com a nova moradora!"
+					"text": "DIALOGO_INICIAL_4"
 				},
 				{
 					"name": "Nikole",
-					"text": "Essa semana foi corrida. Poder descansar um pouco vai ser bom."
+					"text": "DIALOGO_INICIAL_5"
 				},
 				{
 					"name": "",
-					"text": "*Toc toc toc*"
+					"text": "DIALOGO_INICIAL_6"
 				},
 				{
-					"name": "Vovó Maria",
-					"text": "Bom dia, minha neta! Dormiu bem?"
-				},
-				{
-					"name": "Nikole",
-					"text": "Bom dia, vovó. Dormi bem sim."
-				},
-				{
-					"name": "Vovó Maria",
-					"text": "Que bom, querida. Acabei de fazer o café aqui para gente. Vamos lá?"
-				},
-				{
-					"name": "Vovó Maria",
-					"text": "E então, já decidiu o que vai fazer hoje?"
+					"name": "NOME_MARIA",
+					"text": "DIALOGO_INICIAL_7"
 				},
 				{
 					"name": "Nikole",
-					"text": "Já sim! Como de costume, vou conversar com o pessoal da vila. E vou te contar, sinto que hoje será um dia de aprendizado, viu!"
+					"text": "DIALOGO_INICIAL_8"
 				},
 				{
-					"name": "Vovó Maria",
-					"text": "Que ótimo, Nik! Depois me conta como foi... Coma o seu misto aí antes que ele esfrie!"
+					"name": "NOME_MARIA",
+					"text": "DIALOGO_INICIAL_9"
+				},
+				{
+					"name": "NOME_MARIA",
+					"text": "DIALOGO_INICIAL_10"
 				},
 				{
 					"name": "Nikole",
-					"text": "Vou ir comendo ele, até mais, vovó!"
+					"text": "DIALOGO_INICIAL_11"
 				},
 				{
-					"name": "Vovó Maria",
-					"text": "Tchau, Nik. Toma cuidado na rua!"
+					"name": "NOME_MARIA",
+					"text": "DIALOGO_INICIAL_12"
+				},
+				{
+					"name": "Nikole",
+					"text": "DIALOGO_INICIAL_13"
+				},
+				{
+					"name": "NOME_MARIA",
+					"text": "DIALOGO_INICIAL_14"
 				}
 			]
 		},
-
 		{
 			"id": "maria_dialogue",
 			"condition": {
@@ -86,83 +85,81 @@
 			},
 			"lines": [
 				{
-					"name": "Vovó Maria",
-					"text": "Oi, netinha! Como está indo o dia de folga? Fofocando muito por aí?"
+					"name": "NOME_MARIA",
+					"text": "DIALOGO_MARIA_1"
 				},
 				{
 					"name": "Nikole",
-					"text": "Está indo bem! Mas ainda não conversei com todo mundo! Já, já volto!"
+					"text": "DIALOGO_MARIA_2"
 				},
 				{
-					"name": "Vovó Maria",
-					"text": "Tchauzinho!"
+					"name": "NOME_MARIA",
+					"text": "DIALOGO_MARIA_3"
 				}
 			]
 		},
-
 		{
 			"id": "final_dialogue",
 			"lines": [
 				{
 					"name": "Nikole",
-					"text": "Oi, vovó! Voltei! Como foi o dia?"
+					"text": "DIALOGO_FINAL_1"
 				},
 				{
-					"name": "Vovó Maria",
-					"text": "Foi ótimo, passei o dia cuidando da horta. Mas me conta, como está o pessoal da vila?"
-				},
-				{
-					"name": "Nikole",
-					"text": "Ah, vó, é aquela coisa, né. Todos enfrentando seus próprios problemas..."
+					"name": "NOME_MARIA",
+					"text": "DIALOGO_FINAL_2"
 				},
 				{
 					"name": "Nikole",
-					"text": "Eu tentei ajudar como pude, sabe? Ouvindo e acolhendo eles."
-				},
-				{
-					"name": "Vovó Maria",
-					"text": "Imagino. Fico grata por você ajudar eles, Nik. Vejo que a educação que te dei funcionou, ainda bem!"
-				},
-				{
-					"name": "Vovó Maria",
-					"text": "Na minha época, as pessoas conversavam mais sobre essas coisas..."
+					"text": "DIALOGO_FINAL_3"
 				},
 				{
 					"name": "Nikole",
-					"text": "Pode ser... Parece mesmo que as pessoas estão se distanciando mais. Isso não é bom."
+					"text": "DIALOGO_FINAL_4"
+				},
+				{
+					"name": "NOME_MARIA",
+					"text": "DIALOGO_FINAL_5"
+				},
+				{
+					"name": "NOME_MARIA",
+					"text": "DIALOGO_FINAL_6"
 				},
 				{
 					"name": "Nikole",
-					"text": "Gosto de poder ouvir meus amigos quando eles precisam. Me sinto feliz quando posso ajudar eles com seus problemas."
-				},
-				{
-					"name": "Vovó Maria",
-					"text": "Ô minha neta, espero que existam por aí mais pessoas como você."
+					"text": "DIALOGO_FINAL_7"
 				},
 				{
 					"name": "Nikole",
-					"text": "Obrigada, vovó! Você não sabe o quanto isso significa para mim..."
+					"text": "DIALOGO_FINAL_8"
+				},
+				{
+					"name": "NOME_MARIA",
+					"text": "DIALOGO_FINAL_9"
 				},
 				{
 					"name": "Nikole",
-					"text": "Existem tantos problemas diferentes no mundo... Mal sabemos nós!"
-				},
-				{
-					"name": "Vovó Maria",
-					"text": "Tudo se resume à empatia, né? Saber se colocar no lugar do outro."
+					"text": "DIALOGO_FINAL_10"
 				},
 				{
 					"name": "Nikole",
-					"text": "Você tem razão, vovó! Mas bom, vamos entrar e assistir um filme! Passei o dia com o pessoal e não pude ficar com você!"
+					"text": "DIALOGO_FINAL_11"
 				},
 				{
-					"name": "Vovó Maria",
-					"text": "Vamos sim! A Sessão da Tarde vai começar agora. Vou fazer a pipoca!"
+					"name": "NOME_MARIA",
+					"text": "DIALOGO_FINAL_12"
+				},
+				{
+					"name": "Nikole",
+					"text": "DIALOGO_FINAL_13"
+				},
+				{
+					"name": "NOME_MARIA",
+					"text": "DIALOGO_FINAL_14"
 				}
 			],
 			"redirect": "scene:credits"
 		},
-
 		{
 			"id": "ending_pointer_dialogue",
 			"condition": {
@@ -173,16 +170,14 @@
 			"lines": [
 				{
 					"name": "Nikole",
-					"text": "Parece que eu terminei de conversar com todo mundo já!"
+					"text": "DIALOGO_POINTER_1"
 				},
 				{
 					"name": "Nikole",
-					"text": "Tudo bem, melhor eu voltar para casa e ver como minha avó está!"
+					"text": "DIALOGO_POINTER_2"
 				}
 			]
 		},
-
-
 		{
 			"id": "luzia_pre_minigame",
 			"condition": {
@@ -193,83 +188,79 @@
 			"lines": [
 				{
 					"name": "Nikole",
-					"text": "Bom dia, dona Luzia! Tudo bem?"
+					"text": "DIALOGO_LUZIA_PRE_MINIGAME_1"
 				},
 				{
-					"name": "Dona Luzia",
-					"text": "Desculpa, mas eu te conheço, garota?"
-				},
-				{
-					"name": "Nikole",
-					"text": "Sou eu, dona Luzia, a Nikole! Moro aqui perto da senhora."
-				},
-				{
-					"name": "Dona Luzia",
-					"text": "Ah sim... Nikole! Quanto tempo não te vejo, minha filha."
+					"name": "NOME_LUZIA",
+					"text": "DIALOGO_LUZIA_PRE_MINIGAME_2"
 				},
 				{
 					"name": "Nikole",
-					"text": "Que bom que a senhora se lembrou de mim! Está tudo bem com a senhora?"
+					"text": "DIALOGO_LUZIA_PRE_MINIGAME_3"
 				},
 				{
-					"name": "Dona Luzia",
-					"text": "Está tudo bem sim. Só estava caminhando por aqui e encontrei essa foto no meu bolso. Dá uma olhadinha."
+					"name": "NOME_LUZIA",
+					"text": "DIALOGO_LUZIA_PRE_MINIGAME_4"
+				},
+				{
+					"name": "Nikole",
+					"text": "DIALOGO_LUZIA_PRE_MINIGAME_5"
+				},
+				{
+					"name": "NOME_LUZIA",
+					"text": "DIALOGO_LUZIA_PRE_MINIGAME_6"
 				},
 				{
 					"name": "",
-					"text": "*Nikole observa a fotografia na mão de dona Dona Luzia*"
+					"text": "DIALOGO_LUZIA_PRE_MINIGAME_7"
 				},
 				{
-					"name": "Dona Luzia",
-					"text": "Você sabe quem são essas pessoas? Por que essa foto está comigo, afinal?"
+					"name": "NOME_LUZIA",
+					"text": "DIALOGO_LUZIA_PRE_MINIGAME_8"
 				}
 			],
 			"redirect": "scene:minigame_luzia"
 		},
-
 		{
 			"id": "luzia_francisco",
 			"lines": [
 				{
 					"name": "Nikole",
-					"text": "Esse de blusa vermelha é o Francisco. Ele gosta muito de biscoitos!"
+					"text": "DIALOGO_LUZIA_FRANCISCO_1"
 				},
 				{
-					"name": "Dona Luzia",
-					"text": "Francisco... sabia que fui eu mesma que escolhi o nome dele?"
+					"name": "NOME_LUZIA",
+					"text": "DIALOGO_LUZIA_FRANCISCO_2"
 				}
 			]
 		},
-
 		{
 			"id": "luzia_luis",
 			"lines": [
 				{
 					"name": "Nikole",
-					"text": "O menino com o cabelo super descolado é o Luís..."
+					"text": "DIALOGO_LUZIA_LUIS_1"
 				},
 				{
-					"name": "Dona Luzia",
-					"text": "Ahh, você já foi em uma das partidas de futebol dele? Ele é muito bom!"
+					"name": "NOME_LUZIA",
+					"text": "DIALOGO_LUZIA_LUIS_2"
 				}
 			]
 		},
-		
 		{
 			"id": "luzia_flavia",
 			"lines": [
 				{
 					"name": "Nikole",
-					"text": "A garota é a Flávia. Ela tem o cabelo mais bonito da cidade! Você sabe o porquê?"
+					"text": "DIALOGO_LUZIA_FLAVIA_1"
 				},
 				{
-					"name": "Dona Luzia",
-					"text": "Claro que sei! Eu que faço o cabelo dela todos os dias."
+					"name": "NOME_LUZIA",
+					"text": "DIALOGO_LUZIA_FLAVIA_2"
 				}
 			]
 		},
-
-	{
+		{
 			"id": "luzia_post_minigame",
 			"condition": {
 				"data": "luzia_minigame_completed",
@@ -279,19 +270,19 @@
 			"lines": [
 				{
 					"name": "Nikole",
-					"text": "Esses são os seus netinhos, dona Luzia."
+					"text": "DIALOGO_LUZIA_POST_MINIGAME_1_1"
 				},
 				{
-					"name": "Dona Luzia",
-					"text": "Chico, Luisinho e Flavinha... Onde eles estão agora? Preciso apresentar eles ao meu namorado Antônio. Ele vai amar eles!"
+					"name": "NOME_LUZIA",
+					"text": "DIALOGO_LUZIA_POST_MINIGAME_1_2"
 				},
 				{
 					"name": "Nikole",
-					"text": "Eles devem estar na casa da senhora te procurando. Vamos voltar para casa? Eu te acompanho pelo caminho."
+					"text": "DIALOGO_LUZIA_POST_MINIGAME_1_3"
 				},
 				{
-					"name": "Dona Luzia",
-					"text": "Claro, minha filha. Vamos."
+					"name": "NOME_LUZIA",
+					"text": "DIALOGO_LUZIA_POST_MINIGAME_1_4"
 				}
 			],
 			"redirect": [
@@ -306,31 +297,30 @@
 			"lines": [
 				{
 					"name": "Francisco",
-					"text": "Obrigado por trazer ela de volta, Nik! Estávamos preocupados..."
+					"text": "DIALOGO_LUZIA_POST_MINIGAME_2_1"
 				},
 				{
 					"name": "Nikole",
-					"text": "Não precisa agradecer, foi um prazer poder acompanhar ela até em casa."
+					"text": "DIALOGO_LUZIA_POST_MINIGAME_2_2"
 				},
 				{
 					"name": "Francisco",
-					"text": "O Alzheimer é uma doença difícil sabe? Conviver com alguém que não se lembra de você, apesar de você a conhecer desde o seu nascimento, dói. Mas mesmo assim vamos continuar amando ela sempre."
+					"text": "DIALOGO_LUZIA_POST_MINIGAME_2_3"
 				},
 				{
 					"name": "Nikole",
-					"text": "Eu sinto muito. Desejo a vocês muita força para lidar com esse momento. Podem contar comigo para qualquer coisa!"
+					"text": "DIALOGO_LUZIA_POST_MINIGAME_2_4"
 				},
 				{
 					"name": "Francisco",
-					"text": "Obrigado Nik, cuidar dela constantemente está sendo difícil e saber que podemos contar com você ajuda muito! Passe aqui para visitar ela sempre que quiser! Até mais!"
+					"text": "DIALOGO_LUZIA_POST_MINIGAME_2_5"
 				},
 				{
 					"name": "Nikole",
-					"text": "Tchau, Francisco!"
+					"text": "DIALOGO_LUZIA_POST_MINIGAME_2_6"
 				}
 			]
 		},
-
 		{
 			"id": "luzia_lost",
 			"condition": {
@@ -341,42 +331,39 @@
 			"lines": [
 				{
 					"name": "Francisco",
-					"text": "Com licença, Nik. Você viu minha avó por aí?"
+					"text": "DIALOGO_LUZIA_LOST_1"
 				},
 				{
 					"name": "Francisco",
-					"text": "Ela saiu sozinha sem a gente perceber..."
+					"text": "DIALOGO_LUZIA_LOST_2"
 				},
 				{
 					"name": "Nikole",
-					"text": "Meu Deus! Acho que vi ela perto da minha casa, Francisco. Vou trazer ela agora mesmo."
+					"text": "DIALOGO_LUZIA_LOST_3"
 				},
 				{
 					"name": "Francisco",
-					"text": "Obrigado, Nik. Ela não pode sair assim por causa da condição dela..."
+					"text": "DIALOGO_LUZIA_LOST_4"
 				},
 				{
 					"name": "Nikole",
-					"text": "Eu entendo. Vai dar tudo certo, não se preocupa."
+					"text": "DIALOGO_LUZIA_LOST_5"
 				}
 			]
 		},
-
 		{
 			"id": "luzia_completed",
 			"lines": [
 				{
 					"name": "Francisco",
-					"text": "Oi de novo, Nikole! Obrigado mais uma vez por trazer nossa vó de volta!"
+					"text": "DIALOGO_LUZIA_COMPLETED_1"
 				},
 				{
 					"name": "Francisco",
-					"text": "Pode deixar que não vamos deixar ela sair sozinha de novo. Falou!"
+					"text": "DIALOGO_LUZIA_COMPLETED_2"
 				}
 			]
 		},
-
-
 		{
 			"id": "joao_pre_minigame",
 			"condition": {
@@ -387,110 +374,107 @@
 			"lines": [
 				{
 					"name": "Nikole",
-					"text": "Bom dia, Jão! Tudo bom?"
+					"text": "DIALOGO_JOAO_PRE_MINIGAME_1"
 				},
 				{
 					"name": "João",
-					"text": "E aí, Nik! Tô bem, e você?"
+					"text": "DIALOGO_JOAO_PRE_MINIGAME_2"
 				},
 				{
 					"name": "Nikole",
-					"text": "Estou bem sim. Está curtindo bem o dia? O clima está super agradável."
+					"text": "DIALOGO_JOAO_PRE_MINIGAME_3"
 				},
 				{
 					"name": "João",
-					"text": "Ah, pode ser. Pra falar a verdade, nem tinha reparado."
+					"text": "DIALOGO_JOAO_PRE_MINIGAME_4"
 				},
 				{
 					"name": "Nikole",
-					"text": "Por quê? Tem alguma coisa acontecendo?"
+					"text": "DIALOGO_JOAO_PRE_MINIGAME_5"
 				},
 				{
 					"name": "João",
-					"text": "... Sendo sincero, tem algo me incomodando."
+					"text": "DIALOGO_JOAO_PRE_MINIGAME_6"
 				},
 				{
 					"name": "Nikole",
-					"text": "Sério? O que é? Claro, se você se sente confortável em falar."
+					"text": "DIALOGO_JOAO_PRE_MINIGAME_7"
 				},
 				{
 					"name": "João",
-					"text": "É que, recentemente, comecei a escutar uns comentários sobre mim..."
+					"text": "DIALOGO_JOAO_PRE_MINIGAME_8"
 				},
 				{
 					"name": "João",
-					"text": "... e sobre minha sexualidade."
+					"text": "DIALOGO_JOAO_PRE_MINIGAME_9"
 				},
 				{
 					"name": "Nikole",
-					"text": "Como as–"
+					"text": "DIALOGO_JOAO_PRE_MINIGAME_10"
 				},
 				{
 					"name": "João",
-					"text": "Nik, você acha que é errado eu ser gay?"
+					"text": "DIALOGO_JOAO_PRE_MINIGAME_11"
 				},
 				{
 					"name": "João",
-					"text": "Você acha que é errado eu ser... eu?"
+					"text": "DIALOGO_JOAO_PRE_MINIGAME_12"
 				},
 				{
 					"name": "João",
-					"text": "Tipo, eu não deveria gostar de mulheres? Eu não deveria gostar de você?"
+					"text": "DIALOGO_JOAO_PRE_MINIGAME_13"
 				},
 				{
 					"name": "Nikole",
-					"text": "Calma, João!"
+					"text": "DIALOGO_JOAO_PRE_MINIGAME_14"
 				},
 				{
 					"name": "João",
-					"text": "Então, por que tantos comentários homofóbicos contra mim? Você acha que algum deles me define, Nikole?"
+					"text": "DIALOGO_JOAO_PRE_MINIGAME_15"
 				},
 				{
 					"name": "Nikole",
-					"text": "Claro que não! Nenhum! Nenhumzinho!"
+					"text": "DIALOGO_JOAO_PRE_MINIGAME_16"
 				},
 				{
 					"name": "Nikole",
-					"text": "Olha..."
+					"text": "DIALOGO_JOAO_PRE_MINIGAME_17"
 				}
 			],
 			"redirect": "scene:minigame_joao"
 		},
-
 		{
 			"id": "joao_minigame_dialogue_1",
 			"condition": {},
 			"lines": [
 				{
 					"name": "Nikole",
-					"text": "João...  eu imagino que isso seja difícil, mas você não pode dar ouvidos a essas pessoas!"
+					"text": "DIALOGO_JOAO_MINIGAME_DIALOGUE_1_1"
 				},
 				{
 					"name": "Nikole",
-					"text": "Nunca, em nenhum mundo, comentários como esses podem te definir!"
+					"text": "DIALOGO_JOAO_MINIGAME_DIALOGUE_1_2"
 				},
 				{
 					"name": "João",
-					"text": "Eu... só queria essa confiança que você tem."
+					"text": "DIALOGO_JOAO_MINIGAME_DIALOGUE_1_3"
 				}
 			]
 		},
-
 		{
 			"id": "joao_minigame_dialogue_2",
 			"condition": {},
 			"lines": [
 				{
 					"name": "Nikole",
-					"text": "Confiança é algo que se constrói enfrentando seus medos."
+					"text": "DIALOGO_JOAO_MINIGAME_DIALOGUE_2_1"
 				},
 				{
 					"name": "Nikole",
-					"text": "E, só de comentar isso comigo, eu já percebo o quão corajoso você é!"
+					"text": "DIALOGO_JOAO_MINIGAME_DIALOGUE_2_2"
 				}
 			]
 		},
-
 		{
 			"id": "joao_post_minigame",
 			"condition": {
@@ -501,66 +485,63 @@
 			"lines": [
 				{
 					"name": "João",
-					"text": "Acho que talvez você tenha razão..."
+					"text": "DIALOGO_JOAO_POST_MINIGAME_1"
 				},
 				{
 					"name": "João",
-					"text": "Eu fico tão incomodado quando começam a falar essas coisas de mim, sabe? Eles todos fazem parecer..."
+					"text": "DIALOGO_JOAO_POST_MINIGAME_2"
 				},
 				{
 					"name": "João",
-					"text": "... que sou um erro."
+					"text": "DIALOGO_JOAO_POST_MINIGAME_3"
 				},
 				{
 					"name": "Nikole",
-					"text": "Eles não sabem o que falam. Eu conheço você e sei que você é muito mais do que só o que eles dizem que você é."
+					"text": "DIALOGO_JOAO_POST_MINIGAME_4"
 				},
 				{
 					"name": "Nikole",
-					"text": "Você é companheiro, carismático, respeitoso, confiável e muitas, muitas mais coisas, João!"
+					"text": "DIALOGO_JOAO_POST_MINIGAME_5"
 				},
 				{
 					"name": "Nikole",
-					"text": "Você não pode deixar comentários de pessoas que nem te conhecem ditar a sua vida."
+					"text": "DIALOGO_JOAO_POST_MINIGAME_6"
 				},
 				{
 					"name": "João",
-					"text": "Não sei... Preciso pensar um pouco mais sobre."
+					"text": "DIALOGO_JOAO_POST_MINIGAME_7"
 				},
 				{
 					"name": "Nikole",
-					"text": "Tudo bem, João. Só saiba que estarei sempre aqui quando precisar conversar."
+					"text": "DIALOGO_JOAO_POST_MINIGAME_8"
 				},
 				{
 					"name": "João",
-					"text": "Obrigado, Nikole."
+					"text": "DIALOGO_JOAO_POST_MINIGAME_9"
 				},
 				{
 					"name": "João",
-					"text": "Saiba que nossa conversa ajudou muito, viu?!"
+					"text": "DIALOGO_JOAO_POST_MINIGAME_10"
 				},
 				{
 					"name": "Nikole",
-					"text": "Mais uma vez, quando precisar, só me chamar, Jão!"
+					"text": "DIALOGO_JOAO_POST_MINIGAME_11"
 				},
 				{
 					"name": "Nikole",
-					"text": "Uma última coisa, nunca se esqueça que não tem nada de errado se é o que te faz feliz. Falou!"
+					"text": "DIALOGO_JOAO_POST_MINIGAME_12"
 				}
 			]
 		},
-
 		{
 			"id": "joao_completed",
 			"lines": [
 				{
 					"name": "João",
-					"text": "E aí, Nikole. Obrigado mais uma vez. De verdade."
+					"text": "DIALOGO_JOAO_COMPLETED_1"
 				}
 			]
 		},
-
-
 		{
 			"id": "caio_pre_minigame",
 			"condition": {
@@ -571,105 +552,101 @@
 			"lines": [
 				{
 					"name": "Nikole",
-					"text": "Bom dia, Caio! O que você está fazendo aí?"
+					"text": "DIALOGO_CAIO_PRE_MINIGAME_1"
 				},
 				{
 					"name": "Caio",
-					"text": "Bom dia, Nikole. Estou apenas regando essas lindas rosas aqui. Elas gostam de água pela manhã."
+					"text": "DIALOGO_CAIO_PRE_MINIGAME_2"
 				},
 				{
 					"name": "Nikole",
-					"text": "Elas são mesmo de tirar o fôlego... Foi você que plantou elas?"
+					"text": "DIALOGO_CAIO_PRE_MINIGAME_3"
 				},
 				{
 					"name": "Caio",
-					"text": "Ah não, não. Foi minha falecida mãe. Ela tinha o jeito para jardinagem... Pensando melhor, ela tinha o jeito para muitas coisas!"
+					"text": "DIALOGO_CAIO_PRE_MINIGAME_4"
 				},
 				{
 					"name": "Nikole",
-					"text": "Meus pêsames, Caio. Eu não sabia..."
+					"text": "DIALOGO_CAIO_PRE_MINIGAME_5"
 				},
 				{
 					"name": "Caio",
-					"text": "Está tudo bem, Nik. Sei que não tinha a intenção. Gostaria de ouvir mais sobre ela? Sempre adorei relembrar nossos momentos juntos."
+					"text": "DIALOGO_CAIO_PRE_MINIGAME_6"
 				},
 				{
 					"name": "Nikole",
-					"text": "É claro! Eu adoraria."
+					"text": "DIALOGO_CAIO_PRE_MINIGAME_7"
 				},
 				{
 					"name": "Caio",
-					"text": "Vamos lá, por onde eu começo... Ah sim."
+					"text": "DIALOGO_CAIO_PRE_MINIGAME_8"
 				},
 				{
 					"name": "",
-					"text": "*Caio, coloca o regador de lado.*"
+					"text": "DIALOGO_CAIO_PRE_MINIGAME_9"
 				},
 				{
 					"name": "Caio",
-					"text": "Como eu tinha dito, ela era boa em muitas coisas, mas se tinha uma coisa em que ela era a melhor era em cozinhar!"
+					"text": "DIALOGO_CAIO_PRE_MINIGAME_10"
 				},
 				{
 					"name": "Nikole",
-					"text": "Saiba que você puxou ela então! Sempre que passo pela sua casa, sinto um cheiro delicioso de comida no fogão!"
+					"text": "DIALOGO_CAIO_PRE_MINIGAME_11"
 				},
 				{
 					"name": "Caio",
-					"text": "E olha que eu não sou nada se comparado a ela, viu! Toda comida que ela fazia era tão mas tão saborosa que parecia que nossa casa era um restaurante 5 estrelas!"
+					"text": "DIALOGO_CAIO_PRE_MINIGAME_12"
 				},
 				{
 					"name": "Nikole",
-					"text": "Imagino! Você devia acompanhar muito ela na cozinha. Poderia me ensinar alguma receita dela?"
+					"text": "DIALOGO_CAIO_PRE_MINIGAME_13"
 				},
 				{
 					"name": "Caio",
-					"text": "Que ótima ideia! Eu tinha comprado alguns ingredientes para fazer a melhor receita que ela tinha. Pode ser agora?"
+					"text": "DIALOGO_CAIO_PRE_MINIGAME_14"
 				},
 				{
 					"name": "Nikole",
-					"text": "Com certeza!"
+					"text": "DIALOGO_CAIO_PRE_MINIGAME_15"
 				},
 				{
 					"name": "Caio",
-					"text": "Mãos à massa então!"
+					"text": "DIALOGO_CAIO_PRE_MINIGAME_16"
 				}
 			],
 			"redirect": "scene:minigame_caio"
 		},
-
 		{
 			"id": "caio_minigame_dialogue_1",
 			"condition": {},
 			"lines": [
 				{
 					"name": "Caio",
-					"text": "Comece cortando os ingredientes para adicionarmos à panela."
+					"text": "DIALOGO_CAIO_MINIGAME_DIALOGUE_1_1"
 				}
 			]
 		},
-
 		{
 			"id": "caio_minigame_dialogue_2",
 			"condition": {},
 			"lines": [
 				{
 					"name": "Caio",
-					"text": "Misture eles com cuidado para não derramar."
+					"text": "DIALOGO_CAIO_MINIGAME_DIALOGUE_2_1"
 				}
 			]
 		},
-
 		{
 			"id": "caio_minigame_dialogue_3",
 			"condition": {},
 			"lines": [
 				{
 					"name": "Caio",
-					"text": "Já que somos amigos, vou te contar um segredo. Quando ela servia a sopa já no tigela, ela ralava queijo por cima. Dava um toque tão especial."
+					"text": "DIALOGO_CAIO_MINIGAME_DIALOGUE_3_1"
 				}
 			]
 		},
-
 		{
 			"id": "caio_post_minigame",
 			"condition": {
@@ -680,46 +657,43 @@
 			"lines": [
 				{
 					"name": "Caio",
-					"text": "E aí? O que você achou? Estava uma delícia não estava?"
+					"text": "DIALOGO_CAIO_POST_MINIGAME_1"
 				},
 				{
 					"name": "Nikole",
-					"text": "Eu nunca tinha comido algo tão delicioso na minha vida."
+					"text": "DIALOGO_CAIO_POST_MINIGAME_2"
 				},
 				{
 					"name": "Caio",
-					"text": "Nem me fala! Obrigado pela companhia, Nikole. Cozinhar as receitas dela é como ser transportado de volta para a minha infância e ter ela comigo de novo..."
+					"text": "DIALOGO_CAIO_POST_MINIGAME_3"
 				},
 				{
 					"name": "Nikole",
-					"text": "Eu que agradeço pela oportunidade, Caio. Foi incrível. Apenas saiba que ela sempre estará com você."
+					"text": "DIALOGO_CAIO_POST_MINIGAME_4"
 				},
 				{
 					"name": "Caio",
-					"text": "Você tem razão! Ela sempre estará comigo sim... A vida é efêmera, mas, afinal de contas, é justamente isso que a torna especial. Obrigado mais uma vez. Se cuida, viu?"
+					"text": "DIALOGO_CAIO_POST_MINIGAME_5"
 				},
 				{
 					"name": "Nikole",
-					"text": "Adeus, Caio!"
+					"text": "DIALOGO_CAIO_POST_MINIGAME_6"
 				}
 			]
 		},
-
 		{
 			"id": "caio_completed",
 			"lines": [
 				{
 					"name": "Caio",
-					"text": "Aquela comida estava boa mesmo, hein?"
+					"text": "DIALOGO_CAIO_COMPLETED_1"
 				},
 				{
 					"name": "Caio",
-					"text": "Parece que a sua ajuda trouxe um tcham a mais, tá ligado?"
+					"text": "DIALOGO_CAIO_COMPLETED_2"
 				}
 			]
 		},
-
-
 		{
 			"id": "leonardo_pre_minigame",
 			"condition": {
@@ -730,125 +704,121 @@
 			"lines": [
 				{
 					"name": "Nikole",
-					"text": "Bom dia, seu Léo! Como o senhor está?"
+					"text": "DIALOGO_LEONARDO_PRE_MINIGAME_1"
 				},
 				{
 					"name": "Leonardo",
-					"text": "Bom dia, Nikole! Tudo bem sim, e com você? Aproveitando o dia?"
+					"text": "DIALOGO_LEONARDO_PRE_MINIGAME_2"
 				},
 				{
 					"name": "Nikole",
-					"text": "Tudo bem também, obrigada por perguntar!"
+					"text": "DIALOGO_LEONARDO_PRE_MINIGAME_3"
 				},
 				{
 					"name": "Nikole",
-					"text": "Estou aproveitando sim. Tirando um dia de folga para colocar o papo em dia com o pessoal da cidade. Sabe como é, né?"
+					"text": "DIALOGO_LEONARDO_PRE_MINIGAME_4"
 				},
 				{
 					"name": "Leonardo",
-					"text": "Ô se sei viu! Já faço isso todos os dias há 10 anos. Como sou aposentado, posso ficar aqui e bater papo com quem passar."
+					"text": "DIALOGO_LEONARDO_PRE_MINIGAME_5"
 				},
 				{
 					"name": "Nikole",
-					"text": "Até imagino... Mas afinal, o senhor trabalhava com o quê mesmo?"
+					"text": "DIALOGO_LEONARDO_PRE_MINIGAME_6"
 				},
 				{
 					"name": "Leonardo",
-					"text": "Você acreditaria se eu te contasse que era um professor de português?"
+					"text": "DIALOGO_LEONARDO_PRE_MINIGAME_7"
 				},
 				{
 					"name": "Nikole",
-					"text": "Mas é claro, seu Léo! Sempre fui curiosa sobre seus conhecimentos. Agora sei o porquê!"
+					"text": "DIALOGO_LEONARDO_PRE_MINIGAME_8"
 				},
 				{
 					"name": "Leonardo",
-					"text": "Pois é né. Mas confesso que foi difícil me adaptar... Eu era o único professor negro na escola."
+					"text": "DIALOGO_LEONARDO_PRE_MINIGAME_9"
 				},
 				{
 					"name": "Nikole",
-					"text": "Ah... eu entendo..."
+					"text": "DIALOGO_LEONARDO_PRE_MINIGAME_10"
 				},
 				{
 					"name": "Leonardo",
-					"text": "Lidar com isso era complicado. Eu passava o dia todo escutando certas expressões dos meus colegas que serviam apenas para me ridicularizar."
+					"text": "DIALOGO_LEONARDO_PRE_MINIGAME_11"
 				},
 				{
 					"name": "Leonardo",
-					"text": "Mas apesar disso, segui firme e continuei trabalhando com amor. Afinal, convenhamos, eu era o melhor professor daquela escola! Os alunos me amavam!"
+					"text": "DIALOGO_LEONARDO_PRE_MINIGAME_12"
 				},
 				{
 					"name": "Nikole",
-					"text": "Fico feliz pelo senhor! Ainda bem que não usam mais essas expressões hoje em dia."
+					"text": "DIALOGO_LEONARDO_PRE_MINIGAME_13"
 				},
 				{
 					"name": "Leonardo",
-					"text": "É justamente aí que está o problema. Veja bem: toda essa situação que eu passei me motivou a pesquisar e estudar mais sobre a língua."
+					"text": "DIALOGO_LEONARDO_PRE_MINIGAME_14"
 				},
 				{
 					"name": "Leonardo",
-					"text": "E por isso posso dizer que apenas trocar uma expressão por outra não é o suficiente."
+					"text": "DIALOGO_LEONARDO_PRE_MINIGAME_15"
 				},
 				{
 					"name": "Nikole",
-					"text": "Mas por que não seria, seu Léo? Há tempos eu não escuto uma expressão racista... As pessoas estão mudando."
+					"text": "DIALOGO_LEONARDO_PRE_MINIGAME_16"
 				},
 				{
 					"name": "Leonardo",
-					"text": "Essas expressões podem não ser usadas, mas quem disse que ainda não há racismo na língua? Olha só..."
+					"text": "DIALOGO_LEONARDO_PRE_MINIGAME_17"
 				}
 			],
 			"redirect": "scene:minigame_leonardo"
 		},
-
 		{
 			"id": "leonardo_minigame_dialogue_1",
 			"condition": {},
 			"lines": [
 				{
 					"name": "Leonardo",
-					"text": "Existem 3 tipos de racismo na língua: os racismos “na”, “pela” e “através” da língua."
+					"text": "DIALOGO_LEONARDO_MINIGAME_DIALOGUE_1_1"
 				}
 			]
 		},
-
 		{
 			"id": "leonardo_minigame_dialogue_2",
 			"condition": {},
 			"lines": [
 				{
 					"name": "Leonardo",
-					"text": "O racismo “na” língua é representado pelas expressões diretas de caráter racista."
+					"text": "DIALOGO_LEONARDO_MINIGAME_DIALOGUE_2_1"
 				},
 				{
 					"name": "Leonardo",
-					"text": "O racismo “pela” língua é caracterizado pelo uso de metáforas como forma de ataque."
+					"text": "DIALOGO_LEONARDO_MINIGAME_DIALOGUE_2_2"
 				},
 				{
 					"name": "Leonardo",
-					"text": "E por fim, o racismo “através” da língua é aquele que invalida o falar negro se comparado ao branco."
+					"text": "DIALOGO_LEONARDO_MINIGAME_DIALOGUE_2_3"
 				}
 			]
 		},
-
 		{
 			"id": "leonardo_minigame_dialogue_3",
 			"condition": {},
 			"lines": [
 				{
 					"name": "Leonardo",
-					"text": "Esse último é o mais profundo e sério dos problemas, pois é ele que mantém a presença do racismo na língua."
+					"text": "DIALOGO_LEONARDO_MINIGAME_DIALOGUE_3_1"
 				},
 				{
 					"name": "Leonardo",
-					"text": "Isso acontece porque ele engessa o racismo estrutural na fala, dando mais material para o prolongamento do racismo."
+					"text": "DIALOGO_LEONARDO_MINIGAME_DIALOGUE_3_2"
 				},
 				{
 					"name": "Leonardo",
-					"text": "E é justamente ele que continua presente na nossa sociedade..."
+					"text": "DIALOGO_LEONARDO_MINIGAME_DIALOGUE_3_3"
 				}
 			]
 		},
-
 		{
 			"id": "leonardo_post_minigame",
 			"condition": {
@@ -859,46 +829,43 @@
 			"lines": [
 				{
 					"name": "Nikole",
-					"text": "Que interessante... Então quer dizer que não adianta apenas mudar a superfície, né? Precisamos também olhar para as raízes."
+					"text": "DIALOGO_LEONARDO_POST_MINIGAME_1"
 				},
 				{
 					"name": "Leonardo",
-					"text": "Isso mesmo, minha filha! Se a origem dessas expressões não for analisada e entendida, o racismo na fala voltará a aparecer! É como dizem: o problema deve ser cortado pela raiz."
+					"text": "DIALOGO_LEONARDO_POST_MINIGAME_2"
 				},
 				{
 					"name": "Nikole",
-					"text": "Você é mesmo um ótimo professor, seu Léo! Agradeço pela aula. Pode deixar que prestarei mais atenção nas conversas que eu tenho agora."
+					"text": "DIALOGO_LEONARDO_POST_MINIGAME_3"
 				},
 				{
 					"name": "Leonardo",
-					"text": "Feliz por ter gostado! Posso não estar nos meus melhores dias fisicamente, mas o cérebro é com certeza o músculo que nunca parei de treinar!"
+					"text": "DIALOGO_LEONARDO_POST_MINIGAME_4"
 				},
 				{
 					"name": "Nikole",
-					"text": "Realmente! Obrigada de novo. Nossa conversa foi incrível como de costume. Adeus, seu Léo!"
+					"text": "DIALOGO_LEONARDO_POST_MINIGAME_5"
 				},
 				{
 					"name": "Leonardo",
-					"text": "Tchau, Nikole!"
+					"text": "DIALOGO_LEONARDO_POST_MINIGAME_6"
 				}
 			]
 		},
-
 		{
 			"id": "leonardo_completed",
 			"lines": [
 				{
 					"name": "Leonardo",
-					"text": "Zzzzzzzzzzzz..."
+					"text": "DIALOGO_LEONARDO_COMPLETED_1"
 				},
 				{
 					"name": "Leonardo",
-					"text": "Zzzzzzzz..."
+					"text": "DIALOGO_LEONARDO_COMPLETED_2"
 				}
 			]
 		},
-
-
 		{
 			"id": "alex_pre_minigame",
 			"condition": {
@@ -909,105 +876,101 @@
 			"lines": [
 				{
 					"name": "Nikole",
-					"text": "Bom dia! Você é a nova vizinha, né? Seja bem-vinda a nossa vilazinha!"
+					"text": "DIALOGO_ALEX_PRE_MINIGAME_1"
 				},
 				{
 					"name": "Alex",
-					"text": "Bom dia! Muito obrigada. Acabei de terminar a minha mudança. Esse lugar é adorável!"
+					"text": "DIALOGO_ALEX_PRE_MINIGAME_2"
 				},
 				{
 					"name": "Nikole",
-					"text": "Você tem razão... Nunca me canso de olhar para a paisagem. Espera só até você conhecer o laguinho que tem aqui perto!"
+					"text": "DIALOGO_ALEX_PRE_MINIGAME_3"
 				},
 				{
 					"name": "Nikole",
-					"text": "Eu me chamo Nikole, mas todo mundo me chama de Nik. Prazer em te conhecer!"
+					"text": "DIALOGO_ALEX_PRE_MINIGAME_4"
 				},
 				{
 					"name": "Alex",
-					"text": "Igualmente, Nik! Meu nome é Alex."
+					"text": "DIALOGO_ALEX_PRE_MINIGAME_5"
 				},
 				{
 					"name": "Nikole",
-					"text": "Mas me conta, Alex, o que te trouxe para a nossa aconchegante vila?"
+					"text": "DIALOGO_ALEX_PRE_MINIGAME_6"
 				},
 				{
 					"name": "Alex",
-					"text": "Eu estava buscando um recomeço, sabe? E acho que encontrei ele bem aqui, pertinho da natureza."
+					"text": "DIALOGO_ALEX_PRE_MINIGAME_7"
 				},
 				{
 					"name": "Nikole",
-					"text": "Entendo... Mas o que te levou a mudar de vida? Se não for problema perguntar."
+					"text": "DIALOGO_ALEX_PRE_MINIGAME_8"
 				},
 				{
 					"name": "Alex",
-					"text": "Claro que não, Nik! A verdade é que eu não me sentia confortável no trabalho que tinha."
+					"text": "DIALOGO_ALEX_PRE_MINIGAME_9"
 				},
 				{
 					"name": "Alex",
-					"text": "E como isso era a única coisa que me segurava no lugar onde morava, decidi me mudar."
+					"text": "DIALOGO_ALEX_PRE_MINIGAME_10"
 				},
 				{
 					"name": "Nikole",
-					"text": "Espaços assim não fazem bem para a gente mesmo."
+					"text": "DIALOGO_ALEX_PRE_MINIGAME_11"
 				},
 				{
 					"name": "Alex",
-					"text": "Não mesmo."
+					"text": "DIALOGO_ALEX_PRE_MINIGAME_12"
 				}
 			],
 			"redirect": "scene:minigame_alex"
 		},
-
 		{
 			"id": "alex_minigame_dialogue_1",
 			"condition": {},
 			"lines": [
 				{
 					"name": "Alex",
-					"text": "Eu tinha a impressão que não era bem-vinda lá."
+					"text": "DIALOGO_ALEX_MINIGAME_DIALOGUE_1_1"
 				},
 				{
 					"name": "Alex",
-					"text": "Por mais que eu me esforçasse e entregasse um trabalho bem feito, eu nunca recebia o reconhecimento que merecia."
+					"text": "DIALOGO_ALEX_MINIGAME_DIALOGUE_1_2"
 				},
 				{
 					"name": "Alex",
-					"text": "Enquanto isso, os meus colegas homens eram todos parabenizados por qualquer coisinha que fizessem."
+					"text": "DIALOGO_ALEX_MINIGAME_DIALOGUE_1_3"
 				}
 			]
 		},
-
 		{
 			"id": "alex_minigame_dialogue_2",
 			"condition": {},
 			"lines": [
 				{
 					"name": "Alex",
-					"text": "Eles se consideravam melhores que eu em tudo lá."
+					"text": "DIALOGO_ALEX_MINIGAME_DIALOGUE_2_1"
 				},
 				{
 					"name": "Alex",
-					"text": "Sem falar nos comentários horríveis que eu tinha que ficar aturando."
+					"text": "DIALOGO_ALEX_MINIGAME_DIALOGUE_2_2"
 				},
 				{
 					"name": "Alex",
-					"text": "Essas agressões iam me corroendo pouco a pouco."
+					"text": "DIALOGO_ALEX_MINIGAME_DIALOGUE_2_3"
 				}
 			]
 		},
-
 		{
 			"id": "alex_minigame_dialogue_3",
 			"condition": {},
 			"lines": [
 				{
 					"name": "Alex",
-					"text": "Teve um momento que eu não aguentava mais..."
+					"text": "DIALOGO_ALEX_MINIGAME_DIALOGUE_3_1"
 				}
 			]
 		},
-
 		{
 			"id": "alex_post_minigame",
 			"condition": {
@@ -1018,61 +981,60 @@
 			"lines": [
 				{
 					"name": "Alex",
-					"text": "Aí eu pedi demissão."
+					"text": "DIALOGO_ALEX_POST_MINIGAME_1"
 				},
 				{
 					"name": "Alex",
-					"text": "Era ruim viu..."
+					"text": "DIALOGO_ALEX_POST_MINIGAME_2"
 				},
 				{
 					"name": "Nikole",
-					"text": "Eu sinto muito, Alex. Fico feliz que você tenha se livrado disso."
+					"text": "DIALOGO_ALEX_POST_MINIGAME_3"
 				},
 				{
 					"name": "Alex",
-					"text": "Agradeço pelo apoio e por ter me escutado, Nik. Poucas pessoas entenderam minha decisão, já que era um trabalho que até pagava bem."
+					"text": "DIALOGO_ALEX_POST_MINIGAME_4"
 				},
 				{
 					"name": "Alex",
-					"text": "Mas tem coisas que o dinheiro não paga, né?"
+					"text": "DIALOGO_ALEX_POST_MINIGAME_5"
 				},
 				{
 					"name": "Nikole",
-					"text": "Pois saiba que estou aqui e que te entendo, Alex!"
+					"text": "DIALOGO_ALEX_POST_MINIGAME_6"
 				},
 				{
 					"name": "Nikole",
-					"text": "Nós como mulheres não sermos reconhecidas nesse mundo é algo tão... Nem palavras para descrever eu tenho."
+					"text": "DIALOGO_ALEX_POST_MINIGAME_7"
 				},
 				{
 					"name": "Nikole",
-					"text": "É um absurdo que isso ainda se mantém!"
+					"text": "DIALOGO_ALEX_POST_MINIGAME_8"
 				},
 				{
 					"name": "Alex",
-					"text": "Obrigada, Nikole. Desculpa pelo desabafo repentino... Passa aí depois para tomar um café, viu?"
+					"text": "DIALOGO_ALEX_POST_MINIGAME_9"
 				},
 				{
 					"name": "Nikole",
-					"text": "Tudo bem, Alex. Só me chamar se precisar conversar de novo. E pode acreditar que eu vou querer esse cafezinho sim!"
+					"text": "DIALOGO_ALEX_POST_MINIGAME_10"
 				},
 				{
 					"name": "Nikole",
-					"text": "Espero que você goste da nossa vila! Até mais!"
+					"text": "DIALOGO_ALEX_POST_MINIGAME_11"
 				}
 			]
 		},
-
 		{
 			"id": "alex_completed",
 			"lines": [
 				{
 					"name": "Alex",
-					"text": "Oi de novo! Ainda estou arrumando as coisas aqui em casa."
+					"text": "DIALOGO_ALEX_COMPLETED_1"
 				},
 				{
 					"name": "Alex",
-					"text": "Assim que terminar, te chamo para um café!"
+					"text": "DIALOGO_ALEX_COMPLETED_2"
 				}
 			]
 		}

@@ -77,13 +77,13 @@ func next_line(idx : int = -1):
 		return
 
 	var character = active_dialogue.lines[current_line].name
-	var line = active_dialogue.lines[current_line].text	
+	var line = tr(active_dialogue.lines[current_line].text)	
 
 	# Deixa apenas o nome visível
 	dialogue_text.visible_characters = active_dialogue.lines[current_line].name.length()
 
 	if not character.is_empty():
-		dialogue_text.text = "[font_size=36][color=" + characters[character] + "]" + character + "\n[font_size=28][color=black]" + line
+		dialogue_text.text = "[font_size=36][color=" + characters[character] + "]" + tr(character) + "\n[font_size=28][color=black]" + line
 		if dialogue_head.texture != character_heads[character]:
 			var tween : Tween = create_tween()
 			tween\
