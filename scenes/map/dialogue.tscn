@@ -36,11 +36,11 @@ horizontal_alignment = 1
 
 [node name="NextDialogueLabel" type="Label" parent="DialogueBox" unique_id=1033394434]
 layout_mode = 0
-offset_left = 1126.0
+offset_left = 1076.0
 offset_top = 186.0
-offset_right = 1271.0
+offset_right = 1269.0
 offset_bottom = 207.0
-text = "clique para continuar..."
+text = "DIALOGO_CLIQUE_CONTINUAR"
 horizontal_alignment = 2
 vertical_alignment = 2
 

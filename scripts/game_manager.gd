@@ -151,7 +151,7 @@ func apply_settings(config : Dictionary = settings):
 				TranslationServer.set_locale("pt_BR")
 			"en USA":
 				TranslationServer.set_locale("en_US")
-			"es EPS":
+			"es ESP":
 				TranslationServer.set_locale("es_ES")
 
 	if settings.has("font_family"): if settings["font_family"]:

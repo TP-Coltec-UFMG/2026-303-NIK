@@ -68,11 +68,11 @@ text = "[font_size=32][color=#60bbff]Nikole
 
 [node name="NextDialogueLabel" type="Label" parent="DialogueBox" unique_id=1033394434]
 layout_mode = 0
-offset_left = 788.0
+offset_left = 773.0
 offset_top = 243.0
-offset_right = 981.0
+offset_right = 966.0
 offset_bottom = 266.0
-text = "Interaja para continuar..."
+text = "DIALOGO_CLIQUE_CONTINUAR"
 label_settings = SubResource("LabelSettings_xoyff")
 horizontal_alignment = 2
 vertical_alignment = 2

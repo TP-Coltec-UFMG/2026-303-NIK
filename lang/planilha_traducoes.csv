@@ -1,4 +1,4 @@
-﻿keys;pt_BR;en_US;es_ES
+keys;pt_BR;en_US;es_ES
 MENU_INICIAL_CONTINUAR;Continuar Jogo;Continue Game;Continuar Juego
 MENU_INICIAL_NOVO;Novo Jogo;New Game;Nuevo Juego
 MENU_INICIAL_OPCOES;Opções;Options;Opciones
@@ -251,3 +251,4 @@ TUTORIAL_ALEX_TITULO;DIA DE TRABALHO;WORKDAY;DÍA DE TRABAJO
 TUTORIAL_ALEX_SUBTITULO;Termine um dia de trabalho!;Finish a workday!;¡Termina un día de trabajo!
 TUTORIAL_ALEX_DESCRICAO_1;Clique nas cartas para fazer suas tarefas.;Click on the e-mails to complete your tasks.;Haz clic en las cartas para realizar tus tareas.
 TUTORIAL_ALEX_DESCRICAO_2;[font_size=32]Vença os sentimentos apertando para [color=#E0C764] interagir [color=white]quando a [color=CF5454]barra pequena [color=white]estiver na [color=#88C86A]área[color=white].;[font_size=32]Overcome your feelings by pressing to [color=#E0C764]interact[color=white] when the [color=CF5454]small bar[color=white] is within the [color=#88C86A]area[color=white].;[font_size=32]Supera los sentimientos pulsando para [color=#E0C764] interactuar [color=white]cuando la [color=CF5454]barra pequeña [color=white]esté en el [color=#88C86A]área[color=white].
+DIALOGO_CLIQUE_CONTINUAR;interaja para continuar...;interact to continue...;interactúa para continuar...
