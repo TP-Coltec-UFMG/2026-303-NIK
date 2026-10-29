@@ -104,8 +104,6 @@ func _process(delta: float) -> void:
 	# Se não estiver no menu, não anima
 	if not on_menu: return
 
-	# Atualiza as dicas de controle
-	update_controls_tip()
 	# Atualiza os persoagens
 	set_menu_characters_enabled()
 
@@ -189,15 +187,6 @@ func press_current_button():
 		"NewGame": _on_new_game_pressed()
 		"Options": _on_options_pressed()
 		"Exit": _on_exit_pressed()
-
-# Atualiza o texto das dicas de controle
-func update_controls_tip() -> void:
-	var move : HBoxContainer = tips.get_node("Move")
-	var interact : HBoxContainer = tips.get_node("Interact")
-	# Atualiza o texto
-	move.get_node("up").get_node("Botao").text = OS.get_keycode_string(GameManager.get_setting("move_up"))
-	move.get_node("down").get_node("Botao").text = OS.get_keycode_string(GameManager.get_setting("move_down"))
-	interact.get_node("interact").get_node("Botao").text = OS.get_keycode_string(GameManager.get_setting("interact"))
 
 # Abre o menu e ativa suas funções necessárias
 func open_menu():

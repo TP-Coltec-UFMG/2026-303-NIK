@@ -1,4 +1,4 @@
-﻿keys;pt_BR;en_US;es_ES
+keys;pt_BR;en_US;es_ES
 MENU_INICIAL_CONTINUAR;Continuar Jogo;Continue Game;Continuar Juego
 MENU_INICIAL_NOVO;Novo Jogo;New Game;Nuevo Juego
 MENU_INICIAL_OPCOES;Opções;Options;Opciones
@@ -10,7 +10,8 @@ MENU_FECHAR_MENU;Fechar Menu;Close Menu;Cerrar Menú
 MENU_CONFIGURACOES;Configurações;Settings;Configuraciones
 MENU_ACESSIBILIDADE;Acessibilidade;Accessibility;Accesibilidad
 MENU_SALVAR;Salvar;Save;Guardar
-MENU_QUIT;Voltar ao Menu Principal;Quit to Main Menu;Volver al Menú Principal
+MENU_QUIT_MENU;Voltar ao Menu Principal;Quit to Main Menu;Volver al Menú Principal
+MENU_QUIT_MAPA;Voltar ao Mapa;Quit to Map;Volver al Mapa
 MENU_ACESSIBILIDADE_DALTONISMO;Daltonismo;Color Blindness;Daltonismo
 MENU_ACESSIBILIDADE_DALTONISMO_TIPO;Tipo;Type;Tipo
 MENU_ACESSIBILIDADE_DALTONISMO_TIPO_DESATIVADO;Desligado;Disabled;Desactivado

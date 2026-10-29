@@ -268,6 +268,7 @@ func quit():
 	
 	if GameManager.current_scene == "map":GameManager.load_scene("home_menu")
 	else: GameManager.load_map()
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	#get_tree().quit()
 
 func refresh_main_menu_buttons() -> void:
@@ -284,7 +285,7 @@ func refresh_main_menu_buttons() -> void:
 				continue
 			
 			if child.id == "button_quit":
-				child.label = tr("MENU_QUIT") if GameManager.current_scene == "map" else "Voltar Ao Mapa"
+				child.label = tr("MENU_QUIT_MENU") if GameManager.current_scene == "map" else tr("MENU_QUIT_MAPA")
 
 			main_menu.buttons.append(child)
 			child.size.x = 300

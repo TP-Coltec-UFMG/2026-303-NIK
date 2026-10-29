@@ -44,6 +44,7 @@ func _ready():
 	# load_musics()
 	play_music("neighborhood")
 	# load_scene("Principal")
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 func load_scene(cena: String) -> void:
 	can_start_dialogue = false
@@ -83,6 +84,7 @@ func load_map(idx_node : int = -1) -> void:
 	# (get_tree().get_root().get_child(0) as MapController).go_to_node(idx_node)
 
 func load_map_with_dialogue(dialogue_id: String) -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	await load_map()
 	await get_tree().create_timer(1.0).timeout
 	DialogueController.start_dialogue(dialogue_id, true)
@@ -126,17 +128,6 @@ func apply_settings(config : Dictionary = settings):
 
 	if settings.has("volume_music") and settings.has("volume_master"):
 		music_player.volume_linear = (settings["volume_music"] / 100.0) * (settings["volume_master"] / 100.0)
-	
-	if settings.has("colorblindness_mode"): 
-		match settings["colorblindness_mode"]:
-			"protanopia":
-				(color_blind_filter.material as ShaderMaterial).set_shader_parameter("filter_mode", 4)
-			"deuteranopia":
-				(color_blind_filter.material as ShaderMaterial).set_shader_parameter("filter_mode", 5)
-			"tritanopia":
-				(color_blind_filter.material as ShaderMaterial).set_shader_parameter("filter_mode", 6)
-			"desligado":
-				(color_blind_filter.material as ShaderMaterial).set_shader_parameter("filter_mode", 0)
 
 	if settings.has("colorblindness_mode"):
 		match settings["colorblindness_mode"]:
@@ -262,6 +253,7 @@ func create_default_settings() -> void:
 	settings["volume_master"] = 50.0
 	settings["volume_music"] = 50.0
 	settings["volume_voices"] = 50.0
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	save_settings()
 
 func load_settings() -> void:
