@@ -146,11 +146,20 @@ func apply_settings(config : Dictionary = settings):
 				(color_blind_filter.material as ShaderMaterial).set_shader_parameter("filter_mode", 5)
 			"tritanopia":
 				(color_blind_filter.material as ShaderMaterial).set_shader_parameter("filter_mode", 6)
-			"disabled":
+			_:
 				(color_blind_filter.material as ShaderMaterial).set_shader_parameter("filter_mode", 0)
 
 	if settings.has("colorblindness_intensity"):
 		(color_blind_filter.material as ShaderMaterial).set_shader_parameter("intensity", settings["colorblindness_intensity"])
+
+	if settings.has("selected_laguage"):
+		match settings["selected_laguage"]:
+			"pt BRA":
+				TranslationServer.set_locale("pt_BR")
+			"en USA":
+				TranslationServer.set_locale("en_US")
+			"es EPS":
+				TranslationServer.set_locale("es_ES")
 
 	if settings.has("font_family"): if settings["font_family"]:
 		menu.theme = easy_read_theme

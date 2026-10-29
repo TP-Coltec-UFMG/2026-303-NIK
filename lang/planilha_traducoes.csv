@@ -1,0 +1,41 @@
+﻿keys;pt_BR;en_US;es_ES
+MENU_INICIAL_CONTINUAR;Continuar Jogo;Continue Game;Continuar Juego
+MENU_INICIAL_NOVO;Novo Jogo;New Game;Nuevo Juego
+MENU_INICIAL_OPCOES;Opções;Options;Opciones
+MENU_INICIAL_SAIR;Sair;Leave;Salir
+MENU_INICIAL_MOVER;Mover;Move;Mover
+MENU_INICIAL_INTERAGIR;Interagir;Interact;Interactuar
+MENU_ESCALA_UI;Escala da Interface;User Interface Scale;Escala de la Interfaz
+MENU_FECHAR_MENU;Fechar Menu;Close Menu;Cerrar Menú
+MENU_CONFIGURACOES;Configurações;Settings;Configuraciones
+MENU_ACESSIBILIDADE;Acessibilidade;Accessibility;Accesibilidad
+MENU_SALVAR;Salvar;Save;Guardar
+MENU_QUIT;Voltar ao Menu Principal;Quit to Main Menu;Volver al Menú Principal
+MENU_ACESSIBILIDADE_DALTONISMO;Daltonismo;Color Blindness;Daltonismo
+MENU_ACESSIBILIDADE_DALTONISMO_TIPO;Tipo;Type;Tipo
+MENU_ACESSIBILIDADE_DALTONISMO_TIPO_DESATIVADO;Desligado;Disabled;Desactivado
+MENU_ACESSIBILIDADE_DALTONISMO_INTENSIDADE;Intensidade;Intensity;Intensidad
+MENU_ACESSIBILIDADE_INTERFACE;Interface;Interface;Interfaz
+MENU_ACESSIBILIDADE_INTERFACE_MENU_CIRCULAR;Menu Circular;Circular Menu;Menú Circular
+MENU_ACESSIBILIDADE_INTERFACE_IDIOMA;Idioma;Language;Idioma
+MENU_ACESSIBILIDADE_INTERFACE_FONTE;Fonte;Font;Fuente
+MENU_ACESSIBILIDADE_INTERFACE_FONTE_TIPO1;Leitura Fácil;Easy Reading;Lectura Fácil
+MENU_ACESSIBILIDADE_INTERFACE_FONTE_TIPO2;Padrão;Standard;Estándar
+MENU_ACESSIBILIDADE_MINIGAMES_QTE;Eventos Rápidos;Quick Time Events;Eventos Rápidos
+MENU_ACESSIBILIDADE_MINIGAMES_PATHFINDING;Guia de Caminhos;Pathfinding;Guía de Caminos
+MENU_ACESSIBILIDADE_MINIGAMES_FLASHING;Elementos Piscantes;Flashing Elements;Elementos Parpadeantes
+MENU_CONFIGURACOES_AUDIO;Áudio;Audio;Audio
+MENU_CONFIGURACOES_AUDIO_V_MASTER;Volume Master;Master Volume;Volume Master
+MENU_CONFIGURACOES_AUDIO_V_VOZES;Volume Vozes;Voices Volume;Volume Voces
+MENU_CONFIGURACOES_AUDIO_V_MUSICA;Volume Música;Music Volume;Volume Música
+MENU_CONFIGURACOES_CONTROLES;Controles;Controls;Controles
+MENU_CONFIGURACOES_CONTROLES_EDITAR;Editar Controles;Edit Controls;Editar Controles
+MENU_CONTROLES_MOVIMENTO;Movimento;Movement;Movimiento
+MENU_CONTROLES_MOVIMENTO_ESQUERDA;Esquerda;Left;Izquierda
+MENU_CONTROLES_MOVIMENTO_DIREITA;Direita;Right;Derecha
+MENU_CONTROLES_MOVIMENTO_CIMA;Cima;Up;Arriba
+MENU_CONTROLES_MOVIMENTO_BAIXO;Baixo;Down;Abajo
+MENU_CONTROLES_INTERACAO;Interação;Interaction;Interacción
+MENU_CONTROLES_INTERACAO_INTERAGIR;Interagir;Interact;Interactuar
+MENU_LIGADO;Ligado;Activated;Activado
+MENU_DESLIGADO;Desligado;Deactivated;Desactivado

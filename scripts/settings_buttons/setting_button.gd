@@ -12,7 +12,7 @@ func _ready() -> void:
 
 
 func _draw() -> void:
-	draw_text(label)
+	draw_text(tr(label))
 
 func draw_text(text : String, offset : Vector2 = Vector2.ZERO, color = null, outline = null) -> Vector2:
 	var is_focused = has_focus() or (get_viewport().gui_get_focus_owner() in get_children()) # ve se ta focado ele ou um bebê dele

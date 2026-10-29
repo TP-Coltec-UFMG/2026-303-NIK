@@ -223,7 +223,7 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 8
 offset_transform_enabled = true
-text = "Continuar Jogo"
+text = "MENU_INICIAL_CONTINUAR"
 label_settings = SubResource("LabelSettings_bp8ob")
 vertical_alignment = 1
 
@@ -244,7 +244,7 @@ mouse_filter = 2
 layout_mode = 2
 size_flags_horizontal = 0
 offset_transform_enabled = true
-text = "Novo Jogo"
+text = "MENU_INICIAL_NOVO"
 label_settings = SubResource("LabelSettings_bp8ob")
 vertical_alignment = 1
 
@@ -264,7 +264,7 @@ mouse_filter = 2
 layout_mode = 2
 size_flags_horizontal = 0
 offset_transform_enabled = true
-text = "Opções"
+text = "MENU_INICIAL_OPCOES"
 label_settings = SubResource("LabelSettings_bp8ob")
 vertical_alignment = 1
 
@@ -285,7 +285,7 @@ mouse_filter = 2
 layout_mode = 2
 size_flags_horizontal = 0
 offset_transform_enabled = true
-text = "Sair"
+text = "MENU_INICIAL_SAIR"
 label_settings = SubResource("LabelSettings_bp8ob")
 vertical_alignment = 1
 
@@ -416,7 +416,7 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(-1, 0)
 layout_mode = 2
 theme = ExtResource("3_bp8ob")
-text = "Mover"
+text = "MENU_INICIAL_MOVER"
 label_settings = SubResource("LabelSettings_pitpm")
 vertical_alignment = 1
 
@@ -458,7 +458,7 @@ stretch_mode = 5
 custom_minimum_size = Vector2(-1, 0)
 layout_mode = 2
 theme = ExtResource("3_bp8ob")
-text = "Interagir"
+text = "MENU_INICIAL_Interagir"
 label_settings = SubResource("LabelSettings_pitpm")
 vertical_alignment = 1
 
